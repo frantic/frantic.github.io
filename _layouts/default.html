@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+    <meta name="author" content="{{ site.author }}">
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
+
+    <style type="text/css" media="screen">
+      p { max-width: 28em; line-height: 1.5; font-size: 1rem; font-weight: 200; margin-bottom: 2em; }
+      body { font-family: georgia; }
+      time { color: #aaa; }
+      h1 { font-size: 1.2rem; text-transform: uppercase; }
+      a { text-decoration: none; }
+      @media (min-width: 48em) {
+        body { padding: 8rem; }
+        p,ul { font-size: 1.5rem; }
+      }
+    </style>
+  </head>
+
+  <body>
+    {{ content }}
+  </body>
+</html>

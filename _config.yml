@@ -1,0 +1,8 @@
+title: frantic.im
+author: frantic
+permalink: :title
+email: contact@frantic.im
+description: Occasional posts on technology and stuff
+baseurl: ""
+url: "http://frantic.im"
+markdown: kramdown

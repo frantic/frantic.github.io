@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Hello, world!"
+title: Hello, world!
 ---
 
 Finally getting started with Jekyll. 2016 New Year's resolution -- write regularly. Of course, due to procrastination and perfectionism I haven't started till March.

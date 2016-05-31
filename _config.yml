@@ -6,3 +6,4 @@ description: Occasional posts on technology and stuff
 baseurl: ""
 url: "http://frantic.im"
 markdown: kramdown
+highlighter: rouge

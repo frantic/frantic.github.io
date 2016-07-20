@@ -7,4 +7,10 @@ layout: default
     <h1>{{ page.title }}</h1>
   </header>
   {{ content }}
+  <footer>
+    <a href="mailto:{{ site.email | escape }}?subject={{ page.title | escape }}" title="Yep. Email. Pretty oldschool, huh?">Post a comment.</a>
+    Written by <a href="/">{{ site.author | escape }}</a>, {{ site.author_tagline | escape}}.
+    This blog has <a href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">RSS</a>.
+    </footer>
 </article>
+

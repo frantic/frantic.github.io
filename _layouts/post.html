@@ -8,9 +8,10 @@ layout: default
   </header>
   {{ content }}
   <footer>
-    <a href="mailto:{{ site.email | escape }}?subject={{ page.title | escape }}" title="Yep. Email. Pretty oldschool, huh?">Post a comment.</a>
+    <a href="mailto:{{ site.email | escape }}?subject={{ page.title | escape }}" title="Yep. Email. Pretty oldschool, huh?">Submit a comment.</a>
+    <a href="/writing">See more posts</a>.
     Written by <a href="/">{{ site.author | escape }}</a>, {{ site.author_tagline | escape}}.
-    This blog has <a href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">RSS</a>.
+    This blog has <a href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">RSS</a> and <a href="{{ site.twitter }}">Twitter</a>.
     </footer>
 </article>
 

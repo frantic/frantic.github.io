@@ -4,15 +4,24 @@ title: Writing
 permalink: /writing/
 ---
 
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <time>{{ post.date | date: "%b %-d, %Y" }}</time>
-      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-  <li>
-    <a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a>
-  </li>
-</ul>
+<article>
+  <p>
+    My name is {{ site.author | escape }}, I'm a {{ site.author_tagline | escape}}.
+    This is a collection of personal posts about software engineering and technology.
+  </p>
+  <table>
+    {% for post in site.posts %}
+      <tr>
+        <td>
+          <time>{{ post.date | date: "%Y-%m-%d" }}</time>
+        </td>
+        <td>
+          <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
 
+  New posts via <a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a> or
+  <a href="{{ site.twitter }}">Twitter</a>
+</article>

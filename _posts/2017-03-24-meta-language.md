@@ -52,7 +52,7 @@ Just by *naming* the variables we were able to pull down information that used t
 
 ## Variable names → advanced types
 
-The C version of our code contains much more information than the assembly one and its the meta language can be more high level. Now it doesn't have to duplicate and document what's already in the code, like the fact that the function takes 2 arguments, the first is mass and the second is radius.
+The C version of our code contains much more information than the assembly one and its meta language can be more high level. Now it doesn't have to duplicate and document what's already in the code, like the fact that the function takes 2 arguments, the first is mass and the second is radius.
 
 However, there is still some context missing from the code -- the units which the function operates on. These would have to reside in the documentation for the library (meta language).
 
@@ -71,7 +71,7 @@ let escape_velocity (Kilograms mass) (Meters radius) =
     MetersPerSecond (2.0 *. gravity_constant *. mass /. radius |> sqrt)
 ```
 
-<small>By the way, not joke, when calculating Earth's escape velocity I found a bug in my implementation because of OCaml types -- I was passing mass in wrong units.</small>
+<small>By the way, not a joke, when calculating Earth's escape velocity I found a bug in my implementation because of OCaml types -- I was passing mass in a wrong unit.</small>
 
 In this example `length` and `mass` are not just numbers but first class citizens. It also makes it safe and easy to maintain and evolve the code. For example, if we wanted to support imperial system (*I don't know why*), we could change the `mass` type to:
 
@@ -85,7 +85,7 @@ The type checker will point us to every place in the source code that needs to b
 
 ## Deprecations and other meta information
 
-Let's imagine a new fundamental discovery in physics makes our naїve escape velocity calculation obsolete. How do we deprecate the old function?
+Let's imagine there was a new fundamental discovery in physics that makes our naїve escape velocity calculation obsolete. How do we deprecate the old function?
 
 We can put this fact into meta language by adding a comment to the documentation or writing a provoking Medium post. But it's much more constructive to bring this information down into the code itself.
 
@@ -105,7 +105,7 @@ This shows one possible route of embedding more and more information from meta s
 
 **Visitor Pattern and `for` loops → `map`/`filter`/`reduce`**. In university I was taught about the Visitor Pattern, but now it's super simple and is part of many languages standard library.
 
-**Loading state**. Often times I see people build react components that have something like this as their state:
+**Loading state**. Often times I see people build React components that have something like this as their state:
 
 ```javascript
 state = {
@@ -127,14 +127,14 @@ type State =
 
 **Redux and immutability**. Currently the fact that [Redux](http://redux.js.org/) assumes lack of direct mutations lives in documentation, blog posts, videos and conference talks. Wouldn't it be great if JavaScript natively supported immutable data types and type annotations so that these constraints could be expressed in the code itself?
 
-**Promises and Observables**. In JavaScript promises made it from being a library functionality to being a core language concept. Same process is ongoing for [observables](https://github.com/tc39/proposal-observable).
+**Promises and Observables**. In JavaScript, promises made it from being a library functionality to being a core language concept. Same process is ongoing for [observables](https://github.com/tc39/proposal-observable).
 
 ![No, it's not a coffee stain](/assets/meta-language/aliens.png)
 
 ## Conclusion
 
-It's good to keep in mind that no amount of lowering things into a language will solve the human communication part. However, by evolving the language we are opening opportunities of a much efficient communication.
+It's good to keep in mind that no amount of lowering things into a language will solve the human communication part. However, by evolving the language we are opening opportunities of a much more efficient communication.
 
-Complexity has to reside somewhere. If your language is super simple, then the complexity settles in the meta language
+Complexity has to reside somewhere. If a language is super simple, then the complexity settles in the meta language
 
 *See also:* [Sebastian Markbåge's talk on minimal API surface area](https://www.youtube.com/watch?v=4anAwXYqLG8), [Jared Forsyth's talk on type systems](https://www.youtube.com/watch?v=V1po0BT7kac). Oh, and the [Arrival](http://www.imdb.com/title/tt2543164/) movie, it's really, really good!

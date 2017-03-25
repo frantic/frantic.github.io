@@ -12,6 +12,13 @@
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
 
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@alex_frantic">
+    <meta name="twitter:creator" content="@alex_frantic">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title | escape }} / {% endif %}{{ site.title | escape }}">
+    <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="twitter:image" content="{{ page.image | prepend: site.baseurl | prepend: site.url }}">
+
     <style type="text/css" media="screen">
       img, video { max-width: 100% }
       p,ul,ol,pre,footer,table { max-width: 32em; line-height: 1.5; font-size: 1rem; font-weight: 200; margin-bottom: 2em; }

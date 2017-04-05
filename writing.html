@@ -14,7 +14,7 @@ css: |
     This is a collection of personal posts about software engineering and technology.
   </p>
   <table>
-    {% for post in site.posts %}
+    {% for post in site.posts %}{% if post.layout == "post" %}
       <tr>
         <td>
           <time>{{ post.date | date: "%Y-%m-%d" }}</time>
@@ -23,7 +23,7 @@ css: |
           <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </td>
       </tr>
-    {% endfor %}
+    {% endif %}{% endfor %}
   </table>
 
   New posts via <a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a> or

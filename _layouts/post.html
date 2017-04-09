@@ -4,6 +4,14 @@ layout: default
 <article>
   <header>
     <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+    {% if page.translations %}
+      <small>
+        | translated to:
+        {% for translation in page.translations %}
+          <a href="{{ translation[1] }}">{{ translation[0] }}</a>{% if forloop.last == false %}, {% endif %}
+        {% endfor %}
+      </small>
+    {% endif %}
     <h1>{{ page.title }}</h1>
   </header>
   {{ content }}

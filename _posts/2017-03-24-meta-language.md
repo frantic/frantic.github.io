@@ -3,6 +3,8 @@ layout: post
 title: Understanding "Taming the Meta Language"
 image: /assets/meta-language/og-image.png
 excerpt: I think I *finally* understood it
+translations:
+  Korean: https://emaren84.github.io/blog/archivers/understanding-taming-the-meta-language-kor
 ---
 
 I think I finally understood [Cheng Lou](https://twitter.com/_chenglou)'s talk at the ReactConf '17. If you have 20 minutes to spare, watch this first:

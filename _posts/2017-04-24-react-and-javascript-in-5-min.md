@@ -1,5 +1,5 @@
 ---
-layout: draft
+layout: post
 title: React-flavored JavaScript in 5 minutes
 image: /assets/react-and-javascript-in-5-min/og-image.png
 excerpt: This document is for experienced software engineers who already know several other programming languages and just want a TL;DR summary on JavaScript in the context of React, Flow and the new ES6+ hotness.
@@ -25,7 +25,7 @@ JS belongs to C/Java family. It's easy to pick up from examples, the more nuance
 
 ### Variables and types
 
-```
+```javascript
 const foo = 5;
 let bar = 'hello';
 bar = bar + ', world';
@@ -34,6 +34,7 @@ bar = bar + ', world';
 Note that `const` prevents re-assignment of the variable, however if the value is a mutable object or array it can still be changed.
 
 Basic types:
+
 - numbers (52-bit): `0`, `42.24`, `0xf00`, `-Inf`/`+Inf` (infinity), `NaN` ("not a number", the irony!)
 - strings: `'single quotes'` and `"double quotes"` are equivalent, `` `template literals let you use ${expressions} inline` ``
 - booleans: `true`, `false`
@@ -48,7 +49,7 @@ ES6 introduced a bunch of specialized collection classes, e.g. `Map`, `WeakMap`,
 
 `null` used to mark empty value, `undefined` used to mark that there is no value. For example:
 
-```
+```javascript
 const list = ['apple', 'banana', null];
 list[0] // 'apple'
 list[2] // null
@@ -67,7 +68,7 @@ To compare values, always use `===`. Pretend `==` does not exist. Objects and ar
 
 Functions in JS are first class, i.e. you can use them the same way you use any other value -- assign to variables, add to arrays and objects, pass as arguments to other functions, etc.
 
-```
+```javascript
 const square = (x) => x * x;
 console.log(square(5));
 // 25
@@ -75,7 +76,7 @@ console.log(square(5));
 
 If a function contains more than one statement, use curly braces and explicit `return` statement:
 
-```
+```javascript
 const squareAndLog = (x) => {
   console.log(`Called with x = ${x}`);
   return x * x;
@@ -84,7 +85,7 @@ const squareAndLog = (x) => {
 
 There is another way to define a function:
 
-```
+```javascript
 const oldSchool = function() {
   console.log('hello, world');
 }
@@ -96,7 +97,7 @@ but it has unintuitive behavior when it comes to dynamically-scoped `this` (see 
 
 Object is a very common data structure in JS. In essence it's a bag of key-value pairs. Keys and values can be anything, but usually keys are strings. If key is a string that can be valid identifier (e.g. no spaces and special characters) quotation is omitted.
 
-```
+```javascript
 const myCat = {
   name: 'Peanut',
   owner: {
@@ -115,13 +116,13 @@ Before introduction of specialized collections, objects were often used as maps 
 
 ### OOP
 
-JS uses prototype inheritance. Every object has a magic hidden property called `__proto__`. When you access `cat.color` and `cat` doesn't have `color` key on it, JS runtime will check if `cat.__proto__` has `color`, then `cat.__proto__.__proto__`, etc. until found, otherwise returns `undefined`.
+JS uses prototype inheritance. Every object has a magic hidden property called `__proto__`. When you access `cat.color` and `cat` doesn't have `color` key on it, JS runtime will check if `cat.__proto__` has `color`, then `cat.__proto__.__proto__`, etc. until found, otherwise returns `undefined`. [Read more about prototypes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain).
 
-You can explicitly check if an object has specified key using `foo.hasOwnProperty('bar')`.
+You can explicitly check if an object has specified key using `foo.hasOwnProperty('bar')` or get a list of all available properties via `Object.keys(foo)`.
 
 It's a powerful system, but it confused shit out of people and everyone was rolling their own implementation of inheritance. So ES6 introduced more conventional class syntax (still uses `__proto__` under the hood):
 
-```
+```javascript
 class Cat extends Animal {
   constructor(name) {
     super();
@@ -142,14 +143,14 @@ Inside functions `this` is a magical variable that points to "the object that th
 
 However, if you do this:
 
-```
+```javascript
 let catsay = peanut.say;
 catsay();
 ```
 
 it will fail because `this` will be `undefined`. To make the function "remember" the instance it was called on, use `bind` method of the function (functions are also objects, surprise!):
 
-```
+```javascript
 let catsay = peanut.say.bind(peanut);
 catsay();
 ```
@@ -162,7 +163,7 @@ It's a very common source of errors.
 
 JSX is syntax sugar introduced by React to make it easy to describe complex view hierarchies. It's not required, but it saves developers from the "closing parenthesis problem)))))"
 
-```
+```javascript
 const view = (
   <div className="test">
     <span>hello world</span>
@@ -172,7 +173,7 @@ const view = (
 
 is equivalent to:
 
-```
+```javascript
 const view = React.createElement(
   'div',
   {className: 'test'},
@@ -182,13 +183,13 @@ const view = React.createElement(
 
 `name="value"` pairs are called attributes (or props). Strings should be wrapped in double-quotes. To insert a JS expression into JSX, wrap it in curly braces:
 
-```
+```javascript
 <div className={styles.main}>Next value is: {x + 1}</div>
 ```
 
 Every element can have zero or more elements inside (called children). There is a shortcut that can be used for empty elements:
 
-```
+```javascript
 <Profile user={me} />
 ```
 
@@ -200,7 +201,7 @@ There are a bunch of other nice syntax features that make using JS more fun.
 
 Destructuring lets you extract several values from JS data structures in one line of code:
 
-```
+```javascript
 const catData = {name: 'Peanut', age: 3, owner: 'Bob'};
 const {name, age} = catData;
 // now name === 'Peanut', age === 3
@@ -208,7 +209,7 @@ const {name, age} = catData;
 
 You can think about spread operator as "insert values" from one object or array into another
 
-```
+```javascript
 const alphabet = ['A', 'B', 'C'];
 const characters = ['1', '2', ...alphabet, '~'];
 // characters = ['1', '2', 'A', 'B', 'C', '~'];
@@ -216,7 +217,7 @@ const characters = ['1', '2', ...alphabet, '~'];
 
 it can also be used in context of function definition and calls, for example:
 
-```
+```javascript
 const sum = (...args) => args.reduce((e, a) => e + a, 0);
 sum(1, 2, 3); // 6
 
@@ -226,7 +227,7 @@ sum(...arr);  // 60
 
 Destructuring and spread can be used together:
 
-```
+```javascript
 const list = [1, 2, 3, 4];
 const [head, ...tail] = list;
 // head = 1, tail = [2, 3, 4];
@@ -243,13 +244,13 @@ It became a very common practice to use tools that take source code written in n
 
 Not all new features can be transformed. Sometimes standard adds new properties to existing classes, e.g. `String.startsWith`. Polyfills are small pieces of code that in runtime detect if these methods are available, and if not, mocks the implementation.
 
-### Asynchrony
+### Async
 
 JS is single-threaded and traditionally used for event-based scripting, e.g. "when user clicks this button, show alert".
 
 There are no blocking operations in JS. If the code needs to fetch a web page, for example, it can't just block and wait for the value, and should supply a callback instead. Obviously it influences the control flow, so be careful:
 
-```
+```javascript
 console.log('Before fetch');
 fetchURL('https://facebook.com', (response) => {
   console.log('Got response');
@@ -263,7 +264,7 @@ console.log('After fetch');
 
 In real world app callbacks get out of hand very quickly:
 
-```
+```javascript
 const loadAndStore = (callback) => {
   fetchURL('https://facebook.com', (response) => {
     response.loadBody((body) => {
@@ -277,7 +278,7 @@ const loadAndStore = (callback) => {
 
 `Promise` is a value that represents async operation and lets you attach and chain handlers:
 
-```
+```javascript
 const loadAndStore = () =>
   fetchURL('https://facebook.com/')
     .then((response) => response.loadBody())
@@ -286,7 +287,7 @@ const loadAndStore = () =>
 
 New `async`/`await` syntax makes it even easier to use promises:
 
-```
+```javascript
 const loadAndStore = async () => {
   const response = await fetchURL('https://facebook.com');
   const body = await response.loadBody();
@@ -297,9 +298,3 @@ const loadAndStore = async () => {
 ## Future
 
 Whenever you like it or not, JS is everywhere now: web, mobile, server, smart devices, etc. However, you don't have to use JS directly -- lots of languages (including newer versions of JS) consider JS as compile target.
-
-## Further reading
-
-In case you are actually interested in diving deeper into the JavaScript rabbit hole, here are some good resources:
-
-- JavaScript - the good parts. Timeless classic. ES5

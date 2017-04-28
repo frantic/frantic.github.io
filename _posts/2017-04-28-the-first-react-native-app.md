@@ -14,21 +14,23 @@ css: |
   }
 ---
 
-*In September 2014 we published an app to the AppStore. It was the first React Rative app ever shipped to production. You probably haven't heard about it.*
+*In September 2014 we published an app to the AppStore. It was the first React Native app ever shipped to production. You probably haven't heard about it.*
 
 <img src="/assets/atscale/og-image.png">
 
 It was only the beginning, the React Native team had about 6 people working on it. React Native wasn't even called React Native back then. The first ReactConf wasn't announced, Android support wasn't available. No Animated API, no Flow types support, no ES6 classes.
 
-Not many people believed in React Native's future. [Burned by the web technoligines in 2012](https://techcrunch.com/2012/09/11/mark-zuckerberg-our-biggest-mistake-with-mobile-was-betting-too-much-on-html5/) people were skeptical that another JavaScript-based solution was going to solve the moile problem.
+Not many people believed in React Native's future. [Burned by the web technologies in 2012](https://techcrunch.com/2012/09/11/mark-zuckerberg-our-biggest-mistake-with-mobile-was-betting-too-much-on-html5/) engineers were skeptical that another JavaScript-based solution was going to solve the mobile problem. Only two teams were using React Native, but their release dates were still far out.
 
 At Facebook we often ask
 
 > What Would You Do, If You Weren't Afraid?
 
-For us the answer then was "to ship a React Native app". Around that time Facebook was scheduled to hold a conference for engineers working on very large systems -- [@Scale](https://atscaleconference.com/). We decided to build a conference app for it, but the timeframe was very short.
+For us the answer then was to "ship a React Native app". Around that time Facebook was scheduled to hold a conference for engineers working on very large systems -- [@Scale](https://atscaleconference.com/). We decided to build a conference app for it, but the time frame was very short.
 
-The @Scale app was built during allnight hackathon. It was very reassuring to be able to use the technology you work on and confirm that it really delivered on the promise -- building a native feeling apps in 10% of the time.
+The @Scale app was built during all-night hackathon. It was very reassuring to be able to use the technology you work on and confirm that it really delivered on the promise -- building a native feeling apps in 10% of the time.
+
+As you can see on the screenshots and the video below, we didn't have designers. Fortunately the [Sketch](https://www.sketchapp.com/) app existed and I was able to steal some styles and colors from the official website.
 
 Video demo (notice the easter egg at the end):
 

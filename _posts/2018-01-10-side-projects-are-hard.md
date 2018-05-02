@@ -46,4 +46,4 @@ Mood:
 
 Am I alone in this? I remember side projects used to be fun in the past, what’s changed?
 
-*To be continued…*
+[*To be continued…*](/no-constraints-no-fun)

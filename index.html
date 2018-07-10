@@ -1,8 +1,21 @@
 ---
+title: frantic.im
+image: /assets/og-image.jpg
 ---
 <html>
   <head>
     <title>frantic.im</title>
+
+    <meta name="author" content="{{ site.author }}">
+    <meta property="og:title" content="{{ page.title | escape }}">
+    <meta property="og:image" content="{{ page.image | prepend: site.baseurl | prepend: site.url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@alex_frantic">
+    <meta name="twitter:creator" content="@alex_frantic">
+    <meta name="twitter:title" content="{{ page.title | escape }}">
+    <meta name="twitter:description" content="{{ site.description }}">
+    <meta name="twitter:image" content="{{ page.image | prepend: site.baseurl | prepend: site.url }}">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/favicon.png">

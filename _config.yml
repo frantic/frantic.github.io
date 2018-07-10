@@ -11,3 +11,4 @@ markdown: kramdown
 highlighter: rouge
 exclude:
   - "*.sketch"
+  - "vendor"

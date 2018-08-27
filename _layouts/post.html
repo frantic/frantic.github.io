@@ -3,13 +3,12 @@ layout: default
 ---
 <article>
   <a class="navigation" href="/writing">
-    <span class="back">◀</span> frantic.im
+    <span class="back">⇠</span> frantic.im
   </a>
   <header>
-    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
     {% if page.translations %}
       <small>
-        | translated to:
+        Translations:
         {% for translation in page.translations %}
           <a href="{{ translation[1] }}">{{ translation[0] }}</a>{% if forloop.last == false %}, {% endif %}
         {% endfor %}
@@ -18,11 +17,12 @@ layout: default
     <h1>{{ page.title }}</h1>
   </header>
   {{ content }}
+  <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
   <footer>
     <a href="mailto:{{ site.email | escape }}?subject={{ page.title | escape }}" title="Yep. Email. Pretty oldschool, huh?">Submit a comment.</a>
     <a href="/writing">See more posts</a>.
     Written by <a href="/">{{ site.author | escape }}</a>, {{ site.author_tagline | escape}}.
     This blog has <a href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">RSS</a> and <a href="{{ site.twitter }}">Twitter</a>.
-    </footer>
+  </footer>
 </article>
 

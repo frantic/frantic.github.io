@@ -20,7 +20,7 @@ layout: default
   <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
   <footer>
     <a href="/writing">See more posts</a>.
-    Written by <a href="/">{{ site.author | escape }}</a>, {{ site.author_tagline | escape}}.
+    Written by <a href="/">{{ site.author | escape }}</a>, {{ site.author_tagline }}.
     This blog has <a href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">RSS</a> and <a href="{{ site.twitter }}">Twitter</a>.
   </footer>
 </article>

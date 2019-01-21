@@ -5,6 +5,8 @@ permalink: /blog/
 ---
 
 <article>
+  {% include about.html %}
+
   {% assign published_posts = site.posts | where_exp: "post", "post.layout == 'post'" %}
   {% assign posts_by_year = published_posts | group_by_exp: "post", "post.date | date: '%Y'"  %}
   {% for year in posts_by_year %}
@@ -13,14 +15,4 @@ permalink: /blog/
       <p><a href="{{ post.url }}">{{ post.title }}</a> <span class="date">{{ post.date | date: "%-m/%-d"}}</span>
     {% endfor %}
   {% endfor %}
-</article>
-
-<article>
-  <p>
-    My name is {{ site.author | escape }}, I'm a {{ site.author_tagline }}.
-    This is a collection of personal posts about software engineering and technology.
-  </p>
-
-  New posts via <a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a> or
-  <a href="{{ site.twitter }}">Twitter</a>
 </article>

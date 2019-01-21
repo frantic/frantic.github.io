@@ -124,8 +124,8 @@ sub { top: .5ex; }
 
 .date { color: #00000090; font-size: 14px; margin-left: 4px; }
 
-.footer{ color: #00000090; }
-.footer { font-size: 16px; margin-bottom: 5em; }
-.footer > .separator { margin: 0 4px; }
-.footer > a { margin-right: 5px; }
-.footer > a:hover { color: #000; }
+footer { color: #00000090; }
+footer { font-size: 16px; margin-bottom: 5em; }
+footer > .separator { margin: 0 4px; }
+footer > a { margin-right: 5px; }
+footer > a:hover { color: #000; }

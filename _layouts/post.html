@@ -14,7 +14,7 @@ layout: default
         {% endfor %}
       </small>
     {% endif %}
-    <h1>{{ page.title }}</h1>
+    <h1 class="title">{{ page.title }}</h1>
   </header>
   {{ content }}
   <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>

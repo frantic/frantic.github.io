@@ -31,7 +31,7 @@ This blog delivers updates via [RSS](https://en.wikipedia.org/wiki/RSS). To use 
 
 ## Email
 
-Get an email every time I publish a new blog post. There's a one-click unsubscribe link in every message.
+Get an email every time I publish a new blog post (which means approximately 0.5 email/month). There's a one-click unsubscribe link in every message.
 
 <form action="//frantic.us15.list-manage.com/subscribe/post?u=bab4478ea2c80e4f7cbf17e59&amp;id=4ec0164f8e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
   <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="awesome@gmail.com" required>
@@ -41,4 +41,4 @@ Get an email every time I publish a new blog post. There's a one-click unsubscri
 
 ## Twitter
 
-You might follow [@alex_frantic](https://twitter.com/alex_frantic) on Twitter, everything I write I announce on Twitter as well.
+I don't tweet much, but you can follow [@alex_frantic](https://twitter.com/alex_frantic) to get updates when I write a new post or find something interesting.

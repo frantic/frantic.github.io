@@ -38,27 +38,7 @@ These myths are not specific to JavaScript. As humans we can’t experience ever
 
 This might not sound very encouraging, but **be willing to accept a defeat**. There are so many scenarios where React Native can be very beneficial. But there are also valid situations where it doesn’t make sense at a particular time. And it’s okay. Maybe in a few months you can revisit this decision. The last thing you want is to polarize your team and ruin constructive work relationships.
 
-To fight existing misconceptions, prove them wrong on a real feature inside your app (without making other people feel stupid). Show, don’t tell.
-
-# Be a champion 
-
-_You can't just say "Let's use React Native" and hide in the bushes._
-
-[TC39](https://github.com/tc39), a committee that evolves JavaScript the language, has [the following process](https://tc39.github.io/process-document/). Changes to the language are called "proposals". A member that leads a proposal is called a "champion". Their mission is to create spec drafts, work with the community and push the spec forward.
-
-Become the React Native champion at your company. Take the responsibility to see this idea through.
-
-The first step to becoming a champion is to get more familiar with React Native. Create a few prototypes (by [rebuilding some parts of your app](https://www.youtube.com/watch?v=I8b0v0uFXLs)), learn architecture, be ready to give demos and help people get started.
-
-Engineers who are coming from native will most likely feel uncomfortable and overwhelmed by the new ecosystem. Create an environment where getting started with React Native is super easy:
-
-- Have an internal wiki page with [step-by-step instructions](https://bitbucket.org/frantic/react-bnb) on how to get started. Think of it as a "landing page" of React Native in your organization.
-- Build a script that automates environment setup: installs NodeJS and other dependencies, runs yarn install, etc.
-- Setup good IDE defaults. You can't ask IntelliJ users to configure and use VIM. Document or commit configs that make it much easier to get started with React Native. For example: editor recommendations, plugins, syntax schemes, keyboard shortcuts, etc.
-- Organize a tech talk or a small hackathon where your team can learn about React Native and try it together on a small project.
-- Create a place to ask questions, have discussions and hang out. Maybe a `#react_native` channel on Slack, group, email list, etc. Be there to answer questions.
-
-Super important: if there are people who don't want to deal with React Native, **make sure their development experience is not compromised**. They should be able to work the same way as before without having to know or do anything about React Native.
+To fight existing misconceptions, prove them wrong on a real feature inside your app (without making other people feel stupid).
 
 # Find value
 
@@ -77,6 +57,26 @@ Show, don't tell.
 <figure>
   <img src="/assets/hilthart-pedersen-602249-unsplash.jpg" />
 </figure>
+
+# Be a champion 
+
+_You can't just say "Let's use React Native" and hide in the bushes._
+
+[TC39](https://github.com/tc39), a committee that evolves JavaScript the language, has [the following process](https://tc39.github.io/process-document/): Changes to the language are called "proposals". A member that leads a proposal is called a "champion". Their mission is to create spec drafts, work with the community and push the spec forward.
+
+**Become the React Native champion at your company.** Take the responsibility to see this idea through.
+
+The first step to becoming a champion is to get more familiar with React Native. Create a few prototypes (by [rebuilding some parts of your app](https://www.youtube.com/watch?v=I8b0v0uFXLs)), learn architecture, be ready to give demos and help people get started.
+
+Engineers who are coming from native will most likely feel uncomfortable and overwhelmed by the new ecosystem. Create an environment where getting started with React Native is super easy:
+
+- Have an internal wiki page with [step-by-step instructions](https://bitbucket.org/frantic/react-bnb) on how to get started. Think of it as a "landing page" of React Native in your organization.
+- Build a script that automates environment setup: installs NodeJS and other dependencies, runs yarn install, etc.
+- Setup good IDE defaults. You can't ask IntelliJ users to configure and use VIM. Document or commit configs that make it much easier to get started with React Native. For example: editor recommendations, plugins, syntax schemes, keyboard shortcuts, etc.
+- Organize a tech talk or a small hackathon where your team can learn about React Native and try it together on a small project.
+- Create a place to ask questions, have discussions and hang out. Maybe a `#react_native` channel on Slack, group, email list, etc. Be there to answer questions.
+
+Super important: if there are people who don't want to deal with React Native, **make sure their development experience is not compromised**. They should be able to work the same way as before without having to know or do anything about React Native.
 
 # Closing thoughts
 

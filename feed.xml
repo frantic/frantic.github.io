@@ -15,8 +15,9 @@ layout: null
       <item>
         <title>{{ post.title | xml_escape }}</title>
         <description xml:base="{{ post.url | absolute_url | xml_escape }}">
-          {% assign fix_relative_image_paths = post.content | replace: 'src="/assets/', 'src="_______/assets/' | replace: '_______', site.url %}
-          {{ fix_relative_image_paths | xml_escape }}
+          {% assign fix_relative_paths = post.content | replace: 'src="/assets/', 'src="_______/assets/' | replace: '_______', site.url %}
+          {% assign fix_relative_paths = fix_relative_paths | replace: 'href="/', 'href="_______/' | replace: '_______', site.url %}
+          {{ fix_relative_paths | xml_escape }}
         </description>
         <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
         <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>

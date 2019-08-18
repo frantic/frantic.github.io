@@ -14,7 +14,10 @@ layout: null
     {% for post in site.posts limit:100 %}{% if post.layout == "post" %}
       <item>
         <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | xml_escape }}</description>
+        <description xml:base="{{ post.url | absolute_url | xml_escape }}">
+          {% assign fix_relative_image_paths = post.content | replace: 'src="/assets/', 'src="_______/assets/' | replace: '_______', site.url %}
+          {{ fix_relative_image_paths | xml_escape }}
+        </description>
         <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
         <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
         <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>

@@ -10,6 +10,12 @@ css: |
 
 I have this unsettling urge to build things. Sometimes work just flows, [sometimes](/side-projects-are-hard) I question my life choices. Here are some of my side projects I built:
 
+### [Unofficial Joking Hazard App](https://jokinghazard.app/) <span class="date">2020</span>
+
+Inspired by the Cyanide & Hapiness Random Comic Generator, Joking Hazard is a game in which you compete with your friends and enemies to finish an awful three-panel comic, from a deck of cards with millions of possible combinations.
+
+I built an app that lets you play this game on your phone.
+
 ### [Can't Unsee](https://cantunsee.space/) <span class="date">2018</span>
 
 I believe tiny details can make a huge difference. I love building UIs, and over the years of doing so I noticed that not every engineer and designer can notice these details.

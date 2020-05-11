@@ -5,7 +5,7 @@ email: contact@frantic.im
 twitter: https://twitter.com/alex_frantic
 description: Occasional posts on technology and stuff
 baseurl: ""
-url: "http://frantic.im"
+url: https://frantic.im
 markdown: kramdown
 highlighter: rouge
 exclude:

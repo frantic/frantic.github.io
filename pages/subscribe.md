@@ -33,7 +33,7 @@ Get an email every time I publish a new blog post (which means approximately 0.5
 
 ## RSS
 
-Feed URL: `http://frantic.im/feed.xml`.
+Feed URL: `https://frantic.im/feed.xml`.
 
 ## Twitter
 

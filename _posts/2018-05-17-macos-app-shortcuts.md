@@ -3,6 +3,10 @@ layout: post
 title: Better way to switch between apps on macOS
 image: /assets/macos-app-shortcuts/og-image.png
 excerpt: (+ video tutorial!) ⌘-tab sucks when you have more than two apps running. In this blog post I explore how we can make switching between apps more efficient.
+tags:
+  - tips
+  - productivity
+  - macos
 ---
 
 Does this look familiar? This happens to me all the time…
@@ -15,7 +19,7 @@ So I press `⌘-tab` and get this giant list of apps. I need to find iTerm there
 
 iTerm2 has [this feature](https://www.iterm2.com/documentation-one-page.html#documentation-hotkey.html) where it can be shown or hidden using a system-wide hotkey (like in the good old Quake days). But none of the other apps I use don't support this.
 
-*Wouldn't it be great if each app had a shortcut that would activate it?*
+_Wouldn't it be great if each app had a shortcut that would activate it?_
 
 Enter [Alfred](https://www.alfredapp.com/) Workflows. Here's how I set it up (text version below):
 

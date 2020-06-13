@@ -2,6 +2,10 @@
 layout: post
 title: Show OSX notification when long running command finishes and your terminal is not in focus
 excerpt: Fighting lack of attention span with some advanced tooling hacks
+tags:
+  - tips
+  - productivity
+  - shell
 ---
 
 Sometimes I run commands that take a while to finish: `git pull`, `npm install`, etc. My attention span is pretty short, so I easily get distracted and forget about it. 15 minutes later (after reading Hacker News/Twitter/etc.) I come back to my terminal and discover that I forgot to `cd` into the correct folder. So I fix the problem, run the slow command again, get distracted and there my next 15 minutes go.

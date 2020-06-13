@@ -3,9 +3,13 @@ layout: post
 title: React-flavored JavaScript in 5 minutes
 image: /assets/react-and-javascript-in-5-min/og-image.png
 excerpt: This document is for experienced software engineers who already know several other programming languages and just want a TL;DR summary on JavaScript in the context of React, Flow and the new ES6+ hotness.
+tags:
+  - programming
+  - javascript
+  - flow
 ---
 
-*This document is for experienced software engineers who already know several other programming languages and just want a TL;DR summary on JavaScript in the context of React, Flow and the new ES6+ hotness.*
+_This document is for experienced software engineers who already know several other programming languages and just want a TL;DR summary on JavaScript in the context of React, Flow and the new ES6+ hotness._
 
 ## 20 seconds of history
 
@@ -27,8 +31,8 @@ JS belongs to C/Java family. It's easy to pick up from examples, the more nuance
 
 ```javascript
 const foo = 5;
-let bar = 'hello';
-bar = bar + ', world';
+let bar = "hello";
+bar = bar + ", world";
 ```
 
 Note that `const` prevents re-assignment of the variable, however if the value is a mutable object or array it can still be changed.
@@ -50,10 +54,10 @@ ES6 introduced a bunch of specialized collection classes, e.g. `Map`, `WeakMap`,
 `null` used to mark empty value, `undefined` used to mark that there is no value. For example:
 
 ```javascript
-const list = ['apple', 'banana', null];
-list[0] // 'apple'
-list[2] // null
-list[9] // undefined
+const list = ["apple", "banana", null];
+list[0]; // 'apple'
+list[2]; // null
+list[9]; // undefined
 ```
 
 If it doesn't make sense, forget about this for now. Don't think about it. It will "click" when it's time.
@@ -86,9 +90,9 @@ const squareAndLog = (x) => {
 There is another way to define a function:
 
 ```javascript
-const oldSchool = function() {
-  console.log('hello, world');
-}
+const oldSchool = function () {
+  console.log("hello, world");
+};
 ```
 
 but it has unintuitive behavior when it comes to dynamically-scoped `this` (see below), so prefer arrow functions.
@@ -99,17 +103,19 @@ Object is a very common data structure in JS. In essence it's a bag of key-value
 
 ```javascript
 const myCat = {
-  name: 'Peanut',
+  name: "Peanut",
   owner: {
-    name: 'Bob',
+    name: "Bob",
   },
-  'stuff it likes': ['milk', 'butterflies'],
-  jump: () => { console.log('jumped') },
+  "stuff it likes": ["milk", "butterflies"],
+  jump: () => {
+    console.log("jumped");
+  },
 };
 
-myCat.name               // Peanut
-myCat['stuff it likes']  // ['milk', 'butterflies']
-myCat.jump();            // jumped
+myCat.name; // Peanut
+myCat["stuff it likes"]; // ['milk', 'butterflies']
+myCat.jump(); // jumped
 ```
 
 Before introduction of specialized collections, objects were often used as maps or sets. Now there are dedicated `Map` and `Set` classes.
@@ -134,7 +140,7 @@ class Cat extends Animal {
   }
 }
 
-const peanut = new Cat('Peanut');
+const peanut = new Cat("Peanut");
 console.log(peanut.say());
 // Peanut: meow
 ```
@@ -175,9 +181,9 @@ is equivalent to:
 
 ```javascript
 const view = React.createElement(
-  'div',
-  {className: 'test'},
-  React.createElement('span', null, 'hello world')
+  "div",
+  { className: "test" },
+  React.createElement("span", null, "hello world")
 );
 ```
 
@@ -202,16 +208,16 @@ There are a bunch of other nice syntax features that make using JS more fun.
 Destructuring lets you extract several values from JS data structures in one line of code:
 
 ```javascript
-const catData = {name: 'Peanut', age: 3, owner: 'Bob'};
-const {name, age} = catData;
+const catData = { name: "Peanut", age: 3, owner: "Bob" };
+const { name, age } = catData;
 // now name === 'Peanut', age === 3
 ```
 
 You can think about spread operator as "insert values" from one object or array into another
 
 ```javascript
-const alphabet = ['A', 'B', 'C'];
-const characters = ['1', '2', ...alphabet, '~'];
+const alphabet = ["A", "B", "C"];
+const characters = ["1", "2", ...alphabet, "~"];
 // characters = ['1', '2', 'A', 'B', 'C', '~'];
 ```
 
@@ -222,7 +228,7 @@ const sum = (...args) => args.reduce((e, a) => e + a, 0);
 sum(1, 2, 3); // 6
 
 const arr = [10, 20, 30];
-sum(...arr);  // 60
+sum(...arr); // 60
 ```
 
 Destructuring and spread can be used together:
@@ -232,7 +238,6 @@ const list = [1, 2, 3, 4];
 const [head, ...tail] = list;
 // head = 1, tail = [2, 3, 4];
 ```
-
 
 ### Transforms
 
@@ -251,11 +256,11 @@ JS is single-threaded and traditionally used for event-based scripting, e.g. "wh
 There are no blocking operations in JS. If the code needs to fetch a web page, for example, it can't just block and wait for the value, and should supply a callback instead. Obviously it influences the control flow, so be careful:
 
 ```javascript
-console.log('Before fetch');
-fetchURL('https://facebook.com', (response) => {
-  console.log('Got response');
+console.log("Before fetch");
+fetchURL("https://facebook.com", (response) => {
+  console.log("Got response");
 });
-console.log('After fetch');
+console.log("After fetch");
 
 // Before fetch
 // After fetch
@@ -266,21 +271,21 @@ In real world app callbacks get out of hand very quickly:
 
 ```javascript
 const loadAndStore = (callback) => {
-  fetchURL('https://facebook.com', (response) => {
+  fetchURL("https://facebook.com", (response) => {
     response.loadBody((body) => {
       db.save(body, () => {
         callback();
       });
     });
   });
-}
+};
 ```
 
 `Promise` is a value that represents async operation and lets you attach and chain handlers:
 
 ```javascript
 const loadAndStore = () =>
-  fetchURL('https://facebook.com/')
+  fetchURL("https://facebook.com/")
     .then((response) => response.loadBody())
     .then((body) => db.save(body));
 ```
@@ -289,10 +294,10 @@ New `async`/`await` syntax makes it even easier to use promises:
 
 ```javascript
 const loadAndStore = async () => {
-  const response = await fetchURL('https://facebook.com');
+  const response = await fetchURL("https://facebook.com");
   const body = await response.loadBody();
   return await db.save(body);
-}
+};
 ```
 
 ## Future

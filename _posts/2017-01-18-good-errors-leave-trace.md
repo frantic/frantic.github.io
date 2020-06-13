@@ -2,17 +2,19 @@
 layout: post
 title: Good errors leave trace
 excerpt: Errors with extra informaton can help locate and fix the problems faster.
+tags:
+  - programming
 ---
 
 The value of an error is in the information it carries. Bad errors carry very little information, good errors provide enough to know what went wrong and how to fix it.
 
 Errors are usually classified by:
 
-* target audience: made for developers or users
-* severity: from minor to critical
-* outcome: recoverable and non-recoverable
+- target audience: made for developers or users
+- severity: from minor to critical
+- outcome: recoverable and non-recoverable
 
-But let's try organizing errors *by the amount of information they contain*. Hopefully this way will open another dimension for you to reason about your code.
+But let's try organizing errors _by the amount of information they contain_. Hopefully this way will open another dimension for you to reason about your code.
 
 **Level 0. No information at all**. Errors are least useful when they are completely silenced and the only way to detect them is to notice that something else is broken.
 
@@ -20,11 +22,11 @@ But let's try organizing errors *by the amount of information they contain*. Hop
 
 **Level 2. Error with a message**. Having a good error message is the simplest and most efficient way to add value. Unique error messages are great because they can be traced back to the source code. `git grep` (or similar) can be used to locate the code that throws the error even if the stack trace is not available.
 
-It's also helpful for people who are not directly working on the project's source code (library users, your app's users, etc.). They can search online for "[app/library] [error message]" and find some useful information, like a GitHub issue or a StackOverflow answer.
+It's also helpful for people who are not directly working on the project's source code (library users, your app's users, etc.). They can search online for "[app/library][error message]" and find some useful information, like a GitHub issue or a StackOverflow answer.
 
 There is a temptation to include instructions about how to solve the problem into the error message. But don't try to make error messages too smart. In fact, the code that throws the error by definition doesn't know how to fix it and by design has very little context on what's going on.
 
-**Level 3. Stack trace**.  When developing a software product, the stack trace is the second most useful piece of data. Almost all scripting languages are great examples of how this is helpful -- they print the stack trace right after the error message. It's also easy to collect this information from the scripting environment itself. On the other hand, compiled languages make it much harder to extract the stack trace.
+**Level 3. Stack trace**. When developing a software product, the stack trace is the second most useful piece of data. Almost all scripting languages are great examples of how this is helpful -- they print the stack trace right after the error message. It's also easy to collect this information from the scripting environment itself. On the other hand, compiled languages make it much harder to extract the stack trace.
 
 In some cases conventional stack traces are not very useful. For example, when dealing with asynchronous Promise-based code in JavaScript, the stack trace doesn't include pointers to the code that caused the problem. Fortunately, modern developer tools can keep track of function calls across async call boundaries.
 
@@ -35,7 +37,6 @@ It's good when errors include some additional context information. For example, 
 **Level 5. Environment**. Errors can also include some extra information about the environment where the error has occurred. This information, when logged and aggregated and can be used to pinpoint the error's source.
 
 For example, for massive scale backend systems it's almost impossible to look at an error reported by one of hundreds of services and figure out what went wrong. To help pinpoint the cause, it's a good idea to log a lot of additional information with the crash report and then aggregate and display that information. For example, server OS version, service version, arguments, queries per second, memory and CPU utilization, free disk space, active thread etc.
-
 
 ## Errors while reporting errors
 
@@ -67,7 +68,6 @@ Traceback (most recent call last):
 Exception: Error while reporting error
 ```
 
-
 ## Performance
 
 Be aware of the perf cost of including additional information. In particular, often times the error message is formated using some kind of `sprintf` function. Make sure the error message is prepared only when the error has actually been triggered. We had this funny bug in React Native in the early days:
@@ -78,7 +78,6 @@ Be aware of the perf cost of including additional information. In particular, of
     );
 
 As you can see, the error message argument string is computed every time before the function call, even when the invarian doesn't fire.
-
 
 ## Errors visibility
 

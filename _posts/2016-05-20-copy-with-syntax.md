@@ -1,6 +1,10 @@
 ---
 layout: post
 title: Copying code with syntax highlighting
+tags:
+  - tips
+  - projects
+  - productivity
 ---
 
 When preparing presentations I often want to include a few code blocks in the slides, with proper syntax highlighting. However, what sounds like a very strightforward task always turns out to be complicated.
@@ -19,7 +23,7 @@ Recently I came up with [a plugin for Atom](https://github.com/frantic/copy-with
 
 One interesting gotcha -- some DOM nodes appear out of order, likely that's because for performance reasons Atom splits the content into several absolutely positioned `div`s.
 
-Is it pretty? Nope. Stable? Nope. Useful? Yes! *A typical hack*. The result can be found here: [frantic/copy-with-syntax](https://github.com/frantic/copy-with-syntax).
+Is it pretty? Nope. Stable? Nope. Useful? Yes! _A typical hack_. The result can be found here: [frantic/copy-with-syntax](https://github.com/frantic/copy-with-syntax).
 
 I'm sure there is a better way to do this. Both Atom and Sublime have APIs that allow you to get "scope" or "context" for each location in the text that has all information needed to do proper syntax highlighting. Maybe some day I'll have enough curiosity to look into it.
 

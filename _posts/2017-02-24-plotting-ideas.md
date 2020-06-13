@@ -2,8 +2,11 @@
 layout: post
 title: Plotting ideas
 excerpt: Errors with extra information can help locate and fix the problems faster.
+tags:
+  - thinking
+  - meta
+  - models
 ---
-
 
 This is a technique I picked up from [Kent Beck](https://twitter.com/KentBeck). In order to expand your understanding of a problem space and generate new ideas, it's useful to put what you already know on a plot. It can be one, two or three dimensional and you can experiment with different axis (continuous, discrete, binary).
 
@@ -11,12 +14,12 @@ Here is a simple example.
 
 ## Automated Tests
 
-How many types of tests do you know? Say it's unit, integration and end-to-end tests. Now let's pick an axis (just one for now) – *scope*, from small to large.
+How many types of tests do you know? Say it's unit, integration and end-to-end tests. Now let's pick an axis (just one for now) – _scope_, from small to large.
 
 ![](/assets/plotting-ideas-1.jpg)
 
-- **Unit tests** will be on the left side (small scope, testing an isolated small piece of the system). 
-- **Integration** tests will be somewhere in the middle (testing how a few small pieces come together). 
+- **Unit tests** will be on the left side (small scope, testing an isolated small piece of the system).
+- **Integration** tests will be somewhere in the middle (testing how a few small pieces come together).
 - **End-to-end** tests will be on the right side (asserting the whole system works as intended).
 
 ![](/assets/plotting-ideas-2.jpg)
@@ -25,7 +28,7 @@ Organizing concepts this way helps us better understand the bigger picture. But 
 
 **Given a point on the plot, what concept does it represent?**
 
-This forces us to think beyond the concepts we already know. 
+This forces us to think beyond the concepts we already know.
 
 ![](/assets/plotting-ideas-3.jpg)
 
@@ -33,7 +36,7 @@ In the tests example, what would be to the right of end-to-end tests? Well, some
 
 How about further down to the right? **Impact tests** (not sure if this exists already), that measure how our change influences the business revenue or social good from our app.
 
-We could also add another axis (feedback latency, feedback quality, cost) which will literally add another dimension to our reasoning about the problem space. 
+We could also add another axis (feedback latency, feedback quality, cost) which will literally add another dimension to our reasoning about the problem space.
 
 If you'd like to see more examples, check out Kent's notes:
 

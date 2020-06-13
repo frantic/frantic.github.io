@@ -2,11 +2,15 @@
 layout: post
 title: "How not to use Flux: mini cycles"
 image: /assets/flux/flux-one-way.png
+tags:
+  - javascript
+  - redux
+  - flux
 ---
 
 This his how the data flows in a typical Flux architecture: React components subscribe to updates in the store. When something happens, the components dispatch actions, the store updates its state in response and notifies React components, which re-render with the new data. Redux and all other Flux implementations work this way.
 
-Actions generally don't return anything, because all the updates are supposed to come from the store.  All arrows point in the same direction. Nice and clean.
+Actions generally don't return anything, because all the updates are supposed to come from the store. All arrows point in the same direction. Nice and clean.
 
 ![](/assets/flux/flux-one-way.png)
 
@@ -35,7 +39,7 @@ _handleClickLogin = () => {
 
 There are three things that are wrong about this example. I'm going to focus on one of them in this post.
 
- Notice how our data flow has changed. Not only we now get data from the store, we also pull it from the action as well:
+Notice how our data flow has changed. Not only we now get data from the store, we also pull it from the action as well:
 
 ![](/assets/flux/flux-loop.png)
 
@@ -57,9 +61,9 @@ _handleClickLogin = () => {
 
 ## Solution 2. Pretend you are not crossing the streams
 
-Personally, I'm not a big fan of Solution 1 because I hate putting everything into the global store. 
+Personally, I'm not a big fan of Solution 1 because I hate putting everything into the global store.
 
-So I cheat: I make my React code look *as if* I'm properly using Flux: dispatching actions and get data via props. 
+So I cheat: I make my React code look _as if_ I'm properly using Flux: dispatching actions and get data via props.
 
 ![](/assets/flux/flux-hoc.png)
 

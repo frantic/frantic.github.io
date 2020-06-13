@@ -2,6 +2,10 @@
 layout: post
 title: No constraints, no fun
 excerpt: Work vs Hackathon vs Competition vs Side Projects
+tags:
+  - meta
+  - thinking
+  - projects
 ---
 
 When I’m at work, my code is a communication tool. I think carefully about naming variables and functions, formatting, comments. I give up my opinions about code style, because consistency is more important. I split my work into logical chunks so that other people on the team can understand and review what’s going on. I use the same technology stack as other engineers, which makes it easier to share code, onboard new people and optimize. Maintainability is important, so any time invested in making things stable and approachable is worth it.

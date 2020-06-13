@@ -3,6 +3,8 @@ layout: post
 title: The Very First React Native App On the AppStore
 image: /assets/atscale/og-image.png
 excerpt: A little known story about the first React Native app that was published on the AppStore.
+tags:
+  - react-native
 css: |
   video {
     height: 100vh;
@@ -14,7 +16,7 @@ css: |
   }
 ---
 
-*In September 2014 we published an app to the AppStore. It was the first React Native app ever shipped to production. You probably haven't heard about it.*
+_In September 2014 we published an app to the AppStore. It was the first React Native app ever shipped to production. You probably haven't heard about it._
 
 <img src="/assets/atscale/og-image.png">
 

@@ -5,6 +5,9 @@ image: /assets/meta-language/og-image.png
 excerpt: I think I *finally* understood it
 translations:
   Korean: https://emaren84.github.io/blog/archivers/understanding-taming-the-meta-language-kor
+tips:
+  - programming
+  - thinking
 ---
 
 I think I finally understood [Cheng Lou](https://twitter.com/_chenglou)'s talk at the ReactConf '17. If you have 20 minutes to spare, watch this first:
@@ -20,7 +23,6 @@ To help better understand this, I came up with a bunch of examples.
 ## Assembly instructions → Variable Names
 
 Let's look at this piece of code from space industry that calculates escape velocity of a planet:
-
 
 ```asm
 .SUB_0_21:
@@ -50,7 +52,7 @@ double escape_velocity(double mass, double radius) {
 }
 ```
 
-Just by *naming* the variables we were able to pull down information that used to reside in meta language into the language itself.
+Just by _naming_ the variables we were able to pull down information that used to reside in meta language into the language itself.
 
 ## Variable names → advanced types
 
@@ -75,7 +77,7 @@ let escape_velocity (Kilograms mass) (Meters radius) =
 
 <small>By the way, not a joke, when calculating Earth's escape velocity I found a bug in my implementation because of OCaml types -- I was passing mass in a wrong unit.</small>
 
-In this example `length` and `mass` are not just numbers but first class citizens. It also makes it safe and easy to maintain and evolve the code. For example, if we wanted to support imperial system (*I don't know why*), we could change the `mass` type to:
+In this example `length` and `mass` are not just numbers but first class citizens. It also makes it safe and easy to maintain and evolve the code. For example, if we wanted to support imperial system (_I don't know why_), we could change the `mass` type to:
 
 ```ocaml
 type mass =
@@ -100,7 +102,6 @@ let escape_velocity = ...
 [@ocaml.deprecated "Please use `quantum_escape` instead"]
 ```
 
-
 ## More examples
 
 This shows one possible route of embedding more and more information from meta space into the language itself. Here come more examples:
@@ -121,10 +122,9 @@ There's information that lives only in meta language that declares that when `lo
 
 ```javascript
 type State =
-  { progress: 'loading' } |
-  { progress: 'done', data: Object } |
-  { progress: 'error', error: Error };
-
+  | { progress: "loading" }
+  | { progress: "done", data: Object }
+  | { progress: "error", error: Error };
 ```
 
 **Redux and immutability**. Currently the fact that [Redux](http://redux.js.org/) assumes lack of direct mutations lives in documentation, blog posts, videos and conference talks. Wouldn't it be great if JavaScript natively supported immutable data types and type annotations so that these constraints could be expressed in the code itself?
@@ -139,4 +139,4 @@ It's good to keep in mind that no amount of lowering things into a language will
 
 Complexity has to reside somewhere. If a language is super simple, then the complexity settles in the meta language
 
-*See also:* [Sebastian Markbåge's talk on minimal API surface area](https://www.youtube.com/watch?v=4anAwXYqLG8), [Jared Forsyth's talk on type systems](https://www.youtube.com/watch?v=V1po0BT7kac). Oh, and the [Arrival](http://www.imdb.com/title/tt2543164/) movie, it's really, really good!
+_See also:_ [Sebastian Markbåge's talk on minimal API surface area](https://www.youtube.com/watch?v=4anAwXYqLG8), [Jared Forsyth's talk on type systems](https://www.youtube.com/watch?v=V1po0BT7kac). Oh, and the [Arrival](http://www.imdb.com/title/tt2543164/) movie, it's really, really good!

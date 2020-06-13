@@ -2,6 +2,10 @@
 layout: post
 title: Using Redux with Flow
 excerpt: How to use Flow to add type annotation to your Redux-powered app.
+tags:
+  - javascript
+  - flow
+  - redux
 ---
 
 Redux is a great library for managing application's state. But JavaScript is still a dynamically typed language, which comes with a lot of surprises at runtime. In this post I'll show you how you can use Flow to embrace static type checking in your Redux-powered application. I choose to use Flow for the disjoint union support and the ability to convert the codebase incrementally. Read on to learn more.
@@ -27,16 +31,15 @@ Likely your store already has an implicit shape and you have a bunch of reducers
 ```javascript
 // @flow
 type State = {
-  isLoggedIn: boolean;
-  name: string;
+  isLoggedIn: boolean,
+  name: string,
 };
 ```
 
 Having individual reducers state defined, it's easy to add just a few type annotations to your reducer and start collecting benefits:
 
 ```javascript
-function user(state: State = initialState, action: Object): State {
-}
+function user(state: State = initialState, action: Object): State {}
 ```
 
 Flow will make sure that your `initialState` and the return value of the `user` function always satisfy the `State` type.
@@ -45,13 +48,12 @@ As you've noticed, `action`'s type is `Object`. Redux makes no assumptions about
 
 <small>See [adding Flow types for reducers](https://github.com/frantic/redux-flow-example/commit/350ded0f6f3146e8cb1b486f9774a1bc97bc275d) diff.</small>
 
-
 ## Actions
 
 Of course, we can define `Action` type to be as simple as:
 
 ```javascript
-type Action = { type: string; payload: Object };
+type Action = { type: string, payload: Object };
 ```
 
 I.e. any object that has `type` and `payload` properties can be an action. From what I've seen out there, people normally use constants for action types. This approach gives you some protection against typos in action names, however:
@@ -62,10 +64,8 @@ I.e. any object that has `type` and `payload` properties can be an action. From 
 We can do much better. Let's start by defining all possible actions flowing through our app. We will use a union type for this. Even if you've never seen them before, I think it's easy to figure out what it does by looking at example:
 
 ```javascript
-type Action = { type: 'LOGGED_IN', userName: string }
-            | { type: 'LOGGED_OUT' };
+type Action = { type: "LOGGED_IN", userName: string } | { type: "LOGGED_OUT" };
 ```
-
 
 In this case, `{ type: 'LOGGED_IN', userName: 'frantic' }` is a valid `Action`, however
 
@@ -87,7 +87,7 @@ The great thing about Flow's support for the tagged unions is that it can narrow
 
 ```javascript
 function user(state: State, action: Action): State {
-  if (action.type === 'LOGGED_IN') {
+  if (action.type === "LOGGED_IN") {
     // In this `if` branch Flow narrowed down the type
     // and it knows that action has `userName: string` field
     return { isLoggedIn: true, name: action.userName };
@@ -105,7 +105,7 @@ This one is easy, we can just declare that our action creators return `Action`:
 
 ```javascript
 function logOut(): Action {
-  return { type: 'LOGGED_OUT' };
+  return { type: "LOGGED_OUT" };
 }
 ```
 
@@ -151,7 +151,7 @@ class SettingsScreen extends React.Component {
 }
 ```
 
-This code ensures that only `Action` or `Promise<Action>` can be  passed into `this.props.dispatch()` call.
+This code ensures that only `Action` or `Promise<Action>` can be passed into `this.props.dispatch()` call.
 
 <small>See [adding Flow types for dispatch](https://github.com/frantic/redux-flow-example/commit/4c72149b4bc6008737c4e0975ff61ab4ff801eca) diff.</small>
 

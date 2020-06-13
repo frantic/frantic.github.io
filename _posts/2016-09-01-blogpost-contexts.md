@@ -2,6 +2,10 @@
 layout: post
 title: Provide Context When Writing Blog Posts
 excerpt: One practical tip that will make your technical blog posts more useful.
+tags:
+  - meta
+  - blog
+  - writing
 ---
 
 I enjoy reading technical blog posts, even on the subject that is not directly related to my field of work. However I've noticed that in most cases one particular thing is always missing.
@@ -33,7 +37,6 @@ vs
 - Problem: I want to deploy several apps that use different NodeJS versions to a single server
 - Other solutions: Tried nvm with some shell scripts, but had to deal with conflicting `libssl` dependencies
 - My solution: ...here goes your blog post about Docker
-
 
 This approach gives the reader more context about your perspective and helps them make their own conclusions. It also lets them contribute much better in the comments. For example, in case #1 they may point you to a better tutorial and in case #2 will show you new `nvm` option you missed that will solve your problem.
 

@@ -6,8 +6,13 @@ excerpt: As programmers, we have a collective delusion that anything that can be
 css: |
   em {
     font-size: 150%;
+    line-height: 1.3;
     margin: 40px 0px;
     display: block;
+  }
+  .hint {
+    opacity: 0.5;
+    cursor: pointer;
   }
 ---
 
@@ -45,7 +50,7 @@ As with the SQL example, you could add escaping and sanitization, but it’s jus
 
 <em>A string can be a representation of a thing, but it’s not the thing itself.</em>
 
-And it’s not only about concatenating strings. Can you spot the problem with this function? <small title="Is this safe? https://evil.com/https://safe.com/">(hover to see the answer)</small>
+And it’s not only about concatenating strings. Can you spot the problem with this function? <span class="hint" onclick="event.target.innerText = 'This URL will be marked as safe by the code below https://evil.com/https://safe.com/'">(see answer)</span>
 
 ```
 function isSafeDomain(url: string): boolean {
@@ -53,15 +58,15 @@ function isSafeDomain(url: string): boolean {
 }
 ```
 
-Or in this one? <small title="This code could be prone to a timing attack">(hover to see the answer)</small>
+Or in this one? <span class="hint" onclick="event.target.innerText = 'This code is prone to timing attacks'">(see answer)</span>
 
 ```
 function checkPassword(pass: string, hash: string): boolean {
-  return bcrypt(pass) === hash;
+  return sha1(pass) === hash;
 }
 ```
 
-Strings are lower level, and thus are much more flexible than they need to be to properly implement valid operations.
+Strings are lower level, and thus are much more flexible than they need to be to properly implement valid operations on the higher level concepts.
 
 Incomplete list of things that are not strings:
 
@@ -74,13 +79,29 @@ Incomplete list of things that are not strings:
 
 ## Things are… things
 
-You can save yourself a lot of headaches if you stop treating everything that can be represented as a string, as a string.
+You can save yourself a lot of headache if you stop treating everything that can be represented as a string, as a string.
 
 Both OO and FP styles allow for abstracting away something as a type or a class. You can make a closed opaque structure for the thing and limit the ways it can be constructed.
 
 For example, for SQL, you might want to make sure it’s only created from static string literals.
 
-Of course, at some point, you will need to serialize the thing into a string to pass it further, and that fine, as long as you never carelessly take a string and unserialize it yourself.
+```
+// Allowed
+new SQL('SELECT * FROM posts WHERE id = ?');
+
+// No allowed (e.g. via a lint rule)
+new SQL('SELECT * FROM posts' + filter);
+```
+
+Of course, at some point, you will need to serialize the thing into a string to pass it into an API that was designed to consume a string. Do it at the last possible moment and try to limit it to a single place in the codebase.
+
+```
+function execute(sql: SQL): Promise<Result> {
+  return unsafeExecute(sql.toString());
+}
+```
+
+Strings are coming into your app from the outer world. Don't trust them to be what they seem they are. Convert them into proper things as soon as possible, and convert them back to strings as late as possible.
 
 Here’s a few libraries for inspiration of how to treat things as… things:
 

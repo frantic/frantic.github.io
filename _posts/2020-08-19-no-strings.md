@@ -105,8 +105,15 @@ Strings are coming into your app from the outer world. Don't trust them to be wh
 
 Here’s a few libraries for inspiration of how to treat things as… things:
 
-- SQL: [Slonik](https://github.com/gajus/slonik), [Knex](http://knexjs.org/)
+- SQL: [Slonik](https://github.com/gajus/slonik), [LINQ](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)
 - HTML: React, Elm, [rum](https://github.com/tonsky/rum)
 - JSON: a dictionary in any programming language
 - URL: [url - Rust](https://docs.rs/url/2.1.1/url/)
 - File paths: [std::path::Path - Rust](https://doc.rust-lang.org/std/path/struct.Path.html)
+- Passwords: [secstr](https://github.com/myfreeweb/secstr), [securemem](https://hackage.haskell.org/package/securemem)
+
+---
+
+Good discussions on [reddit](https://www.reddit.com/r/programming/comments/ie3dqz/things_that_are_not_strings/), [lobsters](https://lobste.rs/s/wjpj6n/things_are_not_strings).
+
+2020-08-23: Added password library example

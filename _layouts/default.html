@@ -43,7 +43,7 @@
       ga(function(tracker) {
         tracker.set('sendHitTask', function(model) {
           var xhr = new XMLHttpRequest();
-          xhr.open('GET', 'https://curiosity-idcqztjvvw.now.sh/ev?' + model.get('hitPayload'), true);
+          xhr.open('GET', 'https://curiosity-seven.vercel.app/api/ev?' + model.get('hitPayload'), true);
           xhr.send();
         });
       });

@@ -1,7 +1,7 @@
 <ul class="menu">
   {% for item in site.data.menu %}
   <li>
-    <a class="menu__item {% if page.url == item.link %}menu__item_inside{% endif %}" href="{{ item.link }}">
+    <a class="menu__item {% if page.url == item.link %}menu__item_inside{% endif %}" style="{{ item.style }}" href="{{ item.link }}">
       {{ item.name }}
     </a>
   </li>

@@ -6,3 +6,6 @@
   link: /projects/
 - name: About
   link: /about/
+- name: Learn React
+  style: "color: purple"
+  link: /react/

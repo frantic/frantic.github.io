@@ -32,7 +32,7 @@ Early benefits of serverless (for hobby projects):
 
 In reality, writing the simple Lambda functions turned out to be only 10% of the work.
 
-The time passed and my backend started getting more complex: I needed to store some state for each puzzle, send confirmation emails, show order details page. What started as a simple function, grew into a bunch of serverless functions, SNS topics, S3 buckets, DynamoDB tables. All bound together with plenty of YAML glue, schema-less JSON objects passed around and random hardcoded configs in AWS console.
+The time passed and my backend started getting more complex: I needed to store some state for each [puzzle](https://hacker.gifts/products/space-invaders), send confirmation emails, show order details page. What started as a simple function, grew into a bunch of serverless functions, SNS topics, S3 buckets, DynamoDB tables. All bound together with plenty of YAML glue, schema-less JSON objects passed around and random hardcoded configs in AWS console.
 
 I think it's just a typical software development life-cycle: things grow organically, become a mess, and require some refactoring. Make it run first (discover market fit), then make it right (refactor to integrate the new discoveries).
 

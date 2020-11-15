@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Lear React
-permalink: /react
+permalink: /react/
 css: |
   button {
     cursor: pointer;
@@ -38,5 +38,8 @@ If you have used React before, these videos will provide you with new ways of lo
   <input type="submit"  value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
 </form>
 
-About the author
+## About the author
+
+<img src="/assets/me-explaining.jpg" width="600" height="600" />
+
 Alex Kotliarskyi is a software engineer at Facebook, former React Native core team member.

@@ -2,7 +2,7 @@
 layout: post
 title: Moving my serverless project to Ruby on Rails
 image: /assets/back-to-rails/og-image.jpg
-excerpt:
+excerpt: Serverless is like a black hole. It promised exciting adventures, but the gravity sucked me in and I spend most of my efforts dealing with its complexity, instead of focusing on my product.
 css: |
   .large {
     font-size: 1.5em;

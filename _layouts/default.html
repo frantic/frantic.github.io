@@ -13,6 +13,7 @@
 
     <meta property="og:title" content="{{ page.title | escape }}">
     <meta property="og:image" content="{{ page.image | prepend: site.baseurl | prepend: site.url }}">
+    <meta name="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@alex_frantic">

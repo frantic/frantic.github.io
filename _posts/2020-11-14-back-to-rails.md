@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Moving my serverless project to Ruby on Rails
-image: /assets/back-to-rails/og-image.png
+image: /assets/back-to-rails/og-image.jpg
 excerpt:
 css: |
   .large {

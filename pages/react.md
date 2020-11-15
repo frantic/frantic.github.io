@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Lear React
+title: Learn React
 permalink: /react/
 css: |
   button {
@@ -40,6 +40,6 @@ If you have used React before, these videos will provide you with new ways of lo
 
 ## About the author
 
-<img src="/assets/me-explaining.jpg" width="600" height="600" />
+<img src="/assets/me-explaining.jpg" width="400" height="400" />
 
 Alex Kotliarskyi is a software engineer at Facebook, former React Native core team member.

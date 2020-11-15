@@ -7,5 +7,5 @@
 - name: About
   link: /about/
 - name: Learn React
-  style: "color: purple"
+  style: "color: red; font-weight: bold;"
   link: /react/

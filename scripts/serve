@@ -1,3 +1,4 @@
 #!/bin/bash
 
+bundle install
 bundle exec jekyll serve --drafts --future --open-url --livereload --quiet

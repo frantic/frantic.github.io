@@ -10,7 +10,7 @@ tags:
 
 React is ~8 years old. I remember the day when I saw the first demo — I was amazed at how genius yet how simple it was! I still carry that excitement to this day.
 
-During this time React changed a bunch, but its core ideas have sayed the same. It's still all about thinking about your UI code as a function of state, bringing state front and center, immutable data, one-directional data flows, composition over inheritance.
+During this time React changed a bunch, but its core ideas have stayed the same. It's still all about thinking about your UI code as a function of state, bringing state front and center, immutable data, one-directional data flows, composition over inheritance.
 
 In this post I'll share how the developer APIs have evolved, specifically we'll talk about defining components and sharing common code between components.
 

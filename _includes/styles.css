@@ -107,3 +107,4 @@ footer > a:hover { color: #000; }
 /* syntax */
 .highlight .kd, .highlight .k {font-weight: bold; }
 .highlight .mi { color: blue; }
+.highlight .cm { color: grey; }

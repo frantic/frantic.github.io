@@ -14,8 +14,7 @@ css: |
 <article>
   {% include about.html %}
 
-  {% assign published_posts = site.posts | where_exp: "post", "post.layout == 'post'" %}
-  {% assign posts_by_year = published_posts | group_by_exp: "post", "post.date | date: '%Y'"  %}
+  {% assign posts_by_year = site.posts | group_by_year %}
   {% for year in posts_by_year %}
     <h1>{{ year.name }}</h1>
     {% for post in year.items %}

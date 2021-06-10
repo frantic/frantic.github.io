@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rm -rf _build
+./scripts/make.js
+cp -r favicon.png _build/
+cp -r fonts _build/
+cp -r assets _build/
+cd _build
+serve

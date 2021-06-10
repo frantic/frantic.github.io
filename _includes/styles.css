@@ -108,3 +108,7 @@ footer > a:hover { color: #000; }
 .highlight .kd, .highlight .k {font-weight: bold; }
 .highlight .mi { color: blue; }
 .highlight .cm { color: grey; }
+
+.hljs-built_in, .hljs-keyword {font-weight: bold; }
+.hljs-string, hljs-number { color: blue; }
+.hljs-comment { color: grey; }

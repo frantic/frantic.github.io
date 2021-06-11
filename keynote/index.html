@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=640" />
+
+    <title>Geek&#39;s guide to making decent slides / frantic.im</title>
+    <meta name="author" content="Alex Kotliarskyi">
+    <meta name="description" content="Using the 80/20 rule to make your slide deck better">
+
+    <link rel="canonical" href="https://frantic.im/keynote">
+    <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
+
+    <meta property="og:title" content="Geek&#39;s guide to making decent slides">
+    <meta property="og:image" content="https://frantic.im/assets/keynote/og-image.png">
+    <meta name="og:description" content="Using the 80/20 rule to make your slide deck better">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@alex_frantic">
+    <meta name="twitter:creator" content="@alex_frantic">
+    <meta name="twitter:title" content="Geek&#39;s guide to making decent slides">
+    <meta name="twitter:description" content="Using the 80/20 rule to make your slide deck better">
+    <meta name="twitter:image" content="https://frantic.im/assets/keynote/og-image.png">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <style type="text/css" media="screen">
+      * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face { font-family: 'body';                     src: url('/fonts/IBMPlexSans-Text.woff') format('woff'); }
+@font-face { font-family: 'body'; font-style: italic; src: url('/fonts/IBMPlexSans-TextItalic.woff') format('woff'); }
+@font-face { font-family: 'body'; font-weight: 800;   src: url('/fonts/IBMPlexSans-Bold.woff') format('woff'); }
+
+@font-face { font-family: 'mono';                     src: url('/fonts/IBMPlexMono-Text-Latin1.woff') format('woff'); }
+
+body { font: 18px/28px body, sans-serif; }
+pre, code { font-family: mono, monospace; }
+
+body {
+  background-color: #FFF;
+  color: #000;
+  -webkit-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -moz-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  margin: 50px auto;
+}
+.page { width: 600px; margin: 0 auto; padding: 0 0 0 2px; }
+.page_wide { width: 810px; }
+
+.menu { width: 544px; margin: 0 auto 0; padding: 0 0 50px 0; vertical-align: top; }
+.menu > li { list-style: none; display: inline-block; margin: 0 1.5em 0 0; vertical-align: top; }
+.menu__item, a.menu__item { color: #00000050; border-color: transparent; display: inline-block; }
+.menu__item_selected,
+a.menu__item_selected,
+a.menu__item:hover { color: #000; border-bottom: 2px solid #000; }
+.menu__item_inside, a.menu__item_inside { border-bottom: 2px solid #00000030; }
+
+article { width: 544px; margin: 15px auto; }
+
+a { color: inherit; text-decoration: none; border-bottom: 2px solid #00000030; }
+a:hover { border-color: currentColor; }
+p, blockquote { margin: 15px 0; }
+h1 + p + blockquote { margin-bottom: 30px; margin-right: 1em; }
+blockquote { padding-left: 1em; color: #00000090; }
+blockquote::before {content: "> "; float: left; margin: 0 0 0 -1em; }
+
+.quote-author { text-align: right; font-size: 15px; }
+strong { font-weight: 600; }
+h1, h2 { margin: 2.5em 0 0.5em; }
+h1 { font-size: 1.7em; }
+h2 { font-size: 1.4em; }
+.title { font-size: 2.5em; line-height: 50px; margin: 1.5em 0 0.75em 0; }
+
+p > img, .fig, figure { margin: 2em 0; }
+img { max-width: 100%; }
+
+.fig, figure { text-align: center; font-size: 12px; line-height: 20px; font-style: italic; width: 600px; margin-left: -28px; margin-right: -28px; }
+.fig img, figure > img, figure > video, figure > a > img { margin: 0 auto 1em; display: block; border-radius: 3px; }
+figure > video { max-width: 100%; }
+.label { text-align: center; font-size: 12px; font-style: italic; margin: -1em 0 1em 0; }
+
+code { font-style: normal; background: #00000010; padding: 2px 6px; border-radius: 4px; font-size: 17px; white-space: nowrap; }
+pre { font-size: 16px;
+      background: #00000010;
+      padding: 16px 30px 14px;
+      margin: 1em -30px;
+      border-radius: 8px;
+      white-space: pre;
+      word-wrap: break-word;
+      font-style: normal;
+      overflow-x: auto; }
+pre > code { background: none; padding: 0; font-size: inherit; white-space: unset; }
+
+ul { padding: 0 0 0 1em; list-style-type: square; }
+ul > li, ol > li { margin: 0.5em 0; }
+
+sup, sub, .note-ref, .note-number, .footnote { vertical-align: baseline; position: relative; font-size: .7em; line-height: 1; }
+sup, .note-ref, .note-number, .footnote { bottom: 1.4ex; }
+sub { top: .5ex; }
+
+.about { margin: 60px 0;}
+.about_photo { float: left; width: 100px; height: 160px; margin-left: -150px; margin-top: -10px; background: url("/photo.png"); background-size: 200px; }
+.about_photo:hover { background-position: 100%; }
+.about_inner { font-size: 16px; line-height: 24px; border: 2px solid #00000030; border-radius: 4px; padding: 10px 20px; margin: -12px -22px; }
+.about_inner > p { margin: 0 0 8px; }
+.btn-subscribe { line-height: 20px; text-decoration: none; background: #00000015; border: none; font-size: 12px; padding: 0px 7px; display: inline-block; border-radius: 4px; position: relative; top: -1px; }
+.btn-subscribe:hover { background: #00000030; }
+.btn-subscribe > svg { width: 21px; height: 21px; vertical-align: bottom; margin: 0 -2px 0 -5px; }
+
+.footnote { margin: 0 5px;  }
+.footnotes-br { width: 100px; height: 2px; background: #000000; margin-top: 5em; }
+.footnotes, .footnotes_alt { padding-left: 1em;  }
+.footnotes_alt > li > .dagger { margin-left: -13px; }
+.footnotes_alt { list-style: none; } 
+
+.notes { font-size: 0.8em; }
+.note-number { margin-left: -1em; }
+
+.date { color: #00000090; font-size: 14px; margin-left: 4px; }
+
+footer { color: #00000090; }
+footer { font-size: 16px; margin-bottom: 5em; }
+footer > .separator { margin: 0 4px; }
+footer > a { margin-right: 5px; }
+footer > a:hover { color: #000; }
+
+/* syntax */
+.highlight .kd, .highlight .k {font-weight: bold; }
+.highlight .mi { color: blue; }
+.highlight .cm { color: grey; }
+
+.hljs-built_in, .hljs-keyword {font-weight: bold; }
+.hljs-string, hljs-number { color: blue; }
+.hljs-comment { color: grey; }
+      
+    </style>
+  </head>
+
+  <body>
+    <ul class="menu">
+  
+  <li>
+    <a class="menu__item " style="" href="/blog/">
+      Blog
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/talks/">
+      Talks
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/projects/">
+      Projects
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/about/">
+      About
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="color: red; font-weight: bold;" href="/react/">
+      Learn React
+    </a>
+  </li>
+  
+</ul>
+
+
+<article>
+  <header>
+    
+    <h1 class="title">Geek's guide to making decent slides</h1>
+  </header>
+  <p>Many programmers hate making slides. The most common argument I hear is IANAD – I’m not a designer. I’ve got a few practical tips on how to make slides in Keynote (Powerpoint, etc.) that will help deliver great visuals for your next meetup or a conference talk.</p>
+<p>I love making presentations. Ever since I was introduced to Powerpoint '03 I strived to make original and fun content. I’m also lucky to have some of <a href="http://tomocchino.com/">the best teachers in the world</a>. I’ve given a bunch of talks at conferences and meet-ups, but also quite a few internally at Facebook.</p>
+<p>I believe the main function of a slide deck is to engage and entertain your audience. If you are looking for more practical and information-focused presentation tools, check out <a href="https://github.com/facebookincubator/exerslide">excerslide</a> and the like.</p>
+<p>With the 80/20 rule you don’t actually have to be a designer to make a great slide deck. 20% effort will get you 80% there. I’ve sorted tips by what I think is the best value proposition – easy to fix but have big pay-offs.</p>
+<h2>1. Aspect ratio</h2>
+<p>Nothing stands out more than a wrong aspect ratio of the slide content. I’m talking about the dark area near the edge of the slides:</p>
+<img src="/assets/keynote/01-aspect-ratio.png" width="600">
+<p>This happens when the slide deck aspect ratio doesn’t match the one of the projector. There are 2 common aspect ratios that projectors support: 4:3 and 16:9. Ask the conference/meet-up organizers for the one their equipment is configured for.</p>
+<p>Same applies for images. Getting rid of extra spacing and showing images edge-to-edge makes them 10x more appealing. Just a small detail that makes a big difference.</p>
+<h2>2. Small pieces of content</h2>
+<p>When people see a wall of text they start reading through it and stop paying attentions to the words you say. Even if there is not much text but you have all bullet points visible, people will scan through them faster than you will talk through them. Use shorter phrases and show your bullets list one-by-one.</p>
+<p>If you use slides content to guide the exact words you are going to say, you are doing it wrong. Use speaker notes instead! The audience won’t see it and you can put as much stuff there as you want.</p>
+<img src="/assets/keynote/02-small-pieces-of-content.png" width="600">
+<h2>3. Contrast color scheme</h2>
+<p>The main rule – your slides have to have high contrast. Fine-tuning colors is useless because the colors will look different on the projector anyways. The internet is full of pre-made color schemes, e.g. <a href="https://flatuicolors.com/">Flat UI</a>. But keep the number of distinct colors low. Ideally have one for background, one for foreground, and maybe one to highlight the most important bits.</p>
+<p>Dark or light color scheme? Whichever you prefer. Keep in mind one detail though: if the talk is going to be recorded, you don’t want to have a high contrast between your face and the slides behind you. For dark rooms use dark background, for bright rooms use light background. Easy.</p>
+<img src="/assets/keynote/03-contrast-color-scheme.png" width="600">
+<h2>4. Consistent font</h2>
+<p>Unless you really really care, stick to the standard ones. Consistency is way more important than the exact font family you use. Font size is important too, generally the larger the better.</p>
+<img src="/assets/keynote/04-consistent-font.png" width="600">
+<h2>5. Awesome images</h2>
+<p>It’s very easy to make an awesome background for your slides. Find an image on <a href="https://unsplash.com/">unsplash</a> (or any another CC0 image stock), resize it to cover your slide edge-to-edge (while keeping the image’s aspect ratio), move it to the back and adjust opacity to N%.</p>
+<img src="/assets/keynote/05-awesome-images.png" width="600">
+<p>But never ever stretch the images to make them fit. It’s better to make it bigger and crop than to have a distorted image.</p>
+<h2>6. Magic move</h2>
+<p>In general it’s best to keep animations at minimum. They are hard to configure and look clowny when used in a wrong context. Also Keynote’s default settings for most animations are terrible – they are way too slow. By the time your 2 second animation finishes, the viewers will be half way through their Twitter feeds.</p>
+<p>However, there is one area that benefits from having animations and it’s very easy to do – slide transitions. From the overwhelming list of different styles Keynote provides, I recommend using two: Push and Magic Move.</p>
+<p><strong>Push</strong> animation is useful when you want to make some of the slides feel like they are part of a big canvas. For example, if you have a long timeline of events that don’t fit one slide, you can continue on the next slide and make it transition in with a push animation.</p>
+<video width="600" controls>
+  <source src="/assets/keynote/push.mp4" type="video/mp4">
+</video>
+<p><strong>Magic Move</strong> is the secret sauce. It can animate between two slides by looking for similar objects on each slide and automagically figuring out the way to transition between two. It’s like <a href="https://facebook.github.io/react/">React</a> – you tell it what you want and it will figure out how to get there. I recommend using Magic Move for explaining how things change or relate to each other.</p>
+<video width="600" controls>
+  <source src="/assets/keynote/magic-move.mp4" type="video/mp4">
+</video>
+<p>Prefer shorter animation durations (0.5 seconds or less), they make the presentation feel more energetic. Also experiment with acceleration, often it help to adjust these too.</p>
+<h2>7. Code samples</h2>
+<p>Programmers LOVE code samples. Seeing a few lines of code is worth a thousand words. I wish more presenters included relevant code examples in their talks. Tip #2 applies here as well, don’t put more than a few lines of code on one slide. If more code is needed for context make sure to highlight the important pieces (using brighter colors, putting a box around it, etc.)</p>
+<p>And please please please use a monospace font for code samples. Nothing looks more upsetting than a code sample in Times New Roman. While we are here, syntax highlighting helps a lot too.</p>
+<img src="/assets/keynote/07-code-samples.png" width="600">
+<h2>8. Use templates</h2>
+<p>If you are using Powerpoint or Keynote for your slide deck and think it’s too hard to adjust every slide, remember that these tools have a concept of master slides or templates. You can design or configure a master slide once and use it as a base with different content later on. It’s like generalizing copy-pasta code into a reusable function. Once you learn the true power of templates, the slide making software stops being a pain.</p>
+<h2>9. The last slide</h2>
+<p>The final slide is more important than you think. If you are taking questions after the talk, it’s likely that the last slide will hang around for quite some time. Put some information there that you want people to remember, like your name, Twitter handle or a link to stuff you’ve been talking about. Don’t put more than 3 items though.</p>
+<p>Bonus points: publish the presentation (with speaker notes) and add its URL to the final slide.</p>
+<img src="/assets/keynote/09-last-slide.png" width="600">
+  <footer>
+    <time datetime="2016-12-14T12:00:00+00:00">Dec 14, 2016</time>
+  </footer>
+  
+
+
+
+
+
+
+  <h4>Related posts:</h4>
+  
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/macos-app-shortcuts">Better way to switch between apps on macOS</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/cdtmp">cdtmp</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+    
+      
+    
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/notify-on-completion">Show OSX notification when long running command finishes and your terminal is not in focus</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/ctrl-r">My favorite shell shortcut</a>
+      </p>
+      
+      
+        
+
+
+
+  <div class="about">
+  <div class="about_inner">
+    <p>Hi! My name is Alex. I’m a software engineer at Facebook, where I work on React&nbsp;Native, Oculus and Messenger. I love thinking about development experience.</p>
+    <p>I write about programming, software design and side projects <a style="margin-left: 5px" class="btn-subscribe" href="/subscribe/" target="_blank"><svg viewBox="0 0 800 800"><path d="M493 652H392c0-134-111-244-244-244V307c189 0 345 156 345 345zm71 0c0-228-188-416-416-416V132c285 0 520 235 520 520z"/><circle cx="219" cy="581" r="71"/></svg> Subscribe</a></p>
+  </div>
+</div>
+
+</article>
+
+    <script>
+      window.GoogleAnalyticsObject = 'ga';
+      window.ga = window.ga || function() {
+        (window.ga.q = window.ga.q || []).push(arguments);
+      };
+      window.ga.l = Date.now();
+
+      ga('create', 'UA-96545608-1', 'auto');
+      ga(function(tracker) {
+        tracker.set('sendHitTask', function(model) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'https://curiosity-seven.vercel.app/api/ev?' + model.get('hitPayload'), true);
+          xhr.send();
+        });
+      });
+      ga('send', 'pageview');
+    </script>
+    <script async defer src="https://curiosity-seven.vercel.app/api/leet" async></script>
+  </body>
+</html>

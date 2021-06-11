@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=640" />
+
+    <title>How to convince your boss to use React Native / frantic.im</title>
+    <meta name="author" content="Alex Kotliarskyi">
+    <meta name="description" content="How to adopt React Native incrementally with little risk inside an existing native application and a team full of native engineers.">
+
+    <link rel="canonical" href="https://frantic.im/how-to-convince-your-boss-to-use-react-native">
+    <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
+
+    <meta property="og:title" content="How to convince your boss to use React Native">
+    <meta property="og:image" content="https://frantic.im/assets/gunnar-sigurdarson-1368301-unsplash.jpg">
+    <meta name="og:description" content="How to adopt React Native incrementally with little risk inside an existing native application and a team full of native engineers.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@alex_frantic">
+    <meta name="twitter:creator" content="@alex_frantic">
+    <meta name="twitter:title" content="How to convince your boss to use React Native">
+    <meta name="twitter:description" content="How to adopt React Native incrementally with little risk inside an existing native application and a team full of native engineers.">
+    <meta name="twitter:image" content="https://frantic.im/assets/gunnar-sigurdarson-1368301-unsplash.jpg">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <style type="text/css" media="screen">
+      * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face { font-family: 'body';                     src: url('/fonts/IBMPlexSans-Text.woff') format('woff'); }
+@font-face { font-family: 'body'; font-style: italic; src: url('/fonts/IBMPlexSans-TextItalic.woff') format('woff'); }
+@font-face { font-family: 'body'; font-weight: 800;   src: url('/fonts/IBMPlexSans-Bold.woff') format('woff'); }
+
+@font-face { font-family: 'mono';                     src: url('/fonts/IBMPlexMono-Text-Latin1.woff') format('woff'); }
+
+body { font: 18px/28px body, sans-serif; }
+pre, code { font-family: mono, monospace; }
+
+body {
+  background-color: #FFF;
+  color: #000;
+  -webkit-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -moz-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  margin: 50px auto;
+}
+.page { width: 600px; margin: 0 auto; padding: 0 0 0 2px; }
+.page_wide { width: 810px; }
+
+.menu { width: 544px; margin: 0 auto 0; padding: 0 0 50px 0; vertical-align: top; }
+.menu > li { list-style: none; display: inline-block; margin: 0 1.5em 0 0; vertical-align: top; }
+.menu__item, a.menu__item { color: #00000050; border-color: transparent; display: inline-block; }
+.menu__item_selected,
+a.menu__item_selected,
+a.menu__item:hover { color: #000; border-bottom: 2px solid #000; }
+.menu__item_inside, a.menu__item_inside { border-bottom: 2px solid #00000030; }
+
+article { width: 544px; margin: 15px auto; }
+
+a { color: inherit; text-decoration: none; border-bottom: 2px solid #00000030; }
+a:hover { border-color: currentColor; }
+p, blockquote { margin: 15px 0; }
+h1 + p + blockquote { margin-bottom: 30px; margin-right: 1em; }
+blockquote { padding-left: 1em; color: #00000090; }
+blockquote::before {content: "> "; float: left; margin: 0 0 0 -1em; }
+
+.quote-author { text-align: right; font-size: 15px; }
+strong { font-weight: 600; }
+h1, h2 { margin: 2.5em 0 0.5em; }
+h1 { font-size: 1.7em; }
+h2 { font-size: 1.4em; }
+.title { font-size: 2.5em; line-height: 50px; margin: 1.5em 0 0.75em 0; }
+
+p > img, .fig, figure { margin: 2em 0; }
+img { max-width: 100%; }
+
+.fig, figure { text-align: center; font-size: 12px; line-height: 20px; font-style: italic; width: 600px; margin-left: -28px; margin-right: -28px; }
+.fig img, figure > img, figure > video, figure > a > img { margin: 0 auto 1em; display: block; border-radius: 3px; }
+figure > video { max-width: 100%; }
+.label { text-align: center; font-size: 12px; font-style: italic; margin: -1em 0 1em 0; }
+
+code { font-style: normal; background: #00000010; padding: 2px 6px; border-radius: 4px; font-size: 17px; white-space: nowrap; }
+pre { font-size: 16px;
+      background: #00000010;
+      padding: 16px 30px 14px;
+      margin: 1em -30px;
+      border-radius: 8px;
+      white-space: pre;
+      word-wrap: break-word;
+      font-style: normal;
+      overflow-x: auto; }
+pre > code { background: none; padding: 0; font-size: inherit; white-space: unset; }
+
+ul { padding: 0 0 0 1em; list-style-type: square; }
+ul > li, ol > li { margin: 0.5em 0; }
+
+sup, sub, .note-ref, .note-number, .footnote { vertical-align: baseline; position: relative; font-size: .7em; line-height: 1; }
+sup, .note-ref, .note-number, .footnote { bottom: 1.4ex; }
+sub { top: .5ex; }
+
+.about { margin: 60px 0;}
+.about_photo { float: left; width: 100px; height: 160px; margin-left: -150px; margin-top: -10px; background: url("/photo.png"); background-size: 200px; }
+.about_photo:hover { background-position: 100%; }
+.about_inner { font-size: 16px; line-height: 24px; border: 2px solid #00000030; border-radius: 4px; padding: 10px 20px; margin: -12px -22px; }
+.about_inner > p { margin: 0 0 8px; }
+.btn-subscribe { line-height: 20px; text-decoration: none; background: #00000015; border: none; font-size: 12px; padding: 0px 7px; display: inline-block; border-radius: 4px; position: relative; top: -1px; }
+.btn-subscribe:hover { background: #00000030; }
+.btn-subscribe > svg { width: 21px; height: 21px; vertical-align: bottom; margin: 0 -2px 0 -5px; }
+
+.footnote { margin: 0 5px;  }
+.footnotes-br { width: 100px; height: 2px; background: #000000; margin-top: 5em; }
+.footnotes, .footnotes_alt { padding-left: 1em;  }
+.footnotes_alt > li > .dagger { margin-left: -13px; }
+.footnotes_alt { list-style: none; } 
+
+.notes { font-size: 0.8em; }
+.note-number { margin-left: -1em; }
+
+.date { color: #00000090; font-size: 14px; margin-left: 4px; }
+
+footer { color: #00000090; }
+footer { font-size: 16px; margin-bottom: 5em; }
+footer > .separator { margin: 0 4px; }
+footer > a { margin-right: 5px; }
+footer > a:hover { color: #000; }
+
+/* syntax */
+.highlight .kd, .highlight .k {font-weight: bold; }
+.highlight .mi { color: blue; }
+.highlight .cm { color: grey; }
+
+.hljs-built_in, .hljs-keyword {font-weight: bold; }
+.hljs-string, hljs-number { color: blue; }
+.hljs-comment { color: grey; }
+      
+    </style>
+  </head>
+
+  <body>
+    <ul class="menu">
+  
+  <li>
+    <a class="menu__item " style="" href="/blog/">
+      Blog
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/talks/">
+      Talks
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/projects/">
+      Projects
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/about/">
+      About
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="color: red; font-weight: bold;" href="/react/">
+      Learn React
+    </a>
+  </li>
+  
+</ul>
+
+
+<article>
+  <header>
+    
+    <h1 class="title">How to convince your boss to use React Native</h1>
+  </header>
+  <p>Likely you landed on this article because you are excited about React Native. Awesome! If you have a team of web engineers and a brand new app, it’s easy to make a case for starting with React Native.</p>
+<p>However, most companies already have apps in the stores. They used native stack to build their apps: Xcode or Android Studio. React Native can add value for these companies too, but making a hybrid app comes with some challenges.</p>
+<p>During the last 4 years I helped integrate React Native into Facebook and Oculus apps. Here are a few lessons I learned.</p>
+<figure>
+  <img src="/assets/gunnar-sigurdarson-1368301-unsplash.jpg" />
+</figure>
+<h1>Start with Empathy</h1>
+<p><em>Wait, start with what?</em></p>
+<p>Understand the people who work on your project—that’s the first step to successful integration.</p>
+<p>Your boss (project manager, director, CTO, etc.) is responsible for the app hitting the market with little risk, short timeline and maximum impact. Companies already operate in very competitive environment. To them any new technology is a risk.</p>
+<p>Your colleagues have a different perspective as well. They have experience building apps with the “native” technology stack. They know how to format strings, build UIs, access network, write and debug code in the IDE. Switching to a completely different ecosystem is very uncomfortable. There’s natural resistance to getting out of the comfort zone.</p>
+<figure>
+  <img src="/assets/maximilian-weisbecker-544039-unsplash.jpg" />
+  <span class="label">
+    Does React Native have layout inflaters? How do I change the text of this button?
+  </span>
+</figure>
+<p>Engineers might have existing opinions about React, React Native and JavaScript ecosystem. Or they’ve seen a React Native app somewhere and found it of bad quality. There are many common myths, e.g. “JS is slow”, or “frameworks come and go too fast”.</p>
+<p>These myths are not specific to JavaScript. As humans we can’t experience every single tech stack and have a well-formed opinion. We have to rely on things we’ve heard from others.</p>
+<p>This might not sound very encouraging, but <strong>be willing to accept a defeat</strong>. There are so many scenarios where React Native can be very beneficial. But there are also valid situations where it doesn’t make sense at a particular time. And it’s okay. Maybe in a few months you can revisit this decision. The last thing you want is to polarize your team and ruin constructive work relationships.</p>
+<p>To fight existing misconceptions, prove them wrong on a real feature inside your app (without making other people feel stupid).</p>
+<h1>Find value</h1>
+<p>This guide assumes you are integrating React Native into an existing application and already have a big chunk of functionality written using platform-dependent code. Rewriting it all is a huge risk with very little benefit to your users and business. That’s why it will be extremely hard to convince your team and people responsible for the project to do so.</p>
+<p>But you don’t have to rewrite your application! <strong>React Native can be adopted incrementally</strong>.</p>
+<p>Find an area in your application that will immediately get benefits from being implemented in React Native. For example, it could be a screen that is useful but but doesn’t get much development attention or a surface that’s implemented as a WebView. For example, Facebook started with Pokes, Instagram rebuilt “liked photos”, etc.</p>
+<p>It has to be with a scope that you can build yourself within few days. It will be a great campground to test different aspects of integration: build system, session sharing, logging, crash reporting, etc.</p>
+<p>Bonus points for making the new feature run on both iOS and Android. Suddenly, something that used to take a lot of engineering time and coordination, was created by one person in a short time frame.</p>
+<p>Show, don’t tell.</p>
+<figure>
+  <img src="/assets/hilthart-pedersen-602249-unsplash.jpg" />
+</figure>
+<h1>Be a champion</h1>
+<p><em>You can’t just say “Let’s use React Native” and hide in the bushes.</em></p>
+<p><a href="https://github.com/tc39">TC39</a>, a committee that evolves JavaScript the language, has <a href="https://tc39.github.io/process-document/">the following process</a>: Changes to the language are called “proposals”. A member that leads a proposal is called a “champion”. Their mission is to create spec drafts, work with the community and push the spec forward.</p>
+<p><strong>Become the React Native champion at your company.</strong> Take the responsibility to see this idea through.</p>
+<p>The first step to becoming a champion is to get more familiar with React Native. Create a few prototypes (by <a href="https://www.youtube.com/watch?v=I8b0v0uFXLs">rebuilding some parts of your app</a>), learn architecture, be ready to give demos and help people get started.</p>
+<p>Engineers who are coming from native will most likely feel uncomfortable and overwhelmed by the new ecosystem. Create an environment where getting started with React Native is super easy:</p>
+<ul>
+<li>Have an internal wiki page with <a href="https://bitbucket.org/frantic/react-bnb">step-by-step instructions</a> on how to get started. Think of it as a “landing page” of React Native in your organization.</li>
+<li>Build a script that automates environment setup: installs NodeJS and other dependencies, runs yarn install, etc.</li>
+<li>Setup good IDE defaults. You can’t ask IntelliJ users to configure and use VIM. Document or commit configs that make it much easier to get started with React Native. For example: editor recommendations, plugins, syntax schemes, keyboard shortcuts, etc.</li>
+<li>Organize a tech talk or a small hackathon where your team can learn about React Native and try it together on a small project.</li>
+<li>Create a place to ask questions, have discussions and hang out. Maybe a <code>#react_native</code> channel on Slack, group, email list, etc. Be there to answer questions.</li>
+</ul>
+<p>Super important: if there are people who don’t want to deal with React Native, <strong>make sure their development experience is not compromised</strong>. They should be able to work the same way as before without having to know or do anything about React Native.</p>
+<h1>Closing thoughts</h1>
+<p>If you want to convince somebody to use React Native, ship a feature in your app that wouldn’t have been possible without it.</p>
+<p>I hope this small guide gives you few ideas on how to get started. It’s only the beginning.</p>
+<p>Lots of big and small companies use React Native in their hybrid apps. Unfortunately, <a href="https://medium.com/airbnb-engineering/react-native-at-airbnb-f95aa460be1c">very</a> <a href="https://eng.uber.com/ubereats-react-native/">few</a> of them share the details. I think it’s mostly because some aspects of the integration are specific to their infrastructure and it doesn’t feel useful to talk about these.</p>
+<p>But there are many common things. I hope to follow-up this blog post with “How to scale React Native at your organization”.</p>
+
+  <footer>
+    <time datetime="2019-03-09T12:00:00+00:00">Mar 9, 2019</time>
+  </footer>
+  
+
+
+
+
+
+
+  <h4>Related posts:</h4>
+  
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+
+    
+      <p>
+        <a href="/the-first-react-native-app">The Very First React Native App On the AppStore</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+
+
+  <div class="about">
+  <div class="about_inner">
+    <p>Hi! My name is Alex. I’m a software engineer at Facebook, where I work on React&nbsp;Native, Oculus and Messenger. I love thinking about development experience.</p>
+    <p>I write about programming, software design and side projects <a style="margin-left: 5px" class="btn-subscribe" href="/subscribe/" target="_blank"><svg viewBox="0 0 800 800"><path d="M493 652H392c0-134-111-244-244-244V307c189 0 345 156 345 345zm71 0c0-228-188-416-416-416V132c285 0 520 235 520 520z"/><circle cx="219" cy="581" r="71"/></svg> Subscribe</a></p>
+  </div>
+</div>
+
+</article>
+
+    <script>
+      window.GoogleAnalyticsObject = 'ga';
+      window.ga = window.ga || function() {
+        (window.ga.q = window.ga.q || []).push(arguments);
+      };
+      window.ga.l = Date.now();
+
+      ga('create', 'UA-96545608-1', 'auto');
+      ga(function(tracker) {
+        tracker.set('sendHitTask', function(model) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'https://curiosity-seven.vercel.app/api/ev?' + model.get('hitPayload'), true);
+          xhr.send();
+        });
+      });
+      ga('send', 'pageview');
+    </script>
+    <script async defer src="https://curiosity-seven.vercel.app/api/leet" async></script>
+  </body>
+</html>

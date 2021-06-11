@@ -1,8 +1,0 @@
-_build
-_site
-.sass-cache
-.jekyll-metadata
-.DS_Store
-.bundle
-vendor
-.jekyll-cache

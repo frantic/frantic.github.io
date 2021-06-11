@@ -1,0 +1,977 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://frantic.im/</id>
+  <title>frantic.im</title>
+  <link rel="self" href="https://frantic.im/feed.xml" />
+  <icon>https://frantic.im/favicon.png</icon>
+  <subtitle>Occasional posts on technology and stuff</subtitle>
+  <updated>2021-06-11T04:47:30.304Z</updated>
+  <author>
+    <name>Alex Kotliarskyi</name>
+  </author>
+
+  
+    <entry>
+      <id>https://frantic.im/react-api-evolution</id>
+      <title>React API evolution</title>
+      <updated>2021-03-11T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/react-api-evolution" />
+      <summary>From React.createClass to hooks: why React is at odds with JavaScript</summary>
+      <content type="html"><![CDATA[
+        
+        
+        <p>React is ~8 years old. I remember the day when I saw the first demo — I was amazed at how genius yet how simple it was! I still carry that excitement to this day.</p>
+<p>During this time React changed a bunch, but its core ideas have stayed the same. It’s still all about thinking about your UI code as a function of state, bringing state front and center, immutable data, one-directional data flows, composition over inheritance.</p>
+<p>In this post I’ll share how the developer APIs have evolved, specifically we’ll talk about defining components and sharing common code between components.</p>
+<iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube-nocookie.com/embed/QEGbuc-sKtE?rel=0" frameborder="0" allowfullscreen></iframe>
+<h2>2013, <a href="https://web.archive.org/web/20130607112820/http://facebook.github.io/react/">React v0.3.0</a>: <code>React.createClass</code></h2>
+<pre><code class="language-js"><span class="hljs-comment">/** <span class="hljs-doctag">@jsx</span> React.DOM */</span>
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">Timer</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createClass</span>({
+  <span class="hljs-attr">propTypes</span>: {
+    <span class="hljs-attr">name</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">PropTypes</span>.<span class="hljs-property">string</span>.<span class="hljs-property">isRequired</span>,
+  },
+  <span class="hljs-attr">getInitialState</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">seconds</span>: <span class="hljs-number">0</span> };
+  },
+  <span class="hljs-attr">tick</span>: <span class="hljs-title class_">React</span>.<span class="hljs-title function_">autoBind</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({ <span class="hljs-attr">seconds</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">seconds</span> + <span class="hljs-number">1</span> });
+  }),
+  <span class="hljs-attr">componentDidMount</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-built_in">setInterval</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span>, <span class="hljs-number">1000</span>);
+  },
+  <span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> (
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        Hello, {this.props.name}! It&#x27;s been {this.state.seconds} seconds
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  },
+});
+
+<span class="hljs-title class_">React</span>.<span class="hljs-title function_">renderComponent</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Timer</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;Alex&quot;</span> /&gt;</span></span>, <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;main&quot;</span>));
+</code></pre>
+<p>Initeresting things to note here:</p>
+<ol>
+<li><code>/** @jsx React.DOM */</code> was required for the JSXTransformer to convert XML-in-JS syntax (like <code>&lt;div&gt;Hello&lt;/div&gt;</code>) to function calls (like <code>React.DOM.div({}, 'Hello')</code>)</li>
+<li><code>React.createClass</code> was used to create a component. I think in hindsight naming it <code>Class</code> and not <code>Component</code> was a big marketing mistake: with ES6 classes many people were pushing for React to adopt the “standard” way, although it had a lot of problems (more on that later).</li>
+<li>In development, React performed <code>props</code> validation at runtime (Flow and TypeScript didn’t exist back then), and the <code>PropTypes</code> API allowed for pretty complex definitions with nested objects and arrays.</li>
+<li>Initially, without <code>React.autoBind</code> the methods on the components had dynamically scoped <code>this</code>, which was pretty confusing: calling <code>this.tick</code> would result in something like “Can’t call <code>setState</code> of unndefined”. <code>autoBind</code> was doing something like <code>fn.bind(this)</code> to fix it on per-function basis, and eventually this behavior was moved directly into <code>React.createClass</code>.</li>
+<li>React focused on a pure, functional, declarative approach to bulding UIs, but also had escape hatches that allowed programmers take imperative actions or talk to DOM when needed via lifecycle methods and refs.</li>
+</ol>
+<p>If you look carefully at the example above, you’ll notice that there’s a memory leak! We <code>setInterval</code> without <code>clearInterval</code>-ing it. To fix the problem we’d have to call <code>clearInterval</code> from <code>componentWillUnmount</code>, however that wasn’t obvious from the APIs and programmers had to watch out for patterns like this.</p>
+<p>That was a common pitfall: managing resources and making sure parts that were not managed by React were in sync with the UI.</p>
+<p>It was clear there’s a need for a way for the components to share behavior traits. Early versions of React shipped with a solution to this problem: mixins.</p>
+<h3>Mixins</h3>
+<pre><code class="language-js"><span class="hljs-comment">/** <span class="hljs-doctag">@jsx</span> React.DOM */</span>
+
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">SetIntervalMixin</span> = {
+  <span class="hljs-attr">componentWillMount</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">intervals</span> = [];
+  },
+  <span class="hljs-attr">setInterval</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">callback, interval</span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">intervals</span>.<span class="hljs-title function_">push</span>(<span class="hljs-built_in">setInterval</span>(callback, interval));
+  },
+  <span class="hljs-attr">componentWillUnmount</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">intervals</span>.<span class="hljs-title function_">map</span>(<span class="hljs-built_in">clearInterval</span>);
+  },
+};
+
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">TickTock</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createClass</span>({
+  <span class="hljs-attr">mixins</span>: [<span class="hljs-title class_">SetIntervalMixin</span>],
+
+  <span class="hljs-attr">getInitialState</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">seconds</span>: <span class="hljs-number">0</span> };
+  },
+  <span class="hljs-attr">componentDidMount</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-built_in">setInterval</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span>, <span class="hljs-number">1000</span>);
+  },
+  <span class="hljs-attr">tick</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({ <span class="hljs-attr">seconds</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">seconds</span> + <span class="hljs-number">1</span> });
+  },
+  <span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>It&#x27;s been {this.state.seconds} seconds<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>;
+  },
+});
+</code></pre>
+<p>The code above fixes the memory leak and makes it easier to avoid this problem in the future: just include <code>SetIntervalMixin</code> and you are good to go!</p>
+<p>Mixins fixed some problems, but intruduced others: implicit dependencies, name clashes and snowballing complexities. <a href="https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html">Read more on the official blog post (2016)</a>.</p>
+<h2>2015, <a href="https://reactjs.org/blog/2015/01/27/react-v0.13.0-beta-1.html">React v0.13</a>: <code>class extends React.Component</code></h2>
+<p>The big feature of this release was ES6 class support:</p>
+<blockquote>
+<p>JavaScript originally didn’t have a built-in class system. Every popular framework built their own, and so did we. This means that you have a learn slightly different semantics for each framework.</p>
+</blockquote>
+<blockquote>
+<p>We figured that we’re not in the business of designing a class system. We just want to use whatever is the idiomatic JavaScript way of creating classes.</p>
+</blockquote>
+<pre><code class="language-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Timer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) {
+    <span class="hljs-variable language_">super</span>(props);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = {<span class="hljs-attr">seconds</span>: <span class="hljs-number">0</span>};
+  }
+  <span class="hljs-title function_">tick</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({<span class="hljs-attr">seconds</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">seconds</span> + <span class="hljs-number">1</span>});
+  }
+  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-built_in">setInterval</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>), <span class="hljs-number">1000</span>);
+  }
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> (
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        Hello, {this.props.name}! It&#x27;s been {this.state.seconds} seconds
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  }
+});
+
+<span class="hljs-title class_">Counter</span>.<span class="hljs-property">propTypes</span> = {
+  <span class="hljs-attr">name</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">PropTypes</span>.<span class="hljs-property">string</span>.<span class="hljs-property">isRequired</span>,
+};
+</code></pre>
+<p>However, in my opinion ES6 classes didn’t fix the problem, but made it worse.</p>
+<p>First, the benefits weren’t super valuable. React shipped <code>Component</code> and <code>PureComponent</code> to inherit from, inheriting other components was discouraged (in favor of <a href="https://reactjs.org/docs/composition-vs-inheritance.html">composition</a>).</p>
+<p>Second, the semantics resulted in a bunch of ergonomics problems.</p>
+<p>In the example above, if you forgot to do <code>this.tick.bind(this)</code>, you’ll get the same “Can’t call <code>setState</code> of unndefined” as in pre-<code>autoBind</code> days. There were several popular ways to address this, none of them seemed ideal though:</p>
+<ul>
+<li>Do it inline: easy to forget, <code>bind</code> returns a new function instance for every call (which hurts if you rely on <code>shouldComponentUpdate</code>):</li>
+</ul>
+<pre><code class="language-js">&lt;button onClick={<span class="hljs-variable language_">this</span>.<span class="hljs-property">increment</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>)} /&gt;
+</code></pre>
+<ul>
+<li>Do it in the constructor: verbose, easy to miss:</li>
+</ul>
+<pre><code class="language-js"><span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) {
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>);
+}
+</code></pre>
+<ul>
+<li>Arrow functions + E7 property initializers: its syntax is inconsistent with method definitions in subtle ways (also note <code>;</code> at the end of <code>tick</code>):</li>
+</ul>
+<pre><code class="language-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Timer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span> {
+  tick = <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// ...</span>
+  };
+
+  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-built_in">setInterval</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span>, <span class="hljs-number">1000</span>);
+  }
+}
+</code></pre>
+<h3>Higher-order components</h3>
+<p>As mixing were goin away, the developers needed to fill the gap: find a way to reuse common functionality across components.</p>
+<p>HoC became a popular replacement for mixins. You can think of the pattern as writing a function that takes a component as its argument, and returns a new component that wraps it with some useful enhancement.</p>
+<p>Here’s an example of HoC that does the same thing as the <code>SetIntervalMixin</code> from the earlier example:</p>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">withTimer</span>(<span class="hljs-params">Component</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">extends</span> <span class="hljs-title class_">React</span>.<span class="hljs-property">Component</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) {
+      <span class="hljs-variable language_">super</span>(props);
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">intervals</span> = [];
+    }
+    <span class="hljs-built_in">setInterval</span> = <span class="hljs-function">(<span class="hljs-params">callback, interval</span>) =&gt;</span> {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">intervals</span>.<span class="hljs-title function_">push</span>(<span class="hljs-built_in">setInterval</span>(callback, interval));
+    };
+    <span class="hljs-title function_">componentWillUnmount</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">intervals</span>.<span class="hljs-title function_">map</span>(<span class="hljs-built_in">clearInterval</span>);
+    }
+    <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-comment">// Render the original component with some additional props</span>
+      <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Component</span> {<span class="hljs-attr">...this.props</span>} <span class="hljs-attr">setInterval</span>=<span class="hljs-string">{this.setInterval}</span> /&gt;</span></span>
+    }
+  }
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Timer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) {
+    <span class="hljs-variable language_">super</span>(props);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = {<span class="hljs-attr">seconds</span>: <span class="hljs-number">0</span>};
+  }
+  <span class="hljs-title function_">tick</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({<span class="hljs-attr">seconds</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">seconds</span> + <span class="hljs-number">1</span>});
+  }
+  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-built_in">setInterval</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>));
+  }
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> (
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        Hello, {this.props.name}! It&#x27;s been {this.state.seconds} seconds
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  }
+});
+</code></pre>
+<p>HoC promise is to use functional composition to solve the trait problem. But they do come with their own drawbacks too, especially around the ergonomics:</p>
+<ol>
+<li>Creating and using them is verbose, it’s not uncommon to end up with wrappers on top of wrappers, e.g. <code>withTranslations(withTimer(connect()(Timer)))</code>.</li>
+<li>This indirection breaks <code>refs</code> and makes writing pure components harder, unless implemented carefully.</li>
+<li>Devtools show very deep wrapped component hierarchies that hurt readability:</li>
+</ol>
+<p><img src="https://frantic.im/assets/react-api-evolution/deep-hocs.png" alt="" /></p>
+<h3>Render props</h3>
+<p>React community kept looking for better ways to reuse logic in components and for some time a pattern called “render props” gained a bunch of popularity. I’m not going to dive into these dark ages, but the idea was similar to HoC.</p>
+<h2>2019, <a href="https://reactjs.org/blog/2019/02/06/react-v16.8.0.html">React v16.8</a>: Hooks</h2>
+<p>Around the time the release with ES6 was published, the React team made it possible to define components as simple functions, aka “stateless functional components”:</p>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Timer</span>(<span class="hljs-params">props</span>) {
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Hello, {props.name}!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+}
+
+<span class="hljs-title class_">React</span>DOM.<span class="hljs-title function_">render</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Timer</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;Alex&quot;</span> /&gt;</span></span>, <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;main&quot;</span>));
+</code></pre>
+<p>This was very popular: simple, concise, idiomatic. However, how do you get access to state or lifecycle methods?</p>
+<p>After a bunch of prototyping and explorations, the React team presented the way – hooks.</p>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Timer</span>(<span class="hljs-params">props</span>) {
+  <span class="hljs-keyword">const</span> [seconds, setSeconds] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
+
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">const</span> interval = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setSeconds</span>(<span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span> s + <span class="hljs-number">1</span>), <span class="hljs-number">1000</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-built_in">clearInterval</span>(interval);
+    };
+  }, []);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      Hello, {props.name}! It&#x27;s been {seconds} seconds
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>Programmers familiar with algebraic effects saw the striking similarities.</p>
+<p>Notably, the mental model of hooks shifted from “lifecycle methods” to “sync things outside React’s control with UI”.</p>
+<p>For example, <code>useEffect</code> is built in a way that makes it easy to colocate resource acquisition and release, making memory leaks much easier to avoid. The second argument to <code>useEffect</code> is a list of dependencies, if any of them change between calls to the same <code>useEffect</code>, React will clean up the previous one and will recreate a new one. Getting this right with <code>componentDidMount</code> / <code>componentWillReceiveProps</code> / <code>componentWillUnmount</code> was hard.</p>
+<p>Hooks have solved the problem of sharing common functionality across components in a very elegant, composable ways:</p>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">useInterval</span>(<span class="hljs-params">callback, ms</span>) {
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">const</span> interval = <span class="hljs-built_in">setInterval</span>(callback, ms);
+    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-built_in">clearInterval</span>(interval);
+    };
+  }, [callback, ms]);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Timer</span>(<span class="hljs-params">props</span>) {
+  <span class="hljs-keyword">const</span> [seconds, setSeconds] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
+  <span class="hljs-title function_">useInterval</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setSeconds</span>(<span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span> s + <span class="hljs-number">1</span>), <span class="hljs-number">1000</span>);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      Hello, {props.name}! It&#x27;s been {seconds} seconds
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>But hooks were not without problems either: in the example above there’s a subtle problem with the callback we pass to <code>useInterval</code>: since it’s a new referance every time (in JS, <code>() =&gt; {}</code> !== <code>() =&gt; {}</code>) we end up re-creating interval every render. The solution looks like this:</p>
+<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Timer</span>(<span class="hljs-params">props</span>) {
+  <span class="hljs-keyword">const</span> [seconds, setSeconds] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> increment = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setSeconds</span>(<span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span> s + <span class="hljs-number">1</span>), []);
+  <span class="hljs-title function_">useInterval</span>(increment, <span class="hljs-number">1000</span>);
+
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>Compared to <code>React.Component</code> and mixins, React Hooks traded <code>this</code> and related class gotchas for JS scope gotchas. I think it was a good trade to make.</p>
+<h1>Conclusions</h1>
+<ol>
+<li>React did an awesome job keeping the API surface very small. Watching the documentation across all these years felt like the team is actively <em>removing</em> things that are non-essential.</li>
+<li>React evolved in a steady, backwards-compatible way. You can still use <code>React.createClass</code> APIs via a package, if you want to. Facebook code written in 2013 still works fine (after applying minor codemods).</li>
+<li>React is at odds with JavaScript: from JSX syntax, ES6 class method bindings gotchas to reinvention of algebraic effects.</li>
+</ol>
+
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://frantic.im/octave</id>
+      <title>A side project story: octave.im (2013-2016)</title>
+      <updated>2021-02-23T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/octave" />
+      <summary>A story about my attempt at SaaS</summary>
+      <content type="html"><![CDATA[
+        
+        
+        <p>It all started around 2013: I was going through a course on <a href="https://www.coursera.org/learn/machine-learning">Machine Learning by Andrew Ng</a>.</p>
+<p>The practical part of the course depended on GNU Octave (open source math toolkit), but installing it on a Mac was a huge pain. I did manage to do it, but noticed that many people on forums complanied about the same thing.</p>
+<p>So I had a brilliant idea — wouldn’t it be great if Octave was available via SaaS model? With fancy features like built in code editor, command line and plots?</p>
+<h1>Node, React &amp; Docker</h1>
+<p>I built the first prototype in one night on June 8, 2013. I used NodeJS 0.10-ish with socket.io on the server side and CodeMirror with some plugins on the frontend.</p>
+<p>In October that year I rewrote the frontend in React — the experience of doing so was amazing! React was young (<code>createClass</code>/<code>autobind</code>/<code>mixins</code>) but its programming model “clicked” with me. I remember hanging out in their IRC channel looking for help with autoscrolling. I was really impressed at how quick and friendly the response was (thanks <a href="https://twitter.com/sophiebits">@sophiebits</a>!).</p>
+<p>The initial version of the backend would just run <code>octave</code> in a dedicated folder. My second iteration ued Docker, which at the time was very new and unproven. It all ran on a Digital Ocean 2GB RAM droplet.</p>
+<p>The killer feature was displaying plots inline in a REPL. You can see it on this gif:</p>
+<p><img src="https://frantic.im/assets/octave.im/octave-demo.gif" alt="" /></p>
+<p>It worked through a clever hack: I pre-configured Octave to use gnuplot with special arguments that made it save the graph to a file (instead of showing it on the screen). My NodeJS backend listened to filesystem changes and notified the frontend when it detected the update.</p>
+<h1>Product market fit</h1>
+<p>I tried to promote octave.im for the students of the ML course. I posted the link on forums couple of times and added it to the course wiki page (that was surprisingly very hidden). The reception among students has been really positive, but the course moderators weren’t happy: they wanted some kind of validation that it’s a serious thing (which it wasn’t).</p>
+<p>Overall I had more than 3500 people sign up over the course of several years. Unfortunately I didn’t keep any metrics screenshots. The twitter account, <a href="https://twitter.com/OctaveCloud">@OctaveCloud</a>, got 57 followers (organically).</p>
+<p>Speaking of which, I used Mixpanel and loved its simple API and dashboards. They even sent me a free T-shirt :)</p>
+<h1>Total profit: -$420</h1>
+<p>As every other hacker out there I also hoped to make it sustainable, so in October 2015 I added $4 monthly subscription with 2 weeks trial. To be honest I wasn’t very serious about it at that point. I just wanted to play with Stripe, see if people would actually pay. And they did! Overall I have collected about $300 in revenue.</p>
+<p>An interesting thing that I noticed was that people subscribe and then stop using the product, without unsubscribing (I did have the unsubscribe button on the profile, no questions asked). I ended up manually cancelling a bunch of subscriptions on Stripe without updating the app DB, so people could still use the service (which they didn’t anyways).</p>
+<h1>In numbers</h1>
+<ul>
+<li>308 commits</li>
+<li>3,500 accounts created</li>
+<li>450,000 commands executed</li>
+<li>$300 total revenue</li>
+<li>$720 spent on hosting</li>
+</ul>
+<p>Screenshot, for posterity:</p>
+<p><img src="https://frantic.im/assets/octave.im/screenshot.png" alt="" /></p>
+
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://frantic.im/back-to-rails</id>
+      <title>Moving my serverless project to Ruby on Rails</title>
+      <updated>2020-11-14T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/back-to-rails" />
+      <summary>Serverless is like a black hole. It promised exciting adventures, but the gravity sucked me in and I spend most of my efforts dealing with its complexity, instead of focusing on my product.</summary>
+      <content type="html"><![CDATA[
+        
+        
+        <p>I have a small side project: <a href="https://hacker.gifts">digital gift cards for hackers</a>. It uses Shopify for all the store-related stuff: frontend, payments, refunds, reports, etc.</p>
+<p>But unlike regular digital products (ebooks, videos) I wanted each card that the user purchases from the store to be unique. So I made a  script that generates personalized images and ran it manually for every order.</p>
+<p>The next logical step was automating this process. I started with serverless AWS Lambda. At the time it was the hot new tech and I wanted to learn more. It seemed very fitting for my use-case: single-responsibility functions that can run at any time and don’t require server maintenance.</p>
+<p><img src="https://frantic.im/assets/back-to-rails/simple-lambda.png" alt="" /></p>
+<p>It was super easy to get started. I built a JavaScript function and deployed it to AWS Lambda, added Shopify web hook and it all worked!</p>
+<p>Early benefits of serverless (for hobby projects):</p>
+<ul>
+<li>Easy to get started</li>
+<li>Don’t have to configure or maintain servers</li>
+<li>Free for small loads</li>
+</ul>
+<p>In reality, writing the simple Lambda functions turned out to be only 10% of the work.</p>
+<p>Time passed and my backend started getting more complex: I needed to store some state for each <a href="https://hacker.gifts/products/space-invaders">puzzle</a>, send confirmation emails, show an order details page. What started as a simple function, grew into a bunch of serverless functions, SNS topics, S3 buckets, DynamoDB tables. All bound together with plenty of YAML glue, schema-less JSON objects passed around and random hardcoded configs in AWS console.</p>
+<p>I think it’s just a typical software development lifecycle: things grow organically, become a mess, and require some refactoring. Make it run first (discover market fit), then make it right (refactor to integrate the new discoveries).</p>
+<p>But this time it was different. I couldn’t refactor things as easily as I used to in traditional monolithic apps. Here’s why:</p>
+<p class="large">When the building blocks are too simple, the complexity moves into the interaction between the blocks.</p>
+<p>And the interactions between the serverless blocks happen <em>outside</em> my application. A lambda publishes a message to SNS, another one picks it up and writes something to DynamoDB, the third one takes that new record and sends an email…</p>
+<p>I could test every single block in that flow, but I didn’t have confidence in the overall process. What if publishing fails, how would I know that? How would system recover? Can I rollback and try again? Where do the logs go?</p>
+<p>Another swarm of problems was hiding in my configuration: bad Route 53 record, typos in SNS topics, wrong S3 bucket region. Tracing errors was a challenge, there’s no single log output I can look into.</p>
+<p class="large">With serverless, I was no longer dealing with my project's domain, I was dealing with the distributed system's domain.</p>
+<p>At this point I felt fooled.</p>
+<p>I came for the easy way to deploy code and not think about servers, but in the end had to design my system around the platform’s limitations.</p>
+<p>Drawbacks of serverless (for hobby projects):</p>
+<ul>
+<li>Hard to follow information flow</li>
+<li>Impossible to replicate production environment locally</li>
+<li>Slow iteration speed</li>
+<li>Lack of end-to-end testing</li>
+<li>Immature documentation (dominated by often outdated Medium posts)</li>
+<li>No conventions (have to make hundreds of unessential decisions)</li>
+</ul>
+<p>—</p>
+<p>I was clearly not enjoying the serverless. So I decided to rewrite it. After all, it is a side project I’m doing for fun. The tech stack of choice — Ruby on Rails.</p>
+<p>I haven’t used Rails since 2013, and for the last 8 years at Facebook I’ve been mostly doing JavaScript.</p>
+<p><img src="https://frantic.im/assets/back-to-rails/logo.jpg" alt="" /></p>
+<p>The experience of picking Rails back up was really nice but… uneventful. Not much had really changed. A few things got added, a few small things moved around.</p>
+<p>Of course I did <a href="https://github.com/rails/rails/issues/38060">hit some magical Ruby issues</a>. But unlike my typical experience with JavaScript, I was quickly able to find the solution.</p>
+<p>Rails comes with so many things built-in and configured. Over the years, without Rails, I used to gluing random JavaScript libraries together to roll my own routing, file storage wrappers, email preview pipeline, managing secrets, test setup with fixtures, database migrations, logging, performance reporting, deployment scripts. With Rails I didn’t have to think about all these details and could simply focus on making product-visible changes.</p>
+<p>It was like driving a Tesla after years of making my own scrappy cars. Similar components, but all configured and aligned to work well together.</p>
+<p>Benefits of Rails (for hobby projects):</p>
+<ul>
+<li>Conventions</li>
+<li>Tooling, libraries</li>
+<li>Documentation</li>
+<li>Monolith is easy to understand and test</li>
+</ul>
+<p>Drawbacks of Rails (for hobby projects):</p>
+<ul>
+<li>Feels heavyweight in the beginning</li>
+<li>Hurts if your opinions differ from Rails conventions</li>
+<li>Have to host on a server</li>
+<li>Doesn’t sound cool in 2020 (anymore and maybe yet)</li>
+</ul>
+<p>—</p>
+<p>Serverless is like a black hole. It promised exciting adventures, but gravity sucked me in and I spent most of my efforts dealing with its complexity, instead of focusing on my product.</p>
+
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://frantic.im/remote-meetings</id>
+      <title>Optimize Your Meetings for Engagement</title>
+      <updated>2020-09-24T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/remote-meetings" />
+      <summary>Imagine you meet a bunch of old friends that you haven’t seen in a while. Everybody’s sharing their stories, and everybody else is actively listening, asking questions, and are fully immersed.</summary>
+      <content type="html"><![CDATA[
+        
+        
+        <p>— So, does anybody have any feedback? Or questions?</p>
+<p>Silence. 15 seconds feel like forever. I can’t tell by people’s expressions if they agree with what I have just presented. I know they must have things to say, why aren’t they speaking up?</p>
+<p>This was so much easier with in-person meetings. Remote sucks!</p>
+<h2>What if we just don’t know how to run remote meetings yet?</h2>
+<p>After months of attending large VC-only meetings I think I found a pattern. I’ve also talked to a few people who also noticed the same thing.</p>
+<p><strong>Failure modes:</strong></p>
+<ul>
+<li>The person leading the meeting is talking 90% of time, and because they don’t get much feedback they just continue to fill the silence with re-iterating their points.</li>
+<li>Nobody else is speaking up.</li>
+<li>Somebody’s speaking up but they focus on a minor detail and talk through it forever, nobody’s willing to stop them</li>
+<li>In the end everyone is frustrated, the meeting feels like a waste of time and feels like it could have been replaced by a group post.</li>
+</ul>
+<p>But not all meetings where like that. A few were actually really good.</p>
+<p><strong>Here’s the secret sauce:</strong></p>
+<blockquote>
+<p>In the current realities optimize your meetings for engagement</p>
+</blockquote>
+<p>By engagement I mean this — imagine you meet a bunch of old friends that you haven’t seen in a while. Everybody’s sharing their stories, and everybody else is actively listening, asking questions, and are fully immersed.</p>
+<p>Just imagine the things we could do if our remote meetings felt even remotely like that.</p>
+<p>First of all, it’s a mindset shift. Switch your strategy from just doing the meetings the way you did before COVID (or the way everybody else is doing it right now) to optimizing for the engagement, and wonderful things will happen.</p>
+<p>I think the solution has 3 key elements: organizational, human and technology.</p>
+<p><strong>Organizational:</strong></p>
+<ul>
+<li>Reserve 15 minutes in the beginning to warm up your group. Don’t do “let’s start with status update” — in my experience this tenses up the people involved and they mainly think about what they are going to say and are not listening / engaging. Instead, ask a question that encourages engagement (see next section).</li>
+<li>If your goal is to generate ideas or collect meaningful feedback, split the large group into several smaller groups (see <a href="http://www.theworldcafe.com/key-concepts-resources/world-cafe-method/">World Cafe Method</a>). 4 or 5 people in the meeting seem to be the maximum we can handle to keep the engagement high.</li>
+</ul>
+<p><strong>Human:</strong></p>
+<ul>
+<li>Ask and share personal bits of information, e.g. hobbies, silly facts, or opinions on things not related to work.</li>
+<li>Overuse non-verbal expressions: gestures, smiles, nodding, etc. This will help everyone else understand your reaction.</li>
+</ul>
+<p><strong>Technology:</strong></p>
+<ul>
+<li>Audio is extremely important. Low latency is a must to avoid people talking over each other.  The quality is very important too, good software I’ve used before doesn’t broadcast your audio until it detects speech.</li>
+<li>Provide tools that expand ways to communicate non-verbally: raising hand, reactions, polls, messages.</li>
+</ul>
+
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://frantic.im/no-strings</id>
+      <title>Things that are not strings</title>
+      <updated>2020-08-19T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/no-strings" />
+      <summary>As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.</summary>
+      <content type="html"><![CDATA[
+        
+        
+        <p>As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.</p>
+<p>Let’s take SQL for example. Every API in every programming language that I’ve seen considers SQL statement a string.</p>
+<pre><code>function execute(sql: string): Promise&lt;Result&gt;
+</code></pre>
+<p>The problem with this API is that not every string is a valid SQL (nor sometimes it is the SQL you actually want to run).</p>
+<p>Here’s a classic example of the misuse:</p>
+<pre><code>const query = 'SELECT * FROM posts WHERE id = '
+  + params.id;
+</code></pre>
+<p>In this example <code>params.id</code> can be anything, including invalid or malicious SQL.</p>
+<p>The root problem here is not the lack of sanitization. The problem is that SQL is treated as a string.</p>
+<p>Think about JSON for another example. You could certainly implement adding an item to a hash by doing this (I hope this code makes you cringe):</p>
+<pre><code>function addKeyValue(json, key, value) {
+  return json.substr(0, json.length - 1)
+    + ', &quot;' + key + '&quot;: &quot;' + value + '&quot;}';
+}
+</code></pre>
+<p>As with the SQL example, you could add escaping and sanitization, but it’s just hacks hiding the real problem:</p>
+<p><em>A string can be a representation of a thing, but it’s not the thing itself.</em></p>
+<p>And it’s not only about concatenating strings. Can you spot the problem with this function? <span class="hint" onclick="event.target.innerText = 'This URL will be marked as safe by the code below https://evil.com/https://safe.com/'">(see answer)</span></p>
+<pre><code>function isSafeDomain(url: string): boolean {
+  return url.includes('https://safe.com/');
+}
+</code></pre>
+<p>Or in this one? <span class="hint" onclick="event.target.innerText = 'This code is prone to timing attacks'">(see answer)</span></p>
+<pre><code>function checkPassword(pass: string, hash: string): boolean {
+  return sha1(pass) === hash;
+}
+</code></pre>
+<p>Strings are lower level, and thus are much more flexible than they need to be to properly implement valid operations on the higher level concepts.</p>
+<p>Incomplete list of things that are not strings:</p>
+<ul>
+<li>SQL</li>
+<li>HTML</li>
+<li>JSON</li>
+<li>URL</li>
+<li>File path</li>
+<li>Password</li>
+</ul>
+<h2>Things are… things</h2>
+<p>You can save yourself a lot of headache if you stop treating everything that can be represented as a string, as a string.</p>
+<p>Both OO and FP styles allow for abstracting away something as a type or a class. You can make a closed opaque structure for the thing and limit the ways it can be constructed.</p>
+<p>For example, for SQL, you might want to make sure it’s only created from static string literals.</p>
+<pre><code>// Allowed
+new SQL('SELECT * FROM posts WHERE id = ?');
+
+// No allowed (e.g. via a lint rule)
+new SQL('SELECT * FROM posts' + filter);
+</code></pre>
+<p>Of course, at some point, you will need to serialize the thing into a string to pass it into an API that was designed to consume a string. Do it at the last possible moment and try to limit it to a single place in the codebase.</p>
+<pre><code>function execute(sql: SQL): Promise&lt;Result&gt; {
+  return unsafeExecute(sql.toString());
+}
+</code></pre>
+<p>Strings are coming into your app from the outer world. Don’t trust them to be what they seem they are. Convert them into proper things as soon as possible, and convert them back to strings as late as possible.</p>
+<p>Here’s a few libraries for inspiration of how to treat things as… things:</p>
+<ul>
+<li>SQL: <a href="https://github.com/gajus/slonik">Slonik</a>, <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations">LINQ</a></li>
+<li>HTML: React, Elm, <a href="https://github.com/tonsky/rum">rum</a></li>
+<li>JSON: a dictionary in any programming language</li>
+<li>URL: <a href="https://docs.rs/url/2.1.1/url/">url - Rust</a></li>
+<li>File paths: <a href="https://doc.rust-lang.org/std/path/struct.Path.html">std::path::Path - Rust</a></li>
+<li>Passwords: <a href="https://github.com/myfreeweb/secstr">secstr</a>, <a href="https://hackage.haskell.org/package/securemem">securemem</a></li>
+</ul>
+
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://frantic.im/how-not-to-flux-set-actions</id>
+      <title>How not to use Flux: SET actions</title>
+      <updated>2019-12-15T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/how-not-to-flux-set-actions" />
+      <summary>Actions that are named `SET_*` is anti-pattern. It usually means that the code that should be in the reducer lives inside React component instead. This makes apps harder to reason about, debug and test.</summary>
+      <content type="html"><![CDATA[
+        
+        
+        <p><em>TL;DR: Instead of thinking about your actions as something that changes application state, consider them events instead.</em></p>
+<p>In this article by Flux I mean one way data flow pattern implementations like Redux, useReducer or Elm Architecture</p>
+<p>Every time I see an action with a name that starts with <code>SET_*</code>, I know there’s a problem.</p>
+<p>Consider this example:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params">props</span>) {
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">onClick</span>(<span class="hljs-params"></span>) {
+    props.<span class="hljs-title function_">dispatch</span>({
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;SET_VALUE&quot;</span>,
+      <span class="hljs-attr">value</span>: props.<span class="hljs-property">value</span> + <span class="hljs-number">1</span>,
+    });
+  }
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Value: {props.value}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reducer</span>(<span class="hljs-params">state, action</span>) {
+  <span class="hljs-keyword">if</span> (action.<span class="hljs-property">type</span> === <span class="hljs-string">&quot;SET_VALUE&quot;</span>) {
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">value</span>: action.<span class="hljs-property">value</span> };
+  }
+}
+</code></pre>
+<h2>Problem #1: Business logic inside the component</h2>
+<p>In this example the bussness logic is incrementing the value, i.e. <code>value = value + 1</code>. If we use <code>SET_*</code> action, the logic ends up inside the component. It’s not great because the React component should not care about these details, its main purpose is rendering and dispatching actions.</p>
+<p>As the application and the team grows, it’s going to be very tempting to put more stuff into the component. E.g. if we wanted to have a max value for the counter, the most intuitive thing in this example would be to put it into the <code>onClick</code> handler.</p>
+<h2>Problem #2: Not leaveraging reducer</h2>
+<p>Reducer is a beautiful pattern that’s older than JavaScript itself. Given a state and an action reducer returns a new state. It’s easy to type check, easy to test, easy to reason about.</p>
+<p>When we put the business logic outside of reducer, we miss out on all these advantages. The <code>SET_*</code> actions essentially turn the predictable store into a global variable.</p>
+<h2>Problem #3: Hard to debug and test</h2>
+<p>Imagine our counter component isn’t behaving right: after pressing the <code>+</code> button the value is not what we expect. Let’s check Redux devtools:</p>
+<pre><code>Old State: {value: 3}
+Action:    {type: &quot;SET_VALUE&quot;, value: 42}
+New State: {value: 42}
+</code></pre>
+<p>This is correct, but not helpful. How did we compute <code>42</code> as the new value to be set? 🤷‍♂️</p>
+<p>Writing tests for <code>SET_*</code> actions is also not great. The tests end up very dumb and the aren’t really testing anything useful:</p>
+<pre><code class="language-javascript"><span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;SET_VALUE action&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+  store.<span class="hljs-title function_">dispatch</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;SET_VALUE&quot;</span>, <span class="hljs-attr">value</span>: <span class="hljs-number">3</span> });
+  <span class="hljs-title function_">expect</span>(store.<span class="hljs-title function_">getState</span>().<span class="hljs-property">value</span>).<span class="hljs-title function_">toEqual</span>(<span class="hljs-number">3</span>);
+});
+</code></pre>
+<p>To test the business logic that lives inside React component we’d have to spend a lot of effort setting up mock renderer, simulating click event, etc.</p>
+<h1>The Better Way</h1>
+<p>Let’s think about our actions as objects describing user’s intent. In the simple <code>Counter</code> component example from above, when the user clicks <code>+</code> the user wants the app to <em>increment</em> the counter.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params">props</span>) {
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">onClick</span>(<span class="hljs-params"></span>) {
+    props.<span class="hljs-title function_">dispatch</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;INCREMENT&quot;</span> });
+  }
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Value: {props.value}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reducer</span>(<span class="hljs-params">state, action</span>) {
+  <span class="hljs-keyword">if</span> (action.<span class="hljs-property">type</span> === <span class="hljs-string">&quot;INCREMENT&quot;</span>) {
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">value</span>: state.<span class="hljs-property">value</span> + <span class="hljs-number">1</span> };
+  }
+}
+</code></pre>
+<p>Note that the React component in this case doesn’t care how this event is handled, it just tells the system about what happened.</p>
+<p>The reducer tests in this case are more meaningful, capturing the essense of the business logic:</p>
+<pre><code class="language-javascript"><span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;INCREMENT action&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> store = <span class="hljs-title function_">createStore</span>({ <span class="hljs-attr">value</span>: <span class="hljs-number">2</span> });
+  store.<span class="hljs-title function_">dispatch</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;INCREMENT&quot;</span> });
+  <span class="hljs-title function_">expect</span>(store.<span class="hljs-title function_">getState</span>().<span class="hljs-property">value</span>).<span class="hljs-title function_">toEqual</span>(<span class="hljs-number">3</span>);
+});
+</code></pre>
+<h2>Actions are events</h2>
+<p>The secret here is in the mindset. Instead of thinking about your actions as something that changes application state, consider them events instead. These events could represent user intent (clicking a button, typing, etc.) or a notification from external system (timers, HTTP response, etc.)</p>
+<p>Examples:</p>
+<ul>
+<li><code>SET_LOGGED_IN</code> → <code>GOT_ACCESS_TOKEN</code></li>
+<li><code>SET_TODOS_LIST</code> → <code>LOADED_TODOS_FROM_SERVER</code></li>
+</ul>
+
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://frantic.im/onityper</id>
+      <title>Digital Typewriter</title>
+      <updated>2019-06-09T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/onityper" />
+      <summary>What if you could use your favorite keyboard away from your computer? In this side project I'm building an old-fashioned typewriter from modern IoT parts.</summary>
+      <content type="html"><![CDATA[
+        
+        
+        <p>What if you could use your favorite keyboard away from your computer?</p>
+<div class="fig">
+  <img src="https://frantic.im/assets/onityper/onityper.jpg">
+  <div class="label">
+    This is what it looks like for now. Check out GIF demo further down.
+  </div>
+</div>
+<p>A long time ago I learned about an interesting “text editor”. Its main feature was, uhh, the lack of text editing. That’s right, you can’t change anything you’ve typed.</p>
+<p>The idea behind it is very interesting. It’s about two modes of writing. One where you produce as much text as possible, without trying to organize or correct it in any way. The other one is where you edit and restructure the text until it’s consistent and easy to read.</p>
+<p>Doing the first part on modern computers is a challenge for me. I get distracted very easily. I’m also tempted to start editing right away, often times ending up in a loop rewriting a sentence over and over again.</p>
+<p>Old typewriters don’t have this problem: there’s no distractions and no way to edit the text.</p>
+<div class="fig">
+  <img src="https://frantic.im/assets/onityper/deleece-cook-1167525-unsplash.jpg">
+  <div class="label">
+    Doesn't support twitter, doesn't have the backspace key.
+  </div>
+</div>
+<h2>Implementation</h2>
+<p>On my last birthday I got a tiny device, <a href="https://amzn.to/2MAM80B">Onion Omega 2+</a>. It’s like Rapsberry Pi, runs Linux, but built on different architecture and has its own set of accessories. It came with 21x7 chars OLED display extension.</p>
+<div class="fig">
+  <img src="https://frantic.im/assets/onityper/omega.jpg">
+  <div class="label">
+    Onion Omega
+  </div>
+</div>
+<p>The idea was to connect my favorite keyboard (<a href="https://amzn.to/2IwvBpj">HHKBPro2 type-S</a>) via USB to the Omega2. Anything I type there should immediately show up on the built-in OLED display and sync to “the cloud”.</p>
+<blockquote>
+<p>I bet I can hack this together with 1 line of bash.</p>
+<p>– me, two weeks ago</p>
+</blockquote>
+<p>I thought it would be trivial, just read the keystrokes, pipe them to OLED and a text file, sync the text file over Dropbox.</p>
+<p>However, it turned out to be much more complicated than that :)</p>
+<p>First, I couldn’t find a trivial way to read the text off of the keyboard. I was looking for something like <code>getc</code> that can get data from a connected USB device, but no luck. Instead I found out that Linux has <code>/dev/input/event*</code> files where I could <a href="https://www.kernel.org/doc/Documentation/input/input.txt">read raw events</a>. That lead me to the ancient <a href="https://github.com/spotify/linux/blob/master/include/linux/input.h"><code>input.h</code></a>, which I used to hack together a simple parser.</p>
+<p>Next, printing this stuff to OLED also had gotchas. My initial version would just repaint the screen on every keystroke, which turned out to be very inefficient. Full display repaint using Omega’s OLED APIs takes as much as 400ms, totally unacceptable for a good experience.</p>
+<p>So I changed the code to keep track of cursor position and advanced it as more characters were being printed on the screen.</p>
+<p>This got more complicated once I added support for backspace. And then even more complicated with paging. When I got to implementing word wrapping, it was too much — there are so many different states to transition between!</p>
+<p>Ideally, I don’t want to track the current screen position and code the drawing logic for each editing command. I want a model where I can define piece of state (the text) and a function that defines what this should look like on the screen, without worrying about the underlying OLED API performance.</p>
+<p>Does it remind you of anything? :)</p>
+<p>React. I love this model and I’m sure there are tons of applications for it outside the web development. Here’s what my code looks like now:</p>
+<pre><code class="language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">render</span><span class="hljs-params">(text)</span></span>
+  <span class="hljs-comment"># Return the text I want to be on the screen</span>
+<span class="hljs-keyword">end</span>
+
+next_screen = render(message)
+reconcile(prev_screen, next_screen) <span class="hljs-keyword">do</span> <span class="hljs-params">|row, col, text|</span>
+  oled_command <span class="hljs-string">&quot;cursor&quot;</span>, <span class="hljs-string">&quot;<span class="hljs-subst">#{row}</span>,<span class="hljs-subst">#{col}</span>&quot;</span>, <span class="hljs-string">&quot;write&quot;</span>, text
+<span class="hljs-keyword">end</span>
+prev_screen = next_screen
+</code></pre>
+<p>The latency between pressing a button and seeing it on the screen is amazing. I used iPhone X slow motion camera (240fps) to measure time from keyboard button down to seeing visual feedback on the screen. Here are the numbers:</p>
+<ul>
+<li>HHKB connected to macOS running Sublime: 84ms latency</li>
+<li>HHKB connected to onion running onityper: 32ms latency</li>
+</ul>
+<p>This number matters a lot. The lower the number, the more natural and instant is the experience. 32ms is great!</p>
+<p>See also: <a href="https://danluu.com/keyboard-latency/">Keyboard latency</a> and <a href="https://pavelfatin.com/typing-with-pleasure/">Typing with pleasure</a>.</p>
+<div class="fig">
+  <img src="https://frantic.im/assets/onityper/demo.gif">
+  <div class="label">
+    Demo
+  </div>
+</div>
+<h2>Sync</h2>
+<p>Everything I type on this device is stored in text files. It’s not very easy to pull these files from the device, so I also added some code to upload each line to the server.</p>
+<p>On the backend I used Firebase. I have a simple “cloud function” that takes text as input and stores it in Firestore. I also have a very simple frontend that renders the text from the Firestore.</p>
+<p>The tricky part is that I can’t completely rely on available internet connection. I plan to take this device to coffee shops and places outside of WiFi reach. The script stores a queue of lines to upload in a file, so even after device restarts it should be able to resume uploads.</p>
+<p>Ideally I’d love to use Dropbox, but unfortunately I couldn’t find linux MIPS build of their client.</p>
+<h2>Testing</h2>
+<p>In retrospective I should have started with proper Ruby tests, but yak shaving and curiosity brought me to <a href="https://pypi.org/project/cram/"><code>cram</code></a>. It’s a simple CLI tool that takes <code>*.t</code> files as inputs. These files contain shell commands and the expected output.</p>
+<p>The development experience of <code>cram</code> is pretty good. You don’t need to set the “expected output” beforehand. You can just run the tool and it will show the difference between expected and actual output, with an option to update the <code>*.t</code> file.</p>
+<p>Very similar to Jest snapshot tests.</p>
+<h2>Deployment</h2>
+<p>Omega’s WiFi has been terrible in my experience, lots of random disconnects. I couldn’t rely on SSH because of that and had to use serial port with <code>screen</code>. This made the deployment process more complicated, there’s no <code>scp</code> for terminal connection.</p>
+<p>Here’s a clever trick I learned:</p>
+<pre><code class="language-sh">screen -S <span class="hljs-variable">$SESSION</span> -X stuff <span class="hljs-string">&#x27;cat &gt; /root/onityper.rb &lt;&lt;\EOF&#x27;</span>$<span class="hljs-string">&#x27;\015&#x27;</span>
+screen -S <span class="hljs-variable">$SESSION</span> -X readreg p <span class="hljs-string">&quot;<span class="hljs-variable">$ROOT</span>/onityper.rb&quot;</span>
+screen -S <span class="hljs-variable">$SESSION</span> -X paste p
+screen -S <span class="hljs-variable">$SESSION</span> -X stuff <span class="hljs-string">&#x27;EOF&#x27;</span>$<span class="hljs-string">&#x27;\015&#x27;</span>
+</code></pre>
+<p>I can run <code>screen</code> in one tab and while the connection is active I can send commands to it. <code>stuff</code> sends keystrokes and <code>readreg</code>/<code>paste</code> can simulate typing large chunks of text.</p>
+<p>To run the script on every boot, I used <a href="https://docs.onion.io/omega2-docs/running-a-command-on-boot.html">the official instructions</a> which recommend putting stuff into <code>/etc/rc.local</code>.</p>
+<pre><code>ruby /root/onityper.rb &gt;&gt; /tmp/onityper.log 2&gt;&amp;1 &amp;
+</code></pre>
+<p>I don’t like this at all. There must be a proper way of defining a service that can run in background, with policies about logs and log rotation, when to restart it, etc. Looks like OpenWRT has <a href="https://openwrt.org/docs/guide-developer/procd-init-scripts"><code>procd</code></a> but at that point I was too lazy to look into.</p>
+<h2>Code</h2>
+<p>Warning: it’s a bag of hacks. See it on <a href="https://github.com/frantic/onityper">GitHub</a>.</p>
+<h2>Next</h2>
+<p>I’m very happy with this setup so far. I bought <a href="https://amzn.to/2WE0H8v">the cheapest powerbank</a> I could find on Amazon, so the device is pretty much independent from my laptop. 70% of this post was created on the Onityper from a coffee shop.</p>
+<p>Now I want to use a 3D printer to build a case for it.</p>
+
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://frantic.im/e2e-tests</id>
+      <title>Improving end to end tests reliability</title>
+      <updated>2019-05-19T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/e2e-tests" />
+      <summary>End-to-end tests are not flaky, if you cook them right.</summary>
+      <content type="html"><![CDATA[
+        
+        
+        <p>Are you trying to establish a good end-to-end testing infrastructure at your company? This is how Facebook does it.</p>
+<h2>The problem</h2>
+<p>End-to-end (E2E) tests verify that the product works on the high level. For example, if you have an e-commerce website, E2E test could simulate an important user behavior: open the website in a browser, search for a product, add it to the cart and performing checkout.</p>
+<p>It’s hard to make end to end tests reliable, because (by definition) these tests rely on all components of your system. If each component has a reliability of 99%, the test that depends on ten systems has 10% chance to fail. This matters even more when you run hundreds of tests a day.</p>
+<p>E2E tests often get bad reputation among developers due to this flakiness . See <a href="https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html">Google Testing Blog: Just Say No to More End-to-End Tests</a>.</p>
+<p>When the engineering organization is growing, we have to scale our tooling. We can’t expect thousands engineers to be experts in end-to-end testing. So whenever somebody is writing a new test or investigating a failure, it should not require prior experience dealing with E2E tests.</p>
+<h2>The solution</h2>
+<p>Over the years engineers at Facebook figured ways to improve E2E testing practice. You can watch the tech talk linked at the end for more details. Here are some improvements that I think were really important.</p>
+<h2>1. Make testing API declarative</h2>
+<p>This is very basic trick, but many engineers writing test don’t realize that testing code is also, eh, code, and it will benefit from a healthy amount of abstraction.</p>
+<p>Most examples on the internet about how to write E2E tests are very basic and look something like this:</p>
+<pre><code>findElement('#email').enterText('user_1@domain.com');
+findElement('#password').enterText('secret');
+findElement('#submit').click();
+</code></pre>
+<p>This is a very low level code. If you stick to this API you’ll end up with a lot of copy-pasted tests that rely on implementation details. The moment somebody changes your login sequence details all tests will fall apart.</p>
+<p>Consider</p>
+<pre><code>loginWithAccount('user_1@domain.com', 'secret');
+</code></pre>
+<p>Now the API became much better. It communicates the intent well and abstracts away the implementation details. When an engineer changes something in the login sequence, they need to fix only one place.</p>
+<p>Facebook went even further and built a very declarative <code>PageObject</code> abstraction. See the talk linked in the bottom of this article.</p>
+<p>Another big improvement in the API was <strong>replacing time-based waits with condition-based waits</strong>. Consider this case:</p>
+<pre><code>findElement('#login').click();
+sleep(10);
+findElement('#logout').click();
+</code></pre>
+<p>This code assumes the login operation will take at most 10 seconds, and this assumption could be a big source of flakiness. CI machines have different configurations, and depending on network conditions, amount of available RAM space and CPU cycles, 10 seconds might not be enough.</p>
+<p>The simplest approach to solve this is to increase the timeout from 10 to, say, 30 seconds. However, that makes the test much slower, to the point that engineers will try to avoid running them locally at all cost.</p>
+<p>Try this instead:</p>
+<pre><code>findElement('#login').click();
+waitForElement('#welcome');
+findElement('#logout').click();
+</code></pre>
+<p>Now the code captures our intention better—we wait until login was completed.</p>
+<p>The implementation of <code>waitForElement</code> could use a loop that tries to find the element, and if it fails, waits 100ms (or even better, some event-driven approach). This way the function will return as soon as the element is found.</p>
+<h2>2. Setup test data before each test</h2>
+<p>In the old days we used to create test users and their data manually. For example, to test if a user can join a public group we would create a user and a group and hardcode their IDs in our tests. This was convenient because we could use web UI to set everything up just right.</p>
+<p>However, this was a terrible thing. When multiple tests run at the same time, they access the same IDs, and unexpected things could happen.</p>
+<p>Nowadays each test creates its own set of entities before each run. We have a test-only server side API that allows creating special kind of users, not visible from the outside world. This made tests independent from each other.</p>
+<h2>3. Make failures inspectable</h2>
+<p>E2E test can fail for a lot of reasons. Some of these reasons are not related to the actual code or product being tested. For example, iOS simulator can crash or Chrome fails to start due to lack of free RAM on a test machine. We call these failures “infrastructure failures”.</p>
+<p>At first we treated legitimate test failures and infrastructure failures the same. Something went wrong and needed fixing. As the team grew, the complexity and the context required to debug infrastructure failures became too much for everybody to grasp in reasonable time, so we split the two very explicitly.</p>
+<p>In the UI, we use red to signal that the test failed and it’s probably your fault and yellow to show that the test failed but it’s likely not your fault and the system is trying to re-run the test.</p>
+<p>We also improved the test results page. Each test run has a webpage with video recording of the test, logs from different sources, UI and data dumps, etc. When a test fails (for whatever reason) it’s easy to open a webpage and see what happened. Engineers could also send the link to other engineers so they can help investigate the problem.</p>
+<h2>4. Automatically find the cause of failure</h2>
+<p>As the engineering organization, codebase and number of E2E tests grow, it becomes impractical to run them for every single revision committed to the repo. Instead, they are moved to continuous runs. The whole test suite is running every 15-30-60 minutes.</p>
+<p>When E2E test fails during continuous run, a new process is triggered that tries to bisect and find the commit that broke the tests. Then it creates a task assigned to the engineer who made that change and marks the test as “failing in master”.</p>
+<p>These tests marked as failing <strong>won’t be reported in test results until fixed</strong>. Since we know the tests are broken in master branch, there’s no point in spamming other pull requests with the unrelated failures.</p>
+<h2>5. Make failures easy to reproduce locally</h2>
+<p>It became very cumbersome to run end to end tests locally. Tests required installing some 3rd party dependencies and figuring out just right combination of the command line arguments. This would result in unproductive behavior, when people blindly fix what seems broken and re-submit the code for review. The CI system would run the tests again. Dealing with E2E failures got a bad reputation, because nobody wanted to go through this long feedback loop.</p>
+<p>We started by adding instructions to the tests failure page (which did help). But then we found even better solution: for each test run we assigned a unique ID and added a command line tool (available on each developer’s machine). Now, to re-run a failing end-to-end test one would simply need to run:</p>
+<pre><code>arc e2e &lt;test-id&gt;
+</code></pre>
+<p>(arc is a meta task-runner tool everybody has on their computer)</p>
+<p>This would fetch information about the test to run, install missing dependencies and run the test in verbose mode.</p>
+<h2>6. Disable failing and flaky test</h2>
+<p>When an E2E test is failing consistently and nobody cares to fix it, that means the test isn’t useful. There’s no point in having it around. We have a system that creates a task when a test fails, but after a while if the test is still failing, the system just disables the test.</p>
+<p>There’s also a system in place that can detect if a test is “flaky”. Flaky in this case means that the test can fail sporadically for unrelated reasons. For example, this often happens when the testing code has assumptions about time: “press button A, wait 2 seconds, press button B” (see API section above).</p>
+<p>If a test flips between pass-fail without any code changes, the system considers it flaky and disables the test.</p>
+<p>In fact, all end-to-end tests start in disabled mode and need to go though extensive load testing to be considered good.</p>
+<h2>Conclusion</h2>
+<p>These improvements helped make E2E tests much more reliable. Not only that, they’ve also improved engineers’ perception of E2E tests, which resulted in more tests being written and relied on.</p>
+<p><strong>See Also:</strong></p>
+<ul>
+<li><a href="https://codeandtalk.com/v/seleniumconf-usa-2015/stable-useful-easy-pick-three">Stable, Useful, Easy. Pick Three</a> a talk by Remi Chaintron from Facebook going into details of some of the topics covered in this post.</li>
+</ul>
+
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://frantic.im/how-to-convince-your-boss-to-use-react-native</id>
+      <title>How to convince your boss to use React Native</title>
+      <updated>2019-03-09T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/how-to-convince-your-boss-to-use-react-native" />
+      <summary>How to adopt React Native incrementally with little risk inside an existing native application and a team full of native engineers.</summary>
+      <content type="html"><![CDATA[
+        
+        
+        <p>Likely you landed on this article because you are excited about React Native. Awesome! If you have a team of web engineers and a brand new app, it’s easy to make a case for starting with React Native.</p>
+<p>However, most companies already have apps in the stores. They used native stack to build their apps: Xcode or Android Studio. React Native can add value for these companies too, but making a hybrid app comes with some challenges.</p>
+<p>During the last 4 years I helped integrate React Native into Facebook and Oculus apps. Here are a few lessons I learned.</p>
+<figure>
+  <img src="https://frantic.im/assets/gunnar-sigurdarson-1368301-unsplash.jpg" />
+</figure>
+<h1>Start with Empathy</h1>
+<p><em>Wait, start with what?</em></p>
+<p>Understand the people who work on your project—that’s the first step to successful integration.</p>
+<p>Your boss (project manager, director, CTO, etc.) is responsible for the app hitting the market with little risk, short timeline and maximum impact. Companies already operate in very competitive environment. To them any new technology is a risk.</p>
+<p>Your colleagues have a different perspective as well. They have experience building apps with the “native” technology stack. They know how to format strings, build UIs, access network, write and debug code in the IDE. Switching to a completely different ecosystem is very uncomfortable. There’s natural resistance to getting out of the comfort zone.</p>
+<figure>
+  <img src="https://frantic.im/assets/maximilian-weisbecker-544039-unsplash.jpg" />
+  <span class="label">
+    Does React Native have layout inflaters? How do I change the text of this button?
+  </span>
+</figure>
+<p>Engineers might have existing opinions about React, React Native and JavaScript ecosystem. Or they’ve seen a React Native app somewhere and found it of bad quality. There are many common myths, e.g. “JS is slow”, or “frameworks come and go too fast”.</p>
+<p>These myths are not specific to JavaScript. As humans we can’t experience every single tech stack and have a well-formed opinion. We have to rely on things we’ve heard from others.</p>
+<p>This might not sound very encouraging, but <strong>be willing to accept a defeat</strong>. There are so many scenarios where React Native can be very beneficial. But there are also valid situations where it doesn’t make sense at a particular time. And it’s okay. Maybe in a few months you can revisit this decision. The last thing you want is to polarize your team and ruin constructive work relationships.</p>
+<p>To fight existing misconceptions, prove them wrong on a real feature inside your app (without making other people feel stupid).</p>
+<h1>Find value</h1>
+<p>This guide assumes you are integrating React Native into an existing application and already have a big chunk of functionality written using platform-dependent code. Rewriting it all is a huge risk with very little benefit to your users and business. That’s why it will be extremely hard to convince your team and people responsible for the project to do so.</p>
+<p>But you don’t have to rewrite your application! <strong>React Native can be adopted incrementally</strong>.</p>
+<p>Find an area in your application that will immediately get benefits from being implemented in React Native. For example, it could be a screen that is useful but but doesn’t get much development attention or a surface that’s implemented as a WebView. For example, Facebook started with Pokes, Instagram rebuilt “liked photos”, etc.</p>
+<p>It has to be with a scope that you can build yourself within few days. It will be a great campground to test different aspects of integration: build system, session sharing, logging, crash reporting, etc.</p>
+<p>Bonus points for making the new feature run on both iOS and Android. Suddenly, something that used to take a lot of engineering time and coordination, was created by one person in a short time frame.</p>
+<p>Show, don’t tell.</p>
+<figure>
+  <img src="https://frantic.im/assets/hilthart-pedersen-602249-unsplash.jpg" />
+</figure>
+<h1>Be a champion</h1>
+<p><em>You can’t just say “Let’s use React Native” and hide in the bushes.</em></p>
+<p><a href="https://github.com/tc39">TC39</a>, a committee that evolves JavaScript the language, has <a href="https://tc39.github.io/process-document/">the following process</a>: Changes to the language are called “proposals”. A member that leads a proposal is called a “champion”. Their mission is to create spec drafts, work with the community and push the spec forward.</p>
+<p><strong>Become the React Native champion at your company.</strong> Take the responsibility to see this idea through.</p>
+<p>The first step to becoming a champion is to get more familiar with React Native. Create a few prototypes (by <a href="https://www.youtube.com/watch?v=I8b0v0uFXLs">rebuilding some parts of your app</a>), learn architecture, be ready to give demos and help people get started.</p>
+<p>Engineers who are coming from native will most likely feel uncomfortable and overwhelmed by the new ecosystem. Create an environment where getting started with React Native is super easy:</p>
+<ul>
+<li>Have an internal wiki page with <a href="https://bitbucket.org/frantic/react-bnb">step-by-step instructions</a> on how to get started. Think of it as a “landing page” of React Native in your organization.</li>
+<li>Build a script that automates environment setup: installs NodeJS and other dependencies, runs yarn install, etc.</li>
+<li>Setup good IDE defaults. You can’t ask IntelliJ users to configure and use VIM. Document or commit configs that make it much easier to get started with React Native. For example: editor recommendations, plugins, syntax schemes, keyboard shortcuts, etc.</li>
+<li>Organize a tech talk or a small hackathon where your team can learn about React Native and try it together on a small project.</li>
+<li>Create a place to ask questions, have discussions and hang out. Maybe a <code>#react_native</code> channel on Slack, group, email list, etc. Be there to answer questions.</li>
+</ul>
+<p>Super important: if there are people who don’t want to deal with React Native, <strong>make sure their development experience is not compromised</strong>. They should be able to work the same way as before without having to know or do anything about React Native.</p>
+<h1>Closing thoughts</h1>
+<p>If you want to convince somebody to use React Native, ship a feature in your app that wouldn’t have been possible without it.</p>
+<p>I hope this small guide gives you few ideas on how to get started. It’s only the beginning.</p>
+<p>Lots of big and small companies use React Native in their hybrid apps. Unfortunately, <a href="https://medium.com/airbnb-engineering/react-native-at-airbnb-f95aa460be1c">very</a> <a href="https://eng.uber.com/ubereats-react-native/">few</a> of them share the details. I think it’s mostly because some aspects of the integration are specific to their infrastructure and it doesn’t feel useful to talk about these.</p>
+<p>But there are many common things. I hope to follow-up this blog post with “How to scale React Native at your organization”.</p>
+
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://frantic.im/react-conf-2018</id>
+      <title>React Conf 2018 Recap</title>
+      <updated>2018-10-28T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/react-conf-2018" />
+      <summary>My favorite announcements from React Conf 2018</summary>
+      <content type="html"><![CDATA[
+        
+        
+        <p>This was more exciting than a couple of previous WWDC, combined! The big announcements: Hooks, Suspense, Concurrent Mode and React Native’s new architecture.</p>
+<p>The conference was taking place in Las Vegas. It had only one track with keynotes, talks and lighting talks. There were plenty of long breaks for attendees to chat.</p>
+<p>All content was live streamed and the <a href="https://www.youtube.com/channel/UCz5vTaEhvh7dOHEyd1efcaQ/videos">video recordings</a> became available in just one day! (This is crazy, I’ve never seen the content from a conference appear online this fast).</p>
+<p>In this post I’ve collected some thoughts about the talks. My favorites: <a href="https://www.youtube.com/watch?v=dpw9EHDh2bM">React Today and Tomorrow</a>, <a href="https://www.youtube.com/watch?v=Ew-UzGC8RqQ">Playing With Polyhedra</a>, <a href="https://www.youtube.com/watch?v=ByBPyMBTzM0">Concurrent Rendering in React</a>, <a href="https://www.youtube.com/watch?v=UcqRXTriUVI">React Native’s New Architecture</a> and <a href="https://www.youtube.com/watch?v=soAEB7ltQPk">Let React speak your language</a>.</p>
+<p><img src="https://frantic.im/assets/react-conf-2018/og-image.jpg" alt="" /></p>
+<h2><a href="https://www.youtube.com/watch?v=dpw9EHDh2bM">React Today and Tomorrow</a></h2>
+<p>In the keynote, Sophie talked about the state of React today and the most common problems: hard to reuse logic, wrapper hell and confusing classes.</p>
+<p>Dan presented a proposed solution: Hooks. Hooks is a mechanism that allows functional components access more advanced features of React, like state, context or side effects. Here’s a quick example:</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> [value, setValue] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Value: {value}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> setValue(value + 1)}&gt;Increment<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>Note that it’s still RFC and React team is collecting feedback. There is some interesting discussion on <a href="https://github.com/reactjs/rfcs/pull/68">the RFC pull request</a>.</p>
+<p>I’ve had a chance to play with the new API and personally I think it’s <strong>AWESOME</strong>. Hooks do require a little bit of a mindset shift, but they make code a lot easier to write and understand.</p>
+<p>Here’s a <a href="https://mobile.twitter.com/threepointone/status/1056594421079261185">clever illustration by @threepointone</a> that shows the difference between class-based components and functional components using hooks. Hooks make it easier to group and reuse behaviors that were spread out over multiple lifecycle methods.</p>
+<p><img src="https://frantic.im/assets/react-conf-2018/class-vs-hooks.png" alt="" /></p>
+<h2><a href="https://www.youtube.com/watch?v=dpw9EHDh2bM">90% cleaner React</a></h2>
+<p>Ryan Florence went into a more detailed demo of how hooks can be used to make code more readable and avoid common mistakes with effects. I would recommend watching it if you are still skeptical, otherwise it’s better to just get a feel of it in practice.</p>
+<h2><a href="https://www.youtube.com/watch?v=kVSTKD13gos">Cloud-Only Dev Environment</a></h2>
+<p>It’s interesting that a set of tools available online is more than enough to build a properly functioning app without setting up local development environment. Online IDEs + PaaS + static website hosting is enough to build fully-functional apps entirely from within your browser.</p>
+<p>In this talk Christina built a simple TODO game in under 30 minutes only using a browser on her Chromebook (leveraging Cloud9, Firebase and Zeit Now).</p>
+<h2><a href="https://www.youtube.com/watch?v=1e07uPWpvzI">Declarative Animations</a></h2>
+<p>Animation is not a settled topic. We tend to swing between imperative and declarative. Both have pros and cons.</p>
+<p>What I liked most from this talk is that the framework Matt described allows plugins and middleware. For example, a <code>Modal</code> component could describe what needs to be animated (opacity &amp; zoom) and a middleware could customize the properties of the spring: make it playful or subtle. This way the same component could be used on a wedding website or a site for kids, and the animation would “feel” different in both cases to match the mood.</p>
+<p>I’m a little skeptical of animations that don’t take into account gestures. User input creates a lot of problems for animation libraries, and I’m not sure how the suggested framework can help.</p>
+<h2><a href="https://www.youtube.com/watch?v=YSEUAi1dAdk">GraphQL without GraphQL</a></h2>
+<blockquote>
+<p>“REST is like asking for a pizza with all 30 toppings and throwing away the ones you don’t need”</p>
+</blockquote>
+<p>This walk was a little strange and fun and made audience chuckle a few times. The idea is to use GraphQL parser to extract queries from code, use them to send traditional REST request and then filter out fields that were not in the query.</p>
+<h2><a href="https://www.youtube.com/watch?v=Ew-UzGC8RqQ">Playing With Polyhedra</a></h2>
+<p>This talk was an unexpected gem! Nat Alison shared her lifetime passion for geometric figures and how solids are like Pokemon. Definitely worth a watch!</p>
+<p>Check out the online <a href="https://polyhedra.tessera.li/">Polyhedra Viewer</a></p>
+<h2><a href="https://www.youtube.com/watch?v=jd6FBBK1paA">Developing AR and VR Apps using React Native</a></h2>
+<p>I’ve learned so much about our perception while working at Oculus. This talk has a few cool demos that are designed to trick your mind.</p>
+<p>On the tech side, this is not about rendering every frame in JS. React helps build VR worlds by declaratively specifying what needs to be where, and all the heavy lifting is delegated to native frameworks.</p>
+<h2><a href="https://www.youtube.com/watch?v=6La7jSCnYyk">React, JavaScript and WebAssembly To Port Legacy Native Apps</a></h2>
+<p>Florian built <a href="https://gdevelop-app.com/">G-Develop</a> a decade ago. It’s a C++ app for making platformer games. In his talk he shows how he managed to convert the core of the app to JavaScript via asm.js and built a fresh UI on top of that with React.</p>
+<p>Electron nowadays gets a lot of critique from developer community for its resource usage. Here’s an example of the value web technologies on desktop provide: the new G-Develop can run in your browser, gets more contributions, has a much faster development and release pace.</p>
+<h2><a href="https://www.youtube.com/watch?v=tE-0xb2f44g">React For Social Change</a></h2>
+<p>Making tech easier to use is not only about developer efficiency. It means more people can leverage tech to do more things, that in turn can make lives of millions of people better. I’m super proud of React Native :)</p>
+<p>Rodrigo’s team built a React Native app for bus dispatchers and riders in Mexico City. It uses real-time data and ML to help everyone save time commuting.</p>
+<h2><a href="https://www.youtube.com/watch?v=ByBPyMBTzM0">Concurrent Rendering in React</a></h2>
+<p>This talk goes over two new features of React.</p>
+<p>Suspense allows “pausing” the render until the data is ready.</p>
+<p>Concurrent React is a new mode where React can interrupt rendering to serve high-priority update, or pre-render part of your app with a low priority.</p>
+<p>Both features help solve the problems many developers don’t know they have. Check out Thomas Aylott’s quote at the end of this post, I think it’s spot on.</p>
+<p>Oh, and don’t miss the part where Brian talks about the performance devtools. All the required pieces have finally came together and I’m excited about the new tooling.</p>
+<h2><a href="https://www.youtube.com/watch?v=SCQgE4mTnjU">Moving To Suspense</a></h2>
+<p>Ok, so now we have hooks, suspense and concurrent React. But we also have large React codebases that use none of these things yet.</p>
+<p>Jared gives a step-by-step overview of how a team could approach the new React features. The good news is that you don’t have to rewrite all your code, nor you need to make risky library upgrades.</p>
+<p>All new React features are opt-in and can be adopted incrementally.</p>
+<h2><a href="https://www.youtube.com/watch?v=1gG8rtm-rq4">SVG illustrations as React Components</a></h2>
+<p>SVGs are just XML-based documents containing vector image data. It’s easy to insert them directly into the DOM. In her (very first!) talk Elizabet shows how to use React to render SVG and the benefits of this approach.</p>
+<p>Check out the <a href="https://github.com/miukimiu/react-kawaii">README of <code>react-kawaii</code></a> for a cool demo!</p>
+<h2><a href="https://www.youtube.com/watch?v=qqffsEHKMcM">The Missing Abstraction of Charting</a></h2>
+<p>My first though when I saw the title of the talk: “Yet another charting library”. I was very wrong!</p>
+<p>Chris deeply researched the topic. Most libraries available for React provide high level API (e.g. <code>BarChart</code>) and sometimes access to very low level APIs (e.g. Canvas). All of them lack a mid-level abstraction. He took concepts from “The Grammar of Graphics” book and built a React-powered library that runs on web and mobile.</p>
+<h2><a href="https://www.youtube.com/watch?v=eSwm1WZk7uA">Elsa</a></h2>
+<p>Long time ago I’ve randomly discovered <a href="https://www.emacswiki.org/emacs/EmacsDoctor"><code>M-x doctor</code></a> and remember I was blown away. Unfortunately at the time I didn’t speak English much, but the Emacs Doctor did manage to surprise me a couple of times.</p>
+<p>Mental health gets very little attention at conferences. We are all humans and our operating system isn’t free of bugs.</p>
+<p>Damini shows how a bunch of cool technologies can be used to build a “debugger” with a conversational interface. Unfortunately the project isn’t available to play with yet.</p>
+<h2><a href="https://www.youtube.com/watch?v=ZXqyaslyXUw">Block the Main Thread</a></h2>
+<p>There’s one space where React Native isn’t great yet: making smooth user interactions. The problem is not JavaScript (which is actually reasonably fast), it’s the async bridge between JS and Native.</p>
+<p>Fortunately, there are ways to make this better. James shows how one could dive into native side and build the required interactions using imperative native animations code. In the next talk Ram shows how the React Native team addresses the more generic issue.</p>
+<p>For the record, here’s a photo of original React Native architecture as <a href="https://twitter.com/jordwalke">@jordwalke</a> explained it to me in 2014.</p>
+<blockquote>
+<p>“If the framework is async, making some parts of it synchronous would be easy. On the other hand, if the framework has all this assumptions of operation being synchronous, introducing async would be very hard”</p>
+</blockquote>
+<p><small>(see also: <a href="http://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/">red and blue functions</a>)</small></p>
+<p><img src="https://frantic.im/assets/react-conf-2018/react-arch.jpg" alt="" /></p>
+<h2><a href="https://www.youtube.com/watch?v=UcqRXTriUVI">React Native’s New Architecture</a></h2>
+<p>Ram’s talk was really entertaining. It has a lot of visuals and animations that explain what’s going to happen to React Native internals in the near future.</p>
+<p>I’m super excited about the future of React Native! The team is extremely talented, <a href="https://facebook.github.io/react-native/blog/2018/06/14/state-of-react-native-2018">the roadmap</a> is very solid with many things already being tested in production.</p>
+<h2><a href="https://www.youtube.com/watch?v=soAEB7ltQPk">Let React speak your language</a></h2>
+<p>Every single “JS localization” library I’ve seen in Open Source is terrible. It starts with something like this: define all strings your app is using in this giant XML/JSON/YAML/ini file.</p>
+<p>If you don’t see why this approach sucks, <strong>this talk will blow your mind</strong>.</p>
+<p><a href="https://lingui.js.org/index.html">LinguiJS</a>, the library Tomáš is working on, focuses on the right things:</p>
+<ol>
+<li>Developer experience. An easy-to-use API makes it trivial to mark things for translation. It’s also flexible enough to handle complex cases. It uses standard file formats that translation tools understand.</li>
+<li>User experience. The library has a way to inline all translations into the JS files, making close-to-zero impact on the bundle size.</li>
+</ol>
+<p>Interestingly, at Facebook we use a similar library to translate our apps. I was hoping we could share it with the world, but unfortunately it’s too deeply integrated with the rest of build tooling.</p>
+<h2><a href="https://www.youtube.com/watch?v=6DDdtt5zXPk&amp;t=486s">React for Designers with FramerX</a></h2>
+<p>Only half of the talk was about FramerX (which is a pretty cool piece of software). The other half was a little abstract and philosophical. If you don’t mind a little strange delivery format, there are some interesting thoughts.</p>
+<p>My favorite quote:</p>
+<blockquote>
+<p>“The tools we’ve mastered influence our perception of what problems exist. If we only have certain tools (hammer) we are incapable of perceiving certain problems (screw)”</p>
+</blockquote>
+<h2><a href="https://www.youtube.com/watch?v=xYI9N0memLc">Building A Diverse And Inclusive Community</a></h2>
+<p>It’s very hard. To make sure we build a community where everybody’s welcome, one needs to fight their built-in biases. For example, when organizing a meetup, it’s easy to not give enough thought to the food being ordered and miss people who have certain dietary restrictions.</p>
+<p>Btw, as also noted by Eyitayo, React Conf was <em>AWESOME</em> at this. Organizers went above and beyond to make sure everybody’s welcome.</p>
+
+      ]]></content>
+    </entry>
+  
+</feed>

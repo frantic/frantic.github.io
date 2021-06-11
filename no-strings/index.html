@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=640" />
+
+    <title>Things that are not strings / frantic.im</title>
+    <meta name="author" content="Alex Kotliarskyi">
+    <meta name="description" content="As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.">
+
+    <link rel="canonical" href="https://frantic.im/no-strings">
+    <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
+
+    <meta property="og:title" content="Things that are not strings">
+    <meta property="og:image" content="https://frantic.im/assets/no-strings/og-image.png">
+    <meta name="og:description" content="As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@alex_frantic">
+    <meta name="twitter:creator" content="@alex_frantic">
+    <meta name="twitter:title" content="Things that are not strings">
+    <meta name="twitter:description" content="As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.">
+    <meta name="twitter:image" content="https://frantic.im/assets/no-strings/og-image.png">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <style type="text/css" media="screen">
+      * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face { font-family: 'body';                     src: url('/fonts/IBMPlexSans-Text.woff') format('woff'); }
+@font-face { font-family: 'body'; font-style: italic; src: url('/fonts/IBMPlexSans-TextItalic.woff') format('woff'); }
+@font-face { font-family: 'body'; font-weight: 800;   src: url('/fonts/IBMPlexSans-Bold.woff') format('woff'); }
+
+@font-face { font-family: 'mono';                     src: url('/fonts/IBMPlexMono-Text-Latin1.woff') format('woff'); }
+
+body { font: 18px/28px body, sans-serif; }
+pre, code { font-family: mono, monospace; }
+
+body {
+  background-color: #FFF;
+  color: #000;
+  -webkit-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -moz-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  margin: 50px auto;
+}
+.page { width: 600px; margin: 0 auto; padding: 0 0 0 2px; }
+.page_wide { width: 810px; }
+
+.menu { width: 544px; margin: 0 auto 0; padding: 0 0 50px 0; vertical-align: top; }
+.menu > li { list-style: none; display: inline-block; margin: 0 1.5em 0 0; vertical-align: top; }
+.menu__item, a.menu__item { color: #00000050; border-color: transparent; display: inline-block; }
+.menu__item_selected,
+a.menu__item_selected,
+a.menu__item:hover { color: #000; border-bottom: 2px solid #000; }
+.menu__item_inside, a.menu__item_inside { border-bottom: 2px solid #00000030; }
+
+article { width: 544px; margin: 15px auto; }
+
+a { color: inherit; text-decoration: none; border-bottom: 2px solid #00000030; }
+a:hover { border-color: currentColor; }
+p, blockquote { margin: 15px 0; }
+h1 + p + blockquote { margin-bottom: 30px; margin-right: 1em; }
+blockquote { padding-left: 1em; color: #00000090; }
+blockquote::before {content: "> "; float: left; margin: 0 0 0 -1em; }
+
+.quote-author { text-align: right; font-size: 15px; }
+strong { font-weight: 600; }
+h1, h2 { margin: 2.5em 0 0.5em; }
+h1 { font-size: 1.7em; }
+h2 { font-size: 1.4em; }
+.title { font-size: 2.5em; line-height: 50px; margin: 1.5em 0 0.75em 0; }
+
+p > img, .fig, figure { margin: 2em 0; }
+img { max-width: 100%; }
+
+.fig, figure { text-align: center; font-size: 12px; line-height: 20px; font-style: italic; width: 600px; margin-left: -28px; margin-right: -28px; }
+.fig img, figure > img, figure > video, figure > a > img { margin: 0 auto 1em; display: block; border-radius: 3px; }
+figure > video { max-width: 100%; }
+.label { text-align: center; font-size: 12px; font-style: italic; margin: -1em 0 1em 0; }
+
+code { font-style: normal; background: #00000010; padding: 2px 6px; border-radius: 4px; font-size: 17px; white-space: nowrap; }
+pre { font-size: 16px;
+      background: #00000010;
+      padding: 16px 30px 14px;
+      margin: 1em -30px;
+      border-radius: 8px;
+      white-space: pre;
+      word-wrap: break-word;
+      font-style: normal;
+      overflow-x: auto; }
+pre > code { background: none; padding: 0; font-size: inherit; white-space: unset; }
+
+ul { padding: 0 0 0 1em; list-style-type: square; }
+ul > li, ol > li { margin: 0.5em 0; }
+
+sup, sub, .note-ref, .note-number, .footnote { vertical-align: baseline; position: relative; font-size: .7em; line-height: 1; }
+sup, .note-ref, .note-number, .footnote { bottom: 1.4ex; }
+sub { top: .5ex; }
+
+.about { margin: 60px 0;}
+.about_photo { float: left; width: 100px; height: 160px; margin-left: -150px; margin-top: -10px; background: url("/photo.png"); background-size: 200px; }
+.about_photo:hover { background-position: 100%; }
+.about_inner { font-size: 16px; line-height: 24px; border: 2px solid #00000030; border-radius: 4px; padding: 10px 20px; margin: -12px -22px; }
+.about_inner > p { margin: 0 0 8px; }
+.btn-subscribe { line-height: 20px; text-decoration: none; background: #00000015; border: none; font-size: 12px; padding: 0px 7px; display: inline-block; border-radius: 4px; position: relative; top: -1px; }
+.btn-subscribe:hover { background: #00000030; }
+.btn-subscribe > svg { width: 21px; height: 21px; vertical-align: bottom; margin: 0 -2px 0 -5px; }
+
+.footnote { margin: 0 5px;  }
+.footnotes-br { width: 100px; height: 2px; background: #000000; margin-top: 5em; }
+.footnotes, .footnotes_alt { padding-left: 1em;  }
+.footnotes_alt > li > .dagger { margin-left: -13px; }
+.footnotes_alt { list-style: none; } 
+
+.notes { font-size: 0.8em; }
+.note-number { margin-left: -1em; }
+
+.date { color: #00000090; font-size: 14px; margin-left: 4px; }
+
+footer { color: #00000090; }
+footer { font-size: 16px; margin-bottom: 5em; }
+footer > .separator { margin: 0 4px; }
+footer > a { margin-right: 5px; }
+footer > a:hover { color: #000; }
+
+/* syntax */
+.highlight .kd, .highlight .k {font-weight: bold; }
+.highlight .mi { color: blue; }
+.highlight .cm { color: grey; }
+
+.hljs-built_in, .hljs-keyword {font-weight: bold; }
+.hljs-string, hljs-number { color: blue; }
+.hljs-comment { color: grey; }
+      em {
+  font-size: 150%;
+  line-height: 1.3;
+  margin: 40px 0px;
+  display: block;
+}
+.hint {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <ul class="menu">
+  
+  <li>
+    <a class="menu__item " style="" href="/blog/">
+      Blog
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/talks/">
+      Talks
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/projects/">
+      Projects
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/about/">
+      About
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="color: red; font-weight: bold;" href="/react/">
+      Learn React
+    </a>
+  </li>
+  
+</ul>
+
+
+<article>
+  <header>
+    
+    <h1 class="title">Things that are not strings</h1>
+  </header>
+  <p>As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.</p>
+<p>Let’s take SQL for example. Every API in every programming language that I’ve seen considers SQL statement a string.</p>
+<pre><code>function execute(sql: string): Promise&lt;Result&gt;
+</code></pre>
+<p>The problem with this API is that not every string is a valid SQL (nor sometimes it is the SQL you actually want to run).</p>
+<p>Here’s a classic example of the misuse:</p>
+<pre><code>const query = 'SELECT * FROM posts WHERE id = '
+  + params.id;
+</code></pre>
+<p>In this example <code>params.id</code> can be anything, including invalid or malicious SQL.</p>
+<p>The root problem here is not the lack of sanitization. The problem is that SQL is treated as a string.</p>
+<p>Think about JSON for another example. You could certainly implement adding an item to a hash by doing this (I hope this code makes you cringe):</p>
+<pre><code>function addKeyValue(json, key, value) {
+  return json.substr(0, json.length - 1)
+    + ', &quot;' + key + '&quot;: &quot;' + value + '&quot;}';
+}
+</code></pre>
+<p>As with the SQL example, you could add escaping and sanitization, but it’s just hacks hiding the real problem:</p>
+<p><em>A string can be a representation of a thing, but it’s not the thing itself.</em></p>
+<p>And it’s not only about concatenating strings. Can you spot the problem with this function? <span class="hint" onclick="event.target.innerText = 'This URL will be marked as safe by the code below https://evil.com/https://safe.com/'">(see answer)</span></p>
+<pre><code>function isSafeDomain(url: string): boolean {
+  return url.includes('https://safe.com/');
+}
+</code></pre>
+<p>Or in this one? <span class="hint" onclick="event.target.innerText = 'This code is prone to timing attacks'">(see answer)</span></p>
+<pre><code>function checkPassword(pass: string, hash: string): boolean {
+  return sha1(pass) === hash;
+}
+</code></pre>
+<p>Strings are lower level, and thus are much more flexible than they need to be to properly implement valid operations on the higher level concepts.</p>
+<p>Incomplete list of things that are not strings:</p>
+<ul>
+<li>SQL</li>
+<li>HTML</li>
+<li>JSON</li>
+<li>URL</li>
+<li>File path</li>
+<li>Password</li>
+</ul>
+<h2>Things are… things</h2>
+<p>You can save yourself a lot of headache if you stop treating everything that can be represented as a string, as a string.</p>
+<p>Both OO and FP styles allow for abstracting away something as a type or a class. You can make a closed opaque structure for the thing and limit the ways it can be constructed.</p>
+<p>For example, for SQL, you might want to make sure it’s only created from static string literals.</p>
+<pre><code>// Allowed
+new SQL('SELECT * FROM posts WHERE id = ?');
+
+// No allowed (e.g. via a lint rule)
+new SQL('SELECT * FROM posts' + filter);
+</code></pre>
+<p>Of course, at some point, you will need to serialize the thing into a string to pass it into an API that was designed to consume a string. Do it at the last possible moment and try to limit it to a single place in the codebase.</p>
+<pre><code>function execute(sql: SQL): Promise&lt;Result&gt; {
+  return unsafeExecute(sql.toString());
+}
+</code></pre>
+<p>Strings are coming into your app from the outer world. Don’t trust them to be what they seem they are. Convert them into proper things as soon as possible, and convert them back to strings as late as possible.</p>
+<p>Here’s a few libraries for inspiration of how to treat things as… things:</p>
+<ul>
+<li>SQL: <a href="https://github.com/gajus/slonik">Slonik</a>, <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations">LINQ</a></li>
+<li>HTML: React, Elm, <a href="https://github.com/tonsky/rum">rum</a></li>
+<li>JSON: a dictionary in any programming language</li>
+<li>URL: <a href="https://docs.rs/url/2.1.1/url/">url - Rust</a></li>
+<li>File paths: <a href="https://doc.rust-lang.org/std/path/struct.Path.html">std::path::Path - Rust</a></li>
+<li>Passwords: <a href="https://github.com/myfreeweb/secstr">secstr</a>, <a href="https://hackage.haskell.org/package/securemem">securemem</a></li>
+</ul>
+
+  <footer>
+    <time datetime="2020-08-19T12:00:00+00:00">Aug 19, 2020</time>
+  </footer>
+  
+
+
+
+
+
+
+  <div class="about">
+  <div class="about_inner">
+    <p>Hi! My name is Alex. I’m a software engineer at Facebook, where I work on React&nbsp;Native, Oculus and Messenger. I love thinking about development experience.</p>
+    <p>I write about programming, software design and side projects <a style="margin-left: 5px" class="btn-subscribe" href="/subscribe/" target="_blank"><svg viewBox="0 0 800 800"><path d="M493 652H392c0-134-111-244-244-244V307c189 0 345 156 345 345zm71 0c0-228-188-416-416-416V132c285 0 520 235 520 520z"/><circle cx="219" cy="581" r="71"/></svg> Subscribe</a></p>
+  </div>
+</div>
+
+</article>
+
+    <script>
+      window.GoogleAnalyticsObject = 'ga';
+      window.ga = window.ga || function() {
+        (window.ga.q = window.ga.q || []).push(arguments);
+      };
+      window.ga.l = Date.now();
+
+      ga('create', 'UA-96545608-1', 'auto');
+      ga(function(tracker) {
+        tracker.set('sendHitTask', function(model) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'https://curiosity-seven.vercel.app/api/ev?' + model.get('hitPayload'), true);
+          xhr.send();
+        });
+      });
+      ga('send', 'pageview');
+    </script>
+    <script async defer src="https://curiosity-seven.vercel.app/api/leet" async></script>
+  </body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=640" />
+
+    <title>Understanding &#34;Taming the Meta Language&#34; / frantic.im</title>
+    <meta name="author" content="Alex Kotliarskyi">
+    <meta name="description" content="I think I *finally* understood it">
+
+    <link rel="canonical" href="https://frantic.im/meta-language">
+    <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
+
+    <meta property="og:title" content="Understanding &#34;Taming the Meta Language&#34;">
+    <meta property="og:image" content="https://frantic.im/assets/meta-language/og-image.png">
+    <meta name="og:description" content="I think I *finally* understood it">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@alex_frantic">
+    <meta name="twitter:creator" content="@alex_frantic">
+    <meta name="twitter:title" content="Understanding &#34;Taming the Meta Language&#34;">
+    <meta name="twitter:description" content="I think I *finally* understood it">
+    <meta name="twitter:image" content="https://frantic.im/assets/meta-language/og-image.png">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <style type="text/css" media="screen">
+      * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face { font-family: 'body';                     src: url('/fonts/IBMPlexSans-Text.woff') format('woff'); }
+@font-face { font-family: 'body'; font-style: italic; src: url('/fonts/IBMPlexSans-TextItalic.woff') format('woff'); }
+@font-face { font-family: 'body'; font-weight: 800;   src: url('/fonts/IBMPlexSans-Bold.woff') format('woff'); }
+
+@font-face { font-family: 'mono';                     src: url('/fonts/IBMPlexMono-Text-Latin1.woff') format('woff'); }
+
+body { font: 18px/28px body, sans-serif; }
+pre, code { font-family: mono, monospace; }
+
+body {
+  background-color: #FFF;
+  color: #000;
+  -webkit-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -moz-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  margin: 50px auto;
+}
+.page { width: 600px; margin: 0 auto; padding: 0 0 0 2px; }
+.page_wide { width: 810px; }
+
+.menu { width: 544px; margin: 0 auto 0; padding: 0 0 50px 0; vertical-align: top; }
+.menu > li { list-style: none; display: inline-block; margin: 0 1.5em 0 0; vertical-align: top; }
+.menu__item, a.menu__item { color: #00000050; border-color: transparent; display: inline-block; }
+.menu__item_selected,
+a.menu__item_selected,
+a.menu__item:hover { color: #000; border-bottom: 2px solid #000; }
+.menu__item_inside, a.menu__item_inside { border-bottom: 2px solid #00000030; }
+
+article { width: 544px; margin: 15px auto; }
+
+a { color: inherit; text-decoration: none; border-bottom: 2px solid #00000030; }
+a:hover { border-color: currentColor; }
+p, blockquote { margin: 15px 0; }
+h1 + p + blockquote { margin-bottom: 30px; margin-right: 1em; }
+blockquote { padding-left: 1em; color: #00000090; }
+blockquote::before {content: "> "; float: left; margin: 0 0 0 -1em; }
+
+.quote-author { text-align: right; font-size: 15px; }
+strong { font-weight: 600; }
+h1, h2 { margin: 2.5em 0 0.5em; }
+h1 { font-size: 1.7em; }
+h2 { font-size: 1.4em; }
+.title { font-size: 2.5em; line-height: 50px; margin: 1.5em 0 0.75em 0; }
+
+p > img, .fig, figure { margin: 2em 0; }
+img { max-width: 100%; }
+
+.fig, figure { text-align: center; font-size: 12px; line-height: 20px; font-style: italic; width: 600px; margin-left: -28px; margin-right: -28px; }
+.fig img, figure > img, figure > video, figure > a > img { margin: 0 auto 1em; display: block; border-radius: 3px; }
+figure > video { max-width: 100%; }
+.label { text-align: center; font-size: 12px; font-style: italic; margin: -1em 0 1em 0; }
+
+code { font-style: normal; background: #00000010; padding: 2px 6px; border-radius: 4px; font-size: 17px; white-space: nowrap; }
+pre { font-size: 16px;
+      background: #00000010;
+      padding: 16px 30px 14px;
+      margin: 1em -30px;
+      border-radius: 8px;
+      white-space: pre;
+      word-wrap: break-word;
+      font-style: normal;
+      overflow-x: auto; }
+pre > code { background: none; padding: 0; font-size: inherit; white-space: unset; }
+
+ul { padding: 0 0 0 1em; list-style-type: square; }
+ul > li, ol > li { margin: 0.5em 0; }
+
+sup, sub, .note-ref, .note-number, .footnote { vertical-align: baseline; position: relative; font-size: .7em; line-height: 1; }
+sup, .note-ref, .note-number, .footnote { bottom: 1.4ex; }
+sub { top: .5ex; }
+
+.about { margin: 60px 0;}
+.about_photo { float: left; width: 100px; height: 160px; margin-left: -150px; margin-top: -10px; background: url("/photo.png"); background-size: 200px; }
+.about_photo:hover { background-position: 100%; }
+.about_inner { font-size: 16px; line-height: 24px; border: 2px solid #00000030; border-radius: 4px; padding: 10px 20px; margin: -12px -22px; }
+.about_inner > p { margin: 0 0 8px; }
+.btn-subscribe { line-height: 20px; text-decoration: none; background: #00000015; border: none; font-size: 12px; padding: 0px 7px; display: inline-block; border-radius: 4px; position: relative; top: -1px; }
+.btn-subscribe:hover { background: #00000030; }
+.btn-subscribe > svg { width: 21px; height: 21px; vertical-align: bottom; margin: 0 -2px 0 -5px; }
+
+.footnote { margin: 0 5px;  }
+.footnotes-br { width: 100px; height: 2px; background: #000000; margin-top: 5em; }
+.footnotes, .footnotes_alt { padding-left: 1em;  }
+.footnotes_alt > li > .dagger { margin-left: -13px; }
+.footnotes_alt { list-style: none; } 
+
+.notes { font-size: 0.8em; }
+.note-number { margin-left: -1em; }
+
+.date { color: #00000090; font-size: 14px; margin-left: 4px; }
+
+footer { color: #00000090; }
+footer { font-size: 16px; margin-bottom: 5em; }
+footer > .separator { margin: 0 4px; }
+footer > a { margin-right: 5px; }
+footer > a:hover { color: #000; }
+
+/* syntax */
+.highlight .kd, .highlight .k {font-weight: bold; }
+.highlight .mi { color: blue; }
+.highlight .cm { color: grey; }
+
+.hljs-built_in, .hljs-keyword {font-weight: bold; }
+.hljs-string, hljs-number { color: blue; }
+.hljs-comment { color: grey; }
+      
+    </style>
+  </head>
+
+  <body>
+    <ul class="menu">
+  
+  <li>
+    <a class="menu__item " style="" href="/blog/">
+      Blog
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/talks/">
+      Talks
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/projects/">
+      Projects
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/about/">
+      About
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="color: red; font-weight: bold;" href="/react/">
+      Learn React
+    </a>
+  </li>
+  
+</ul>
+
+
+<article>
+  <header>
+    
+      <small>
+        Translations:
+        
+          <a href="https://emaren84.github.io/blog/archivers/understanding-taming-the-meta-language-kor">Korean</a>
+        
+      </small>
+    
+    <h1 class="title">Understanding "Taming the Meta Language"</h1>
+  </header>
+  <p>I think I finally understood <a href="https://twitter.com/_chenglou">Cheng Lou</a>’s talk at the ReactConf '17. If you have 20 minutes to spare, watch this first:</p>
+<iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube-nocookie.com/embed/_0T5OSSzxms?rel=0" frameborder="0" allowfullscreen></iframe>
+<p><strong>TL;DR</strong>: there’s a language and there is a meta language. Language is the actual source code. Meta language is everything above the language: tests, comments, IDE features, documentation, examples, tutorials, blog posts, books, videos, tech talks and conferences. We use meta language to learn the language. Things get more fluid when we move concepts from meta language down to the language itself, which in turn allow us to make the new meta-language even more high level and richer for the same amount of energy spent.</p>
+<img src="/assets/meta-language/flow.png" width="600">
+<p>To help better understand this, I came up with a bunch of examples.</p>
+<h2>Assembly instructions → Variable Names</h2>
+<p>Let’s look at this piece of code from space industry that calculates escape velocity of a planet:</p>
+<pre><code class="language-asm">.SUB_0_21:
+    ; Computes escape velocity
+    ; register xmm0 - planet mass
+    ; retister xmm1 - planet radius
+    mulsd   xmm0, qword ptr [rip + .LCPI0_0]
+    divsd   xmm0, xmm1
+    xorps   xmm1, xmm1
+    sqrtsd  xmm1, xmm0
+    ucomisd xmm1, xmm1
+    jp      .LBB0_2
+    movapd  xmm0, xmm1
+    ret
+.LBB0_2:
+    jmp     sqrt                    ; TAILCALL
+.LCPI0_0:
+    .quad   4459223850755291651     ; double 1.334816E-10
+</code></pre>
+<p>A lot about this code resides in meta language – the comments and the documentation (not shown) to this code. Compare the previous example with this one written in C:</p>
+<pre><code class="language-c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> GRAVITY_CONSTANT 6.67408e-11</span>
+<span class="hljs-type">double</span> <span class="hljs-title function_">escape_velocity</span><span class="hljs-params">(<span class="hljs-type">double</span> mass, <span class="hljs-type">double</span> radius)</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>(<span class="hljs-number">2</span> * GRAVITY_CONSTANT * mass / radius);
+}
+</code></pre>
+<p>Just by <em>naming</em> the variables we were able to pull down information that used to reside in meta language into the language itself.</p>
+<h2>Variable names → advanced types</h2>
+<p>The C version of our code contains much more information than the assembly one and its meta language can be more high level. Now it doesn’t have to duplicate and document what’s already in the code, like the fact that the function takes 2 arguments, the first is mass and the second is radius.</p>
+<p>However, there is still some context missing from the code – the units which the function operates on. These would have to reside in the documentation for the library (meta language).</p>
+<p>We can use a simple trick and rename arguments to <code>mass_kilograms</code> and <code>radius_meters</code>, but there is no language built-in system in place that can guarantee that only kilograms and meters are passed into this function.</p>
+<p>Let’s take a look at an example of a language that supports more complex types. I used OCaml but pretty much all <abbr title="Turns out ML originally stood for Meta Language. Well played, Cheng Lou, well played">ML</abbr>-family languages like Haskell, Swift, etc. support this kind of stuff (and <a href="https://docs.microsoft.com/en-us/dotnet/articles/fsharp/language-reference/units-of-measure">F# even has first-class support for units</a>):</p>
+<pre><code class="language-ocaml">let gravity_constant = 6.67408e-11
+
+type mass = Kilograms of float
+type length = Meters of float
+type velocity = MetersPerSecond of float
+
+let escape_velocity (Kilograms mass) (Meters radius) =
+    MetersPerSecond (2.0 *. gravity_constant *. mass /. radius |&gt; sqrt)
+</code></pre>
+<p><small>By the way, not a joke, when calculating Earth’s escape velocity I found a bug in my implementation because of OCaml types – I was passing mass in a wrong unit.</small></p>
+<p>In this example <code>length</code> and <code>mass</code> are not just numbers but first class citizens. It also makes it safe and easy to maintain and evolve the code. For example, if we wanted to support imperial system (<em>I don’t know why</em>), we could change the <code>mass</code> type to:</p>
+<pre><code class="language-ocaml">type mass =
+  | Kilograms of float
+  | Pounds of float
+</code></pre>
+<p>The type checker will point us to every place in the source code that needs to be changed in order to support the new units.</p>
+<h2>Deprecations and other meta information</h2>
+<p>Let’s imagine there was a new fundamental discovery in physics that makes our naїve escape velocity calculation obsolete. How do we deprecate the old function?</p>
+<p>We can put this fact into meta language by adding a comment to the documentation or writing a provoking Medium post. But it’s much more constructive to bring this information down into the code itself.</p>
+<p>We can use the same trick as before with the C function and rename <code>escape_velocity</code> to <code>escape_velocity_DEPRECATED</code> or something <a href="https://github.com/facebook/react/blob/80bff5397bf854750dbe7c286f61654ea58938c5/src/umd/ReactUMDEntry.js#L21">bizarre like that</a>. However it will mean our API change will break client code, it’s also non-standard (anyone can have their custom suffixes) and it doesn’t really suggest a better method to use.</p>
+<p>What if there was language support for pushing this information from meta into the language itself? Something like</p>
+<pre><code>let escape_velocity = ...
+[@ocaml.deprecated &quot;Please use `quantum_escape` instead&quot;]
+</code></pre>
+<h2>More examples</h2>
+<p>This shows one possible route of embedding more and more information from meta space into the language itself. Here come more examples:</p>
+<p><strong>Visitor Pattern and <code>for</code> loops → <code>map</code>/<code>filter</code>/<code>reduce</code></strong>. In university I was taught about the Visitor Pattern, but now it’s super simple and is part of many languages standard library.</p>
+<p><strong>Loading state</strong>. Often times I see people build React components that have something like this as their state:</p>
+<pre><code class="language-javascript">state = {
+  <span class="hljs-attr">data</span>: <span class="hljs-literal">null</span>,
+  <span class="hljs-attr">error</span>: <span class="hljs-literal">null</span>,
+  <span class="hljs-attr">loading</span>: <span class="hljs-literal">true</span>,
+};
+</code></pre>
+<p>There’s information that lives only in meta language that declares that when <code>loading</code> is <code>false</code>, one of <code>data</code> or <code>error</code> should not be <code>null</code>. Instead, we can use Flow or Typescript to bring this constraint into the language itself:</p>
+<pre><code class="language-javascript">type <span class="hljs-title class_">State</span> =
+  | { <span class="hljs-attr">progress</span>: <span class="hljs-string">&quot;loading&quot;</span> }
+  | { <span class="hljs-attr">progress</span>: <span class="hljs-string">&quot;done&quot;</span>, <span class="hljs-attr">data</span>: <span class="hljs-title class_">Object</span> }
+  | { <span class="hljs-attr">progress</span>: <span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-attr">error</span>: <span class="hljs-title class_">Error</span> };
+</code></pre>
+<p><strong>Redux and immutability</strong>. Currently the fact that <a href="http://redux.js.org/">Redux</a> assumes lack of direct mutations lives in documentation, blog posts, videos and conference talks. Wouldn’t it be great if JavaScript natively supported immutable data types and type annotations so that these constraints could be expressed in the code itself?</p>
+<p><strong>Promises and Observables</strong>. In JavaScript, promises made it from being a library functionality to being a core language concept. Same process is ongoing for <a href="https://github.com/tc39/proposal-observable">observables</a>.</p>
+<p><img src="/assets/meta-language/aliens.png" alt="No, it's not a coffee stain" /></p>
+<h2>Conclusion</h2>
+<p>It’s good to keep in mind that no amount of lowering things into a language will solve the human communication part. However, by evolving the language we are opening opportunities of a much more efficient communication.</p>
+<p>Complexity has to reside somewhere. If a language is super simple, then the complexity settles in the meta language</p>
+<p><em>See also:</em> <a href="https://www.youtube.com/watch?v=4anAwXYqLG8">Sebastian Markbåge’s talk on minimal API surface area</a>, <a href="https://www.youtube.com/watch?v=V1po0BT7kac">Jared Forsyth’s talk on type systems</a>. Oh, and the <a href="http://www.imdb.com/title/tt2543164/">Arrival</a> movie, it’s really, really good!</p>
+
+  <footer>
+    <time datetime="2017-03-24T12:00:00+00:00">Mar 24, 2017</time>
+  </footer>
+  
+
+
+
+
+
+
+  <div class="about">
+  <div class="about_inner">
+    <p>Hi! My name is Alex. I’m a software engineer at Facebook, where I work on React&nbsp;Native, Oculus and Messenger. I love thinking about development experience.</p>
+    <p>I write about programming, software design and side projects <a style="margin-left: 5px" class="btn-subscribe" href="/subscribe/" target="_blank"><svg viewBox="0 0 800 800"><path d="M493 652H392c0-134-111-244-244-244V307c189 0 345 156 345 345zm71 0c0-228-188-416-416-416V132c285 0 520 235 520 520z"/><circle cx="219" cy="581" r="71"/></svg> Subscribe</a></p>
+  </div>
+</div>
+
+</article>
+
+    <script>
+      window.GoogleAnalyticsObject = 'ga';
+      window.ga = window.ga || function() {
+        (window.ga.q = window.ga.q || []).push(arguments);
+      };
+      window.ga.l = Date.now();
+
+      ga('create', 'UA-96545608-1', 'auto');
+      ga(function(tracker) {
+        tracker.set('sendHitTask', function(model) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'https://curiosity-seven.vercel.app/api/ev?' + model.get('hitPayload'), true);
+          xhr.send();
+        });
+      });
+      ga('send', 'pageview');
+    </script>
+    <script async defer src="https://curiosity-seven.vercel.app/api/leet" async></script>
+  </body>
+</html>

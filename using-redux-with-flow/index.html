@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=640" />
+
+    <title>Using Redux with Flow / frantic.im</title>
+    <meta name="author" content="Alex Kotliarskyi">
+    <meta name="description" content="How to use Flow to add type annotation to your Redux-powered app.">
+
+    <link rel="canonical" href="https://frantic.im/using-redux-with-flow">
+    <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
+
+    <meta property="og:title" content="Using Redux with Flow">
+    <meta property="og:image" content="https://frantic.im">
+    <meta name="og:description" content="How to use Flow to add type annotation to your Redux-powered app.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@alex_frantic">
+    <meta name="twitter:creator" content="@alex_frantic">
+    <meta name="twitter:title" content="Using Redux with Flow">
+    <meta name="twitter:description" content="How to use Flow to add type annotation to your Redux-powered app.">
+    <meta name="twitter:image" content="https://frantic.im">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <style type="text/css" media="screen">
+      * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face { font-family: 'body';                     src: url('/fonts/IBMPlexSans-Text.woff') format('woff'); }
+@font-face { font-family: 'body'; font-style: italic; src: url('/fonts/IBMPlexSans-TextItalic.woff') format('woff'); }
+@font-face { font-family: 'body'; font-weight: 800;   src: url('/fonts/IBMPlexSans-Bold.woff') format('woff'); }
+
+@font-face { font-family: 'mono';                     src: url('/fonts/IBMPlexMono-Text-Latin1.woff') format('woff'); }
+
+body { font: 18px/28px body, sans-serif; }
+pre, code { font-family: mono, monospace; }
+
+body {
+  background-color: #FFF;
+  color: #000;
+  -webkit-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -moz-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  margin: 50px auto;
+}
+.page { width: 600px; margin: 0 auto; padding: 0 0 0 2px; }
+.page_wide { width: 810px; }
+
+.menu { width: 544px; margin: 0 auto 0; padding: 0 0 50px 0; vertical-align: top; }
+.menu > li { list-style: none; display: inline-block; margin: 0 1.5em 0 0; vertical-align: top; }
+.menu__item, a.menu__item { color: #00000050; border-color: transparent; display: inline-block; }
+.menu__item_selected,
+a.menu__item_selected,
+a.menu__item:hover { color: #000; border-bottom: 2px solid #000; }
+.menu__item_inside, a.menu__item_inside { border-bottom: 2px solid #00000030; }
+
+article { width: 544px; margin: 15px auto; }
+
+a { color: inherit; text-decoration: none; border-bottom: 2px solid #00000030; }
+a:hover { border-color: currentColor; }
+p, blockquote { margin: 15px 0; }
+h1 + p + blockquote { margin-bottom: 30px; margin-right: 1em; }
+blockquote { padding-left: 1em; color: #00000090; }
+blockquote::before {content: "> "; float: left; margin: 0 0 0 -1em; }
+
+.quote-author { text-align: right; font-size: 15px; }
+strong { font-weight: 600; }
+h1, h2 { margin: 2.5em 0 0.5em; }
+h1 { font-size: 1.7em; }
+h2 { font-size: 1.4em; }
+.title { font-size: 2.5em; line-height: 50px; margin: 1.5em 0 0.75em 0; }
+
+p > img, .fig, figure { margin: 2em 0; }
+img { max-width: 100%; }
+
+.fig, figure { text-align: center; font-size: 12px; line-height: 20px; font-style: italic; width: 600px; margin-left: -28px; margin-right: -28px; }
+.fig img, figure > img, figure > video, figure > a > img { margin: 0 auto 1em; display: block; border-radius: 3px; }
+figure > video { max-width: 100%; }
+.label { text-align: center; font-size: 12px; font-style: italic; margin: -1em 0 1em 0; }
+
+code { font-style: normal; background: #00000010; padding: 2px 6px; border-radius: 4px; font-size: 17px; white-space: nowrap; }
+pre { font-size: 16px;
+      background: #00000010;
+      padding: 16px 30px 14px;
+      margin: 1em -30px;
+      border-radius: 8px;
+      white-space: pre;
+      word-wrap: break-word;
+      font-style: normal;
+      overflow-x: auto; }
+pre > code { background: none; padding: 0; font-size: inherit; white-space: unset; }
+
+ul { padding: 0 0 0 1em; list-style-type: square; }
+ul > li, ol > li { margin: 0.5em 0; }
+
+sup, sub, .note-ref, .note-number, .footnote { vertical-align: baseline; position: relative; font-size: .7em; line-height: 1; }
+sup, .note-ref, .note-number, .footnote { bottom: 1.4ex; }
+sub { top: .5ex; }
+
+.about { margin: 60px 0;}
+.about_photo { float: left; width: 100px; height: 160px; margin-left: -150px; margin-top: -10px; background: url("/photo.png"); background-size: 200px; }
+.about_photo:hover { background-position: 100%; }
+.about_inner { font-size: 16px; line-height: 24px; border: 2px solid #00000030; border-radius: 4px; padding: 10px 20px; margin: -12px -22px; }
+.about_inner > p { margin: 0 0 8px; }
+.btn-subscribe { line-height: 20px; text-decoration: none; background: #00000015; border: none; font-size: 12px; padding: 0px 7px; display: inline-block; border-radius: 4px; position: relative; top: -1px; }
+.btn-subscribe:hover { background: #00000030; }
+.btn-subscribe > svg { width: 21px; height: 21px; vertical-align: bottom; margin: 0 -2px 0 -5px; }
+
+.footnote { margin: 0 5px;  }
+.footnotes-br { width: 100px; height: 2px; background: #000000; margin-top: 5em; }
+.footnotes, .footnotes_alt { padding-left: 1em;  }
+.footnotes_alt > li > .dagger { margin-left: -13px; }
+.footnotes_alt { list-style: none; } 
+
+.notes { font-size: 0.8em; }
+.note-number { margin-left: -1em; }
+
+.date { color: #00000090; font-size: 14px; margin-left: 4px; }
+
+footer { color: #00000090; }
+footer { font-size: 16px; margin-bottom: 5em; }
+footer > .separator { margin: 0 4px; }
+footer > a { margin-right: 5px; }
+footer > a:hover { color: #000; }
+
+/* syntax */
+.highlight .kd, .highlight .k {font-weight: bold; }
+.highlight .mi { color: blue; }
+.highlight .cm { color: grey; }
+
+.hljs-built_in, .hljs-keyword {font-weight: bold; }
+.hljs-string, hljs-number { color: blue; }
+.hljs-comment { color: grey; }
+      
+    </style>
+  </head>
+
+  <body>
+    <ul class="menu">
+  
+  <li>
+    <a class="menu__item " style="" href="/blog/">
+      Blog
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/talks/">
+      Talks
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/projects/">
+      Projects
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/about/">
+      About
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="color: red; font-weight: bold;" href="/react/">
+      Learn React
+    </a>
+  </li>
+  
+</ul>
+
+
+<article>
+  <header>
+    
+    <h1 class="title">Using Redux with Flow</h1>
+  </header>
+  <p>Redux is a great library for managing application’s state. But JavaScript is still a dynamically typed language, which comes with a lot of surprises at runtime. In this post I’ll show you how you can use Flow to embrace static type checking in your Redux-powered application. I choose to use Flow for the disjoint union support and the ability to convert the codebase incrementally. Read on to learn more.</p>
+<p>This post assumes that you are already familiar with Redux: actions, action creators, reducers, etc.</p>
+<h2>Init</h2>
+<p>Flow is a static type checker for JavaScript. It works by analyzing your source code, reading (and inferring) type information and making sure there are no conflicts. It’s very easy to get started:</p>
+<pre><code class="language-sh">$ npm install --save-dev flow-bin
+$ touch .flowconfig
+$ ./node_modules/.bin/flow
+</code></pre>
+<p>Flow will check only the files that have special <code>/* @flow */</code> or <code>// @flow</code> comment in them. See <a href="http://flowtype.org/docs/getting-started.html">Flow’s Getting Starget</a> guide for more information.</p>
+<h2>Reducers</h2>
+<p>Likely your store already has an implicit shape and you have a bunch of reducers controlling parts of it. We can use <code>type</code> statement to describe what it contains:</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// @flow</span>
+type <span class="hljs-title class_">State</span> = {
+  <span class="hljs-attr">isLoggedIn</span>: boolean,
+  <span class="hljs-attr">name</span>: string,
+};
+</code></pre>
+<p>Having individual reducers state defined, it’s easy to add just a few type annotations to your reducer and start collecting benefits:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">user</span>(<span class="hljs-params">state: State = initialState, action: <span class="hljs-built_in">Object</span></span>): <span class="hljs-title class_">State</span> {}
+</code></pre>
+<p>Flow will make sure that your <code>initialState</code> and the return value of the <code>user</code> function always satisfy the <code>State</code> type.</p>
+<p>As you’ve noticed, <code>action</code>’s type is <code>Object</code>. Redux makes no assumptions about the shape and the content on that object, however in most cases your app has a very specific idea what <code>action</code> is.</p>
+<p><small>See <a href="https://github.com/frantic/redux-flow-example/commit/350ded0f6f3146e8cb1b486f9774a1bc97bc275d">adding Flow types for reducers</a> diff.</small></p>
+<h2>Actions</h2>
+<p>Of course, we can define <code>Action</code> type to be as simple as:</p>
+<pre><code class="language-javascript">type <span class="hljs-title class_">Action</span> = { <span class="hljs-attr">type</span>: string, <span class="hljs-attr">payload</span>: <span class="hljs-title class_">Object</span> };
+</code></pre>
+<p>I.e. any object that has <code>type</code> and <code>payload</code> properties can be an action. From what I’ve seen out there, people normally use constants for action types. This approach gives you some protection against typos in action names, however:</p>
+<ol>
+<li>constants require extra export/import boilerplate</li>
+<li>they don’t help you with the particular action’s <code>payload</code> – it’s still just a bag of untyped data.</li>
+</ol>
+<p>We can do much better. Let’s start by defining all possible actions flowing through our app. We will use a union type for this. Even if you’ve never seen them before, I think it’s easy to figure out what it does by looking at example:</p>
+<pre><code class="language-javascript">type <span class="hljs-title class_">Action</span> = { <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;LOGGED_IN&quot;</span>, <span class="hljs-attr">userName</span>: string } | { <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;LOGGED_OUT&quot;</span> };
+</code></pre>
+<p>In this case, <code>{ type: 'LOGGED_IN', userName: 'frantic' }</code> is a valid <code>Action</code>, however</p>
+<pre><code class="language-javascript">{ <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;LOGGED_IN&#x27;</span>, <span class="hljs-attr">login</span>: <span class="hljs-string">&#x27;frantic&#x27;</span> } <span class="hljs-comment">// `login` is not `userName`</span>
+{ <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;LOGGED_IN&#x27;</span> }                   <span class="hljs-comment">// no `userName`</span>
+{ <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;TYPO_HERE&#x27;</span> }                   <span class="hljs-comment">// `type` doesn&#x27;t exist</span>
+</code></pre>
+<p>are not.</p>
+<p><small>Note: <code>type</code> is not some built-in magical field name for Flow, it can deal with any property name. See <a href="http://flowtype.org/docs/disjoint-unions.html">Flow’s documentation on Disjoint Unions</a> for more information.</small></p>
+<p>Having all possible actions typed like this is great, because it’s very clear what can happen inside your app. Take a look at <a href="https://github.com/fbsamples/f8app/blob/master/js/actions/types.js">actions/types.js</a> from the F8 app for example.</p>
+<p>I understand it can be a bit controversial, for example what to do with dynamic actions, or <code>_LOADING</code>/<code>_SUCCESS</code>/<code>_FAILURE</code> “sub-actions”. I’ll try to share my approach to using Redux in a separate blog post.</p>
+<p>The great thing about Flow’s support for the tagged unions is that it can narrow down the action type depending on your code control flow:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">user</span>(<span class="hljs-params">state: State, action: Action</span>): <span class="hljs-title class_">State</span> {
+  <span class="hljs-keyword">if</span> (action.<span class="hljs-property">type</span> === <span class="hljs-string">&quot;LOGGED_IN&quot;</span>) {
+    <span class="hljs-comment">// In this `if` branch Flow narrowed down the type</span>
+    <span class="hljs-comment">// and it knows that action has `userName: string` field</span>
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">isLoggedIn</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">name</span>: action.<span class="hljs-property">userName</span> };
+  }
+}
+</code></pre>
+<p>(<code>switch</code> statement works just as well)</p>
+<p>This is incredibly useful and ensures all payloads can be properly type checked, even if their content is different for each action type.</p>
+<h2>Action Creators</h2>
+<p>This one is easy, we can just declare that our action creators return <code>Action</code>:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">logOut</span>(<span class="hljs-params"></span>): <span class="hljs-title class_">Action</span> {
+  <span class="hljs-keyword">return</span> { <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;LOGGED_OUT&quot;</span> };
+}
+</code></pre>
+<p>To make the example a little more interesting, let’s assume we are using a <a href="https://github.com/frantic/redux-flow-example/blob/7674bbb874c914d9ad4a75a0b12528e29230cdb5/store.js#L4">custom Redux middleware</a> that supports dispatching <code>Promise</code>s of actions.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">logIn</span>(<span class="hljs-params">login: string, pass: string</span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">Action</span>&gt; {
+  <span class="hljs-keyword">let</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(...);
+  <span class="hljs-comment">// Check response code, maybe do more fetching...</span>
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;LOGGED_IN&#x27;</span>,
+    <span class="hljs-attr">userName</span>: login,
+  };
+}
+</code></pre>
+<p><small>See <a href="https://github.com/frantic/redux-flow-example/commit/c351616afc148840f762439c4404a86f65c44a95">adding Flow types for actions</a> diff.</small></p>
+<h2>Dispatch</h2>
+<p>We can take a step further and annotate our <code>dispatch</code> function. In the simplest case it’s just a function that accepts <code>Action</code> and returns <code>void</code> (nothing):</p>
+<pre><code class="language-javascript">type <span class="hljs-title class_">Dispatch</span> = <span class="hljs-function">(<span class="hljs-params">action: Action</span>) =&gt;</span> <span class="hljs-keyword">void</span>;
+</code></pre>
+<p>However, depending on the list of the middleware you use, <code>dispatch</code> can support thunk actions, promises, arrays, etc. For our example we use <code>Promise</code> middleware so we can describe our <code>dispatch</code> function like this:</p>
+<pre><code class="language-javascript">type <span class="hljs-title class_">Dispatch</span> = <span class="hljs-function">(<span class="hljs-params">action: Action | <span class="hljs-built_in">Promise</span>&lt;Action&gt;</span>) =&gt;</span> <span class="hljs-title class_">Promise</span>;
+</code></pre>
+<p>To use this in React components we can simply tell Flow about <code>dispatch</code> prop that <code>react-redux</code> module injects via <code>connect</code> API:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">SettingsScreen</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span> {
+  <span class="hljs-attr">props</span>: {
+    <span class="hljs-attr">isLoggedIn</span>: boolean;
+    <span class="hljs-attr">dispatch</span>: <span class="hljs-title class_">Dispatch</span>;
+  };
+
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) { ... }
+}
+</code></pre>
+<p>This code ensures that only <code>Action</code> or <code>Promise&lt;Action&gt;</code> can be passed into <code>this.props.dispatch()</code> call.</p>
+<p><small>See <a href="https://github.com/frantic/redux-flow-example/commit/4c72149b4bc6008737c4e0975ff61ab4ff801eca">adding Flow types for dispatch</a> diff.</small></p>
+<h2>More</h2>
+<p>Flow is much more than just a type checker. It can power a lot of IDE-like features, for example auto-complete, jump-to-definition, etc. I highly recommend installing Flow plugin for your faviorite editor, this dramatically improves development experience.</p>
+<h2>Wrapping up</h2>
+<p>Flow is great because it lets us incrementally add type annotations to our app. Its support for <a href="http://flowtype.org/docs/disjoint-unions.html">disjoint unions</a> is perfectly suited for describing various Flux action types.</p>
+<p>In the next part we’ll explore how we can add types to <code>connect</code> function from <code>react-redux</code>.</p>
+<p>All code is available on Github, take a look at <a href="https://github.com/frantic/redux-flow-example/commits/master">commit-by-commit history</a> to see how Flow can be adopted incrementally. For a bigger example check out <a href="https://github.com/fbsamples/f8app">the open-sourced F8 app</a>.</p>
+
+  <footer>
+    <time datetime="2016-05-28T12:00:00+00:00">May 28, 2016</time>
+  </footer>
+  
+
+
+
+
+
+
+  <h4>Related posts:</h4>
+  
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/react-api-evolution">React API evolution</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/how-not-to-flux-set-actions">How not to use Flux: SET actions</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/how-not-to-flux-loops">How not to use Flux: mini cycles</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+      
+        
+          
+        
+      
+    
+
+    
+      <p>
+        <a href="/react-and-javascript-in-5-min">React-flavored JavaScript in 5 minutes</a>
+      </p>
+      
+      
+        
+
+
+
+  <div class="about">
+  <div class="about_inner">
+    <p>Hi! My name is Alex. I’m a software engineer at Facebook, where I work on React&nbsp;Native, Oculus and Messenger. I love thinking about development experience.</p>
+    <p>I write about programming, software design and side projects <a style="margin-left: 5px" class="btn-subscribe" href="/subscribe/" target="_blank"><svg viewBox="0 0 800 800"><path d="M493 652H392c0-134-111-244-244-244V307c189 0 345 156 345 345zm71 0c0-228-188-416-416-416V132c285 0 520 235 520 520z"/><circle cx="219" cy="581" r="71"/></svg> Subscribe</a></p>
+  </div>
+</div>
+
+</article>
+
+    <script>
+      window.GoogleAnalyticsObject = 'ga';
+      window.ga = window.ga || function() {
+        (window.ga.q = window.ga.q || []).push(arguments);
+      };
+      window.ga.l = Date.now();
+
+      ga('create', 'UA-96545608-1', 'auto');
+      ga(function(tracker) {
+        tracker.set('sendHitTask', function(model) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'https://curiosity-seven.vercel.app/api/ev?' + model.get('hitPayload'), true);
+          xhr.send();
+        });
+      });
+      ga('send', 'pageview');
+    </script>
+    <script async defer src="https://curiosity-seven.vercel.app/api/leet" async></script>
+  </body>
+</html>

@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=640" />
+
+    <title>Digital Typewriter / frantic.im</title>
+    <meta name="author" content="Alex Kotliarskyi">
+    <meta name="description" content="What if you could use your favorite keyboard away from your computer? In this side project I'm building an old-fashioned typewriter from modern IoT parts.">
+
+    <link rel="canonical" href="https://frantic.im/onityper">
+    <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
+
+    <meta property="og:title" content="Digital Typewriter">
+    <meta property="og:image" content="https://frantic.im/assets/onityper/onityper.jpg">
+    <meta name="og:description" content="What if you could use your favorite keyboard away from your computer? In this side project I'm building an old-fashioned typewriter from modern IoT parts.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@alex_frantic">
+    <meta name="twitter:creator" content="@alex_frantic">
+    <meta name="twitter:title" content="Digital Typewriter">
+    <meta name="twitter:description" content="What if you could use your favorite keyboard away from your computer? In this side project I'm building an old-fashioned typewriter from modern IoT parts.">
+    <meta name="twitter:image" content="https://frantic.im/assets/onityper/onityper.jpg">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <style type="text/css" media="screen">
+      * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face { font-family: 'body';                     src: url('/fonts/IBMPlexSans-Text.woff') format('woff'); }
+@font-face { font-family: 'body'; font-style: italic; src: url('/fonts/IBMPlexSans-TextItalic.woff') format('woff'); }
+@font-face { font-family: 'body'; font-weight: 800;   src: url('/fonts/IBMPlexSans-Bold.woff') format('woff'); }
+
+@font-face { font-family: 'mono';                     src: url('/fonts/IBMPlexMono-Text-Latin1.woff') format('woff'); }
+
+body { font: 18px/28px body, sans-serif; }
+pre, code { font-family: mono, monospace; }
+
+body {
+  background-color: #FFF;
+  color: #000;
+  -webkit-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -moz-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  margin: 50px auto;
+}
+.page { width: 600px; margin: 0 auto; padding: 0 0 0 2px; }
+.page_wide { width: 810px; }
+
+.menu { width: 544px; margin: 0 auto 0; padding: 0 0 50px 0; vertical-align: top; }
+.menu > li { list-style: none; display: inline-block; margin: 0 1.5em 0 0; vertical-align: top; }
+.menu__item, a.menu__item { color: #00000050; border-color: transparent; display: inline-block; }
+.menu__item_selected,
+a.menu__item_selected,
+a.menu__item:hover { color: #000; border-bottom: 2px solid #000; }
+.menu__item_inside, a.menu__item_inside { border-bottom: 2px solid #00000030; }
+
+article { width: 544px; margin: 15px auto; }
+
+a { color: inherit; text-decoration: none; border-bottom: 2px solid #00000030; }
+a:hover { border-color: currentColor; }
+p, blockquote { margin: 15px 0; }
+h1 + p + blockquote { margin-bottom: 30px; margin-right: 1em; }
+blockquote { padding-left: 1em; color: #00000090; }
+blockquote::before {content: "> "; float: left; margin: 0 0 0 -1em; }
+
+.quote-author { text-align: right; font-size: 15px; }
+strong { font-weight: 600; }
+h1, h2 { margin: 2.5em 0 0.5em; }
+h1 { font-size: 1.7em; }
+h2 { font-size: 1.4em; }
+.title { font-size: 2.5em; line-height: 50px; margin: 1.5em 0 0.75em 0; }
+
+p > img, .fig, figure { margin: 2em 0; }
+img { max-width: 100%; }
+
+.fig, figure { text-align: center; font-size: 12px; line-height: 20px; font-style: italic; width: 600px; margin-left: -28px; margin-right: -28px; }
+.fig img, figure > img, figure > video, figure > a > img { margin: 0 auto 1em; display: block; border-radius: 3px; }
+figure > video { max-width: 100%; }
+.label { text-align: center; font-size: 12px; font-style: italic; margin: -1em 0 1em 0; }
+
+code { font-style: normal; background: #00000010; padding: 2px 6px; border-radius: 4px; font-size: 17px; white-space: nowrap; }
+pre { font-size: 16px;
+      background: #00000010;
+      padding: 16px 30px 14px;
+      margin: 1em -30px;
+      border-radius: 8px;
+      white-space: pre;
+      word-wrap: break-word;
+      font-style: normal;
+      overflow-x: auto; }
+pre > code { background: none; padding: 0; font-size: inherit; white-space: unset; }
+
+ul { padding: 0 0 0 1em; list-style-type: square; }
+ul > li, ol > li { margin: 0.5em 0; }
+
+sup, sub, .note-ref, .note-number, .footnote { vertical-align: baseline; position: relative; font-size: .7em; line-height: 1; }
+sup, .note-ref, .note-number, .footnote { bottom: 1.4ex; }
+sub { top: .5ex; }
+
+.about { margin: 60px 0;}
+.about_photo { float: left; width: 100px; height: 160px; margin-left: -150px; margin-top: -10px; background: url("/photo.png"); background-size: 200px; }
+.about_photo:hover { background-position: 100%; }
+.about_inner { font-size: 16px; line-height: 24px; border: 2px solid #00000030; border-radius: 4px; padding: 10px 20px; margin: -12px -22px; }
+.about_inner > p { margin: 0 0 8px; }
+.btn-subscribe { line-height: 20px; text-decoration: none; background: #00000015; border: none; font-size: 12px; padding: 0px 7px; display: inline-block; border-radius: 4px; position: relative; top: -1px; }
+.btn-subscribe:hover { background: #00000030; }
+.btn-subscribe > svg { width: 21px; height: 21px; vertical-align: bottom; margin: 0 -2px 0 -5px; }
+
+.footnote { margin: 0 5px;  }
+.footnotes-br { width: 100px; height: 2px; background: #000000; margin-top: 5em; }
+.footnotes, .footnotes_alt { padding-left: 1em;  }
+.footnotes_alt > li > .dagger { margin-left: -13px; }
+.footnotes_alt { list-style: none; } 
+
+.notes { font-size: 0.8em; }
+.note-number { margin-left: -1em; }
+
+.date { color: #00000090; font-size: 14px; margin-left: 4px; }
+
+footer { color: #00000090; }
+footer { font-size: 16px; margin-bottom: 5em; }
+footer > .separator { margin: 0 4px; }
+footer > a { margin-right: 5px; }
+footer > a:hover { color: #000; }
+
+/* syntax */
+.highlight .kd, .highlight .k {font-weight: bold; }
+.highlight .mi { color: blue; }
+.highlight .cm { color: grey; }
+
+.hljs-built_in, .hljs-keyword {font-weight: bold; }
+.hljs-string, hljs-number { color: blue; }
+.hljs-comment { color: grey; }
+      
+    </style>
+  </head>
+
+  <body>
+    <ul class="menu">
+  
+  <li>
+    <a class="menu__item " style="" href="/blog/">
+      Blog
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/talks/">
+      Talks
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/projects/">
+      Projects
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/about/">
+      About
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="color: red; font-weight: bold;" href="/react/">
+      Learn React
+    </a>
+  </li>
+  
+</ul>
+
+
+<article>
+  <header>
+    
+    <h1 class="title">Digital Typewriter</h1>
+  </header>
+  <p>What if you could use your favorite keyboard away from your computer?</p>
+<div class="fig">
+  <img src="/assets/onityper/onityper.jpg">
+  <div class="label">
+    This is what it looks like for now. Check out GIF demo further down.
+  </div>
+</div>
+<p>A long time ago I learned about an interesting “text editor”. Its main feature was, uhh, the lack of text editing. That’s right, you can’t change anything you’ve typed.</p>
+<p>The idea behind it is very interesting. It’s about two modes of writing. One where you produce as much text as possible, without trying to organize or correct it in any way. The other one is where you edit and restructure the text until it’s consistent and easy to read.</p>
+<p>Doing the first part on modern computers is a challenge for me. I get distracted very easily. I’m also tempted to start editing right away, often times ending up in a loop rewriting a sentence over and over again.</p>
+<p>Old typewriters don’t have this problem: there’s no distractions and no way to edit the text.</p>
+<div class="fig">
+  <img src="/assets/onityper/deleece-cook-1167525-unsplash.jpg">
+  <div class="label">
+    Doesn't support twitter, doesn't have the backspace key.
+  </div>
+</div>
+<h2>Implementation</h2>
+<p>On my last birthday I got a tiny device, <a href="https://amzn.to/2MAM80B">Onion Omega 2+</a>. It’s like Rapsberry Pi, runs Linux, but built on different architecture and has its own set of accessories. It came with 21x7 chars OLED display extension.</p>
+<div class="fig">
+  <img src="/assets/onityper/omega.jpg">
+  <div class="label">
+    Onion Omega
+  </div>
+</div>
+<p>The idea was to connect my favorite keyboard (<a href="https://amzn.to/2IwvBpj">HHKBPro2 type-S</a>) via USB to the Omega2. Anything I type there should immediately show up on the built-in OLED display and sync to “the cloud”.</p>
+<blockquote>
+<p>I bet I can hack this together with 1 line of bash.</p>
+<p>– me, two weeks ago</p>
+</blockquote>
+<p>I thought it would be trivial, just read the keystrokes, pipe them to OLED and a text file, sync the text file over Dropbox.</p>
+<p>However, it turned out to be much more complicated than that :)</p>
+<p>First, I couldn’t find a trivial way to read the text off of the keyboard. I was looking for something like <code>getc</code> that can get data from a connected USB device, but no luck. Instead I found out that Linux has <code>/dev/input/event*</code> files where I could <a href="https://www.kernel.org/doc/Documentation/input/input.txt">read raw events</a>. That lead me to the ancient <a href="https://github.com/spotify/linux/blob/master/include/linux/input.h"><code>input.h</code></a>, which I used to hack together a simple parser.</p>
+<p>Next, printing this stuff to OLED also had gotchas. My initial version would just repaint the screen on every keystroke, which turned out to be very inefficient. Full display repaint using Omega’s OLED APIs takes as much as 400ms, totally unacceptable for a good experience.</p>
+<p>So I changed the code to keep track of cursor position and advanced it as more characters were being printed on the screen.</p>
+<p>This got more complicated once I added support for backspace. And then even more complicated with paging. When I got to implementing word wrapping, it was too much — there are so many different states to transition between!</p>
+<p>Ideally, I don’t want to track the current screen position and code the drawing logic for each editing command. I want a model where I can define piece of state (the text) and a function that defines what this should look like on the screen, without worrying about the underlying OLED API performance.</p>
+<p>Does it remind you of anything? :)</p>
+<p>React. I love this model and I’m sure there are tons of applications for it outside the web development. Here’s what my code looks like now:</p>
+<pre><code class="language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">render</span><span class="hljs-params">(text)</span></span>
+  <span class="hljs-comment"># Return the text I want to be on the screen</span>
+<span class="hljs-keyword">end</span>
+
+next_screen = render(message)
+reconcile(prev_screen, next_screen) <span class="hljs-keyword">do</span> <span class="hljs-params">|row, col, text|</span>
+  oled_command <span class="hljs-string">&quot;cursor&quot;</span>, <span class="hljs-string">&quot;<span class="hljs-subst">#{row}</span>,<span class="hljs-subst">#{col}</span>&quot;</span>, <span class="hljs-string">&quot;write&quot;</span>, text
+<span class="hljs-keyword">end</span>
+prev_screen = next_screen
+</code></pre>
+<p>The latency between pressing a button and seeing it on the screen is amazing. I used iPhone X slow motion camera (240fps) to measure time from keyboard button down to seeing visual feedback on the screen. Here are the numbers:</p>
+<ul>
+<li>HHKB connected to macOS running Sublime: 84ms latency</li>
+<li>HHKB connected to onion running onityper: 32ms latency</li>
+</ul>
+<p>This number matters a lot. The lower the number, the more natural and instant is the experience. 32ms is great!</p>
+<p>See also: <a href="https://danluu.com/keyboard-latency/">Keyboard latency</a> and <a href="https://pavelfatin.com/typing-with-pleasure/">Typing with pleasure</a>.</p>
+<div class="fig">
+  <img src="/assets/onityper/demo.gif">
+  <div class="label">
+    Demo
+  </div>
+</div>
+<h2>Sync</h2>
+<p>Everything I type on this device is stored in text files. It’s not very easy to pull these files from the device, so I also added some code to upload each line to the server.</p>
+<p>On the backend I used Firebase. I have a simple “cloud function” that takes text as input and stores it in Firestore. I also have a very simple frontend that renders the text from the Firestore.</p>
+<p>The tricky part is that I can’t completely rely on available internet connection. I plan to take this device to coffee shops and places outside of WiFi reach. The script stores a queue of lines to upload in a file, so even after device restarts it should be able to resume uploads.</p>
+<p>Ideally I’d love to use Dropbox, but unfortunately I couldn’t find linux MIPS build of their client.</p>
+<h2>Testing</h2>
+<p>In retrospective I should have started with proper Ruby tests, but yak shaving and curiosity brought me to <a href="https://pypi.org/project/cram/"><code>cram</code></a>. It’s a simple CLI tool that takes <code>*.t</code> files as inputs. These files contain shell commands and the expected output.</p>
+<p>The development experience of <code>cram</code> is pretty good. You don’t need to set the “expected output” beforehand. You can just run the tool and it will show the difference between expected and actual output, with an option to update the <code>*.t</code> file.</p>
+<p>Very similar to Jest snapshot tests.</p>
+<h2>Deployment</h2>
+<p>Omega’s WiFi has been terrible in my experience, lots of random disconnects. I couldn’t rely on SSH because of that and had to use serial port with <code>screen</code>. This made the deployment process more complicated, there’s no <code>scp</code> for terminal connection.</p>
+<p>Here’s a clever trick I learned:</p>
+<pre><code class="language-sh">screen -S <span class="hljs-variable">$SESSION</span> -X stuff <span class="hljs-string">&#x27;cat &gt; /root/onityper.rb &lt;&lt;\EOF&#x27;</span>$<span class="hljs-string">&#x27;\015&#x27;</span>
+screen -S <span class="hljs-variable">$SESSION</span> -X readreg p <span class="hljs-string">&quot;<span class="hljs-variable">$ROOT</span>/onityper.rb&quot;</span>
+screen -S <span class="hljs-variable">$SESSION</span> -X paste p
+screen -S <span class="hljs-variable">$SESSION</span> -X stuff <span class="hljs-string">&#x27;EOF&#x27;</span>$<span class="hljs-string">&#x27;\015&#x27;</span>
+</code></pre>
+<p>I can run <code>screen</code> in one tab and while the connection is active I can send commands to it. <code>stuff</code> sends keystrokes and <code>readreg</code>/<code>paste</code> can simulate typing large chunks of text.</p>
+<p>To run the script on every boot, I used <a href="https://docs.onion.io/omega2-docs/running-a-command-on-boot.html">the official instructions</a> which recommend putting stuff into <code>/etc/rc.local</code>.</p>
+<pre><code>ruby /root/onityper.rb &gt;&gt; /tmp/onityper.log 2&gt;&amp;1 &amp;
+</code></pre>
+<p>I don’t like this at all. There must be a proper way of defining a service that can run in background, with policies about logs and log rotation, when to restart it, etc. Looks like OpenWRT has <a href="https://openwrt.org/docs/guide-developer/procd-init-scripts"><code>procd</code></a> but at that point I was too lazy to look into.</p>
+<h2>Code</h2>
+<p>Warning: it’s a bag of hacks. See it on <a href="https://github.com/frantic/onityper">GitHub</a>.</p>
+<h2>Next</h2>
+<p>I’m very happy with this setup so far. I bought <a href="https://amzn.to/2WE0H8v">the cheapest powerbank</a> I could find on Amazon, so the device is pretty much independent from my laptop. 70% of this post was created on the Onityper from a coffee shop.</p>
+<p>Now I want to use a 3D printer to build a case for it.</p>
+
+  <footer>
+    <time datetime="2019-06-09T12:00:00+00:00">Jun 9, 2019</time>
+  </footer>
+  
+
+
+
+
+
+
+  <h4>Related posts:</h4>
+  
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+    
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+
+    
+      <p>
+        <a href="/no-constraints-no-fun">No constraints, no fun</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+
+    
+      <p>
+        <a href="/side-projects-are-hard">Why side projects are hard</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/copy-with-syntax">Copying code with syntax highlighting</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+
+
+  <div class="about">
+  <div class="about_inner">
+    <p>Hi! My name is Alex. I’m a software engineer at Facebook, where I work on React&nbsp;Native, Oculus and Messenger. I love thinking about development experience.</p>
+    <p>I write about programming, software design and side projects <a style="margin-left: 5px" class="btn-subscribe" href="/subscribe/" target="_blank"><svg viewBox="0 0 800 800"><path d="M493 652H392c0-134-111-244-244-244V307c189 0 345 156 345 345zm71 0c0-228-188-416-416-416V132c285 0 520 235 520 520z"/><circle cx="219" cy="581" r="71"/></svg> Subscribe</a></p>
+  </div>
+</div>
+
+</article>
+
+    <script>
+      window.GoogleAnalyticsObject = 'ga';
+      window.ga = window.ga || function() {
+        (window.ga.q = window.ga.q || []).push(arguments);
+      };
+      window.ga.l = Date.now();
+
+      ga('create', 'UA-96545608-1', 'auto');
+      ga(function(tracker) {
+        tracker.set('sendHitTask', function(model) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'https://curiosity-seven.vercel.app/api/ev?' + model.get('hitPayload'), true);
+          xhr.send();
+        });
+      });
+      ga('send', 'pageview');
+    </script>
+    <script async defer src="https://curiosity-seven.vercel.app/api/leet" async></script>
+  </body>
+</html>

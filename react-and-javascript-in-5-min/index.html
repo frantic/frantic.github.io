@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=640" />
+
+    <title>React-flavored JavaScript in 5 minutes / frantic.im</title>
+    <meta name="author" content="Alex Kotliarskyi">
+    <meta name="description" content="This document is for experienced software engineers who already know several other programming languages and just want a TL;DR summary on JavaScript in the c...">
+
+    <link rel="canonical" href="https://frantic.im/react-and-javascript-in-5-min">
+    <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
+
+    <meta property="og:title" content="React-flavored JavaScript in 5 minutes">
+    <meta property="og:image" content="https://frantic.im/assets/react-and-javascript-in-5-min/og-image.png">
+    <meta name="og:description" content="This document is for experienced software engineers who already know several other programming languages and just want a TL;DR summary on JavaScript in the c...">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@alex_frantic">
+    <meta name="twitter:creator" content="@alex_frantic">
+    <meta name="twitter:title" content="React-flavored JavaScript in 5 minutes">
+    <meta name="twitter:description" content="This document is for experienced software engineers who already know several other programming languages and just want a TL;DR summary on JavaScript in the c...">
+    <meta name="twitter:image" content="https://frantic.im/assets/react-and-javascript-in-5-min/og-image.png">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <style type="text/css" media="screen">
+      * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face { font-family: 'body';                     src: url('/fonts/IBMPlexSans-Text.woff') format('woff'); }
+@font-face { font-family: 'body'; font-style: italic; src: url('/fonts/IBMPlexSans-TextItalic.woff') format('woff'); }
+@font-face { font-family: 'body'; font-weight: 800;   src: url('/fonts/IBMPlexSans-Bold.woff') format('woff'); }
+
+@font-face { font-family: 'mono';                     src: url('/fonts/IBMPlexMono-Text-Latin1.woff') format('woff'); }
+
+body { font: 18px/28px body, sans-serif; }
+pre, code { font-family: mono, monospace; }
+
+body {
+  background-color: #FFF;
+  color: #000;
+  -webkit-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -moz-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  margin: 50px auto;
+}
+.page { width: 600px; margin: 0 auto; padding: 0 0 0 2px; }
+.page_wide { width: 810px; }
+
+.menu { width: 544px; margin: 0 auto 0; padding: 0 0 50px 0; vertical-align: top; }
+.menu > li { list-style: none; display: inline-block; margin: 0 1.5em 0 0; vertical-align: top; }
+.menu__item, a.menu__item { color: #00000050; border-color: transparent; display: inline-block; }
+.menu__item_selected,
+a.menu__item_selected,
+a.menu__item:hover { color: #000; border-bottom: 2px solid #000; }
+.menu__item_inside, a.menu__item_inside { border-bottom: 2px solid #00000030; }
+
+article { width: 544px; margin: 15px auto; }
+
+a { color: inherit; text-decoration: none; border-bottom: 2px solid #00000030; }
+a:hover { border-color: currentColor; }
+p, blockquote { margin: 15px 0; }
+h1 + p + blockquote { margin-bottom: 30px; margin-right: 1em; }
+blockquote { padding-left: 1em; color: #00000090; }
+blockquote::before {content: "> "; float: left; margin: 0 0 0 -1em; }
+
+.quote-author { text-align: right; font-size: 15px; }
+strong { font-weight: 600; }
+h1, h2 { margin: 2.5em 0 0.5em; }
+h1 { font-size: 1.7em; }
+h2 { font-size: 1.4em; }
+.title { font-size: 2.5em; line-height: 50px; margin: 1.5em 0 0.75em 0; }
+
+p > img, .fig, figure { margin: 2em 0; }
+img { max-width: 100%; }
+
+.fig, figure { text-align: center; font-size: 12px; line-height: 20px; font-style: italic; width: 600px; margin-left: -28px; margin-right: -28px; }
+.fig img, figure > img, figure > video, figure > a > img { margin: 0 auto 1em; display: block; border-radius: 3px; }
+figure > video { max-width: 100%; }
+.label { text-align: center; font-size: 12px; font-style: italic; margin: -1em 0 1em 0; }
+
+code { font-style: normal; background: #00000010; padding: 2px 6px; border-radius: 4px; font-size: 17px; white-space: nowrap; }
+pre { font-size: 16px;
+      background: #00000010;
+      padding: 16px 30px 14px;
+      margin: 1em -30px;
+      border-radius: 8px;
+      white-space: pre;
+      word-wrap: break-word;
+      font-style: normal;
+      overflow-x: auto; }
+pre > code { background: none; padding: 0; font-size: inherit; white-space: unset; }
+
+ul { padding: 0 0 0 1em; list-style-type: square; }
+ul > li, ol > li { margin: 0.5em 0; }
+
+sup, sub, .note-ref, .note-number, .footnote { vertical-align: baseline; position: relative; font-size: .7em; line-height: 1; }
+sup, .note-ref, .note-number, .footnote { bottom: 1.4ex; }
+sub { top: .5ex; }
+
+.about { margin: 60px 0;}
+.about_photo { float: left; width: 100px; height: 160px; margin-left: -150px; margin-top: -10px; background: url("/photo.png"); background-size: 200px; }
+.about_photo:hover { background-position: 100%; }
+.about_inner { font-size: 16px; line-height: 24px; border: 2px solid #00000030; border-radius: 4px; padding: 10px 20px; margin: -12px -22px; }
+.about_inner > p { margin: 0 0 8px; }
+.btn-subscribe { line-height: 20px; text-decoration: none; background: #00000015; border: none; font-size: 12px; padding: 0px 7px; display: inline-block; border-radius: 4px; position: relative; top: -1px; }
+.btn-subscribe:hover { background: #00000030; }
+.btn-subscribe > svg { width: 21px; height: 21px; vertical-align: bottom; margin: 0 -2px 0 -5px; }
+
+.footnote { margin: 0 5px;  }
+.footnotes-br { width: 100px; height: 2px; background: #000000; margin-top: 5em; }
+.footnotes, .footnotes_alt { padding-left: 1em;  }
+.footnotes_alt > li > .dagger { margin-left: -13px; }
+.footnotes_alt { list-style: none; } 
+
+.notes { font-size: 0.8em; }
+.note-number { margin-left: -1em; }
+
+.date { color: #00000090; font-size: 14px; margin-left: 4px; }
+
+footer { color: #00000090; }
+footer { font-size: 16px; margin-bottom: 5em; }
+footer > .separator { margin: 0 4px; }
+footer > a { margin-right: 5px; }
+footer > a:hover { color: #000; }
+
+/* syntax */
+.highlight .kd, .highlight .k {font-weight: bold; }
+.highlight .mi { color: blue; }
+.highlight .cm { color: grey; }
+
+.hljs-built_in, .hljs-keyword {font-weight: bold; }
+.hljs-string, hljs-number { color: blue; }
+.hljs-comment { color: grey; }
+      
+    </style>
+  </head>
+
+  <body>
+    <ul class="menu">
+  
+  <li>
+    <a class="menu__item " style="" href="/blog/">
+      Blog
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/talks/">
+      Talks
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/projects/">
+      Projects
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/about/">
+      About
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="color: red; font-weight: bold;" href="/react/">
+      Learn React
+    </a>
+  </li>
+  
+</ul>
+
+
+<article>
+  <header>
+    
+    <h1 class="title">React-flavored JavaScript in 5 minutes</h1>
+  </header>
+  <p><em>This document is for experienced software engineers who already know several other programming languages and just want a TL;DR summary on JavaScript in the context of React, Flow and the new ES6+ hotness.</em></p>
+<h2>20 seconds of history</h2>
+<p>JS has been designed and implemented in 10 days around 1995. It had (and still has) a bunch of weird quirks. All major browsers adopted it and JS spread like wildfire, but everyone had their own opinions on how it should work. In 2005 the spec became open standard (ECMAScript, or ES). In the recent few years the work on the standard gained a lot of momentum.</p>
+<p>Also in recent decade web pages became more and more complex, to a point where some of them turned into “web apps”. This increased demand for JS.</p>
+<h2>Basics</h2>
+<p>JS is a single threaded, dynamically typed, functional programming language. It’s not the best one out there, but it’s okay.</p>
+<p>JS is often associated with web, but it’s a generic scripting language. Browsers make some of their features controllable from JS via DOM, NodeJS exposes various UNIX APIs to JS, etc.</p>
+<h2>Syntax</h2>
+<p>JS belongs to C/Java family. It’s easy to pick up from examples, the more nuanced edge cases will be discussed here.</p>
+<h3>Variables and types</h3>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> foo = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">let</span> bar = <span class="hljs-string">&quot;hello&quot;</span>;
+bar = bar + <span class="hljs-string">&quot;, world&quot;</span>;
+</code></pre>
+<p>Note that <code>const</code> prevents re-assignment of the variable, however if the value is a mutable object or array it can still be changed.</p>
+<p>Basic types:</p>
+<ul>
+<li>numbers (52-bit): <code>0</code>, <code>42.24</code>, <code>0xf00</code>, <code>-Inf</code>/<code>+Inf</code> (infinity), <code>NaN</code> (“not a number”, the irony!)</li>
+<li>strings: <code>'single quotes'</code> and <code>&quot;double quotes&quot;</code> are equivalent, <code>`template literals let you use ${expressions} inline`</code></li>
+<li>booleans: <code>true</code>, <code>false</code></li>
+<li>arrays: <code>[]</code>, <code>[1, 2, 'str', null]</code></li>
+<li>objects: <code>{}</code>, <code>{a: 1, b: 2}</code>, <code>{&quot;keys are always strings&quot;: {nested: [1, null]}</code> (literally JSON).</li>
+<li>functions: see below.</li>
+<li><code>null</code> and <code>undefined</code> are special unicorns, see below.</li>
+</ul>
+<p>ES6 introduced a bunch of specialized collection classes, e.g. <code>Map</code>, <code>WeakMap</code>, <code>Set</code>, etc.</p>
+<h3><code>null</code> vs <code>undefined</code></h3>
+<p><code>null</code> used to mark empty value, <code>undefined</code> used to mark that there is no value. For example:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> list = [<span class="hljs-string">&quot;apple&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-literal">null</span>];
+list[<span class="hljs-number">0</span>]; <span class="hljs-comment">// &#x27;apple&#x27;</span>
+list[<span class="hljs-number">2</span>]; <span class="hljs-comment">// null</span>
+list[<span class="hljs-number">9</span>]; <span class="hljs-comment">// undefined</span>
+</code></pre>
+<p>If it doesn’t make sense, forget about this for now. Don’t think about it. It will “click” when it’s time.</p>
+<h3>Equality and “truthiness”</h3>
+<p>To compare values, always use <code>===</code>. Pretend <code>==</code> does not exist. Objects and arrays are compared by reference, not by value, so <code>{} !== {}</code>.</p>
+<p><code>0</code>, <code>''</code>, <code>false</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code> are considered falsy, everything else in boolean context is <code>true</code>.</p>
+<h3>Functions</h3>
+<p>Functions in JS are first class, i.e. you can use them the same way you use any other value – assign to variables, add to arrays and objects, pass as arguments to other functions, etc.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">square</span> = (<span class="hljs-params">x</span>) =&gt; x * x;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">square</span>(<span class="hljs-number">5</span>));
+<span class="hljs-comment">// 25</span>
+</code></pre>
+<p>If a function contains more than one statement, use curly braces and explicit <code>return</code> statement:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">squareAndLog</span> = (<span class="hljs-params">x</span>) =&gt; {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Called with x = <span class="hljs-subst">${x}</span>`</span>);
+  <span class="hljs-keyword">return</span> x * x;
+};
+</code></pre>
+<p>There is another way to define a function:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> oldSchool = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;hello, world&quot;</span>);
+};
+</code></pre>
+<p>but it has unintuitive behavior when it comes to dynamically-scoped <code>this</code> (see below), so prefer arrow functions.</p>
+<h3>Objects</h3>
+<p>Object is a very common data structure in JS. In essence it’s a bag of key-value pairs. Keys and values can be anything, but usually keys are strings. If key is a string that can be valid identifier (e.g. no spaces and special characters) quotation is omitted.</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> myCat = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Peanut&quot;</span>,
+  <span class="hljs-attr">owner</span>: {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Bob&quot;</span>,
+  },
+  <span class="hljs-string">&quot;stuff it likes&quot;</span>: [<span class="hljs-string">&quot;milk&quot;</span>, <span class="hljs-string">&quot;butterflies&quot;</span>],
+  <span class="hljs-attr">jump</span>: <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;jumped&quot;</span>);
+  },
+};
+
+myCat.<span class="hljs-property">name</span>; <span class="hljs-comment">// Peanut</span>
+myCat[<span class="hljs-string">&quot;stuff it likes&quot;</span>]; <span class="hljs-comment">// [&#x27;milk&#x27;, &#x27;butterflies&#x27;]</span>
+myCat.<span class="hljs-title function_">jump</span>(); <span class="hljs-comment">// jumped</span>
+</code></pre>
+<p>Before introduction of specialized collections, objects were often used as maps or sets. Now there are dedicated <code>Map</code> and <code>Set</code> classes.</p>
+<h3>OOP</h3>
+<p>JS uses prototype inheritance. Every object has a magic hidden property called <code>__proto__</code>. When you access <code>cat.color</code> and <code>cat</code> doesn’t have <code>color</code> key on it, JS runtime will check if <code>cat.__proto__</code> has <code>color</code>, then <code>cat.__proto__.__proto__</code>, etc. until found, otherwise returns <code>undefined</code>. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">Read more about prototypes</a>.</p>
+<p>You can explicitly check if an object has specified key using <code>foo.hasOwnProperty('bar')</code> or get a list of all available properties via <code>Object.keys(foo)</code>.</p>
+<p>It’s a powerful system, but it confused shit out of people and everyone was rolling their own implementation of inheritance. So ES6 introduced more conventional class syntax (still uses <code>__proto__</code> under the hood):</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Cat</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Animal</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name</span>) {
+    <span class="hljs-variable language_">super</span>();
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
+  }
+
+  <span class="hljs-title function_">say</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${<span class="hljs-variable language_">this</span>.name}</span>: meow`</span>;
+  }
+}
+
+<span class="hljs-keyword">const</span> peanut = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cat</span>(<span class="hljs-string">&quot;Peanut&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(peanut.<span class="hljs-title function_">say</span>());
+<span class="hljs-comment">// Peanut: meow</span>
+</code></pre>
+<p>Inside functions <code>this</code> is a magical variable that points to “the object that the method was called on”. For example when calling <code>peanut.say()</code>, inside <code>say</code> method <code>this</code> will point to <code>peanut</code>.</p>
+<p>However, if you do this:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> catsay = peanut.<span class="hljs-property">say</span>;
+<span class="hljs-title function_">catsay</span>();
+</code></pre>
+<p>it will fail because <code>this</code> will be <code>undefined</code>. To make the function “remember” the instance it was called on, use <code>bind</code> method of the function (functions are also objects, surprise!):</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> catsay = peanut.<span class="hljs-property">say</span>.<span class="hljs-title function_">bind</span>(peanut);
+<span class="hljs-title function_">catsay</span>();
+</code></pre>
+<p>It returns a new function that knows what <code>this</code> should be. You can <code>bind</code> functions to any value, not just class instances.</p>
+<p>It’s a very common source of errors.</p>
+<h3>JSX</h3>
+<p>JSX is syntax sugar introduced by React to make it easy to describe complex view hierarchies. It’s not required, but it saves developers from the “closing parenthesis problem)))))”</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> view = (
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;test&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>hello world<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+);
+</code></pre>
+<p>is equivalent to:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> view = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createElement</span>(
+  <span class="hljs-string">&quot;div&quot;</span>,
+  { <span class="hljs-attr">className</span>: <span class="hljs-string">&quot;test&quot;</span> },
+  <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;span&quot;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&quot;hello world&quot;</span>)
+);
+</code></pre>
+<p><code>name=&quot;value&quot;</code> pairs are called attributes (or props). Strings should be wrapped in double-quotes. To insert a JS expression into JSX, wrap it in curly braces:</p>
+<pre><code class="language-javascript">&lt;div className={styles.<span class="hljs-property">main</span>}&gt;<span class="hljs-title class_">Next</span> value <span class="hljs-attr">is</span>: {x + <span class="hljs-number">1</span>}&lt;/div&gt;
+</code></pre>
+<p>Every element can have zero or more elements inside (called children). There is a shortcut that can be used for empty elements:</p>
+<pre><code class="language-javascript">&lt;<span class="hljs-title class_">Profile</span> user={me} /&gt;
+</code></pre>
+<p>JSX elements are values, so they can be stored in variables, arrays, returned from functions etc.</p>
+<h3>Destructuring and spread</h3>
+<p>There are a bunch of other nice syntax features that make using JS more fun.</p>
+<p>Destructuring lets you extract several values from JS data structures in one line of code:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> catData = { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Peanut&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">owner</span>: <span class="hljs-string">&quot;Bob&quot;</span> };
+<span class="hljs-keyword">const</span> { name, age } = catData;
+<span class="hljs-comment">// now name === &#x27;Peanut&#x27;, age === 3</span>
+</code></pre>
+<p>You can think about spread operator as “insert values” from one object or array into another</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> alphabet = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
+<span class="hljs-keyword">const</span> characters = [<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, ...alphabet, <span class="hljs-string">&quot;~&quot;</span>];
+<span class="hljs-comment">// characters = [&#x27;1&#x27;, &#x27;2&#x27;, &#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;~&#x27;];</span>
+</code></pre>
+<p>it can also be used in context of function definition and calls, for example:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">sum</span> = (<span class="hljs-params">...args</span>) =&gt; args.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">e, a</span>) =&gt;</span> e + a, <span class="hljs-number">0</span>);
+<span class="hljs-title function_">sum</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// 6</span>
+
+<span class="hljs-keyword">const</span> arr = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>];
+<span class="hljs-title function_">sum</span>(...arr); <span class="hljs-comment">// 60</span>
+</code></pre>
+<p>Destructuring and spread can be used together:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> list = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+<span class="hljs-keyword">const</span> [head, ...tail] = list;
+<span class="hljs-comment">// head = 1, tail = [2, 3, 4];</span>
+</code></pre>
+<h3>Transforms</h3>
+<p>There are lots of new features in the standard, and not all runtime vendors can deliver them fast. There are also controversial things like JSX that are unlikely to get to the JS standard committee.</p>
+<p>It became a very common practice to use tools that take source code written in new syntax and produce code compatible with old syntax. Most popular tool that does that is Babel.</p>
+<h3>Polyfills</h3>
+<p>Not all new features can be transformed. Sometimes standard adds new properties to existing classes, e.g. <code>String.startsWith</code>. Polyfills are small pieces of code that in runtime detect if these methods are available, and if not, mocks the implementation.</p>
+<h3>Async</h3>
+<p>JS is single-threaded and traditionally used for event-based scripting, e.g. “when user clicks this button, show alert”.</p>
+<p>There are no blocking operations in JS. If the code needs to fetch a web page, for example, it can’t just block and wait for the value, and should supply a callback instead. Obviously it influences the control flow, so be careful:</p>
+<pre><code class="language-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Before fetch&quot;</span>);
+<span class="hljs-title function_">fetchURL</span>(<span class="hljs-string">&quot;https://facebook.com&quot;</span>, <span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Got response&quot;</span>);
+});
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;After fetch&quot;</span>);
+
+<span class="hljs-comment">// Before fetch</span>
+<span class="hljs-comment">// After fetch</span>
+<span class="hljs-comment">// Got response</span>
+</code></pre>
+<p>In real world app callbacks get out of hand very quickly:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">loadAndStore</span> = (<span class="hljs-params">callback</span>) =&gt; {
+  <span class="hljs-title function_">fetchURL</span>(<span class="hljs-string">&quot;https://facebook.com&quot;</span>, <span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> {
+    response.<span class="hljs-title function_">loadBody</span>(<span class="hljs-function">(<span class="hljs-params">body</span>) =&gt;</span> {
+      db.<span class="hljs-title function_">save</span>(body, <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-title function_">callback</span>();
+      });
+    });
+  });
+};
+</code></pre>
+<p><code>Promise</code> is a value that represents async operation and lets you attach and chain handlers:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">loadAndStore</span> = (<span class="hljs-params"></span>) =&gt;
+  <span class="hljs-title function_">fetchURL</span>(<span class="hljs-string">&quot;https://facebook.com/&quot;</span>)
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> response.<span class="hljs-title function_">loadBody</span>())
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">body</span>) =&gt;</span> db.<span class="hljs-title function_">save</span>(body));
+</code></pre>
+<p>New <code>async</code>/<code>await</code> syntax makes it even easier to use promises:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> loadAndStore = <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetchURL</span>(<span class="hljs-string">&quot;https://facebook.com&quot;</span>);
+  <span class="hljs-keyword">const</span> body = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">loadBody</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> db.<span class="hljs-title function_">save</span>(body);
+};
+</code></pre>
+<h2>Future</h2>
+<p>Whenever you like it or not, JS is everywhere now: web, mobile, server, smart devices, etc. However, you don’t have to use JS directly – lots of languages (including newer versions of JS) consider JS as compile target.</p>
+
+  <footer>
+    <time datetime="2017-04-24T12:00:00+00:00">Apr 24, 2017</time>
+  </footer>
+  
+
+
+
+
+
+
+  <h4>Related posts:</h4>
+  
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/react-api-evolution">React API evolution</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/how-not-to-flux-set-actions">How not to use Flux: SET actions</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/e2e-tests">Improving end to end tests reliability</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/react-conf-2018">React Conf 2018 Recap</a>
+      </p>
+      
+      
+        
+
+
+
+  <div class="about">
+  <div class="about_inner">
+    <p>Hi! My name is Alex. I’m a software engineer at Facebook, where I work on React&nbsp;Native, Oculus and Messenger. I love thinking about development experience.</p>
+    <p>I write about programming, software design and side projects <a style="margin-left: 5px" class="btn-subscribe" href="/subscribe/" target="_blank"><svg viewBox="0 0 800 800"><path d="M493 652H392c0-134-111-244-244-244V307c189 0 345 156 345 345zm71 0c0-228-188-416-416-416V132c285 0 520 235 520 520z"/><circle cx="219" cy="581" r="71"/></svg> Subscribe</a></p>
+  </div>
+</div>
+
+</article>
+
+    <script>
+      window.GoogleAnalyticsObject = 'ga';
+      window.ga = window.ga || function() {
+        (window.ga.q = window.ga.q || []).push(arguments);
+      };
+      window.ga.l = Date.now();
+
+      ga('create', 'UA-96545608-1', 'auto');
+      ga(function(tracker) {
+        tracker.set('sendHitTask', function(model) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'https://curiosity-seven.vercel.app/api/ev?' + model.get('hitPayload'), true);
+          xhr.send();
+        });
+      });
+      ga('send', 'pageview');
+    </script>
+    <script async defer src="https://curiosity-seven.vercel.app/api/leet" async></script>
+  </body>
+</html>

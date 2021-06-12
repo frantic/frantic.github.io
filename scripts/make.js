@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-// TODO: ]]> will break RSS
-
 const fs = require('fs');
 const path = require('path');
 const yaml = require('./lib/js-yaml.min');

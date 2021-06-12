@@ -94,6 +94,6 @@ Takeaways:
 1. Choose unique and helpful error messages
 2. Include more information about which piece of data was wrong
 3. But don't try to be too clever about the advice above, its will lead to even worse errors.
-4. Make sure your [Test Plan]({% post_url 2016-09-11-test-plan %}) includes code path that triggers errors.
+4. Make sure your [Test Plan](/test-plan) includes code path that triggers errors.
 
 Errors are tools. Use them.

@@ -33,15 +33,6 @@ const liquid = new Liquid({
   dynamicPartials: false,
 });
 
-liquid.registerTag('post_url', {
-    parse: function(tagToken, remainTokens) {
-        this.file = tagToken.args; // the name of the markdown file to link to
-    },
-    render: async function(ctx) {
-        return this.file; // TODO: Proper implementation
-    }
-});
-
 liquid.registerFilter('group_by_year', (posts) => { 
   const items = new Map();
   for (const post of posts) {

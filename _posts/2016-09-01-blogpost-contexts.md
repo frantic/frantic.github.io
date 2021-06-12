@@ -40,6 +40,6 @@ vs
 
 This approach gives the reader more context about your perspective and helps them make their own conclusions. It also lets them contribute much better in the comments. For example, in case #1 they may point you to a better tutorial and in case #2 will show you new `nvm` option you missed that will solve your problem.
 
-I try to follow this structure in my writings as well, e.g. [Copy With Syntax]({% post_url 2016-05-20-copy-with-syntax %}), [Terminal Notifications]({% post_url 2016-07-05-notify-on-completion %}).
+I try to follow this structure in my writings as well, e.g. [Copy With Syntax](/copy-with-syntax), [Terminal Notifications](/notify-on-completion).
 
 At some point in the future our blog posts will become irrelevant -- there will be better solutions. Having some context about the problem you were solving and other things you've tried will help future readers judge the relevance of your artwork.

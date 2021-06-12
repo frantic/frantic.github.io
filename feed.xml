@@ -5,7 +5,7 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2021-06-11T05:03:03.412Z</updated>
+  <updated>2021-06-12T00:44:08.719Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
@@ -19,6 +19,7 @@
       <link rel="alternate" href="https://frantic.im/react-api-evolution" />
       <summary>From React.createClass to hooks: why React is at odds with JavaScript</summary>
       <content type="html"><![CDATA[
+        
         
         
         <p>React is ~8 years old. I remember the day when I saw the first demo — I was amazed at how genius yet how simple it was! I still carry that excitement to this day.</p>
@@ -291,6 +292,7 @@
       <content type="html"><![CDATA[
         
         
+        
         <p>It all started around 2013: I was going through a course on <a href="https://www.coursera.org/learn/machine-learning">Machine Learning by Andrew Ng</a>.</p>
 <p>The practical part of the course depended on GNU Octave (open source math toolkit), but installing it on a Mac was a huge pain. I did manage to do it, but noticed that many people on forums complanied about the same thing.</p>
 <p>So I had a brilliant idea — wouldn’t it be great if Octave was available via SaaS model? With fancy features like built in code editor, command line and plots?</p>
@@ -330,6 +332,7 @@
       <link rel="alternate" href="https://frantic.im/back-to-rails" />
       <summary>Serverless is like a black hole. It promised exciting adventures, but the gravity sucked me in and I spend most of my efforts dealing with its complexity, instead of focusing on my product.</summary>
       <content type="html"><![CDATA[
+        
         
         
         <p>I have a small side project: <a href="https://hacker.gifts">digital gift cards for hackers</a>. It uses Shopify for all the store-related stuff: frontend, payments, refunds, reports, etc.</p>
@@ -401,6 +404,7 @@
       <content type="html"><![CDATA[
         
         
+        
         <p>— So, does anybody have any feedback? Or questions?</p>
 <p>Silence. 15 seconds feel like forever. I can’t tell by people’s expressions if they agree with what I have just presented. I know they must have things to say, why aren’t they speaking up?</p>
 <p>This was so much easier with in-person meetings. Remote sucks!</p>
@@ -449,6 +453,7 @@
       <link rel="alternate" href="https://frantic.im/no-strings" />
       <summary>As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.</summary>
       <content type="html"><![CDATA[
+        
         
         
         <p>As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.</p>
@@ -527,6 +532,7 @@ new SQL('SELECT * FROM posts' + filter);
       <link rel="alternate" href="https://frantic.im/how-not-to-flux-set-actions" />
       <summary>Actions that are named `SET_*` is anti-pattern. It usually means that the code that should be in the reducer lives inside React component instead. This makes apps harder to reason about, debug and test.</summary>
       <content type="html"><![CDATA[
+        
         
         
         <p><em>TL;DR: Instead of thinking about your actions as something that changes application state, consider them events instead.</em></p>
@@ -621,6 +627,7 @@ New State: {value: 42}
       <link rel="alternate" href="https://frantic.im/onityper" />
       <summary>What if you could use your favorite keyboard away from your computer? In this side project I'm building an old-fashioned typewriter from modern IoT parts.</summary>
       <content type="html"><![CDATA[
+        
         
         
         <p>What if you could use your favorite keyboard away from your computer?</p>
@@ -726,6 +733,7 @@ screen -S <span class="hljs-variable">$SESSION</span> -X stuff <span class="hljs
       <content type="html"><![CDATA[
         
         
+        
         <p>Are you trying to establish a good end-to-end testing infrastructure at your company? This is how Facebook does it.</p>
 <h2>The problem</h2>
 <p>End-to-end (E2E) tests verify that the product works on the high level. For example, if you have an e-commerce website, E2E test could simulate an important user behavior: open the website in a browser, search for a product, add it to the cart and performing checkout.</p>
@@ -806,6 +814,7 @@ findElement('#logout').click();
       <content type="html"><![CDATA[
         
         
+        
         <p>Likely you landed on this article because you are excited about React Native. Awesome! If you have a team of web engineers and a brand new app, it’s easy to make a case for starting with React Native.</p>
 <p>However, most companies already have apps in the stores. They used native stack to build their apps: Xcode or Android Studio. React Native can add value for these companies too, but making a hybrid app comes with some challenges.</p>
 <p>During the last 4 years I helped integrate React Native into Facebook and Oculus apps. Here are a few lessons I learned.</p>
@@ -868,6 +877,7 @@ findElement('#logout').click();
       <link rel="alternate" href="https://frantic.im/react-conf-2018" />
       <summary>My favorite announcements from React Conf 2018</summary>
       <content type="html"><![CDATA[
+        
         
         
         <p>This was more exciting than a couple of previous WWDC, combined! The big announcements: Hooks, Suspense, Concurrent Mode and React Native’s new architecture.</p>

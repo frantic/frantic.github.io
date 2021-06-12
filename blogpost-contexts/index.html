@@ -184,7 +184,34 @@ footer > a:hover { color: #000; }
     
     <h1 class="title">Provide Context When Writing Blog Posts</h1>
   </header>
-  
+  <p>I enjoy reading technical blog posts, even on the subject that is not directly related to my field of work. However I’ve noticed that in most cases one particular thing is always missing.</p>
+<p>When writing a blog post you have something that your readers don’t – it’s the context, the “why” and the “how” you got to the subject.</p>
+<p>When looking for the intro many people start with some generic definitions of the subject copied from the Wikipedia. “Neural network is a computer system …”</p>
+<p>But I believe it’s the wrong thing to start your post with. By not having the context you have the reader will miss a very important piece of information. What is the problem you are solving? How did you come to the solution described?</p>
+<p>I think blog posts without much context can lead to lots of trouble. One particularly nasty type of trouble in our technical community is hype. Say a few people write posts about deploying NodeJS with Docker and how awesome it is. Thousands of people read it and now consider it the canonical way to do it. The complexity of our systems grows and after a couple of months we see tons of fatigue posts. All because they’ve read about a beautifully presented solution to the problem they don’t have!</p>
+<p>The missing context makes it extremely difficult to judge if the content is actually relevant to our problem at hand.</p>
+<p>To fix this problem try setting the stage with some context. Here’s 1-2-3 plan that works for me:</p>
+<ol>
+<li>What problem are you trying to solve</li>
+<li>Other solutions you’ve considered and why they didn’t work</li>
+<li>Your solution</li>
+</ol>
+<p>Example:</p>
+<ul>
+<li>Problem: I want to learn how to use containers</li>
+<li>Other solutions: Went through Docker tutorial on their website, but found few gotchas that I want to share</li>
+<li>My solution: …here goes your blog post about Docker</li>
+</ul>
+<p>vs</p>
+<ul>
+<li>Problem: I want to deploy several apps that use different NodeJS versions to a single server</li>
+<li>Other solutions: Tried nvm with some shell scripts, but had to deal with conflicting <code>libssl</code> dependencies</li>
+<li>My solution: …here goes your blog post about Docker</li>
+</ul>
+<p>This approach gives the reader more context about your perspective and helps them make their own conclusions. It also lets them contribute much better in the comments. For example, in case #1 they may point you to a better tutorial and in case #2 will show you new <code>nvm</code> option you missed that will solve your problem.</p>
+<p>I try to follow this structure in my writings as well, e.g. <a href="/copy-with-syntax">Copy With Syntax</a>, <a href="/notify-on-completion">Terminal Notifications</a>.</p>
+<p>At some point in the future our blog posts will become irrelevant – there will be better solutions. Having some context about the problem you were solving and other things you’ve tried will help future readers judge the relevance of your artwork.</p>
+
   <footer>
     <time datetime="2016-09-01T12:00:00+00:00">Sep 1, 2016</time>
   </footer>

@@ -11,3 +11,16 @@ highlighter: rouge
 exclude:
   - "*.sketch"
   - "vendor"
+data:
+  menu:
+    - name: Blog
+      link: /blog/
+    - name: Talks
+      link: /talks/
+    - name: Projects
+      link: /projects/
+    - name: About
+      link: /about/
+    - name: Learn React
+      style: "color: red; font-weight: bold;"
+      link: /react/

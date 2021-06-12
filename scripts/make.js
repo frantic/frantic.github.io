@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// TODO: ]]> will break RSS
+
 const fs = require('fs');
 const path = require('path');
 const yaml = require('./lib/js-yaml.min');
@@ -8,17 +10,16 @@ const MarkdownIt = require('./lib/markdown-it.min');
 const {Liquid} = require('./lib/liquid.browser.umd');
 
 const md = new MarkdownIt({
-   html: true,
-   typographer: true,
-   xhtmlOut: true,
-   highlight: (code, language) => {
-    if (language && hljs.getLanguage(language)) {
-      try {
-        return hljs.highlight(code, {language}).value;
-      } catch (__) {}
-    }
-
-    return '';
+  html: true,
+  typographer: true,
+  xhtmlOut: true,
+  highlight: (code, language) => {
+   if (language && hljs.getLanguage(language)) {
+     try {
+       return hljs.highlight(code, {language}).value;
+     } catch (__) {}
+   }
+   return '';
   },
 });
 
@@ -101,7 +102,6 @@ function render(fileName, data = {}) {
 
 const site = yaml.load(fs.readFileSync('_config.yml', 'utf8'));
 site.time = new Date().toISOString();
-site.data = {menu: yaml.load(fs.readFileSync('_data/menu.yml', 'utf8'))};
 
 site.posts = fs.readdirSync('_posts')
   .map(file => {

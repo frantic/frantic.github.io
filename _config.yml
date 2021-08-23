@@ -21,6 +21,3 @@ data:
       link: /projects/
     - name: About
       link: /about/
-    - name: Learn React
-      style: "color: red; font-weight: bold;"
-      link: /react/

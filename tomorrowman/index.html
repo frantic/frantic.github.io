@@ -109,7 +109,8 @@ sub { top: .5ex; }
 .about_photo { float: left; width: 100px; height: 160px; margin-left: -150px; margin-top: -10px; background: url("/photo.png"); background-size: 200px; }
 .about_photo:hover { background-position: 100%; }
 .about_inner { font-size: 16px; line-height: 24px; border: 2px solid #00000030; border-radius: 4px; padding: 10px 20px; margin: -12px -22px; }
-.about_inner > p { margin: 0 0 8px; }
+.about_inner > p { margin: 0; }
+.about_inner > p:not(:last-child) { margin-bottom: 8px; }
 .btn-subscribe { line-height: 20px; text-decoration: none; background: #00000015; border: none; font-size: 12px; padding: 0px 7px; display: inline-block; border-radius: 4px; position: relative; top: -1px; }
 .btn-subscribe:hover { background: #00000030; }
 .btn-subscribe > svg { width: 21px; height: 21px; vertical-align: bottom; margin: 0 -2px 0 -5px; }
@@ -593,7 +594,7 @@ footer > a:hover { color: #000; }
 
   <div class="about">
   <div class="about_inner">
-    <p>Hi! My name is Alex. I’m a software engineer at Facebook, where I work on React&nbsp;Native, Oculus and Messenger. I love thinking about development experience.</p>
+    <p>Hello! This text lives here to convince you to subscribe. If you are reading this, consider clicking that subscribe button for more details.</p>
     <p>I write about programming, software design and side projects <a style="margin-left: 5px" class="btn-subscribe" href="/subscribe/" target="_blank"><svg viewBox="0 0 800 800"><path d="M493 652H392c0-134-111-244-244-244V307c189 0 345 156 345 345zm71 0c0-228-188-416-416-416V132c285 0 520 235 520 520z"/><circle cx="219" cy="581" r="71"/></svg> Subscribe</a></p>
   </div>
 </div>

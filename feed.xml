@@ -5,7 +5,7 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2022-01-21T23:36:13.304Z</updated>
+  <updated>2022-01-22T00:12:50.391Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
@@ -17,7 +17,7 @@
       <updated>2022-01-21T12:00:00+00:00</updated>
 
       <link rel="alternate" href="https://frantic.im/leaving-facebook" />
-      <summary>I left Facebook in 2021 to join a small startup called Replit. Leaving wasn't easy, and during the process I've talked to half a dozen friends who were in the similar situation.</summary>
+      <summary>After 8.5 years at Facebook I joined a small startup called Replit. Leaving wasn't easy, and during the process I've talked to half a dozen friends who were in the similar situation.</summary>
       <content type="html"><![CDATA[
         
         
@@ -105,7 +105,7 @@
 <p>After joining Replit 9 months ago, I’ve shipped <a href="https://blog.replit.com/multiplayer-debugging">debugger</a>, <a href="https://blog.replit.com/rui-eng">the new design system</a>, <a href="https://blog.replit.com/solidity">web3 support</a>. The team is top notch, and the vibes remind me my early days at Facebook so much.</p>
 <p>A common question I get is about work/life balance. And I view it a little different too now. At Facebook I could get by barely working a few hours a day. But the job was so unsatisfying that it spilled the frustration in the “life” part. So I re-frame the question: how’s work affecting your life? For me leaving Facebook was definitely a huge improvement.</p>
 <h3>What’s next?</h3>
-<p>I’m now working on making mobile experience for Replit users much nicer. So many people outside of US are learning to code on their phones, and this space gets no attention from the professional programmers. I have a million ideas that have been brewing in my head for the last 5 years and I can’t wait to put them to use.</p>
+<p>I’m now working on making <a href="https://blog.replit.com/mobile-v2">mobile</a> experience for Replit users much nicer. So many people outside of US are learning to code on their phones, and this space gets no attention from the professional programmers. I have a million ideas that have been brewing in my head for the last 5 years and I can’t wait to put them to use.</p>
 <h3>One more thing…</h3>
 <p>Re-reading this post might seem like I know what I’m doing. I don’t. It’s easy to connect the dots looking backward and assemble a story. But living through that story is a different experience.</p>
 <p>If any part of this story was interesting to you, please feel free to reach out. I have my email address published on this website and <a href="https://twitter.com/alex_frantic">Twitter</a> DMs are good, too.</p>

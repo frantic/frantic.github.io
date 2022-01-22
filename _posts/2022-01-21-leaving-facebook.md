@@ -2,7 +2,7 @@
 layout: post
 title: On Leaving Facebook
 image: /assets/og-image.jpg
-excerpt: "I left Facebook in 2021 to join a small startup called Replit. Leaving wasn't easy, and during the process I've talked to half a dozen friends who were in the similar situation."
+excerpt: "After 8.5 years at Facebook I joined a small startup called Replit. Leaving wasn't easy, and during the process I've talked to half a dozen friends who were in the similar situation."
 ---
 
 I left Facebook (Meta) in 2021 to join a small startup called Replit. Leaving wasn't easy, and during the process I've talked to half a dozen friends who were in the similar situation. I hope this post would be useful to senior engineers who are looking to leave.
@@ -166,7 +166,7 @@ A common question I get is about work/life balance. And I view it a little diffe
 
 ### What's next?
 
-I'm now working on making mobile experience for Replit users much nicer. So many people outside of US are learning to code on their phones, and this space gets no attention from the professional programmers. I have a million ideas that have been brewing in my head for the last 5 years and I can't wait to put them to use.
+I'm now working on making [mobile](https://blog.replit.com/mobile-v2) experience for Replit users much nicer. So many people outside of US are learning to code on their phones, and this space gets no attention from the professional programmers. I have a million ideas that have been brewing in my head for the last 5 years and I can't wait to put them to use.
 
 
 ### One more thing…

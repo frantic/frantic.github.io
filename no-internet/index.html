@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=640" />
+
+    <title>Debugging home internet connection / frantic.im</title>
+    <meta name="author" content="Alex Kotliarskyi">
+    <meta name="description" content="Overengineered way of measuring your internet connectivity.">
+
+    <link rel="canonical" href="https://frantic.im/no-internet">
+    <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
+
+    <meta property="og:title" content="Debugging home internet connection">
+    <meta property="og:image" content="https://frantic.im/assets/no-internet/Dashboard.png">
+    <meta name="og:description" content="Overengineered way of measuring your internet connectivity.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@alex_frantic">
+    <meta name="twitter:creator" content="@alex_frantic">
+    <meta name="twitter:title" content="Debugging home internet connection">
+    <meta name="twitter:description" content="Overengineered way of measuring your internet connectivity.">
+    <meta name="twitter:image" content="https://frantic.im/assets/no-internet/Dashboard.png">
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <style type="text/css" media="screen">
+      * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face { font-family: 'body';                     src: url('/fonts/IBMPlexSans-Text.woff') format('woff'); }
+@font-face { font-family: 'body'; font-style: italic; src: url('/fonts/IBMPlexSans-TextItalic.woff') format('woff'); }
+@font-face { font-family: 'body'; font-weight: 800;   src: url('/fonts/IBMPlexSans-Bold.woff') format('woff'); }
+
+@font-face { font-family: 'mono';                     src: url('/fonts/IBMPlexMono-Text-Latin1.woff') format('woff'); }
+
+body { font: 18px/28px body, sans-serif; }
+pre, code { font-family: mono, monospace; }
+
+body {
+  background-color: #FFF;
+  color: #000;
+  -webkit-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -moz-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  margin: 50px auto;
+}
+.page { width: 600px; margin: 0 auto; padding: 0 0 0 2px; }
+.page_wide { width: 810px; }
+
+.menu { width: 544px; margin: 0 auto 0; padding: 0 0 50px 0; vertical-align: top; }
+.menu > li { list-style: none; display: inline-block; margin: 0 1.5em 0 0; vertical-align: top; }
+.menu__item, a.menu__item { color: #00000050; border-color: transparent; display: inline-block; }
+.menu__item_selected,
+a.menu__item_selected,
+a.menu__item:hover { color: #000; border-bottom: 2px solid #000; }
+.menu__item_inside, a.menu__item_inside { border-bottom: 2px solid #00000030; }
+
+article { width: 544px; margin: 15px auto; }
+
+a { color: inherit; text-decoration: none; border-bottom: 2px solid #00000030; }
+a:hover { border-color: currentColor; }
+p, blockquote { margin: 15px 0; }
+h1 + p + blockquote { margin-bottom: 30px; margin-right: 1em; }
+blockquote { padding-left: 1em; color: #00000090; }
+blockquote::before {content: "> "; float: left; margin: 0 0 0 -1em; }
+
+.quote-author { text-align: right; font-size: 15px; }
+strong { font-weight: 600; }
+h1, h2 { margin: 2.5em 0 0.5em; }
+h1 { font-size: 1.7em; }
+h2 { font-size: 1.4em; }
+.title { font-size: 2.5em; line-height: 50px; margin: 1.5em 0 0.75em 0; }
+
+p > img, .fig, figure { margin: 2em 0; }
+img { max-width: 100%; }
+
+.fig, figure { text-align: center; font-size: 12px; line-height: 20px; font-style: italic; width: 600px; margin-left: -28px; margin-right: -28px; }
+.fig img, figure > img, figure > video, figure > a > img { margin: 0 auto 1em; display: block; border-radius: 3px; }
+figure > video { max-width: 100%; }
+.label { text-align: center; font-size: 12px; font-style: italic; margin: -1em 0 1em 0; }
+
+code { font-style: normal; background: #00000010; padding: 2px 6px; border-radius: 4px; font-size: 17px; white-space: nowrap; }
+pre { font-size: 16px;
+      background: #00000010;
+      padding: 16px 30px 14px;
+      margin: 1em -30px;
+      border-radius: 8px;
+      white-space: pre;
+      word-wrap: break-word;
+      font-style: normal;
+      overflow-x: auto; }
+pre > code { background: none; padding: 0; font-size: inherit; white-space: unset; }
+
+ul { padding: 0 0 0 1em; list-style-type: square; }
+ul > li, ol > li { margin: 0.5em 0; }
+
+sup, sub, .note-ref, .note-number, .footnote { vertical-align: baseline; position: relative; font-size: .7em; line-height: 1; }
+sup, .note-ref, .note-number, .footnote { bottom: 1.4ex; }
+sub { top: .5ex; }
+
+.about { margin: 60px 0;}
+.about_photo { float: left; width: 100px; height: 160px; margin-left: -150px; margin-top: -10px; background: url("/photo.png"); background-size: 200px; }
+.about_photo:hover { background-position: 100%; }
+.about_inner { font-size: 16px; line-height: 24px; border: 2px solid #00000030; border-radius: 4px; padding: 10px 20px; margin: -12px -22px; }
+.about_inner > p { margin: 0; }
+.about_inner > p:not(:last-child) { margin-bottom: 8px; }
+.btn-subscribe { line-height: 20px; text-decoration: none; background: #00000015; border: none; font-size: 12px; padding: 0px 7px; display: inline-block; border-radius: 4px; position: relative; top: -1px; }
+.btn-subscribe:hover { background: #00000030; }
+.btn-subscribe > svg { width: 21px; height: 21px; vertical-align: bottom; margin: 0 -2px 0 -5px; }
+
+.footnote { margin: 0 5px;  }
+.footnotes-br { width: 100px; height: 2px; background: #000000; margin-top: 5em; }
+.footnotes, .footnotes_alt { padding-left: 1em;  }
+.footnotes_alt > li > .dagger { margin-left: -13px; }
+.footnotes_alt { list-style: none; } 
+
+.notes { font-size: 0.8em; }
+.note-number { margin-left: -1em; }
+
+.date { color: #00000090; font-size: 14px; margin-left: 4px; }
+
+footer { color: #00000090; }
+footer { font-size: 16px; margin-bottom: 5em; }
+footer > .separator { margin: 0 4px; }
+footer > a { margin-right: 5px; }
+footer > a:hover { color: #000; }
+
+/* syntax */
+.highlight .kd, .highlight .k {font-weight: bold; }
+.highlight .mi { color: blue; }
+.highlight .cm { color: grey; }
+
+.hljs-built_in, .hljs-keyword {font-weight: bold; }
+.hljs-string, hljs-number { color: blue; }
+.hljs-comment { color: grey; }
+      
+    </style>
+  </head>
+
+  <body>
+    <ul class="menu">
+  
+  <li>
+    <a class="menu__item " style="" href="/blog/">
+      Blog
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/talks/">
+      Talks
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/projects/">
+      Projects
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/about/">
+      About
+    </a>
+  </li>
+  
+</ul>
+
+
+<article>
+  <header>
+    
+    <h1 class="title">Debugging home internet connection</h1>
+  </header>
+  <p>Having spotty internet connection is worse than having no internet at all.</p>
+<p>In the apartment we are living now the internet is great 95% of the time. The remaining 5% were annoying enough to get serious about fixing the problem.</p>
+<p>I should note that I’m a noob when it comes to networks. In retrospect I should have figured it out sooner. But it was a fun yak shaving expedition I want to share with you.</p>
+<h2>Step 1: Understand the problem</h2>
+<p>The symptom was the same: at random times the internet connection would just disappear. WiFi signal was strong, but no traffic is getting through.</p>
+<p>We called ISP but got nothing useful: they said metrics on their end looked good, no disruptions in service.</p>
+<p>I needed a way to prove that something was wrong.</p>
+<p>I built a script that every 5 minutes downloaded a 25MB file and recorded what the download speed was. It also logged errors. Finally I could put the Raspberry Pi I had for a good use!</p>
+<pre><code class="language-bash"><span class="hljs-meta">#!/bin/bash</span>
+
+url=<span class="hljs-string">&quot;https://speedtest....:8080/download?nocache=...&quot;</span>
+speed=$(curl -Lo /dev/null -skw <span class="hljs-string">&quot;%{speed_download}&quot;</span> <span class="hljs-variable">$url</span>)
+
+<span class="hljs-keyword">if</span> [ $? -eq 0 ]
+<span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Speed: <span class="hljs-variable">$speed</span>&quot;</span> &gt;&gt; /var/<span class="hljs-built_in">log</span>/dload.txt
+<span class="hljs-keyword">else</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Error&quot;</span> &gt;&gt; /var/<span class="hljs-built_in">log</span>/dload.txt
+<span class="hljs-keyword">fi</span>
+</code></pre>
+<p>I’ve added the script to crontab:</p>
+<pre><code class="language-bash">$ crontab -e
+
+*/5 * * * * /home/pi/inet/dload.sh
+</code></pre>
+<p>Unfortunately, first half hour of running this didn’t reveal any problems (except underwhelming connection speed). I’ve decided to up my game a little and use production grade tools.</p>
+<h2>Installing and configuring Grafana</h2>
+<p>I always wanted to learn more about <a href="https://grafana.com/">Grafana</a>, and this sounded like a perfect opportunity. I thought plotting the results of the download script would help me investigate the problem.</p>
+<p>I’ll skip the part where I tried different backends for storing the data. I didn’t care much about any particular solution, just needed something basic to store enough data to plot a simple bar chart. However, every tool tries to sell itself as enterprise level, high scale, etc. and comes with five million services that make up an advanced distributed architecture.</p>
+<p>In the end I settled with influxdb (1.x branch because 2.x didn’t have binaries for armv7l)</p>
+<pre><code class="language-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;deb https://packages.grafana.com/oss/deb stable main&quot;</span> | sudo tee -a /etc/apt/sources.list.d/grafana.list
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;deb https://repos.influxdata.com/debian <span class="hljs-subst">$(lsb_release -cs)</span> stable&quot;</span> | sudo tee /etc/apt/sources.list.d/influxdb.list
+$ wget -qO - https://packages.grafana.com/gpg.key | sudo apt-key add -
+$ wget -qO - https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+$ sudo apt update
+$ sudo apt install grafana influxdb
+$ sudo systemctl daemon-reload
+$ sudo systemctl unmask influxdb.service
+$ sudo systemctl <span class="hljs-built_in">enable</span> grafana-server.service
+$ sudo systemctl start grafana-server
+$ sudo systemctl start influxdb
+</code></pre>
+<p>I confirmed Grafana worked on 192.168.1.XXX:3000 and that it could connect to the local Influxdb instance.</p>
+<p>Logging data to Influxdb was pretty easy, it’s just a POST request to its built in HTTP server. When we log the data, Influx requires a table name, list of 0 or more key-value pairs (tags) and list of 1 or more values. We could also give it a timestamp, but skipping it just uses the event’s time of arrival.</p>
+<p><code>bashtable,tag1=foo,tag2=bar value=42</code></p>
+<p>With this, I had to change the download script to log proper events to influx:</p>
+<pre><code class="language-bash"><span class="hljs-keyword">if</span> [ $? -eq 0 ]
+<span class="hljs-keyword">then</span>
+  curl -XPOST <span class="hljs-string">&#x27;http://localhost:8086/write?db=inet&#x27;</span> --data-binary <span class="hljs-string">&quot;speed dl_bps=<span class="hljs-variable">${speed}</span>&quot;</span>
+<span class="hljs-keyword">else</span>
+  curl -XPOST <span class="hljs-string">&#x27;http://localhost:8086/write?db=inet&#x27;</span> --data-binary <span class="hljs-string">&quot;error value=1&quot;</span>
+<span class="hljs-keyword">fi</span>
+</code></pre>
+<p>Note that I used a different event name for errors, this is to make it easier to plot them on the graph (zero or negative values did make the graph look less pretty and messed with things like average/p90 speed calculations).</p>
+<p><img src="/assets/no-internet/Grafana-Query2.png" alt="" /></p>
+<p>This is the query in Grafana. Few things to note here:</p>
+<ul>
+<li>I used <code>math (* 8)</code> operation to get //bits per second//, since that’s how ISP refers to the value</li>
+<li>The errors are plotted as a different graph. From the download script you can see that error value can only be 1, I had to tell Grafana to use a different Y axis</li>
+</ul>
+<p><img src="/assets/no-internet/Different-Y-Axis.png" alt="" /></p>
+<p>After letting this script run for a while, here are the results:</p>
+<p><img src="/assets/no-internet/Bingo.png" alt="" /></p>
+<p>Clearly something is not right. I called ISP again and gave them more info, time frames, etc. They still played innocent.</p>
+<h2>Looking at the hardware</h2>
+<p>To my surprise, the WiFi I was testing this on was served by an additional router that’s closer to the living rooms. I traced found the “main” switch that this router was connected to and plugged in my Raspberry Pi directly via ethernet port. The results were almost perfect:</p>
+<p><img src="/assets/no-internet/Perfect.png" alt="" /></p>
+<p>D’oh! I should have started from this, and saved myself a lot of time.</p>
+<p>I upgraded the in-room router (802.11g → 802.11n) and reconfigured it to be <a href="https://openwrt.org/docs/guide-user/network/wifi/dumbap">a dumb access point</a>. My WiFi problem was fixed.</p>
+<p>Since I went this far, I figured I’d make this dashboard thing even better.</p>
+<h2>Making dashboard even better</h2>
+<p>The main router has a web-based UI. It’s not a very pretty one, but it’s definitely workable. It has all this useful info, like total bytes sent/received, info about clients, etc.</p>
+<p><img src="/assets/no-internet/Router-Web-UI.png" alt="" /></p>
+<p>Old school Web UI with HTTP basic auth</p>
+<p>We are all spoiled by REST and Graphql APIs these days, but the web of the past had its own charm. It was so simple.</p>
+<p>Here’s what’s going on when I click “Refresh” stats button:</p>
+<p><img src="/assets/no-internet/Router-Request.png" alt="" /></p>
+<p>Chrome DevTools has a feature that allows you to copy the request as curl command</p>
+<p>Glueing a few curls and greps together, I came up with this. It works, but after figuring out how to turn something into an array in Bash I wished I’d just went with Python.</p>
+<pre><code class="language-bash"><span class="hljs-meta">#!/bin/bash</span>
+
+ROW=$(curl -sS <span class="hljs-string">&#x27;http://192.168.1.1/userRpm/StatusRpm.htm&#x27;</span> -H <span class="hljs-string">&#x27;Authorization: Basic aHR0cHM6Ly9jdXR0Lmx5L3Z0aG1TaGE=&#x27;</span> -H <span class="hljs-string">&#x27;Accept: text/html&#x27;</span> | grep <span class="hljs-string">&#x27;var statistList = new Array&#x27;</span> -A 1 | tail -n 1)
+
+IFS=<span class="hljs-string">&#x27;, &#x27;</span> <span class="hljs-built_in">read</span> -r -a stats &lt;&lt;&lt; <span class="hljs-string">&quot;<span class="hljs-variable">$ROW</span>&quot;</span>
+curl -XPOST <span class="hljs-string">&#x27;http://localhost:8086/write?db=inet&#x27;</span> --data-binary <span class="hljs-string">&quot;router_stats bytes_received=<span class="hljs-variable">${stats[0]}</span>,bytes_sent=<span class="hljs-variable">${stats[1]}</span>,packets_received=<span class="hljs-variable">${stats[2]}</span>,packets_sent=<span class="hljs-variable">${stats[3]}</span>&quot;</span>
+</code></pre>
+<p>Note that the router doesn’t give me the speed, just the total bytes. Fortunately, Grafana can take a derivative, of that value, giving me approximate speed at a point in time:</p>
+<p><img src="/assets/no-internet/Screen-Shot-2020-03-16-at-8.31.02-AM.png" alt="" /></p>
+<p>I did the same for per device stats page, ping and a few other things.</p>
+<p>Currently, the end results looks like this:
+<img src="/assets/no-internet/Dashboard.png" alt="" /></p>
+
+  <footer>
+    <time datetime="2020-03-16T12:00:00+00:00">Mar 16, 2020</time>
+  </footer>
+  
+
+
+
+
+
+
+  <div class="about">
+  <div class="about_inner">
+    <p>Hello! This text lives here to convince you to subscribe. If you are reading this, consider clicking that subscribe button for more details.</p>
+    <p>I write about programming, software design and side projects <a style="margin-left: 5px" class="btn-subscribe" href="/subscribe/" target="_blank"><svg viewBox="0 0 800 800"><path d="M493 652H392c0-134-111-244-244-244V307c189 0 345 156 345 345zm71 0c0-228-188-416-416-416V132c285 0 520 235 520 520z"/><circle cx="219" cy="581" r="71"/></svg> Subscribe</a></p>
+  </div>
+</div>
+
+</article>
+
+    <script>
+      window.GoogleAnalyticsObject = 'ga';
+      window.ga = window.ga || function() {
+        (window.ga.q = window.ga.q || []).push(arguments);
+      };
+      window.ga.l = Date.now();
+
+      ga('create', 'UA-96545608-1', 'auto');
+      ga(function(tracker) {
+        tracker.set('sendHitTask', function(model) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'https://curiosity-seven.vercel.app/api/ev?' + model.get('hitPayload'), true);
+          xhr.send();
+        });
+      });
+      ga('send', 'pageview');
+    </script>
+    <script async defer src="https://curiosity-seven.vercel.app/api/leet" async></script>
+  </body>
+</html>

@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=640" />
 
-    <title>Test Plan / frantic.im</title>
+    <title>Reconsidering the way I explain programming / frantic.im</title>
     <meta name="author" content="Alex Kotliarskyi">
-    <meta name="description" content="On why test plan is useful when making changes to large codebases.">
+    <meta name="description" content="Successful communication is so much about understanding the context and the people on the receiving end">
 
-    <link rel="canonical" href="https://frantic.im/test-plan">
+    <link rel="canonical" href="https://frantic.im/explain-programming">
     <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
 
-    <meta property="og:title" content="Test Plan">
-    <meta property="og:image" content="https://frantic.im">
-    <meta name="og:description" content="On why test plan is useful when making changes to large codebases.">
+    <meta property="og:title" content="Reconsidering the way I explain programming">
+    <meta property="og:image" content="https://frantic.im/assets/explain-programming/recursion-2.png">
+    <meta name="og:description" content="Successful communication is so much about understanding the context and the people on the receiving end">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@alex_frantic">
     <meta name="twitter:creator" content="@alex_frantic">
-    <meta name="twitter:title" content="Test Plan">
-    <meta name="twitter:description" content="On why test plan is useful when making changes to large codebases.">
-    <meta name="twitter:image" content="https://frantic.im">
+    <meta name="twitter:title" content="Reconsidering the way I explain programming">
+    <meta name="twitter:description" content="Successful communication is so much about understanding the context and the people on the receiving end">
+    <meta name="twitter:image" content="https://frantic.im/assets/explain-programming/recursion-2.png">
 
     <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -177,418 +177,52 @@ footer > a:hover { color: #000; }
 <article>
   <header>
     
-    <h1 class="title">Test Plan</h1>
+    <h1 class="title">Reconsidering the way I explain programming</h1>
   </header>
-  <p>At Facebook we use Phabricator to review and discuss each change to the codebase. I believe it has a lot of advantages compared to Github’s pull request model. In this post I want to discuss a particular one – the mandatory “test plan” field.</p>
-<p>Initially I was very confused by it and used to spend either too much or too little time composing the test plan. With time I learned to appreciate it and found a couple of strategies that made it extremely useful.</p>
-<p><a href="https://www.phacility.com/phabricator/">Phabricator</a>’s Differential product operates in terms of revisions. Revision is a meaningful change to the codebase that introduces a feature or fixes a bug. See <a href="https://secure.phabricator.com/D16507">D16507</a> for example. Each revision has a bunch of information associated with it. Test plan is just another field on the revision where the author is supposed to write some text describing how the feature he wrote can be tested.</p>
-<p>Reasonable question to ask is why not simply use unit tests for that? Shouldn’t we all have 100% test coverage? Unfortunately we don’t live in the perfect world.</p>
-<p>First of all, writing test plan helps you notice edge cases and think about your feature from the external user’s perspective. It also helps the reviewer find possible flaws in the code before actually looking into the changed lines.</p>
-<p>When writing test plans I usually follow this guide:</p>
+  <p>“Do you know a recipe for a recursive salad?” - I asked. “It consists of tomatoes, olives and a recursive salad”.</p>
+<p>My joke falls flat. Michael’s eyes confused and waiting for the explanation. I regroup and try a different strategy - sketching:</p>
+<p><img src="/assets/explain-programming/recursion-1.png" alt="" /></p>
+<p><small>One of my failed attempts at explaining recursion</small></p>
+<p>—</p>
+<p>I’ve explained a lot of programming concepts to different people. From high school students who are just getting started, to experienced engineers who are quickly diving into a new programming language.</p>
+<p>I used to take a lot of pride in the clever explanations I used to come up with. “Your UI is just a function of state”, “the closure hugs your variables in scope”, “Prolog function arguments can be in or out”. I also loved the visuals, formatting code and showing clever animations.</p>
+<p>But many times the people on the receiving end would not be as excited. I thought my delivery was poor.</p>
+<p>Now after so many years, it finally hit me.</p>
+<p>Programming is complex and abstract. Like advanced math, it’s removed from everyday things we deal with normally. What I was describing was only <em>my</em> mental model. Words, pictures and a lot of hand-waving is the way I internalized these abstract concepts.</p>
+<p>Unfortunately, understanding them is not enough to explain them.</p>
+<p>Andy Matuschak recently had a <a href="https://andymatuschak.org/books/">beautiful piece</a> on the status quo format of lectures:</p>
+<blockquote>
+<p>“the lecturer says words describing an idea; the class hears the words and maybe scribbles in a notebook; then the class understands the idea.” In learning sciences, we call this model “transmissionism.” It’s the notion that knowledge can be directly transmitted from teacher to student, like transcribing text from one page onto another. If only! The idea is so thoroughly discredited that “transmissionism” is only used pejoratively, in reference to naive historical teaching practices. Or as an ad-hominem in juicy academic spats.</p>
+</blockquote>
+<p>All my “perfect” models were beautiful only in my head. They did strike a chord with others, sometimes, but it was sheer luck - their intuition was in tune with mine for that particular problem.</p>
+<h1>So what do I do differently now?</h1>
+<h2>Listen very carefully</h2>
+<p>First, I try to listen very carefully to their question. If they are not talking much I’ll ask questions and keep listening. I’ll keep notes on how they explain themselves:</p>
 <ol>
-<li>Look at the feature you added and define possible scenarios. Example: “User has not configured the feature”, “User has configured the feature properly”.</li>
-<li>Think about how many variations each scenario allows. In the first example case there is just one way to not configure the new feature, likely it’s going to be the case for most people. Make sure it doesn’t break. In the second example the config can be good or bad. Good opportunity to double-check your error messages.</li>
-<li>Write down these scenarios and expected outcome, and then perform them. It’s easy to get cough in assumptions. “What could go wrong, it’s just a one-line change?”. I can’t overestimate how many bugs I’ve found in my code just by thinking about the test plan. I’ve found even more by executing though my own test plan.</li>
+<li>What names do they use to refer to abstract concepts? I’ll try to use the same.</li>
+<li>What kind of <a href="https://www.nlpworld.co.uk/nlp-glossary/m/modalities/">modality</a> do they operate in? Do they “see” things or “listen” to them?</li>
+<li>How deep do they need to go? Just fix something and move on, or trying to understand it on a more fundamental level?</li>
 </ol>
-<p>If somebody else or the future you wants to modify this code, they can look at the test plan in the commit message and perform the steps without having much context about the feature and how it works.</p>
-<p>It might seem that test plans are only useful in large codebases, but there are lots of benefits even in single-person projects. I noticed that the habit of writing test plans changes the way I think about atomic changes in the codebase. Commit is not “complete” unless I thought of the ways to test it.</p>
+<h2>Operate within their mental model</h2>
+<p>Second, I resist the urge to explain it exactly how I understand it. I try to accept their mental model of the world, even if I believe it’s not super accurate. As long as it’s not hurting their understanding, I’m willing to skip over non-essential bits.</p>
+<p>I also adopt their language and use the same names in my examples.</p>
+<h2>Let them explore</h2>
+<p>If the environment allows for it, I’ll encourage them to use the debugger, logs or experiment with the code. For this to work, sometimes I need to reduce the problem space to a much smaller one.</p>
+<p>They key is to let them poke the real world (in this case, the way the compiler or the programming language runtime works) and tune their own model. The goal is to help them develop their own intuition, instead of conveying my own.</p>
+<p>This can be generalized: successful communication is so much about understanding the context and the people on the receiving end.</p>
+<p>—</p>
+<p>Back to Michael. I showed him the IntelliJ debugger and asked to trace a very simple recursive program he wrote.</p>
+<p>“So it’s like the staircase!”, he exclaimed. “Every time we go in is like taking a step, and then we return all the way down”. Well, I guess <em>it is</em> kind of like staircase… I never thought about recursion this way myself. Now I think I can explain tail call optimization via an escalator analogy.</p>
+<p><img src="/assets/explain-programming/recursion-2.png" alt="" />
+<small>This is not the model I had in my mind, but I’ll definitely use it in the future</small></p>
 
   <footer>
-    <time datetime="2016-09-11T12:00:00+00:00">Sep 11, 2016</time>
+    <time datetime="2020-03-12T12:00:00+00:00">Mar 12, 2020</time>
   </footer>
   
 
 
 
-
-
-
-  <h4>Related posts:</h4>
-  
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-      
-        
-      
-    
-
-    
-      <p>
-        <a href="/e2e-tests">Improving end to end tests reliability</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-      
-        
-      
-    
-
-    
-      <p>
-        <a href="/react-conf-2018">React Conf 2018 Recap</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-      <p>
-        <a href="/react-and-javascript-in-5-min">React-flavored JavaScript in 5 minutes</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-
-    
-      <p>
-        <a href="/good-errors-leave-trace">Good errors leave trace</a>
-      </p>
-      
-      
-        
 
 
 

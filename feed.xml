@@ -5,7 +5,7 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2022-01-22T00:12:50.391Z</updated>
+  <updated>2022-02-20T04:49:55.294Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
@@ -497,6 +497,54 @@
     </entry>
   
     <entry>
+      <id>https://frantic.im/todo-for-robots</id>
+      <title>TODO apps are meant for robots</title>
+      <updated>2020-10-28T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/todo-for-robots" />
+      <summary>What if I'm a left-handed person in the world of right-handed tools?</summary>
+      <content type="html"><![CDATA[
+        
+        
+        
+        <p>In my lifetime I’ve tried a dozen todo apps. In the beginning they all seem different, novel and special. Slick UI, shortcuts, tags, subtasks, the list goes on and on.</p>
+<p>But all our stories were the same: I start using the new app, then after awhile I stop using it.</p>
+<p>Up until the last week I thought the problem was in myself (you probably think so too). After all, <a href="https://gettingthingsdone.com/">David Allen</a> seems to have figured this shit out. Also there are people leaving long 5 star reviews on every major todo list app, they discuss them on forums, recommend them to friends.</p>
+<p>But then I read <a href="https://notes.andymatuschak.org/Close_open_loops?stackedNotes=z5tiFxnNKMZCnc8G9R1N51L5hknyRGmyCQx18&amp;stackedNotes=z8aZybuJJopS5fL7TnPou2JcmCsBUJeqirbBh&amp;stackedNotes=z5vXaKVAPBNKAAi9RXNudduhyGadGXqtMVTEs">Andy Matuschak’s notes</a>, and it really resonated with me. What if I’m a left-handed person in the world of right-handed tools? All popular todo apps out there have the same problems:</p>
+<br>
+<ol>
+<li>
+<p>Willpower needed to make decisions is a limited resource. And most TODO apps are lazy and don’t consider the impact on your willpower. You want to postpone a task? Please enter the exact date to postpone this to. Which project to add this to? Tags? Subtasks? The amount of things one can customize is really large, but making all this decisions has a cost.</p>
+</li>
+<li>
+<p>Long lists are overwhelming. TODO apps are all about lists. And these lists tend to get large when the tasks inflow exceeds the tasks outflow (i.e. every modern knowledge worker’s queue). Looking at the ever-growing list of things that need to get done is not inspiring to say the least. As the lists get longer, there’s less and less chance that anything from it will get done, which also decreases the motivation to look into these lists. Removing stuff without getting it done is also painful, it requires a complex emotional and rational decision to be made (see the point about the willpower above).</p>
+</li>
+<li>
+<p>Sense of accomplishment is important but rare in the digital world. When you mark a task as done in your TODO app, it just hides it. That’s it, no reward, no sense of accomplishment (unless you make your own). I think that’s why some people like Trello or pen-and-paper TODO list: when you get something done, you can see a card moved or a text crossed out. An artifact that proves there was a task here, and now it’s done. Now you are one step closer to your goal.</p>
+</li>
+<li>
+<p>We need to trust our systems. GTD works only when you follow the rules. If you let your inbox grow unbound, the whole point about GTD gets lost and you also start losing trust in GTD. Another negative feedback loop. I’ve never seen a TODO app that lets you recover from this downward spiral.</p>
+</li>
+<li>
+<p>Tasks are not the same. Get milk, write an essay, plan a vacation, reconnect with a friend. These are things of different magnitude, different emotional connection, different context and time commitment. Some tasks aren’t even tasks, e.g. simply items to keep track of or be reminded of. But TODO apps treat them the same. They get the similar looking rows neatly organized in a unified interface.</p>
+</li>
+<li>
+<p>Sometimes humans need help. A little nudge here and there can make a huge difference. It’s also very personal: different things work for different types of people. I’ve made a list of strategies to help me get things done, and ended up with 13 items (things like “extract the next smallest step as a separate task” or “work on it for just 2 minutes”). Thirteen! Guess how many nudges all my TODO apps have? Zero (except the deadline push notification reminder which just adds anxiety).</p>
+</li>
+<li>
+<p>Context is important. We are tired in the evening and have less willpower. <a href="https://www.youtube.com/watch?v=GmFwRkl-TTc">Getting a small task done first thing in the morning can boost our confidence and energy levels</a>. Work tasks are better be hidden during the weekend. Sophisticated TODO apps have the flexibility to do this, but they require a lot of investment in configuration</p>
+</li>
+</ol>
+<p>I now see all TODO apps as a shallow copy-pasta of the same rigid, inhuman, anxiety-inducing template.</p>
+<p>But there’s hope!</p>
+<p>In fact the advanced solution technology lies in the hands of productivity enemies: social media apps and games. Instagram, TikTok and Candy Crush have figured all this out. They know how to make you do something with very little willpower. They know how to present information in a way that’s not overwhelming. They give you rewards for doing things. Hints, nudges, suggestions.</p>
+<p>I think there’s plenty of room for TODO innovations.</p>
+<p>As for me – I’m not registering a domain name for a new pet project. Not yet :)</p>
+
+      ]]></content>
+    </entry>
+  
+    <entry>
       <id>https://frantic.im/remote-meetings</id>
       <title>Optimize Your Meetings for Engagement</title>
       <updated>2020-09-24T12:00:00+00:00</updated>
@@ -627,346 +675,209 @@ new SQL('SELECT * FROM posts' + filter);
     </entry>
   
     <entry>
-      <id>https://frantic.im/how-not-to-flux-set-actions</id>
-      <title>How not to use Flux: SET actions</title>
-      <updated>2019-12-15T12:00:00+00:00</updated>
+      <id>https://frantic.im/project-todo</id>
+      <title>TODO file for personal projects</title>
+      <updated>2020-04-13T12:00:00+00:00</updated>
 
-      <link rel="alternate" href="https://frantic.im/how-not-to-flux-set-actions" />
-      <summary>Actions that are named `SET_*` is anti-pattern. It usually means that the code that should be in the reducer lives inside React component instead. This makes apps harder to reason about, debug and test.</summary>
+      <link rel="alternate" href="https://frantic.im/project-todo" />
+      <summary>In most of my personal projects I have a file called TODO. I use it like this…</summary>
       <content type="html"><![CDATA[
         
         
         
-        <p><em>TL;DR: Instead of thinking about your actions as something that changes application state, consider them events instead.</em></p>
-<p>In this article by Flux I mean one way data flow pattern implementations like Redux, useReducer or Elm Architecture</p>
-<p>Every time I see an action with a name that starts with <code>SET_*</code>, I know there’s a problem.</p>
-<p>Consider this example:</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params">props</span>) {
-  <span class="hljs-keyword">function</span> <span class="hljs-title function_">onClick</span>(<span class="hljs-params"></span>) {
-    props.<span class="hljs-title function_">dispatch</span>({
-      <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;SET_VALUE&quot;</span>,
-      <span class="hljs-attr">value</span>: props.<span class="hljs-property">value</span> + <span class="hljs-number">1</span>,
-    });
-  }
-  <span class="hljs-keyword">return</span> (
-    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Value: {props.value}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-  );
-}
+        <p>If you know me, you know that I’m not a very organized person. I hate rigid productivity systems. I’ve tried many things: Trello, Things, Github Issues, Pivotal Tracker, etc. But they all end up in the same state — detached from the real work I’m doing.</p>
+<p>Here’s what worked for me.</p>
+<p>In most of my personal projects I have a file called <strong>TODO</strong>. I use it like this.</p>
+<p>When I have an idea about a feature or a bug, I just open the TODO file (Cmd+P → TODO → Enter), go to the end (Cmd+↓) and start typing.</p>
+<p>If I’m away from my computer, I’ll use <a href="https://culturedcode.com/things/">Things</a> to capture the ideas and then move the to the TODO file.</p>
+<p>My TODO file captures a whole bunch of things related to the project. I don’t have to actually do anything about these things at the moment, just capture items in my backlog.</p>
+<p>Later on, when I have time to reflect on the progress, I plan a new milestone from the backlog.</p>
+<p>A milestone is just a section in the TODO file that looks like this</p>
+<pre><code>## v1.5 Polished in-game UI
 
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">reducer</span>(<span class="hljs-params">state, action</span>) {
-  <span class="hljs-keyword">if</span> (action.<span class="hljs-property">type</span> === <span class="hljs-string">&quot;SET_VALUE&quot;</span>) {
-    <span class="hljs-keyword">return</span> { <span class="hljs-attr">value</span>: action.<span class="hljs-property">value</span> };
-  }
-}
+The game screen looks tidy and clean, the player should
+be able to figure out what state the game is in and what
+should happen next. No new features!
 </code></pre>
-<h2>Problem #1: Business logic inside the component</h2>
-<p>In this example the bussness logic is incrementing the value, i.e. <code>value = value + 1</code>. If we use <code>SET_*</code> action, the logic ends up inside the component. It’s not great because the React component should not care about these details, its main purpose is rendering and dispatching actions.</p>
-<p>As the application and the team grows, it’s going to be very tempting to put more stuff into the component. E.g. if we wanted to have a max value for the counter, the most intuitive thing in this example would be to put it into the <code>onClick</code> handler.</p>
-<h2>Problem #2: Not leaveraging reducer</h2>
-<p>Reducer is a beautiful pattern that’s older than JavaScript itself. Given a state and an action reducer returns a new state. It’s easy to type check, easy to test, easy to reason about.</p>
-<p>When we put the business logic outside of reducer, we miss out on all these advantages. The <code>SET_*</code> actions essentially turn the predictable store into a global variable.</p>
-<h2>Problem #3: Hard to debug and test</h2>
-<p>Imagine our counter component isn’t behaving right: after pressing the <code>+</code> button the value is not what we expect. Let’s check Redux devtools:</p>
-<pre><code>Old State: {value: 3}
-Action:    {type: &quot;SET_VALUE&quot;, value: 42}
-New State: {value: 42}
+<p>A milestone has a title and a short description. The text describes the desired outcome, not how to get there. This that helps me narrow down my focus.</p>
+<p>I force myself to have only one milestone active at a time. All random items I want to do go to the Backlog section first.</p>
+<p>I add milestones in the reverse order, the newest one is always at the top. This way when I open the file I see the most important thing first. Also I can still use the append workflow to add items to my backlog (which is always at the end).</p>
+<p>Inside each milestone I have a bunch of todos, they look like this:</p>
+<pre><code>[ ] *•• Display user avatars
 </code></pre>
-<p>This is correct, but not helpful. How did we compute <code>42</code> as the new value to be set? 🤷‍♂️</p>
-<p>Writing tests for <code>SET_*</code> actions is also not great. The tests end up very dumb and the aren’t really testing anything useful:</p>
-<pre><code class="language-javascript"><span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;SET_VALUE action&quot;</span>, <span class="hljs-function">() =&gt;</span> {
-  store.<span class="hljs-title function_">dispatch</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;SET_VALUE&quot;</span>, <span class="hljs-attr">value</span>: <span class="hljs-number">3</span> });
-  <span class="hljs-title function_">expect</span>(store.<span class="hljs-title function_">getState</span>().<span class="hljs-property">value</span>).<span class="hljs-title function_">toEqual</span>(<span class="hljs-number">3</span>);
-});
-</code></pre>
-<p>To test the business logic that lives inside React component we’d have to spend a lot of effort setting up mock renderer, simulating click event, etc.</p>
-<h1>The Better Way</h1>
-<p>Let’s think about our actions as objects describing user’s intent. In the simple <code>Counter</code> component example from above, when the user clicks <code>+</code> the user wants the app to <em>increment</em> the counter.</p>
-<pre><code class="language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params">props</span>) {
-  <span class="hljs-keyword">function</span> <span class="hljs-title function_">onClick</span>(<span class="hljs-params"></span>) {
-    props.<span class="hljs-title function_">dispatch</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;INCREMENT&quot;</span> });
-  }
-  <span class="hljs-keyword">return</span> (
-    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Value: {props.value}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onClick}</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-  );
-}
-
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">reducer</span>(<span class="hljs-params">state, action</span>) {
-  <span class="hljs-keyword">if</span> (action.<span class="hljs-property">type</span> === <span class="hljs-string">&quot;INCREMENT&quot;</span>) {
-    <span class="hljs-keyword">return</span> { <span class="hljs-attr">value</span>: state.<span class="hljs-property">value</span> + <span class="hljs-number">1</span> };
-  }
-}
-</code></pre>
-<p>Note that the React component in this case doesn’t care how this event is handled, it just tells the system about what happened.</p>
-<p>The reducer tests in this case are more meaningful, capturing the essense of the business logic:</p>
-<pre><code class="language-javascript"><span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;INCREMENT action&quot;</span>, <span class="hljs-function">() =&gt;</span> {
-  <span class="hljs-keyword">const</span> store = <span class="hljs-title function_">createStore</span>({ <span class="hljs-attr">value</span>: <span class="hljs-number">2</span> });
-  store.<span class="hljs-title function_">dispatch</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;INCREMENT&quot;</span> });
-  <span class="hljs-title function_">expect</span>(store.<span class="hljs-title function_">getState</span>().<span class="hljs-property">value</span>).<span class="hljs-title function_">toEqual</span>(<span class="hljs-number">3</span>);
-});
-</code></pre>
-<h2>Actions are events</h2>
-<p>The secret here is in the mindset. Instead of thinking about your actions as something that changes application state, consider them events instead. These events could represent user intent (clicking a button, typing, etc.) or a notification from external system (timers, HTTP response, etc.)</p>
-<p>Examples:</p>
-<ul>
-<li><code>SET_LOGGED_IN</code> → <code>GOT_ACCESS_TOKEN</code></li>
-<li><code>SET_TODOS_LIST</code> → <code>LOADED_TODOS_FROM_SERVER</code></li>
-</ul>
+<p>The first pair of square brackets is a “checkbox”. I don’t remove items when they are done, instead I put “x” into the space between square brackets.</p>
+<p>Then goes the estimate of how much effort I think the task will take. The scale is logarithmic: one star for simple straightforward tasks, two for cross-file change or little refactoring, three for a task that will take me a couple of hours. If the task needs four stars, I should break it down.</p>
+<p>To make text of the todos align nicely, I prepend a corresponding number of dots or spaces.</p>
+<p>Here’s what it looks like in one of the projects I work on:</p>
+<p><img src="https://frantic.im/assets/project-todo/TODO_file.png" alt="" /></p>
+<h2>Why does this work for me?</h2>
+<ol>
+<li>There’s no context switch. TODO file is much faster to open than any external tool I’ve used, and all my editor shortcuts just work there the same way they work in my code.</li>
+<li>Gives me sense of progress. As I mentioned earlier, I don’t delete done items, they just get a nice X next to them</li>
+<li>The history is maintained with the project via the same source control. I can blame the file and see what I did when.</li>
+<li>When I’m about to commit something, the message is ready (I just copy-paste the TODO line)</li>
+<li>It’s better than inlined // TODO comments because I can organize my file the way I want. Also different editors have different plugins for this, and I don’t want to depend on a concrete IDE plugin for this.</li>
+</ol>
+<h2>When does it not work?</h2>
+<p>For one, sometimes I just want to explore and have fun. I don’t have a TODO item for that, and I let myself poke and learn new things in unstructured way.</p>
+<p>I’ve also noticed that the milestones don’t work for me when I keep adding new items to the milestone I’ve already started. I’m still trying to get better at this.</p>
 
       ]]></content>
     </entry>
   
     <entry>
-      <id>https://frantic.im/onityper</id>
-      <title>Digital Typewriter</title>
-      <updated>2019-06-09T12:00:00+00:00</updated>
+      <id>https://frantic.im/no-internet</id>
+      <title>Debugging home internet connection</title>
+      <updated>2020-03-16T12:00:00+00:00</updated>
 
-      <link rel="alternate" href="https://frantic.im/onityper" />
-      <summary>What if you could use your favorite keyboard away from your computer? In this side project I'm building an old-fashioned typewriter from modern IoT parts.</summary>
+      <link rel="alternate" href="https://frantic.im/no-internet" />
+      <summary>Overengineered way of measuring your internet connectivity.</summary>
       <content type="html"><![CDATA[
         
         
         
-        <p>What if you could use your favorite keyboard away from your computer?</p>
-<div class="fig">
-  <img src="https://frantic.im/assets/onityper/onityper.jpg">
-  <div class="label">
-    This is what it looks like for now. Check out GIF demo further down.
-  </div>
-</div>
-<p>A long time ago I learned about an interesting “text editor”. Its main feature was, uhh, the lack of text editing. That’s right, you can’t change anything you’ve typed.</p>
-<p>The idea behind it is very interesting. It’s about two modes of writing. One where you produce as much text as possible, without trying to organize or correct it in any way. The other one is where you edit and restructure the text until it’s consistent and easy to read.</p>
-<p>Doing the first part on modern computers is a challenge for me. I get distracted very easily. I’m also tempted to start editing right away, often times ending up in a loop rewriting a sentence over and over again.</p>
-<p>Old typewriters don’t have this problem: there’s no distractions and no way to edit the text.</p>
-<div class="fig">
-  <img src="https://frantic.im/assets/onityper/deleece-cook-1167525-unsplash.jpg">
-  <div class="label">
-    Doesn't support twitter, doesn't have the backspace key.
-  </div>
-</div>
-<h2>Implementation</h2>
-<p>On my last birthday I got a tiny device, <a href="https://amzn.to/2MAM80B">Onion Omega 2+</a>. It’s like Rapsberry Pi, runs Linux, but built on different architecture and has its own set of accessories. It came with 21x7 chars OLED display extension.</p>
-<div class="fig">
-  <img src="https://frantic.im/assets/onityper/omega.jpg">
-  <div class="label">
-    Onion Omega
-  </div>
-</div>
-<p>The idea was to connect my favorite keyboard (<a href="https://amzn.to/2IwvBpj">HHKBPro2 type-S</a>) via USB to the Omega2. Anything I type there should immediately show up on the built-in OLED display and sync to “the cloud”.</p>
+        <p>Having spotty internet connection is worse than having no internet at all.</p>
+<p>In the apartment we are living now the internet is great 95% of the time. The remaining 5% were annoying enough to get serious about fixing the problem.</p>
+<p>I should note that I’m a noob when it comes to networks. In retrospect I should have figured it out sooner. But it was a fun yak shaving expedition I want to share with you.</p>
+<h2>Step 1: Understand the problem</h2>
+<p>The symptom was the same: at random times the internet connection would just disappear. WiFi signal was strong, but no traffic is getting through.</p>
+<p>We called ISP but got nothing useful: they said metrics on their end looked good, no disruptions in service.</p>
+<p>I needed a way to prove that something was wrong.</p>
+<p>I built a script that every 5 minutes downloaded a 25MB file and recorded what the download speed was. It also logged errors. Finally I could put the Raspberry Pi I had for a good use!</p>
+<pre><code class="language-bash"><span class="hljs-meta">#!/bin/bash</span>
+
+url=<span class="hljs-string">&quot;https://speedtest....:8080/download?nocache=...&quot;</span>
+speed=$(curl -Lo /dev/null -skw <span class="hljs-string">&quot;%{speed_download}&quot;</span> <span class="hljs-variable">$url</span>)
+
+<span class="hljs-keyword">if</span> [ $? -eq 0 ]
+<span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Speed: <span class="hljs-variable">$speed</span>&quot;</span> &gt;&gt; /var/<span class="hljs-built_in">log</span>/dload.txt
+<span class="hljs-keyword">else</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Error&quot;</span> &gt;&gt; /var/<span class="hljs-built_in">log</span>/dload.txt
+<span class="hljs-keyword">fi</span>
+</code></pre>
+<p>I’ve added the script to crontab:</p>
+<pre><code class="language-bash">$ crontab -e
+
+*/5 * * * * /home/pi/inet/dload.sh
+</code></pre>
+<p>Unfortunately, first half hour of running this didn’t reveal any problems (except underwhelming connection speed). I’ve decided to up my game a little and use production grade tools.</p>
+<h2>Installing and configuring Grafana</h2>
+<p>I always wanted to learn more about <a href="https://grafana.com/">Grafana</a>, and this sounded like a perfect opportunity. I thought plotting the results of the download script would help me investigate the problem.</p>
+<p>I’ll skip the part where I tried different backends for storing the data. I didn’t care much about any particular solution, just needed something basic to store enough data to plot a simple bar chart. However, every tool tries to sell itself as enterprise level, high scale, etc. and comes with five million services that make up an advanced distributed architecture.</p>
+<p>In the end I settled with influxdb (1.x branch because 2.x didn’t have binaries for armv7l)</p>
+<pre><code class="language-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;deb https://packages.grafana.com/oss/deb stable main&quot;</span> | sudo tee -a /etc/apt/sources.list.d/grafana.list
+$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;deb https://repos.influxdata.com/debian <span class="hljs-subst">$(lsb_release -cs)</span> stable&quot;</span> | sudo tee /etc/apt/sources.list.d/influxdb.list
+$ wget -qO - https://packages.grafana.com/gpg.key | sudo apt-key add -
+$ wget -qO - https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+$ sudo apt update
+$ sudo apt install grafana influxdb
+$ sudo systemctl daemon-reload
+$ sudo systemctl unmask influxdb.service
+$ sudo systemctl <span class="hljs-built_in">enable</span> grafana-server.service
+$ sudo systemctl start grafana-server
+$ sudo systemctl start influxdb
+</code></pre>
+<p>I confirmed Grafana worked on 192.168.1.XXX:3000 and that it could connect to the local Influxdb instance.</p>
+<p>Logging data to Influxdb was pretty easy, it’s just a POST request to its built in HTTP server. When we log the data, Influx requires a table name, list of 0 or more key-value pairs (tags) and list of 1 or more values. We could also give it a timestamp, but skipping it just uses the event’s time of arrival.</p>
+<p><code>bashtable,tag1=foo,tag2=bar value=42</code></p>
+<p>With this, I had to change the download script to log proper events to influx:</p>
+<pre><code class="language-bash"><span class="hljs-keyword">if</span> [ $? -eq 0 ]
+<span class="hljs-keyword">then</span>
+  curl -XPOST <span class="hljs-string">&#x27;http://localhost:8086/write?db=inet&#x27;</span> --data-binary <span class="hljs-string">&quot;speed dl_bps=<span class="hljs-variable">${speed}</span>&quot;</span>
+<span class="hljs-keyword">else</span>
+  curl -XPOST <span class="hljs-string">&#x27;http://localhost:8086/write?db=inet&#x27;</span> --data-binary <span class="hljs-string">&quot;error value=1&quot;</span>
+<span class="hljs-keyword">fi</span>
+</code></pre>
+<p>Note that I used a different event name for errors, this is to make it easier to plot them on the graph (zero or negative values did make the graph look less pretty and messed with things like average/p90 speed calculations).</p>
+<p><img src="https://frantic.im/assets/no-internet/Grafana-Query2.png" alt="" /></p>
+<p>This is the query in Grafana. Few things to note here:</p>
+<ul>
+<li>I used <code>math (* 8)</code> operation to get //bits per second//, since that’s how ISP refers to the value</li>
+<li>The errors are plotted as a different graph. From the download script you can see that error value can only be 1, I had to tell Grafana to use a different Y axis</li>
+</ul>
+<p><img src="https://frantic.im/assets/no-internet/Different-Y-Axis.png" alt="" /></p>
+<p>After letting this script run for a while, here are the results:</p>
+<p><img src="https://frantic.im/assets/no-internet/Bingo.png" alt="" /></p>
+<p>Clearly something is not right. I called ISP again and gave them more info, time frames, etc. They still played innocent.</p>
+<h2>Looking at the hardware</h2>
+<p>To my surprise, the WiFi I was testing this on was served by an additional router that’s closer to the living rooms. I traced found the “main” switch that this router was connected to and plugged in my Raspberry Pi directly via ethernet port. The results were almost perfect:</p>
+<p><img src="https://frantic.im/assets/no-internet/Perfect.png" alt="" /></p>
+<p>D’oh! I should have started from this, and saved myself a lot of time.</p>
+<p>I upgraded the in-room router (802.11g → 802.11n) and reconfigured it to be <a href="https://openwrt.org/docs/guide-user/network/wifi/dumbap">a dumb access point</a>. My WiFi problem was fixed.</p>
+<p>Since I went this far, I figured I’d make this dashboard thing even better.</p>
+<h2>Making dashboard even better</h2>
+<p>The main router has a web-based UI. It’s not a very pretty one, but it’s definitely workable. It has all this useful info, like total bytes sent/received, info about clients, etc.</p>
+<p><img src="https://frantic.im/assets/no-internet/Router-Web-UI.png" alt="" /></p>
+<p>Old school Web UI with HTTP basic auth</p>
+<p>We are all spoiled by REST and Graphql APIs these days, but the web of the past had its own charm. It was so simple.</p>
+<p>Here’s what’s going on when I click “Refresh” stats button:</p>
+<p><img src="https://frantic.im/assets/no-internet/Router-Request.png" alt="" /></p>
+<p>Chrome DevTools has a feature that allows you to copy the request as curl command</p>
+<p>Glueing a few curls and greps together, I came up with this. It works, but after figuring out how to turn something into an array in Bash I wished I’d just went with Python.</p>
+<pre><code class="language-bash"><span class="hljs-meta">#!/bin/bash</span>
+
+ROW=$(curl -sS <span class="hljs-string">&#x27;http://192.168.1.1/userRpm/StatusRpm.htm&#x27;</span> -H <span class="hljs-string">&#x27;Authorization: Basic aHR0cHM6Ly9jdXR0Lmx5L3Z0aG1TaGE=&#x27;</span> -H <span class="hljs-string">&#x27;Accept: text/html&#x27;</span> | grep <span class="hljs-string">&#x27;var statistList = new Array&#x27;</span> -A 1 | tail -n 1)
+
+IFS=<span class="hljs-string">&#x27;, &#x27;</span> <span class="hljs-built_in">read</span> -r -a stats &lt;&lt;&lt; <span class="hljs-string">&quot;<span class="hljs-variable">$ROW</span>&quot;</span>
+curl -XPOST <span class="hljs-string">&#x27;http://localhost:8086/write?db=inet&#x27;</span> --data-binary <span class="hljs-string">&quot;router_stats bytes_received=<span class="hljs-variable">${stats[0]}</span>,bytes_sent=<span class="hljs-variable">${stats[1]}</span>,packets_received=<span class="hljs-variable">${stats[2]}</span>,packets_sent=<span class="hljs-variable">${stats[3]}</span>&quot;</span>
+</code></pre>
+<p>Note that the router doesn’t give me the speed, just the total bytes. Fortunately, Grafana can take a derivative, of that value, giving me approximate speed at a point in time:</p>
+<p><img src="https://frantic.im/assets/no-internet/Screen-Shot-2020-03-16-at-8.31.02-AM.png" alt="" /></p>
+<p>I did the same for per device stats page, ping and a few other things.</p>
+<p>Currently, the end results looks like this:
+<img src="https://frantic.im/assets/no-internet/Dashboard.png" alt="" /></p>
+
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://frantic.im/explain-programming</id>
+      <title>Reconsidering the way I explain programming</title>
+      <updated>2020-03-12T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/explain-programming" />
+      <summary>Successful communication is so much about understanding the context and the people on the receiving end</summary>
+      <content type="html"><![CDATA[
+        
+        
+        
+        <p>“Do you know a recipe for a recursive salad?” - I asked. “It consists of tomatoes, olives and a recursive salad”.</p>
+<p>My joke falls flat. Michael’s eyes confused and waiting for the explanation. I regroup and try a different strategy - sketching:</p>
+<p><img src="https://frantic.im/assets/explain-programming/recursion-1.png" alt="" /></p>
+<p><small>One of my failed attempts at explaining recursion</small></p>
+<p>—</p>
+<p>I’ve explained a lot of programming concepts to different people. From high school students who are just getting started, to experienced engineers who are quickly diving into a new programming language.</p>
+<p>I used to take a lot of pride in the clever explanations I used to come up with. “Your UI is just a function of state”, “the closure hugs your variables in scope”, “Prolog function arguments can be in or out”. I also loved the visuals, formatting code and showing clever animations.</p>
+<p>But many times the people on the receiving end would not be as excited. I thought my delivery was poor.</p>
+<p>Now after so many years, it finally hit me.</p>
+<p>Programming is complex and abstract. Like advanced math, it’s removed from everyday things we deal with normally. What I was describing was only <em>my</em> mental model. Words, pictures and a lot of hand-waving is the way I internalized these abstract concepts.</p>
+<p>Unfortunately, understanding them is not enough to explain them.</p>
+<p>Andy Matuschak recently had a <a href="https://andymatuschak.org/books/">beautiful piece</a> on the status quo format of lectures:</p>
 <blockquote>
-<p>I bet I can hack this together with 1 line of bash.</p>
-<p>– me, two weeks ago</p>
+<p>“the lecturer says words describing an idea; the class hears the words and maybe scribbles in a notebook; then the class understands the idea.” In learning sciences, we call this model “transmissionism.” It’s the notion that knowledge can be directly transmitted from teacher to student, like transcribing text from one page onto another. If only! The idea is so thoroughly discredited that “transmissionism” is only used pejoratively, in reference to naive historical teaching practices. Or as an ad-hominem in juicy academic spats.</p>
 </blockquote>
-<p>I thought it would be trivial, just read the keystrokes, pipe them to OLED and a text file, sync the text file over Dropbox.</p>
-<p>However, it turned out to be much more complicated than that :)</p>
-<p>First, I couldn’t find a trivial way to read the text off of the keyboard. I was looking for something like <code>getc</code> that can get data from a connected USB device, but no luck. Instead I found out that Linux has <code>/dev/input/event*</code> files where I could <a href="https://www.kernel.org/doc/Documentation/input/input.txt">read raw events</a>. That lead me to the ancient <a href="https://github.com/spotify/linux/blob/master/include/linux/input.h"><code>input.h</code></a>, which I used to hack together a simple parser.</p>
-<p>Next, printing this stuff to OLED also had gotchas. My initial version would just repaint the screen on every keystroke, which turned out to be very inefficient. Full display repaint using Omega’s OLED APIs takes as much as 400ms, totally unacceptable for a good experience.</p>
-<p>So I changed the code to keep track of cursor position and advanced it as more characters were being printed on the screen.</p>
-<p>This got more complicated once I added support for backspace. And then even more complicated with paging. When I got to implementing word wrapping, it was too much — there are so many different states to transition between!</p>
-<p>Ideally, I don’t want to track the current screen position and code the drawing logic for each editing command. I want a model where I can define piece of state (the text) and a function that defines what this should look like on the screen, without worrying about the underlying OLED API performance.</p>
-<p>Does it remind you of anything? :)</p>
-<p>React. I love this model and I’m sure there are tons of applications for it outside the web development. Here’s what my code looks like now:</p>
-<pre><code class="language-ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">render</span><span class="hljs-params">(text)</span></span>
-  <span class="hljs-comment"># Return the text I want to be on the screen</span>
-<span class="hljs-keyword">end</span>
-
-next_screen = render(message)
-reconcile(prev_screen, next_screen) <span class="hljs-keyword">do</span> <span class="hljs-params">|row, col, text|</span>
-  oled_command <span class="hljs-string">&quot;cursor&quot;</span>, <span class="hljs-string">&quot;<span class="hljs-subst">#{row}</span>,<span class="hljs-subst">#{col}</span>&quot;</span>, <span class="hljs-string">&quot;write&quot;</span>, text
-<span class="hljs-keyword">end</span>
-prev_screen = next_screen
-</code></pre>
-<p>The latency between pressing a button and seeing it on the screen is amazing. I used iPhone X slow motion camera (240fps) to measure time from keyboard button down to seeing visual feedback on the screen. Here are the numbers:</p>
-<ul>
-<li>HHKB connected to macOS running Sublime: 84ms latency</li>
-<li>HHKB connected to onion running onityper: 32ms latency</li>
-</ul>
-<p>This number matters a lot. The lower the number, the more natural and instant is the experience. 32ms is great!</p>
-<p>See also: <a href="https://danluu.com/keyboard-latency/">Keyboard latency</a> and <a href="https://pavelfatin.com/typing-with-pleasure/">Typing with pleasure</a>.</p>
-<div class="fig">
-  <img src="https://frantic.im/assets/onityper/demo.gif">
-  <div class="label">
-    Demo
-  </div>
-</div>
-<h2>Sync</h2>
-<p>Everything I type on this device is stored in text files. It’s not very easy to pull these files from the device, so I also added some code to upload each line to the server.</p>
-<p>On the backend I used Firebase. I have a simple “cloud function” that takes text as input and stores it in Firestore. I also have a very simple frontend that renders the text from the Firestore.</p>
-<p>The tricky part is that I can’t completely rely on available internet connection. I plan to take this device to coffee shops and places outside of WiFi reach. The script stores a queue of lines to upload in a file, so even after device restarts it should be able to resume uploads.</p>
-<p>Ideally I’d love to use Dropbox, but unfortunately I couldn’t find linux MIPS build of their client.</p>
-<h2>Testing</h2>
-<p>In retrospective I should have started with proper Ruby tests, but yak shaving and curiosity brought me to <a href="https://pypi.org/project/cram/"><code>cram</code></a>. It’s a simple CLI tool that takes <code>*.t</code> files as inputs. These files contain shell commands and the expected output.</p>
-<p>The development experience of <code>cram</code> is pretty good. You don’t need to set the “expected output” beforehand. You can just run the tool and it will show the difference between expected and actual output, with an option to update the <code>*.t</code> file.</p>
-<p>Very similar to Jest snapshot tests.</p>
-<h2>Deployment</h2>
-<p>Omega’s WiFi has been terrible in my experience, lots of random disconnects. I couldn’t rely on SSH because of that and had to use serial port with <code>screen</code>. This made the deployment process more complicated, there’s no <code>scp</code> for terminal connection.</p>
-<p>Here’s a clever trick I learned:</p>
-<pre><code class="language-sh">screen -S <span class="hljs-variable">$SESSION</span> -X stuff <span class="hljs-string">&#x27;cat &gt; /root/onityper.rb &lt;&lt;\EOF&#x27;</span>$<span class="hljs-string">&#x27;\015&#x27;</span>
-screen -S <span class="hljs-variable">$SESSION</span> -X readreg p <span class="hljs-string">&quot;<span class="hljs-variable">$ROOT</span>/onityper.rb&quot;</span>
-screen -S <span class="hljs-variable">$SESSION</span> -X paste p
-screen -S <span class="hljs-variable">$SESSION</span> -X stuff <span class="hljs-string">&#x27;EOF&#x27;</span>$<span class="hljs-string">&#x27;\015&#x27;</span>
-</code></pre>
-<p>I can run <code>screen</code> in one tab and while the connection is active I can send commands to it. <code>stuff</code> sends keystrokes and <code>readreg</code>/<code>paste</code> can simulate typing large chunks of text.</p>
-<p>To run the script on every boot, I used <a href="https://docs.onion.io/omega2-docs/running-a-command-on-boot.html">the official instructions</a> which recommend putting stuff into <code>/etc/rc.local</code>.</p>
-<pre><code>ruby /root/onityper.rb &gt;&gt; /tmp/onityper.log 2&gt;&amp;1 &amp;
-</code></pre>
-<p>I don’t like this at all. There must be a proper way of defining a service that can run in background, with policies about logs and log rotation, when to restart it, etc. Looks like OpenWRT has <a href="https://openwrt.org/docs/guide-developer/procd-init-scripts"><code>procd</code></a> but at that point I was too lazy to look into.</p>
-<h2>Code</h2>
-<p>Warning: it’s a bag of hacks. See it on <a href="https://github.com/frantic/onityper">GitHub</a>.</p>
-<h2>Next</h2>
-<p>I’m very happy with this setup so far. I bought <a href="https://amzn.to/2WE0H8v">the cheapest powerbank</a> I could find on Amazon, so the device is pretty much independent from my laptop. 70% of this post was created on the Onityper from a coffee shop.</p>
-<p>Now I want to use a 3D printer to build a case for it.</p>
-
-      ]]></content>
-    </entry>
-  
-    <entry>
-      <id>https://frantic.im/e2e-tests</id>
-      <title>Improving end to end tests reliability</title>
-      <updated>2019-05-19T12:00:00+00:00</updated>
-
-      <link rel="alternate" href="https://frantic.im/e2e-tests" />
-      <summary>End-to-end tests are not flaky, if you cook them right.</summary>
-      <content type="html"><![CDATA[
-        
-        
-        
-        <p>Are you trying to establish a good end-to-end testing infrastructure at your company? This is how Facebook does it.</p>
-<h2>The problem</h2>
-<p>End-to-end (E2E) tests verify that the product works on the high level. For example, if you have an e-commerce website, E2E test could simulate an important user behavior: open the website in a browser, search for a product, add it to the cart and performing checkout.</p>
-<p>It’s hard to make end to end tests reliable, because (by definition) these tests rely on all components of your system. If each component has a reliability of 99%, the test that depends on ten systems has 10% chance to fail. This matters even more when you run hundreds of tests a day.</p>
-<p>E2E tests often get bad reputation among developers due to this flakiness . See <a href="https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html">Google Testing Blog: Just Say No to More End-to-End Tests</a>.</p>
-<p>When the engineering organization is growing, we have to scale our tooling. We can’t expect thousands engineers to be experts in end-to-end testing. So whenever somebody is writing a new test or investigating a failure, it should not require prior experience dealing with E2E tests.</p>
-<h2>The solution</h2>
-<p>Over the years engineers at Facebook figured ways to improve E2E testing practice. You can watch the tech talk linked at the end for more details. Here are some improvements that I think were really important.</p>
-<h2>1. Make testing API declarative</h2>
-<p>This is very basic trick, but many engineers writing test don’t realize that testing code is also, eh, code, and it will benefit from a healthy amount of abstraction.</p>
-<p>Most examples on the internet about how to write E2E tests are very basic and look something like this:</p>
-<pre><code>findElement('#email').enterText('user_1@domain.com');
-findElement('#password').enterText('secret');
-findElement('#submit').click();
-</code></pre>
-<p>This is a very low level code. If you stick to this API you’ll end up with a lot of copy-pasted tests that rely on implementation details. The moment somebody changes your login sequence details all tests will fall apart.</p>
-<p>Consider</p>
-<pre><code>loginWithAccount('user_1@domain.com', 'secret');
-</code></pre>
-<p>Now the API became much better. It communicates the intent well and abstracts away the implementation details. When an engineer changes something in the login sequence, they need to fix only one place.</p>
-<p>Facebook went even further and built a very declarative <code>PageObject</code> abstraction. See the talk linked in the bottom of this article.</p>
-<p>Another big improvement in the API was <strong>replacing time-based waits with condition-based waits</strong>. Consider this case:</p>
-<pre><code>findElement('#login').click();
-sleep(10);
-findElement('#logout').click();
-</code></pre>
-<p>This code assumes the login operation will take at most 10 seconds, and this assumption could be a big source of flakiness. CI machines have different configurations, and depending on network conditions, amount of available RAM space and CPU cycles, 10 seconds might not be enough.</p>
-<p>The simplest approach to solve this is to increase the timeout from 10 to, say, 30 seconds. However, that makes the test much slower, to the point that engineers will try to avoid running them locally at all cost.</p>
-<p>Try this instead:</p>
-<pre><code>findElement('#login').click();
-waitForElement('#welcome');
-findElement('#logout').click();
-</code></pre>
-<p>Now the code captures our intention better—we wait until login was completed.</p>
-<p>The implementation of <code>waitForElement</code> could use a loop that tries to find the element, and if it fails, waits 100ms (or even better, some event-driven approach). This way the function will return as soon as the element is found.</p>
-<h2>2. Setup test data before each test</h2>
-<p>In the old days we used to create test users and their data manually. For example, to test if a user can join a public group we would create a user and a group and hardcode their IDs in our tests. This was convenient because we could use web UI to set everything up just right.</p>
-<p>However, this was a terrible thing. When multiple tests run at the same time, they access the same IDs, and unexpected things could happen.</p>
-<p>Nowadays each test creates its own set of entities before each run. We have a test-only server side API that allows creating special kind of users, not visible from the outside world. This made tests independent from each other.</p>
-<h2>3. Make failures inspectable</h2>
-<p>E2E test can fail for a lot of reasons. Some of these reasons are not related to the actual code or product being tested. For example, iOS simulator can crash or Chrome fails to start due to lack of free RAM on a test machine. We call these failures “infrastructure failures”.</p>
-<p>At first we treated legitimate test failures and infrastructure failures the same. Something went wrong and needed fixing. As the team grew, the complexity and the context required to debug infrastructure failures became too much for everybody to grasp in reasonable time, so we split the two very explicitly.</p>
-<p>In the UI, we use red to signal that the test failed and it’s probably your fault and yellow to show that the test failed but it’s likely not your fault and the system is trying to re-run the test.</p>
-<p>We also improved the test results page. Each test run has a webpage with video recording of the test, logs from different sources, UI and data dumps, etc. When a test fails (for whatever reason) it’s easy to open a webpage and see what happened. Engineers could also send the link to other engineers so they can help investigate the problem.</p>
-<h2>4. Automatically find the cause of failure</h2>
-<p>As the engineering organization, codebase and number of E2E tests grow, it becomes impractical to run them for every single revision committed to the repo. Instead, they are moved to continuous runs. The whole test suite is running every 15-30-60 minutes.</p>
-<p>When E2E test fails during continuous run, a new process is triggered that tries to bisect and find the commit that broke the tests. Then it creates a task assigned to the engineer who made that change and marks the test as “failing in master”.</p>
-<p>These tests marked as failing <strong>won’t be reported in test results until fixed</strong>. Since we know the tests are broken in master branch, there’s no point in spamming other pull requests with the unrelated failures.</p>
-<h2>5. Make failures easy to reproduce locally</h2>
-<p>It became very cumbersome to run end to end tests locally. Tests required installing some 3rd party dependencies and figuring out just right combination of the command line arguments. This would result in unproductive behavior, when people blindly fix what seems broken and re-submit the code for review. The CI system would run the tests again. Dealing with E2E failures got a bad reputation, because nobody wanted to go through this long feedback loop.</p>
-<p>We started by adding instructions to the tests failure page (which did help). But then we found even better solution: for each test run we assigned a unique ID and added a command line tool (available on each developer’s machine). Now, to re-run a failing end-to-end test one would simply need to run:</p>
-<pre><code>arc e2e &lt;test-id&gt;
-</code></pre>
-<p>(arc is a meta task-runner tool everybody has on their computer)</p>
-<p>This would fetch information about the test to run, install missing dependencies and run the test in verbose mode.</p>
-<h2>6. Disable failing and flaky test</h2>
-<p>When an E2E test is failing consistently and nobody cares to fix it, that means the test isn’t useful. There’s no point in having it around. We have a system that creates a task when a test fails, but after a while if the test is still failing, the system just disables the test.</p>
-<p>There’s also a system in place that can detect if a test is “flaky”. Flaky in this case means that the test can fail sporadically for unrelated reasons. For example, this often happens when the testing code has assumptions about time: “press button A, wait 2 seconds, press button B” (see API section above).</p>
-<p>If a test flips between pass-fail without any code changes, the system considers it flaky and disables the test.</p>
-<p>In fact, all end-to-end tests start in disabled mode and need to go though extensive load testing to be considered good.</p>
-<h2>Conclusion</h2>
-<p>These improvements helped make E2E tests much more reliable. Not only that, they’ve also improved engineers’ perception of E2E tests, which resulted in more tests being written and relied on.</p>
-<p><strong>See Also:</strong></p>
-<ul>
-<li><a href="https://codeandtalk.com/v/seleniumconf-usa-2015/stable-useful-easy-pick-three">Stable, Useful, Easy. Pick Three</a> a talk by Remi Chaintron from Facebook going into details of some of the topics covered in this post.</li>
-</ul>
-
-      ]]></content>
-    </entry>
-  
-    <entry>
-      <id>https://frantic.im/how-to-convince-your-boss-to-use-react-native</id>
-      <title>How to convince your boss to use React Native</title>
-      <updated>2019-03-09T12:00:00+00:00</updated>
-
-      <link rel="alternate" href="https://frantic.im/how-to-convince-your-boss-to-use-react-native" />
-      <summary>How to adopt React Native incrementally with little risk inside an existing native application and a team full of native engineers.</summary>
-      <content type="html"><![CDATA[
-        
-        
-        
-        <p>Likely you landed on this article because you are excited about React Native. Awesome! If you have a team of web engineers and a brand new app, it’s easy to make a case for starting with React Native.</p>
-<p>However, most companies already have apps in the stores. They used native stack to build their apps: Xcode or Android Studio. React Native can add value for these companies too, but making a hybrid app comes with some challenges.</p>
-<p>During the last 4 years I helped integrate React Native into Facebook and Oculus apps. Here are a few lessons I learned.</p>
-<figure>
-  <img src="https://frantic.im/assets/gunnar-sigurdarson-1368301-unsplash.jpg" />
-</figure>
-<h1>Start with Empathy</h1>
-<p><em>Wait, start with what?</em></p>
-<p>Understand the people who work on your project—that’s the first step to successful integration.</p>
-<p>Your boss (project manager, director, CTO, etc.) is responsible for the app hitting the market with little risk, short timeline and maximum impact. Companies already operate in very competitive environment. To them any new technology is a risk.</p>
-<p>Your colleagues have a different perspective as well. They have experience building apps with the “native” technology stack. They know how to format strings, build UIs, access network, write and debug code in the IDE. Switching to a completely different ecosystem is very uncomfortable. There’s natural resistance to getting out of the comfort zone.</p>
-<figure>
-  <img src="https://frantic.im/assets/maximilian-weisbecker-544039-unsplash.jpg" />
-  <span class="label">
-    Does React Native have layout inflaters? How do I change the text of this button?
-  </span>
-</figure>
-<p>Engineers might have existing opinions about React, React Native and JavaScript ecosystem. Or they’ve seen a React Native app somewhere and found it of bad quality. There are many common myths, e.g. “JS is slow”, or “frameworks come and go too fast”.</p>
-<p>These myths are not specific to JavaScript. As humans we can’t experience every single tech stack and have a well-formed opinion. We have to rely on things we’ve heard from others.</p>
-<p>This might not sound very encouraging, but <strong>be willing to accept a defeat</strong>. There are so many scenarios where React Native can be very beneficial. But there are also valid situations where it doesn’t make sense at a particular time. And it’s okay. Maybe in a few months you can revisit this decision. The last thing you want is to polarize your team and ruin constructive work relationships.</p>
-<p>To fight existing misconceptions, prove them wrong on a real feature inside your app (without making other people feel stupid).</p>
-<h1>Find value</h1>
-<p>This guide assumes you are integrating React Native into an existing application and already have a big chunk of functionality written using platform-dependent code. Rewriting it all is a huge risk with very little benefit to your users and business. That’s why it will be extremely hard to convince your team and people responsible for the project to do so.</p>
-<p>But you don’t have to rewrite your application! <strong>React Native can be adopted incrementally</strong>.</p>
-<p>Find an area in your application that will immediately get benefits from being implemented in React Native. For example, it could be a screen that is useful but but doesn’t get much development attention or a surface that’s implemented as a WebView. For example, Facebook started with Pokes, Instagram rebuilt “liked photos”, etc.</p>
-<p>It has to be with a scope that you can build yourself within few days. It will be a great campground to test different aspects of integration: build system, session sharing, logging, crash reporting, etc.</p>
-<p>Bonus points for making the new feature run on both iOS and Android. Suddenly, something that used to take a lot of engineering time and coordination, was created by one person in a short time frame.</p>
-<p>Show, don’t tell.</p>
-<figure>
-  <img src="https://frantic.im/assets/hilthart-pedersen-602249-unsplash.jpg" />
-</figure>
-<h1>Be a champion</h1>
-<p><em>You can’t just say “Let’s use React Native” and hide in the bushes.</em></p>
-<p><a href="https://github.com/tc39">TC39</a>, a committee that evolves JavaScript the language, has <a href="https://tc39.github.io/process-document/">the following process</a>: Changes to the language are called “proposals”. A member that leads a proposal is called a “champion”. Their mission is to create spec drafts, work with the community and push the spec forward.</p>
-<p><strong>Become the React Native champion at your company.</strong> Take the responsibility to see this idea through.</p>
-<p>The first step to becoming a champion is to get more familiar with React Native. Create a few prototypes (by <a href="https://www.youtube.com/watch?v=I8b0v0uFXLs">rebuilding some parts of your app</a>), learn architecture, be ready to give demos and help people get started.</p>
-<p>Engineers who are coming from native will most likely feel uncomfortable and overwhelmed by the new ecosystem. Create an environment where getting started with React Native is super easy:</p>
-<ul>
-<li>Have an internal wiki page with <a href="https://bitbucket.org/frantic/react-bnb">step-by-step instructions</a> on how to get started. Think of it as a “landing page” of React Native in your organization.</li>
-<li>Build a script that automates environment setup: installs NodeJS and other dependencies, runs yarn install, etc.</li>
-<li>Setup good IDE defaults. You can’t ask IntelliJ users to configure and use VIM. Document or commit configs that make it much easier to get started with React Native. For example: editor recommendations, plugins, syntax schemes, keyboard shortcuts, etc.</li>
-<li>Organize a tech talk or a small hackathon where your team can learn about React Native and try it together on a small project.</li>
-<li>Create a place to ask questions, have discussions and hang out. Maybe a <code>#react_native</code> channel on Slack, group, email list, etc. Be there to answer questions.</li>
-</ul>
-<p>Super important: if there are people who don’t want to deal with React Native, <strong>make sure their development experience is not compromised</strong>. They should be able to work the same way as before without having to know or do anything about React Native.</p>
-<h1>Closing thoughts</h1>
-<p>If you want to convince somebody to use React Native, ship a feature in your app that wouldn’t have been possible without it.</p>
-<p>I hope this small guide gives you few ideas on how to get started. It’s only the beginning.</p>
-<p>Lots of big and small companies use React Native in their hybrid apps. Unfortunately, <a href="https://medium.com/airbnb-engineering/react-native-at-airbnb-f95aa460be1c">very</a> <a href="https://eng.uber.com/ubereats-react-native/">few</a> of them share the details. I think it’s mostly because some aspects of the integration are specific to their infrastructure and it doesn’t feel useful to talk about these.</p>
-<p>But there are many common things. I hope to follow-up this blog post with “How to scale React Native at your organization”.</p>
+<p>All my “perfect” models were beautiful only in my head. They did strike a chord with others, sometimes, but it was sheer luck - their intuition was in tune with mine for that particular problem.</p>
+<h1>So what do I do differently now?</h1>
+<h2>Listen very carefully</h2>
+<p>First, I try to listen very carefully to their question. If they are not talking much I’ll ask questions and keep listening. I’ll keep notes on how they explain themselves:</p>
+<ol>
+<li>What names do they use to refer to abstract concepts? I’ll try to use the same.</li>
+<li>What kind of <a href="https://www.nlpworld.co.uk/nlp-glossary/m/modalities/">modality</a> do they operate in? Do they “see” things or “listen” to them?</li>
+<li>How deep do they need to go? Just fix something and move on, or trying to understand it on a more fundamental level?</li>
+</ol>
+<h2>Operate within their mental model</h2>
+<p>Second, I resist the urge to explain it exactly how I understand it. I try to accept their mental model of the world, even if I believe it’s not super accurate. As long as it’s not hurting their understanding, I’m willing to skip over non-essential bits.</p>
+<p>I also adopt their language and use the same names in my examples.</p>
+<h2>Let them explore</h2>
+<p>If the environment allows for it, I’ll encourage them to use the debugger, logs or experiment with the code. For this to work, sometimes I need to reduce the problem space to a much smaller one.</p>
+<p>They key is to let them poke the real world (in this case, the way the compiler or the programming language runtime works) and tune their own model. The goal is to help them develop their own intuition, instead of conveying my own.</p>
+<p>This can be generalized: successful communication is so much about understanding the context and the people on the receiving end.</p>
+<p>—</p>
+<p>Back to Michael. I showed him the IntelliJ debugger and asked to trace a very simple recursive program he wrote.</p>
+<p>“So it’s like the staircase!”, he exclaimed. “Every time we go in is like taking a step, and then we return all the way down”. Well, I guess <em>it is</em> kind of like staircase… I never thought about recursion this way myself. Now I think I can explain tail call optimization via an escalator analogy.</p>
+<p><img src="https://frantic.im/assets/explain-programming/recursion-2.png" alt="" />
+<small>This is not the model I had in my mind, but I’ll definitely use it in the future</small></p>
 
       ]]></content>
     </entry>

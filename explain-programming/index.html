@@ -22,7 +22,12 @@
     <meta name="twitter:description" content="Successful communication is so much about understanding the context and the people on the receiving end">
     <meta name="twitter:image" content="https://frantic.im/assets/explain-programming/recursion-2.png">
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
+    <script>
+      if ('ethereum' in window) {
+        document.getElementById('favicon').href = '/assets/favicon-hex.png';
+      }
+    </script>
 
     <style type="text/css" media="screen">
       * {

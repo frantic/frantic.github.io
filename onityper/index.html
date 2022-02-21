@@ -22,7 +22,12 @@
     <meta name="twitter:description" content="What if you could use your favorite keyboard away from your computer? In this side project I'm building an old-fashioned typewriter from modern IoT parts.">
     <meta name="twitter:image" content="https://frantic.im/assets/onityper/onityper.jpg">
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
+    <script>
+      if ('ethereum' in window) {
+        document.getElementById('favicon').href = '/assets/favicon-hex.png';
+      }
+    </script>
 
     <style type="text/css" media="screen">
       * {

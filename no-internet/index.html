@@ -22,7 +22,12 @@
     <meta name="twitter:description" content="Overengineered way of measuring your internet connectivity.">
     <meta name="twitter:image" content="https://frantic.im/assets/no-internet/Dashboard.png">
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
+    <script>
+      if ('ethereum' in window) {
+        document.getElementById('favicon').href = '/assets/favicon-hex.png';
+      }
+    </script>
 
     <style type="text/css" media="screen">
       * {

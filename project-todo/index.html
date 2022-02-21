@@ -22,7 +22,12 @@
     <meta name="twitter:description" content="In most of my personal projects I have a file called TODO. I use it like this…">
     <meta name="twitter:image" content="https://frantic.im/assets/project-todo/TODO_file.png">
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
+    <script>
+      if ('ethereum' in window) {
+        document.getElementById('favicon').href = '/assets/favicon-hex.png';
+      }
+    </script>
 
     <style type="text/css" media="screen">
       * {

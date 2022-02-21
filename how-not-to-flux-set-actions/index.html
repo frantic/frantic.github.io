@@ -22,7 +22,12 @@
     <meta name="twitter:description" content="Actions that are named `SET_*` is anti-pattern. It usually means that the code that should be in the reducer lives inside React component instead. This makes...">
     <meta name="twitter:image" content="https://frantic.im/assets/flux/flux-one-way.png">
 
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
+    <script>
+      if ('ethereum' in window) {
+        document.getElementById('favicon').href = '/assets/favicon-hex.png';
+      }
+    </script>
 
     <style type="text/css" media="screen">
       * {

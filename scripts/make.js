@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const http = require("http");
 const yaml = require("./lib/js-yaml.min");
 const hljs = require("./lib/highlight.min");
 const MarkdownIt = require("./lib/markdown-it.min");
@@ -108,26 +109,57 @@ site.posts = fs
   })
   .sort((p1, p2) => p2.date.localeCompare(p1.date));
 
+function renderFile(dir, file) {
+  if (![".html", ".md", ".txt", ".xml"].includes(path.extname(file))) {
+    return;
+  }
+
+  const source = path.join(dir, file);
+  process.stdout.write(`Building ${source}\n`);
+  const {
+    header: { url },
+  } = load(source);
+
+  const destination = [".md", ".html"].includes(path.extname(file))
+    ? path.join("_build", url, "index.html")
+    : path.join("_build", file);
+
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+  fs.writeFileSync(destination, render(path.join(dir, file), { site }));
+}
+
 function renderDir(dir) {
   for (const file of fs.readdirSync(dir)) {
-    if (![".html", ".md", ".txt", ".xml"].includes(path.extname(file))) {
-      continue;
-    }
-
-    const source = path.join(dir, file);
-    process.stdout.write(`Building ${source}\n`);
-    const {
-      header: { url },
-    } = load(source);
-
-    const destination = [".md", ".html"].includes(path.extname(file))
-      ? path.join("_build", url, "index.html")
-      : path.join("_build", file);
-
-    fs.mkdirSync(path.dirname(destination), { recursive: true });
-    fs.writeFileSync(destination, render(path.join(dir, file), { site }));
+    renderFile(dir, file);
   }
 }
 
 renderDir("_posts");
 renderDir("pages");
+
+if (process.argv[2] == "--dev") {
+  const folders = ["_drafts", "_includes", "_layouts", "_posts", "pages"];
+  for (const folder of folders) {
+    fs.watch(folder, (ev, file) => renderFile(folder, file));
+  }
+
+  http
+    .createServer((req, res) => {
+      let fileName = __dirname + "/../_build" + req.url;
+      if (fs.statSync(fileName).isDirectory()) {
+        fileName += "/index.html";
+      }
+      fs.readFile(fileName, (err, data) => {
+        if (err) {
+          res.writeHead(404);
+          res.end(JSON.stringify(err));
+          return;
+        }
+        res.writeHead(200);
+        res.end(data);
+      });
+    })
+    .listen(9099);
+
+  console.log("Listening on http://localhost:9099/");
+}

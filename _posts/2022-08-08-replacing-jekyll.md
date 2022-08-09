@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Replacing Jekyll for my blog
-image: /assets/og-image.png
+image: /assets/og-image.jpg
 excerpt: How I replaced Jekyll with 200 lines of JavaScript
 tags:
   - jekyll

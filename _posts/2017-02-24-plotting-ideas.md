@@ -4,7 +4,6 @@ title: Plotting ideas
 excerpt: Errors with extra information can help locate and fix the problems faster.
 tags:
   - thinking
-  - meta
   - models
 ---
 

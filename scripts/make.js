@@ -177,6 +177,7 @@ if (process.argv[2] == "--dev") {
   console.log("  n [blog post title] - Create a new file in _posts");
   console.log("  p                   - Commit & push to GitHub");
   console.log("  e                   - Edit in VSCode");
+  console.log("  w                   - Open in browser");
   console.log("");
 
   process.stdin.on("data", (data) => {
@@ -203,11 +204,14 @@ if (process.argv[2] == "--dev") {
       execSync(`code ${fileName}`);
     } else if (command === "e") {
       execSync(`code .`);
+    } else if (command === "w") {
+      execSync(`open http://localhost:9099/blog`);
     } else if (command === "p") {
       console.log("Publishing");
       execSync(`git add -A .`);
       execSync(`git commit -m "Publishing changes"`);
       execSync(`git push origin master`);
+      console.log("Done! https://frantic.im/");
     }
   });
 }

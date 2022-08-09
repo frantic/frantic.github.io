@@ -1,8 +1,6 @@
 ---
 layout: post
 title: I'm a Tomorrowman
-tags:
-  - meta
 ---
 
 No, I shouldn't be writing this _now_. I'm tired, it's late, I have some other stuff that needs to be done. Words just don't flow, sentences seem incomplete and the overall structure could be better.

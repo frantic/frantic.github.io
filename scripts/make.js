@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const http = require("http");
+const { execSync } = require("child_process");
 const yaml = require("./lib/js-yaml.min");
 const hljs = require("./lib/highlight.min");
 const MarkdownIt = require("./lib/markdown-it.min");
@@ -101,13 +102,15 @@ function render(fileName, data = {}) {
 const site = yaml.load(fs.readFileSync("_config.yml", "utf8"));
 site.time = new Date().toISOString();
 
-site.posts = fs
-  .readdirSync("_posts")
-  .map((file) => {
-    const { header, body } = load(path.join("_posts", file));
-    return { ...header, content: body };
-  })
-  .sort((p1, p2) => p2.date.localeCompare(p1.date));
+function rebuildPostsList() {
+  site.posts = fs
+    .readdirSync("_posts")
+    .map((file) => {
+      const { header, body } = load(path.join("_posts", file));
+      return { ...header, content: body };
+    })
+    .sort((p1, p2) => p2.date.localeCompare(p1.date));
+}
 
 function renderFile(dir, file) {
   if (![".html", ".md", ".txt", ".xml"].includes(path.extname(file))) {
@@ -134,13 +137,20 @@ function renderDir(dir) {
   }
 }
 
+rebuildPostsList();
 renderDir("_posts");
 renderDir("pages");
 
 if (process.argv[2] == "--dev") {
   const folders = ["_drafts", "_includes", "_layouts", "_posts", "pages"];
   for (const folder of folders) {
-    fs.watch(folder, (ev, file) => renderFile(folder, file));
+    fs.watch(folder, (ev, file) => {
+      if (ev === "change") {
+        rebuildPostsList();
+        renderFile(folder, file);
+        renderFile("pages", "blog.html");
+      }
+    });
   }
 
   http
@@ -162,4 +172,42 @@ if (process.argv[2] == "--dev") {
     .listen(9099);
 
   console.log("Listening on http://localhost:9099/");
+  console.log("");
+  console.log("Things you can do:");
+  console.log("  n [blog post title] - Create a new file in _posts");
+  console.log("  p                   - Commit & push to GitHub");
+  console.log("  e                   - Edit in VSCode");
+  console.log("");
+
+  process.stdin.on("data", (data) => {
+    const command = data.toString("utf-8").trim();
+
+    if (command.startsWith("n ")) {
+      const name = command.substring(2);
+      const slug = name
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^a-zA-Z0-9 -]/g, "");
+      console.log(`New post "${name}": http://localhost:9099/${slug}`);
+      const date = new Date();
+      const prefix = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+        .toISOString()
+        .split("T")[0];
+      const content = fs.readFileSync(
+        path.join(__dirname, ".post-template"),
+        "utf-8"
+      );
+      const fileName = `_posts/${prefix}-${slug}.md`;
+      fs.writeFileSync(fileName, content.replace("$TILE", name));
+      console.log("Created", fileName);
+      execSync(`code ${fileName}`);
+    } else if (command === "e") {
+      execSync(`code .`);
+    } else if (command === "p") {
+      console.log("Publishing");
+      execSync(`git add -A .`);
+      execSync(`git commit -m "Publishing changes"`);
+      execSync(`git push origin master`);
+    }
+  });
 }

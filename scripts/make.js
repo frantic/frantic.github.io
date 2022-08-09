@@ -178,6 +178,7 @@ if (process.argv[2] == "--dev") {
   console.log("  p                   - Commit & push to GitHub");
   console.log("  e                   - Edit in VSCode");
   console.log("  w                   - Open in browser");
+  console.log("  d                   - Show git diff");
   console.log("");
 
   process.stdin.on("data", (data) => {
@@ -204,6 +205,8 @@ if (process.argv[2] == "--dev") {
       execSync(`code ${fileName}`);
     } else if (command === "e") {
       execSync(`code .`);
+    } else if (command === "d") {
+      execSync(`git diff -w --color >&2`);
     } else if (command === "w") {
       execSync(`open http://localhost:9099/blog`);
     } else if (command === "p") {

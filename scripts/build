@@ -6,4 +6,5 @@ cp favicon.png _build/
 cp CNAME _build/
 cp -r fonts _build/
 cp -r assets _build/
+cp -r figma _build/
 ./scripts/make.js "$*"

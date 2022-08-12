@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Replacing Jekyll for my blog
-image: /assets/og-image.jpg
+image: /figma/og_replace_jekyll.png
 excerpt: How I replaced Jekyll with 200 lines of JavaScript
 tags:
   - jekyll
@@ -35,10 +35,10 @@ Building pages/talks.html
 Listening on http://localhost:9099/
 
 Things you can do:
-  n [blog post title] - Create a new file in _posts
-  p                   - Commit & push to GitHub
-  e                   - Edit in VSCode
-  w                   - Open in browser
+  n [title] - Create a new file in _posts
+  p         - Commit & push to GitHub
+  e         - Edit in VSCode
+  w         - Open in browser
 ```
 
 This little menu let's me take the most common actions right from the console. For example, the first command converts "Fancy Blog Title" into "2022-08-08-fancy-blog-title.md", creates this file in the right place from the template and opens it in the editor.

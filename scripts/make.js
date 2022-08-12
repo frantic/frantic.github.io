@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const http = require("http");
+const https = require("https");
 const { execSync } = require("child_process");
 const yaml = require("./lib/js-yaml.min");
 const hljs = require("./lib/highlight.min");
@@ -174,11 +175,12 @@ if (process.argv[2] == "--dev") {
   console.log("Listening on http://localhost:9099/");
   console.log("");
   console.log("Things you can do:");
-  console.log("  n [blog post title] - Create a new file in _posts");
-  console.log("  p                   - Commit & push to GitHub");
-  console.log("  e                   - Edit in VSCode");
-  console.log("  w                   - Open in browser");
-  console.log("  d                   - Show git diff");
+  console.log("  n [title] - Create a new file in _posts");
+  console.log("  p         - Commit & push to GitHub");
+  console.log("  e         - Edit in VSCode");
+  console.log("  w         - Open in browser");
+  console.log("  d         - Show git diff");
+  console.log("  f         - Download images from Figma");
   console.log("");
 
   process.stdin.on("data", (data) => {
@@ -209,6 +211,8 @@ if (process.argv[2] == "--dev") {
       execSync(`git diff -w --color >&2`);
     } else if (command === "w") {
       execSync(`open http://localhost:9099/blog`);
+    } else if (command === "f") {
+      download();
     } else if (command === "p") {
       console.log("Publishing");
       execSync(`git add -A .`);
@@ -217,4 +221,66 @@ if (process.argv[2] == "--dev") {
       console.log("Done! https://frantic.im/");
     }
   });
+}
+
+function figma(url) {
+  const figmaToken = "figd_tyTOIZyju6ejyS-FVW9-k3id-VOzBkAPHjdxIRUk";
+
+  return new Promise((resolve, reject) => {
+    https.get(
+      {
+        path: url,
+        host: "api.figma.com",
+        headers: { "X-Figma-Token": figmaToken },
+      },
+      (res) => {
+        if (res.statusCode !== 200) {
+          reject(new Error(`Figma replied with status code ${res.statusCode}`));
+        }
+
+        const chunks = [];
+        res.on("data", (data) => chunks.push(data));
+        res.on("end", () => resolve(Buffer.concat(chunks)));
+        res.on("error", reject);
+      }
+    );
+  }).then((data) => JSON.parse(data.toString()));
+}
+
+async function store(url, fileName) {
+  return new Promise((resolve, reject) => {
+    console.log("Downloading", url, "to", fileName);
+    https.get(url, (res) => {
+      if (res.statusCode !== 200) {
+        reject(new Error(`Non-ok status code ${res.statusCode}`));
+      }
+
+      const file = fs.createWriteStream(fileName);
+      res.pipe(file);
+      res.on("end", () => resolve());
+      res.on("error", reject);
+    });
+  });
+}
+
+async function download() {
+  const file = await figma("/v1/files/Nf5B58hyoTotF6XCs1AjHD?depth=2");
+  const frames = {};
+  const page1 = file.document.children[0];
+  for (const frame of page1.children) {
+    frames[frame.id] = frame.name;
+  }
+
+  const ids = Object.keys(frames).join(",");
+  const exports = await figma(
+    `/v1/images/Nf5B58hyoTotF6XCs1AjHD?scale=2&ids=${ids}`
+  );
+
+  console.log(frames, exports);
+
+  await Promise.all(
+    Object.entries(frames).map(([id, name]) =>
+      store(exports.images[id], path.join("figma", name + ".png"))
+    )
+  );
 }

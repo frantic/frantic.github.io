@@ -5,7 +5,7 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2022-08-09T03:59:28.329Z</updated>
+  <updated>2022-08-12T05:43:04.346Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
@@ -42,10 +42,10 @@ Building pages/talks.html
 Listening on http://localhost:9099/
 
 Things you can do:
-  n [blog post title] - Create a new file in _posts
-  p                   - Commit &amp; push to GitHub
-  e                   - Edit in VSCode
-  w                   - Open in browser
+  n [title] - Create a new file in _posts
+  p         - Commit &amp; push to GitHub
+  e         - Edit in VSCode
+  w         - Open in browser
 </code></pre>
 <p>This little menu let’s me take the most common actions right from the console. For example, the first command converts “Fancy Blog Title” into “2022-08-08-fancy-blog-title.md”, creates this file in the right place from the template and opens it in the editor.</p>
 <p>It’s amazing how much these little inconveniences prevented me from writing!</p>

@@ -218,6 +218,7 @@ if (process.argv[2] == "--dev") {
       execSync(`git add -A .`);
       execSync(`git commit -m "Publishing changes"`);
       execSync(`git push origin master`);
+      console.log("https://github.com/frantic/frantic.github.io/actions");
       console.log("Done! https://frantic.im/");
     }
   });

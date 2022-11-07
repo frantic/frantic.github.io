@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=640" />
 
-    <title>Why side projects are hard / frantic.im</title>
+    <title>What were you trying to achieve? / frantic.im</title>
     <meta name="author" content="Alex Kotliarskyi">
-    <meta name="description" content="Fun, misery and yak shaving expeditions">
+    <meta name="description" content="A senior engineer joins a team. Before long, they start noticing weird quirks in the codebase…">
 
-    <link rel="canonical" href="https://frantic.im/side-projects-are-hard">
+    <link rel="canonical" href="https://frantic.im/no-why">
     <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
 
-    <meta property="og:title" content="Why side projects are hard">
-    <meta property="og:image" content="https://frantic.im/assets/side-projects/og-image.png">
-    <meta name="og:description" content="Fun, misery and yak shaving expeditions">
+    <meta property="og:title" content="What were you trying to achieve?">
+    <meta property="og:image" content="https://frantic.im/figma/og_no_why.png">
+    <meta name="og:description" content="A senior engineer joins a team. Before long, they start noticing weird quirks in the codebase…">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@alex_frantic">
     <meta name="twitter:creator" content="@alex_frantic">
-    <meta name="twitter:title" content="Why side projects are hard">
-    <meta name="twitter:description" content="Fun, misery and yak shaving expeditions">
-    <meta name="twitter:image" content="https://frantic.im/assets/side-projects/og-image.png">
+    <meta name="twitter:title" content="What were you trying to achieve?">
+    <meta name="twitter:description" content="A senior engineer joins a team. Before long, they start noticing weird quirks in the codebase…">
+    <meta name="twitter:image" content="https://frantic.im/figma/og_no_why.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -182,494 +182,30 @@ footer > a:hover { color: #000; }
 <article>
   <header>
     
-    <h1 class="title">Why side projects are hard</h1>
+    <h1 class="title">What were you trying to achieve?</h1>
   </header>
-  <p>It’s been one hour already since I typed <code>git init</code>. Next step would be to start the X side-project I’ve been thinking a lot about. I need a frontend and a backend. I’ll start with the later. So what tech should I use?</p>
-<p>That’s the question I spent an hour on without making any progress. See, I could use NodeJS, I know it reasonably well. But the project is about handling lots of concurrent connections with shared state between some of them. Making that work could be tricky, and if I mess up something the latency will get pretty bad. Go or Erlang seem like good candidates, they are used for similar systems. However, I haven’t used any of them before.</p>
-<p>Maybe I should take this side project opportunity to learn Erlang (or Elixir)? That seems attractive and fun, but will take me 10x as much time to build. I don’t have a lot of free time, so going Elixir route could mean I never ship the project.</p>
-<p>Wait, I don’t even know that the thing I’m building is useful in the first place. Maybe I should build a landing webpage first and see how people react? This will also help me finally formulate what this project is about. Sounds like a reasonable idea, but I suck at copywriting. I should watch a couple of YouTube videos on the topic.</p>
-<p>Damn, it’s been 2 hours now with no progress at all. Who said side projects are fun? This is not fun at all.</p>
-<p>Back to the backend choice. I think I’ll go with NodeJS, it will help me explore the problem space faster, and then I can rewrite it later if need be.</p>
-<p>Should I use an existing framework or build everything myself? I don’t want to pull large dependencies I don’t understand and trust. But without them I’d have to handle authentication, emails, all that stuff myself. Which is certainly doable, it’s just not something I’d want to spend the remaining one hour I have today.</p>
-<p>Wait, no. I don’t need accounts, my app will be very minimalistic and lightweight. This could save me time, but is this a proper long term solution? What’s my long term vision for this anyway? How do I build code in a way that will make it easy to change in the future?</p>
-<p>Back to code. Where do I store my data? That’s a tough choice. MongoDB is very popular, so I can probably google a solution to any problem fairly quickly. But I don’t really like its lack of schema, I prefer relational databases for this reason. But since I know the app is going to be focused on real-time, I might as well choose something more aligned with that. Redis sounds cool. I’m wondering how it persists data…</p>
-<p>Another half an hour reading on stuff and not making any progress. I don’t think Redis is the way to go, I’ll have to denormalize the data structures, but I don’t have a good idea yet about what data I need.</p>
-<p>Ok, screw all that. MongoDB it is. I just want to push it out and send a link to my friends to play with. How do I install MongoDB? Eww, but I don’t want to clutter my Mac with all these things. Gotta use VM. The last time I tried Vagrant it didn’t support efficient file watching and that’s the key for the fast iteration development environment I want.</p>
-<p>So I roll with Docker, it’s also supposed to make deployment easier. Actually, how do I deploy with Docker? Let’s read up on that a little bit to be prepared…</p>
-<pre><code>$ git status
-On branch master
-
-Untracked files:
-    Dockerfile
-    main.js
-
-Total time spent:
-  3 hours 25 minutes
-
-Mood:
-  fuck my life
-</code></pre>
-<p>Am I alone in this? I remember side projects used to be fun in the past, what’s changed?</p>
-<p><a href="/no-constraints-no-fun"><em>To be continued…</em></a></p>
+  <p>A senior engineer joins a team. Before long, they start noticing weird quirks in the codebase: two ID fields on the same DB table, one-off Redis cluster outside the company’s AWS, React components organized in a very unorthodox way.</p>
+<p>So they turn around to the teammate who has been on the team since the beginning and ask: <em>“why is it built this way?”</em></p>
+<p>But “why” is a terrible question for 2 reasons:</p>
+<ol>
+<li>
+<p>It makes people defensive. Subconsciously, the engineers who built the system might feel threatened. They’ll start making up arguments to justify the system’s current shape.</p>
+</li>
+<li>
+<p>It doesn’t help you decide what to do with the system. Is it still the best solution or should you do something about it?</p>
+</li>
+</ol>
+<p>Here’s a better question: <em>“what were you trying to achieve?”</em></p>
+<p>It focuses on the intent, not the means of getting there. Maybe the team was trying to scale this experiment really quickly or tried to align itself with other teams in the organization. You’ll see the current solution in its context.</p>
+<p>Then you can easily compare the original intention and the current company goals. Maybe some of these things are not relevant anymore, and instead of lengthy migration of the Redis cluster, the right thing to do is to remove it altogether. Or ignore it, and focus on the things your users really care about.</p>
 
   <footer>
-    <time datetime="2018-01-10T12:00:00+00:00">Jan 10, 2018</time>
+    <time datetime="2022-11-07T12:00:00+00:00">Nov 7, 2022</time>
   </footer>
   
 
 
 
-
-
-
-  <h4>Related posts:</h4>
-  
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-      
-        
-      
-    
-
-    
-      <p>
-        <a href="/onityper">Digital Typewriter</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-      
-        
-          
-        
-      
-    
-      
-        
-          
-        
-      
-    
-
-    
-      <p>
-        <a href="/no-constraints-no-fun">No constraints, no fun</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-      
-    
-      
-    
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-      
-        
-      
-    
-
-    
-      <p>
-        <a href="/plotting-ideas">Plotting ideas</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-      <p>
-        <a href="/blogpost-contexts">Provide Context When Writing Blog Posts</a>
-      </p>
-      
-      
-        
 
 
 

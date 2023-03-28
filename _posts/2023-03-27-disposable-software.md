@@ -2,7 +2,7 @@
 layout: post
 title: Disposable Software
 image: /figma/og_disposable_software.png
-excerpt: Questioning the status quo of "software maintenance"
+excerpt: Questioning the status quo of software maintenance
 ---
 
 Few weeks ago my microwave stopped working. I called several repair shops and they all told me the same thing: "just buy a new one, it's cheaper than what we'll charge for fixing it".

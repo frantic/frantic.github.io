@@ -5,11 +5,38 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2023-03-28T05:00:19.285Z</updated>
+  <updated>2023-06-18T18:55:39.948Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
 
+  
+    <entry>
+      <id>https://frantic.im/shuhari</id>
+      <title>Shuhari</title>
+      <updated>2023-06-18T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/shuhari" />
+      <summary>Follow the rules, break the rules, transcend the rules</summary>
+      <content type="html"><![CDATA[
+        
+        
+        
+        <p>I’ve been trying to write a blog post about following “best practices” and how eventually you end up breaking them. But I couldn’t find the right words until I randomly stumbled upon a concept from Japanese martial art: <a href="https://en.wikipedia.org/wiki/Shuhari">Shuhari</a>.</p>
+<blockquote>
+<p>It is known that, when we learn or train in something, we pass through the stages of shu, ha, and ri. These stages are explained as follows. In shu, we repeat the forms and discipline ourselves so that our bodies absorb the forms that our forebears created. We remain faithful to these forms with no deviation. Next, in the stage of ha, once we have disciplined ourselves to acquire the forms and movements, we make innovations. In this process the forms may be broken and discarded. Finally, in ri, we completely depart from the forms, open the door to creative technique, and arrive in a place where we act in accordance with what our heart/mind desires, unhindered while not overstepping laws.</p>
+</blockquote>
+<p>To me, this explains everything I see in the software development industry.</p>
+<p>First, we follow the rules. Learn best practices. Read the <a href="https://en.wikipedia.org/wiki/Design_Patterns">Gang of Four</a>. “Keep it simple, stupid”, “Do not repeat yourself”. <em>shu</em>.</p>
+<p>Then, we rebel and break the rules. NoSQL, React, Rails and many others were the expression of breaking the established best practices. <em>ha</em>.</p>
+<p>Finally, we transcend the rules. There are no rules and no breaking the rules. You just do. <em>ri</em>.</p>
+<p>A beginner following tech Twitter or Hacker News nowadays will be very confused. Some people preach best practices, others are loudly recommend breaking them. <small>(Unfortunately you rarely see anything from those who transcend them.)</small></p>
+<p>People who grew up writing simple HTML and JS see React as breaking the rules. People who grew up writing React see <a href="https://htmx.org/">HTMX</a> as breaking the rules. And this process will never end.</p>
+<p>We need to realize is that everyone is on a different stage of this process. It doesn’t help the beginner to be thrown into “ha”: it will only confuse them.</p>
+<p>So should you follow the best practices of clean code? Well, yes and no: <a href="https://overreacted.io/goodbye-clean-code/">“Let clean code guide you. Then let it go.”</a></p>
+
+      ]]></content>
+    </entry>
   
     <entry>
       <id>https://frantic.im/disposable-software</id>
@@ -17,7 +44,7 @@
       <updated>2023-03-27T12:00:00+00:00</updated>
 
       <link rel="alternate" href="https://frantic.im/disposable-software" />
-      <summary>Questioning the status quo of "software maintenance"</summary>
+      <summary>Questioning the status quo of software maintenance</summary>
       <content type="html"><![CDATA[
         
         
@@ -692,85 +719,6 @@ Things you can do:
 <ul>
 <li>Audio is extremely important. Low latency is a must to avoid people talking over each other.  The quality is very important too, good software I’ve used before doesn’t broadcast your audio until it detects speech.</li>
 <li>Provide tools that expand ways to communicate non-verbally: raising hand, reactions, polls, messages.</li>
-</ul>
-
-      ]]></content>
-    </entry>
-  
-    <entry>
-      <id>https://frantic.im/no-strings</id>
-      <title>Things that are not strings</title>
-      <updated>2020-08-19T12:00:00+00:00</updated>
-
-      <link rel="alternate" href="https://frantic.im/no-strings" />
-      <summary>As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.</summary>
-      <content type="html"><![CDATA[
-        
-        
-        
-        <p>As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.</p>
-<p>Let’s take SQL for example. Every API in every programming language that I’ve seen considers SQL statement a string.</p>
-<pre><code>function execute(sql: string): Promise&lt;Result&gt;
-</code></pre>
-<p>The problem with this API is that not every string is a valid SQL (nor sometimes it is the SQL you actually want to run).</p>
-<p>Here’s a classic example of the misuse:</p>
-<pre><code>const query = 'SELECT * FROM posts WHERE id = '
-  + params.id;
-</code></pre>
-<p>In this example <code>params.id</code> can be anything, including invalid or malicious SQL.</p>
-<p>The root problem here is not the lack of sanitization. The problem is that SQL is treated as a string.</p>
-<p>Think about JSON for another example. You could certainly implement adding an item to a hash by doing this (I hope this code makes you cringe):</p>
-<pre><code>function addKeyValue(json, key, value) {
-  return json.substr(0, json.length - 1)
-    + ', &quot;' + key + '&quot;: &quot;' + value + '&quot;}';
-}
-</code></pre>
-<p>As with the SQL example, you could add escaping and sanitization, but it’s just hacks hiding the real problem:</p>
-<p><em>A string can be a representation of a thing, but it’s not the thing itself.</em></p>
-<p>And it’s not only about concatenating strings. Can you spot the problem with this function? <span class="hint" onclick="event.target.innerText = 'This URL will be marked as safe by the code below https://evil.com/https://safe.com/'">(see answer)</span></p>
-<pre><code>function isSafeDomain(url: string): boolean {
-  return url.includes('https://safe.com/');
-}
-</code></pre>
-<p>Or in this one? <span class="hint" onclick="event.target.innerText = 'This code is prone to timing attacks'">(see answer)</span></p>
-<pre><code>function checkPassword(pass: string, hash: string): boolean {
-  return sha1(pass) === hash;
-}
-</code></pre>
-<p>Strings are lower level, and thus are much more flexible than they need to be to properly implement valid operations on the higher level concepts.</p>
-<p>Incomplete list of things that are not strings:</p>
-<ul>
-<li>SQL</li>
-<li>HTML</li>
-<li>JSON</li>
-<li>URL</li>
-<li>File path</li>
-<li>Password</li>
-</ul>
-<h2>Things are… things</h2>
-<p>You can save yourself a lot of headache if you stop treating everything that can be represented as a string, as a string.</p>
-<p>Both OO and FP styles allow for abstracting away something as a type or a class. You can make a closed opaque structure for the thing and limit the ways it can be constructed.</p>
-<p>For example, for SQL, you might want to make sure it’s only created from static string literals.</p>
-<pre><code>// Allowed
-new SQL('SELECT * FROM posts WHERE id = ?');
-
-// No allowed (e.g. via a lint rule)
-new SQL('SELECT * FROM posts' + filter);
-</code></pre>
-<p>Of course, at some point, you will need to serialize the thing into a string to pass it into an API that was designed to consume a string. Do it at the last possible moment and try to limit it to a single place in the codebase.</p>
-<pre><code>function execute(sql: SQL): Promise&lt;Result&gt; {
-  return unsafeExecute(sql.toString());
-}
-</code></pre>
-<p>Strings are coming into your app from the outer world. Don’t trust them to be what they seem they are. Convert them into proper things as soon as possible, and convert them back to strings as late as possible.</p>
-<p>Here’s a few libraries for inspiration of how to treat things as… things:</p>
-<ul>
-<li>SQL: <a href="https://github.com/gajus/slonik">Slonik</a>, <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations">LINQ</a></li>
-<li>HTML: React, Elm, <a href="https://github.com/tonsky/rum">rum</a></li>
-<li>JSON: a dictionary in any programming language</li>
-<li>URL: <a href="https://docs.rs/url/2.1.1/url/">url - Rust</a></li>
-<li>File paths: <a href="https://doc.rust-lang.org/std/path/struct.Path.html">std::path::Path - Rust</a></li>
-<li>Passwords: <a href="https://github.com/myfreeweb/secstr">secstr</a>, <a href="https://hackage.haskell.org/package/securemem">securemem</a></li>
 </ul>
 
       ]]></content>

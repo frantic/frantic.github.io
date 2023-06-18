@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=640" />
 
-    <title>Copying code with syntax highlighting / frantic.im</title>
+    <title>Shuhari / frantic.im</title>
     <meta name="author" content="Alex Kotliarskyi">
-    <meta name="description" content="Occasional posts on technology and stuff">
+    <meta name="description" content="Follow the rules, break the rules, transcend the rules">
 
-    <link rel="canonical" href="https://frantic.im/copy-with-syntax">
+    <link rel="canonical" href="https://frantic.im/shuhari">
     <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
 
-    <meta property="og:title" content="Copying code with syntax highlighting">
-    <meta property="og:image" content="https://frantic.im">
-    <meta name="og:description" content="Occasional posts on technology and stuff">
+    <meta property="og:title" content="Shuhari">
+    <meta property="og:image" content="https://frantic.im/figma/og_shuhari.png">
+    <meta name="og:description" content="Follow the rules, break the rules, transcend the rules">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@alex_frantic">
     <meta name="twitter:creator" content="@alex_frantic">
-    <meta name="twitter:title" content="Copying code with syntax highlighting">
-    <meta name="twitter:description" content="Occasional posts on technology and stuff">
-    <meta name="twitter:image" content="https://frantic.im">
+    <meta name="twitter:title" content="Shuhari">
+    <meta name="twitter:description" content="Follow the rules, break the rules, transcend the rules">
+    <meta name="twitter:image" content="https://frantic.im/figma/og_shuhari.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -145,7 +145,10 @@ footer > a:hover { color: #000; }
 .hljs-built_in, .hljs-keyword {font-weight: bold; }
 .hljs-string, hljs-number { color: blue; }
 .hljs-comment { color: grey; }
-      
+      small {
+  opacity: 0.5;
+}
+
     </style>
   </head>
 
@@ -182,361 +185,28 @@ footer > a:hover { color: #000; }
 <article>
   <header>
     
-    <h1 class="title">Copying code with syntax highlighting</h1>
+    <h1 class="title">Shuhari</h1>
   </header>
-  <p>When preparing presentations I often want to include a few code blocks in the slides, with proper syntax highlighting. However, what sounds like a very strightforward task always turns out to be complicated.</p>
-<p>You see, none of the code editors I use (Sublime Text, Atom, VSCode) preserve colorful syntax highlighting of the code. Press ⌘C/⌘V and you get only text. There are plugins for these editors that try to help with that, but what happens under the hood is completely different: they rely on <a href="http://pygments.org/">pygments</a>. This solution is not great, as it uses a different tool to actually do highlighting that produces different result.</p>
-<p>For a while I’ve been using different hacks to add code to my slides:</p>
-<ol>
-<li>Taking a screenshot (pain to change in the future)</li>
-<li>Coloring the code manually (too much work)</li>
-<li>Copying the code to Github gist and then copying it from there from Safari (doesn’t have the same color scheme / syntax as my editor).</li>
-</ol>
-<p>Recently I came up with <a href="https://github.com/frantic/copy-with-syntax">a plugin for Atom</a>. The idea is simple: Atom’s text editor is based on web technology, which means I can just fetch the formatting information from the DOM and put it into pasteboard in a format that can be used by other apps on the system.</p>
-<p><a href="https://github.com/frantic/copy-with-syntax/blob/master/lib/copy-with-syntax.js">This is how it works</a>. I look for the DOM element of the text editor and iterate over each text node recursively. I use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle">getComputedStyle</a> API to get the resulting set of styles for each node, then use that information to manually craft an RTF document with corresponding colors and font styles.</p>
-<p>One interesting gotcha – some DOM nodes appear out of order, likely that’s because for performance reasons Atom splits the content into several absolutely positioned <code>div</code>s.</p>
-<p>Is it pretty? Nope. Stable? Nope. Useful? Yes! <em>A typical hack</em>. The result can be found here: <a href="https://github.com/frantic/copy-with-syntax">frantic/copy-with-syntax</a>.</p>
-<p>I’m sure there is a better way to do this. Both Atom and Sublime have APIs that allow you to get “scope” or “context” for each location in the text that has all information needed to do proper syntax highlighting. Maybe some day I’ll have enough curiosity to look into it.</p>
-<p>P.S. Over the weekend I was experimenting with WebStorm, and it handles copying syntax-highlighted code correctly. Awesome job, JetBrains!</p>
+  <p>I’ve been trying to write a blog post about following “best practices” and how eventually you end up breaking them. But I couldn’t find the right words until I randomly stumbled upon a concept from Japanese martial art: <a href="https://en.wikipedia.org/wiki/Shuhari">Shuhari</a>.</p>
+<blockquote>
+<p>It is known that, when we learn or train in something, we pass through the stages of shu, ha, and ri. These stages are explained as follows. In shu, we repeat the forms and discipline ourselves so that our bodies absorb the forms that our forebears created. We remain faithful to these forms with no deviation. Next, in the stage of ha, once we have disciplined ourselves to acquire the forms and movements, we make innovations. In this process the forms may be broken and discarded. Finally, in ri, we completely depart from the forms, open the door to creative technique, and arrive in a place where we act in accordance with what our heart/mind desires, unhindered while not overstepping laws.</p>
+</blockquote>
+<p>To me, this explains everything I see in the software development industry.</p>
+<p>First, we follow the rules. Learn best practices. Read the <a href="https://en.wikipedia.org/wiki/Design_Patterns">Gang of Four</a>. “Keep it simple, stupid”, “Do not repeat yourself”. <em>shu</em>.</p>
+<p>Then, we rebel and break the rules. NoSQL, React, Rails and many others were the expression of breaking the established best practices. <em>ha</em>.</p>
+<p>Finally, we transcend the rules. There are no rules and no breaking the rules. You just do. <em>ri</em>.</p>
+<p>A beginner following tech Twitter or Hacker News nowadays will be very confused. Some people preach best practices, others are loudly recommend breaking them. <small>(Unfortunately you rarely see anything from those who transcend them.)</small></p>
+<p>People who grew up writing simple HTML and JS see React as breaking the rules. People who grew up writing React see <a href="https://htmx.org/">HTMX</a> as breaking the rules. And this process will never end.</p>
+<p>We need to realize is that everyone is on a different stage of this process. It doesn’t help the beginner to be thrown into “ha”: it will only confuse them.</p>
+<p>So should you follow the best practices of clean code? Well, yes and no: <a href="https://overreacted.io/goodbye-clean-code/">“Let clean code guide you. Then let it go.”</a></p>
 
   <footer>
-    <time datetime="2016-05-20T12:00:00+00:00">May 20, 2016</time>
+    <time datetime="2023-06-18T12:00:00+00:00">Jun 18, 2023</time>
   </footer>
   
 
 
 
-
-
-
-  <h4>Related posts:</h4>
-  
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-      
-        
-      
-    
-
-    
-      <p>
-        <a href="/onityper">Digital Typewriter</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-      
-        
-          
-        
-      
-    
-      
-        
-      
-    
-
-    
-      <p>
-        <a href="/macos-app-shortcuts">Better way to switch between apps on macOS</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          
-        
-      
-    
-
-    
-      <p>
-        <a href="/no-constraints-no-fun">No constraints, no fun</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          
-        
-      
-    
-
-    
-      <p>
-        <a href="/side-projects-are-hard">Why side projects are hard</a>
-      </p>
-      
-      
-        
 
 
 

@@ -7,15 +7,15 @@ excerpt: What's inside that package.json? Pain.
 
 You have been using JavaScript for 10 years. It's time for your test. You are sitting in front of a computer. The test is simple: you have to open a package.json file and read it. The `package.json` is full of pain. You have to read it all.
 
-You look at `version`, you haven't reached 1.0 yet. Semver causes unpleasent memories, but you've learned to ignore them for so long that you don't even notice the tickling sensation in your skull.
+You look at `version`, you haven't reached 1.0 yet. Semver causes unpleasant memories, but you've learned to ignore them for so long that you don't even notice the tickling sensation in your skull.
 
 You wish you used a different `name` for your package, but some random internet person has squatted that name 7 years ago and never updated their package since. It's only mildly discomforting. Maybe the test isn't so bad after all?
 
-Both `main` and `browser` fields are present, you sense traces of Isomorphic JavaScript. In a flash, you remember requiring `fs` module from your browser bundle. These memories are very unpleasent. The hacks you had to do to make it work were even more unpleasent.
+Both `main` and `browser` fields are present, you sense traces of Isomorphic JavaScript. In a flash, you remember requiring `fs` module from your browser bundle. These memories are very unpleasant. The hacks you had to do to make it work were even more unpleasant.
 
 The `type` is set to `module`. This has something to do with the migration from `requires` to `imports`. Why do we have to care about this, again? The extensive pain you've experienced trying to importing ES5 modules from ESM modules and vice versa overwhelms you again.
 
-You make your way to `scripts`. What a hot, painful mess it is. You can't look at them without your heart rate going to 150. lint, lintall, lintfast, lintdiff. Parallel runs, obscure arguments, double-escaping JSON-formatted arguments. `&&` that doesn't work on Windows. Subcommands calling npm even through you stiwtched to yarn and then pnpm. Thousands of variations, premutations and details make you shiver. Why do these things have to be here? Why do they need to be so complicated?
+You make your way to `scripts`. What a hot, painful mess it is. You can't look at them without your heart rate going to 150. lint, lintall, lintfast, lintdiff. Parallel runs, obscure arguments, double-escaping JSON-formatted arguments. Subcommands calling npm even through you switched to yarn and then pnpm. Thousands of variations, premutations and details make you shiver. Why do these things have to be here? Why do they need to be so complicated?
 
 Some scripts still use `watchman`. Gotta remember to not use symlinks because it doesn't support them (and the issue has been open since 2015). There's also this gulp-based script that nobody has the guts to replace with anything else that's considered more modern. You think that there's actually no modern version of gulp but it feels outdated and you definitely want to get rid of it. The pains spreads from your head into your neck and shoulders.
 
@@ -33,9 +33,9 @@ You scroll down to `devDependencies`. You can't remember the time when you only 
 
 `eslint`. Its configuration got so strict that you can't even write code anymore. Any small misstep and you get an angry red underline. Your CI is configured to treat any lint problem as the end of the world. It gives a false sense of security to your junior engineers on the team. You survived serveral holy wars on which rules to enable. The pain is proportional to the amount of `eslint-ignore`s you have all over your codebase. There's a lot.
 
-You also notice `postcss` hiding there. This package is a mystery to you. You don't use it directly, it's a requirement of a dependency of a dependency. But it's the pacakge that's constantly causing you pain by throwing obscure C++ compilation errors on any new platform you try to `npm install` on. If CSS itself wasn't painful enough.
+You also notice `postcss` hiding there. This package is a mystery to you. You don't use it directly, it's a requirement of a dependency of a dependency. But it's the package that's constantly causing you pain by throwing obscure C++ compilation errors on any new platform you try to `npm install` on. If CSS itself wasn't painful enough.
 
-Oh, dear `jest`. It started as a fast test runner. But now it's big and fat, it depends on some babel pacakges while the rest of your app is transpiled by a mix of esbuild and swc. Properly configuring it with ESM and TypeScript was a PhD science project.
+Oh, dear `jest`. It started as a fast test runner. But now it's big and fat, it depends on some babel packages while the rest of your app is transpiled by a mix of esbuild and swc. Properly configuring it with ESM and TypeScript was a PhD science project.
 
 You stop to count how many tools and parsers work on your codebase: TypeScript, esbuild, swc, babel, eslint, prettier, jest, webpack, rollup, terser. You are not sure if you missed any. You are not sure if you want to know. The level of pain is so high you forget about anything else.
 

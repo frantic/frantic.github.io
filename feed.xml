@@ -5,11 +5,47 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2023-06-30T14:49:43.045Z</updated>
+  <updated>2023-07-05T06:21:00.620Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
 
+  
+    <entry>
+      <id>https://frantic.im/story-behind-hackathon-photo</id>
+      <title>Story Behind Hackathon Photo</title>
+      <updated>2023-07-04T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/story-behind-hackathon-photo" />
+      <summary>How a random stream of events ended up creating a picture with 57 million views</summary>
+      <content type="html"><![CDATA[
+        
+        
+        
+        <p>I’ve seen <a href="https://unsplash.com/photos/QBpZGqEMsKg">this photo</a> on the internet, sometimes even billboards and posters. Maybe you’ve seen it too? Here’s the story behind it.</p>
+<p><img src="https://frantic.im/assets/hackathon.jpg" alt="" /></p>
+<p>In 2017 I was working on React Native team. We were friends with all other developer experience teams around Facebook. One of them worked on <a href="https://nuclide.io/">Nuclide</a> (RIP), a set of plugins for Atom editor turning it into multi-platform IDE. Nuclide struggled with adoption outside Facebook walls.</p>
+<p>Around that time, Unsplash was becoming very popular. They were the first to provide high quality stock photos for free (very bold strategy for its time). Their photos were spreading like a wildfire.</p>
+<p>So I had this “genius” idea: make a photo of MacBook Pro with Atom/Nuclide running on it, upload it to Unsplash and get programming blog posts use it as their cover photo (for free). People will notice a cool looking editor and will start asking “what is it?”, eventually finding Nuclide (now you know why I’m not working in marketing).</p>
+<p>I took my old Canon 6D to the office and we did a photoshoot. I uploaded the picture (along with others from my Lightroom collection, to make it less sketchy).</p>
+<p><img src="https://frantic.im/assets/nuclide.jpg" alt="Nuclide/Atom on MacBook Pro" /></p>
+<p>The plan didn’t work. The image got some downloads, but not much. It was lost in a sea of similar pictures. A year later, Facebook gave up on Nuclide and marketing efforts became irrelevant.</p>
+<p>However, one thing came out of this process I did not expect.</p>
+<p>Together with the Nuclide photo, I uploaded a picture I took that year in Ukraine. I was a judge at <a href="https://www.devchallenge.it/">DevChallenge</a> hackathon in Kyiv, and during the break I snapped a few photos with a wide 24mm lens. I really liked how concentrated everyone was, staff members walking the rows, the uniformity, lighting, stickers on the notebooks. I don’t think the photo was very good by photography standards, but I loved the spirit of that place and wanted to capture it.</p>
+<p><img src="https://frantic.im/assets/hackathon_lightroom.png" alt="Other pictures from that hackathon in Kyiv" /></p>
+<p>During the uploading process Unsplash asked if I wanted to submit my pictures to their first ever “Unsplash Awards” and I thought “sure why not?”.</p>
+<p>I forgot about this for a while, until several months later I got an email from Unspash notifying me that I won <a href="https://awards.unsplash.com/2017/#/tech-and-business">“Unsplash Awards 2017” in “Tech and business”</a>.</p>
+<blockquote>
+<p>In a way, Alex’s photo captures a reflection of modern life: staring at a screen. Our lives, especially in our twenties, feels like a competition. From school, to university, to getting a job and progressing through our careers – it’s a never ending competition. The photo draws your eyes out across the rows of workers, all seemingly identical – but at the same time, showing small hints of color and personality from every worker that highlight and humanizes their unique history and personality. It makes me think of 20 years from now, what technology will be ubiquitous.
+– Niv Dror, ProductHunt/Angelist</p>
+</blockquote>
+<p>They sent me a bunch of cool prizes: PeakDesign Messenger bag, straps and clips, Moment lens for iPhone, and even a printed version of my photo.</p>
+<p>Now, looking at it, I do regret not processing the picture more: the horizon line is a bit tilted, you can spot chromatic abberation, the windows are overexposed.</p>
+<p>Today that picture has 57 million views and used all over the internet. It even ended up on <a href="https://news.ycombinator.com/item?id=21010674">Hacker News</a> with the classic “It looks like a sweatshop” and “exact type of workplace I wouldn’t want anyone to end up” comments.</p>
+<p>Conclusions? None, I guess. I just love how a stream of random events brought this to life.</p>
+
+      ]]></content>
+    </entry>
   
     <entry>
       <id>https://frantic.im/javascript-gom-jabbar</id>
@@ -655,54 +691,6 @@ Things you can do:
 </ul>
 <p>—</p>
 <p>Serverless is like a black hole. It promised exciting adventures, but gravity sucked me in and I spent most of my efforts dealing with its complexity, instead of focusing on my product.</p>
-
-      ]]></content>
-    </entry>
-  
-    <entry>
-      <id>https://frantic.im/todo-for-robots</id>
-      <title>TODO apps are meant for robots</title>
-      <updated>2020-10-28T12:00:00+00:00</updated>
-
-      <link rel="alternate" href="https://frantic.im/todo-for-robots" />
-      <summary>What if I'm a left-handed person in the world of right-handed tools?</summary>
-      <content type="html"><![CDATA[
-        
-        
-        
-        <p>In my lifetime I’ve tried a dozen todo apps. In the beginning they all seem different, novel and special. Slick UI, shortcuts, tags, subtasks, the list goes on and on.</p>
-<p>But all our stories were the same: I start using the new app, then after awhile I stop using it.</p>
-<p>Up until the last week I thought the problem was in myself (you probably think so too). After all, <a href="https://gettingthingsdone.com/">David Allen</a> seems to have figured this shit out. Also there are people leaving long 5 star reviews on every major todo list app, they discuss them on forums, recommend them to friends.</p>
-<p>But then I read <a href="https://notes.andymatuschak.org/Close_open_loops?stackedNotes=z5tiFxnNKMZCnc8G9R1N51L5hknyRGmyCQx18&amp;stackedNotes=z8aZybuJJopS5fL7TnPou2JcmCsBUJeqirbBh&amp;stackedNotes=z5vXaKVAPBNKAAi9RXNudduhyGadGXqtMVTEs">Andy Matuschak’s notes</a>, and it really resonated with me. What if I’m a left-handed person in the world of right-handed tools? All popular todo apps out there have the same problems:</p>
-<br>
-<ol>
-<li>
-<p>Willpower needed to make decisions is a limited resource. And most TODO apps are lazy and don’t consider the impact on your willpower. You want to postpone a task? Please enter the exact date to postpone this to. Which project to add this to? Tags? Subtasks? The amount of things one can customize is really large, but making all this decisions has a cost.</p>
-</li>
-<li>
-<p>Long lists are overwhelming. TODO apps are all about lists. And these lists tend to get large when the tasks inflow exceeds the tasks outflow (i.e. every modern knowledge worker’s queue). Looking at the ever-growing list of things that need to get done is not inspiring to say the least. As the lists get longer, there’s less and less chance that anything from it will get done, which also decreases the motivation to look into these lists. Removing stuff without getting it done is also painful, it requires a complex emotional and rational decision to be made (see the point about the willpower above).</p>
-</li>
-<li>
-<p>Sense of accomplishment is important but rare in the digital world. When you mark a task as done in your TODO app, it just hides it. That’s it, no reward, no sense of accomplishment (unless you make your own). I think that’s why some people like Trello or pen-and-paper TODO list: when you get something done, you can see a card moved or a text crossed out. An artifact that proves there was a task here, and now it’s done. Now you are one step closer to your goal.</p>
-</li>
-<li>
-<p>We need to trust our systems. GTD works only when you follow the rules. If you let your inbox grow unbound, the whole point about GTD gets lost and you also start losing trust in GTD. Another negative feedback loop. I’ve never seen a TODO app that lets you recover from this downward spiral.</p>
-</li>
-<li>
-<p>Tasks are not the same. Get milk, write an essay, plan a vacation, reconnect with a friend. These are things of different magnitude, different emotional connection, different context and time commitment. Some tasks aren’t even tasks, e.g. simply items to keep track of or be reminded of. But TODO apps treat them the same. They get the similar looking rows neatly organized in a unified interface.</p>
-</li>
-<li>
-<p>Sometimes humans need help. A little nudge here and there can make a huge difference. It’s also very personal: different things work for different types of people. I’ve made a list of strategies to help me get things done, and ended up with 13 items (things like “extract the next smallest step as a separate task” or “work on it for just 2 minutes”). Thirteen! Guess how many nudges all my TODO apps have? Zero (except the deadline push notification reminder which just adds anxiety).</p>
-</li>
-<li>
-<p>Context is important. We are tired in the evening and have less willpower. <a href="https://www.youtube.com/watch?v=GmFwRkl-TTc">Getting a small task done first thing in the morning can boost our confidence and energy levels</a>. Work tasks are better be hidden during the weekend. Sophisticated TODO apps have the flexibility to do this, but they require a lot of investment in configuration</p>
-</li>
-</ol>
-<p>I now see all TODO apps as a shallow copy-pasta of the same rigid, inhuman, anxiety-inducing template.</p>
-<p>But there’s hope!</p>
-<p>In fact the advanced solution technology lies in the hands of productivity enemies: social media apps and games. Instagram, TikTok and Candy Crush have figured all this out. They know how to make you do something with very little willpower. They know how to present information in a way that’s not overwhelming. They give you rewards for doing things. Hints, nudges, suggestions.</p>
-<p>I think there’s plenty of room for TODO innovations.</p>
-<p>As for me – I’m not registering a domain name for a new pet project. Not yet :)</p>
 
       ]]></content>
     </entry>

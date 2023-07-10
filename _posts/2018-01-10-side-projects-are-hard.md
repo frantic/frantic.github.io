@@ -9,7 +9,7 @@ tags:
   - projects
 ---
 
-It’s been one hour already since I typed `git init`. Next step would be to start the X side-project I've been thinking a lot about. I need a frontend and a backend. I’ll start with the later. So what tech should I use?
+It’s been one hour already since I typed `git init`. Next step would be to start the X side-project I've been thinking a lot about. I need a frontend and a backend. I’ll start with the latter. So what tech should I use?
 
 That’s the question I spent an hour on without making any progress. See, I could use NodeJS, I know it reasonably well. But the project is about handling lots of concurrent connections with shared state between some of them. Making that work could be tricky, and if I mess up something the latency will get pretty bad. Go or Erlang seem like good candidates, they are used for similar systems. However, I haven’t used any of them before.
 

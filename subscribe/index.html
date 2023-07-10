@@ -148,6 +148,10 @@ footer > a:hover { color: #000; }
       button {
   cursor: pointer;
 }
+form {
+  display: flex;
+  flex: column;
+}
 input {
   font-weight: 500;
   font-size: 16px;
@@ -160,6 +164,9 @@ input {
   border: solid 1px #ccc;
   border-radius: 3px;
   vertical-align: top;
+}
+#bd-email {
+  flex: 1;
 }
 
     </style>
@@ -200,12 +207,16 @@ input {
     <h1 class="title">How to subscribe</h1>
   </header>
   <h2>Email</h2>
-<p>Get an email every time I publish a new blog post (which means approximately 0.5 email/month). There’s a one-click unsubscribe link in every message.</p>
-<form action="https://frantic.us3.list-manage.com/subscribe/post?u=96d6ac29ef7232f76b9edc7b9&amp;id=79380afc5b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-  <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="awesome@gmail.com" required>
-  <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_96d6ac29ef7232f76b9edc7b9_79380afc5b" tabindex="-1" value=""></div>
-  <input style="display: none;" type="checkbox" value="1" name="group[27805][1]" id="mce-group[27805]-27805-0">
-  <input type="submit"  value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+<p>Get an email every time I publish a new blog post (which means approximately 0.5 email/month). There’s a one-click unsubscribe link in every message. Powered by <a href="https://buttondown.email/refer/frantic" target="_blank">Buttondown</a>.</p>
+<form
+  action="https://buttondown.email/api/emails/embed-subscribe/frantic"
+  method="post"
+  target="popupwindow"
+  onsubmit="window.open('https://buttondown.email/frantic', 'popupwindow')"
+  class="embeddable-buttondown-form"
+>
+  <input type="email" name="email" id="bd-email" placeholder="curious.person@gmail.com" />
+  <input type="submit" value="Subscribe" />
 </form>
 <h2>RSS</h2>
 <p>Feed URL: <code>https://frantic.im/feed.xml</code>.</p>

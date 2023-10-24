@@ -23,7 +23,7 @@ The pain is barely tolerable when you reach `dependencies`. So, so many of them.
 
 Every time you modify dependency list, some of the dependencies print out screens-worth of messages to your console, asking for donations, warning about breaking changes. You gave up trying to understand these. You only hope none of them are malicious enough to steal your secrets or ruin your computer. The threat of potential pain of that magnitute is frighting.
 
-There's also moment.js. You love that library, it has a really pleasent API. But the internet decided it's too "mutable", too fat, it doesn't support treeshaking and now you have to migrate to date-fns. You haven't started yet, but you already feel the painful refactoring in your bones.
+There's also moment.js. You love that library, it has a really pleasant API. But the internet decided it's too "mutable", too fat, it doesn't support treeshaking and now you have to migrate to date-fns. You haven't started yet, but you already feel the painful refactoring in your bones.
 
 Looking at every package in that list causes some amount of trauma recall. But what's even more concerning is that the version of these packages are way behind what's considered "current". You know that you should upgrade them. But you also have tried that before and you know how much suffering it brings. Things will break in so many ways, big and loud ways, small and subtle ways.
 

@@ -225,7 +225,7 @@ if (process.argv[2] == "--dev") {
 }
 
 function figma(url) {
-  const figmaToken = "figd_tyTOIZyju6ejyS-FVW9-k3id-VOzBkAPHjdxIRUk";
+  const figmaToken = process.env.FIGMA_TOKEN;
 
   return new Promise((resolve, reject) => {
     https.get(

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -o allexport
+source .env set
++o allexport
+
 mkdir -p _build
 rm -rf _build/*
 cp favicon.png _build/

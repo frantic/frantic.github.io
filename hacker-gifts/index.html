@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=640" />
+
+    <title>A side project story: Hacker Gifts (2018-2024) / frantic.im</title>
+    <meta name="author" content="Alex Kotliarskyi">
+    <meta name="description" content="This is a story about a side project that I started in 2018, and the reasons I'm shuting it down.">
+
+    <link rel="canonical" href="https://frantic.im/hacker-gifts">
+    <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
+
+    <meta property="og:title" content="A side project story: Hacker Gifts (2018-2024)">
+    <meta property="og:image" content="https://frantic.im/figma/og_hacker_gifts.png">
+    <meta name="og:description" content="This is a story about a side project that I started in 2018, and the reasons I'm shuting it down.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@alex_frantic">
+    <meta name="twitter:creator" content="@alex_frantic">
+    <meta name="twitter:title" content="A side project story: Hacker Gifts (2018-2024)">
+    <meta name="twitter:description" content="This is a story about a side project that I started in 2018, and the reasons I'm shuting it down.">
+    <meta name="twitter:image" content="https://frantic.im/figma/og_hacker_gifts.png">
+
+    <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
+    <script>
+      if ('ethereum' in window) {
+        document.getElementById('favicon').href = '/assets/favicon-hex.png';
+      }
+    </script>
+
+    <style type="text/css" media="screen">
+      * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@font-face { font-family: 'body';                     src: url('/fonts/IBMPlexSans-Text.woff') format('woff'); }
+@font-face { font-family: 'body'; font-style: italic; src: url('/fonts/IBMPlexSans-TextItalic.woff') format('woff'); }
+@font-face { font-family: 'body'; font-weight: 800;   src: url('/fonts/IBMPlexSans-Bold.woff') format('woff'); }
+
+@font-face { font-family: 'mono';                     src: url('/fonts/IBMPlexMono-Text-Latin1.woff') format('woff'); }
+
+body { font: 18px/28px body, sans-serif; }
+pre, code { font-family: mono, monospace; }
+
+body {
+  background-color: #FFF;
+  color: #000;
+  -webkit-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -moz-font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  font-feature-settings: "kern" 1,"liga" 1,"calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  margin: 50px auto;
+}
+.page { width: 600px; margin: 0 auto; padding: 0 0 0 2px; }
+.page_wide { width: 810px; }
+
+.menu { width: 544px; margin: 0 auto 0; padding: 0 0 50px 0; vertical-align: top; }
+.menu > li { list-style: none; display: inline-block; margin: 0 1.5em 0 0; vertical-align: top; }
+.menu__item, a.menu__item { color: #00000050; border-color: transparent; display: inline-block; }
+.menu__item_selected,
+a.menu__item_selected,
+a.menu__item:hover { color: #000; border-bottom: 2px solid #000; }
+.menu__item_inside, a.menu__item_inside { border-bottom: 2px solid #00000030; }
+
+article { width: 544px; margin: 15px auto; }
+
+a { color: inherit; text-decoration: none; border-bottom: 2px solid #00000030; }
+a:hover { border-color: currentColor; }
+p, blockquote { margin: 15px 0; }
+h1 + p + blockquote { margin-bottom: 30px; margin-right: 1em; }
+blockquote { padding-left: 1em; color: #00000090; }
+blockquote::before {content: "> "; float: left; margin: 0 0 0 -1em; }
+
+.quote-author { text-align: right; font-size: 15px; }
+strong { font-weight: 600; }
+h1, h2 { margin: 2.5em 0 0.5em; }
+h1 { font-size: 1.7em; }
+h2 { font-size: 1.4em; }
+.title { font-size: 2.5em; line-height: 50px; margin: 1.5em 0 0.75em 0; }
+
+p > img, .fig, figure { margin: 2em 0; }
+img { max-width: 100%; }
+
+.fig, figure { text-align: center; font-size: 12px; line-height: 20px; font-style: italic; width: 600px; margin-left: -28px; margin-right: -28px; }
+.fig img, figure > img, figure > video, figure > a > img { margin: 0 auto 1em; display: block; border-radius: 3px; }
+figure > video { max-width: 100%; }
+.label { text-align: center; font-size: 12px; font-style: italic; margin: -1em 0 1em 0; }
+
+code { font-style: normal; background: #00000010; padding: 2px 6px; border-radius: 4px; font-size: 17px; white-space: nowrap; }
+pre { font-size: 16px;
+      background: #00000010;
+      padding: 16px 30px 14px;
+      margin: 1em -30px;
+      border-radius: 8px;
+      white-space: pre;
+      word-wrap: break-word;
+      font-style: normal;
+      overflow-x: auto; }
+pre > code { background: none; padding: 0; font-size: inherit; white-space: unset; }
+
+ul { padding: 0 0 0 1em; list-style-type: square; }
+ul > li, ol > li { margin: 0.5em 0; }
+
+sup, sub, .note-ref, .note-number, .footnote { vertical-align: baseline; position: relative; font-size: .7em; line-height: 1; }
+sup, .note-ref, .note-number, .footnote { bottom: 1.4ex; }
+sub { top: .5ex; }
+
+.about { margin: 60px 0;}
+.about_photo { float: left; width: 100px; height: 160px; margin-left: -150px; margin-top: -10px; background: url("/photo.png"); background-size: 200px; }
+.about_photo:hover { background-position: 100%; }
+.about_inner { font-size: 16px; line-height: 24px; border: 2px solid #00000030; border-radius: 4px; padding: 10px 20px; margin: -12px -22px; }
+.about_inner > p { margin: 0; }
+.about_inner > p:not(:last-child) { margin-bottom: 8px; }
+.btn-subscribe { line-height: 20px; text-decoration: none; background: #00000015; border: none; font-size: 12px; padding: 0px 7px; display: inline-block; border-radius: 4px; position: relative; top: -1px; }
+.btn-subscribe:hover { background: #00000030; }
+.btn-subscribe > svg { width: 21px; height: 21px; vertical-align: bottom; margin: 0 -2px 0 -5px; }
+
+.footnote { margin: 0 5px;  }
+.footnotes-br { width: 100px; height: 2px; background: #000000; margin-top: 5em; }
+.footnotes, .footnotes_alt { padding-left: 1em;  }
+.footnotes_alt > li > .dagger { margin-left: -13px; }
+.footnotes_alt { list-style: none; } 
+
+.notes { font-size: 0.8em; }
+.note-number { margin-left: -1em; }
+
+.date { color: #00000090; font-size: 14px; margin-left: 4px; }
+
+footer { color: #00000090; }
+footer { font-size: 16px; margin-bottom: 5em; }
+footer > .separator { margin: 0 4px; }
+footer > a { margin-right: 5px; }
+footer > a:hover { color: #000; }
+
+/* syntax */
+.highlight .kd, .highlight .k {font-weight: bold; }
+.highlight .mi { color: blue; }
+.highlight .cm { color: grey; }
+
+.hljs-built_in, .hljs-keyword {font-weight: bold; }
+.hljs-string, hljs-number { color: blue; }
+.hljs-comment { color: grey; }
+      
+    </style>
+  </head>
+
+  <body>
+    <ul class="menu">
+  
+  <li>
+    <a class="menu__item " style="" href="/blog/">
+      Blog
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/talks/">
+      Talks
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/projects/">
+      Projects
+    </a>
+  </li>
+  
+  <li>
+    <a class="menu__item " style="" href="/about/">
+      About
+    </a>
+  </li>
+  
+</ul>
+
+
+<article>
+  <header>
+    
+    <h1 class="title">A side project story: Hacker Gifts (2018-2024)</h1>
+  </header>
+  <p><em>This is a story about a side project, <a href="https://hacker.gifts/">Hacker Gifts</a>, that I started in 2018, and the reasons I’m shutting it down.</em></p>
+<p>February 2018. London, 9 pm. It’s dark outside and raining. Vlad is holding a flashlight and is looking for… something. One hour ago a girl he didn’t know gave him two numbers over the phone and hung up. The numbers looked like GPS coordinates not too far from his house, so Vlad decided to check it out. The people on the street are gazing at Vlad suspiciously, and all he can think about is “How did I get into all of this?”</p>
+<p>He got into all of that because of me.</p>
+<p>Vlad is my close friend. He has everything (or means of getting everything) that most people would consider a “birthday gift”. I wanted to give him something special that he’ll remember for the rest of his life.</p>
+<p>At first, the idea was simple — write a greetings message, encode it as a QR code and send it via mail. But that would have been too easy for Vlad. So, inspired by great movies like <a href="https://www.imdb.com/title/tt0119174/">The Game (1997)</a>, <a href="https://www.imdb.com/title/tt1677720/">Ready Player One (2018)</a> and <a href="https://www.imdb.com/title/tt4158110/">Mr. Robot</a>, I dialed it up.</p>
+<p>In the QR-encoded letter I had a link to a file with a private SSH key and an IP address (encoded as an obscure Japanese poem). The server had a Tetris game running on it (Vlad <em>loves</em> Tetris), and once he got through that he saw instructions to send 1 satoshi to a Bitcoin address. After verifying the transaction a script gave him the next SSH key, but this time it was encrypted with a password, and the password was inside of an armv6 binary hosted on IPFS that required a PIN. Bruteforcing the PIN took more than 4 hours on a Raspberry Pi. This time the note instructed Vlad to wait for a phone call. I put the third key on a flash drive and hid it under a bench in a park in London, and asked my cousin to give Vlad a call and tell him the GPS coordinates. The password to the last key was encoded as a Branf*ck program in a BMP file. Using the third key Vlad got to a VNC session on a virtual machine running Windows 3.1, where he had to find a file hidden on a virtual floppy drive. The file had a link to 90s-style webpage with a birthday greeting on it. Happy Birthday, Vlad!</p>
+<p><img src="/assets/hacker-gifts/happy-birthday.jpg" alt="Early version of hacker.gifts website" /></p>
+<p>It took me more than 2 months to set this all up. Vlad really liked the experience. I was proud.</p>
+<h2>Into production</h2>
+<p>If Vlad liked it, maybe others will like it too?</p>
+<p>I’ve decided to productionalize my learning and make it so anyone could get a similar puzzle. I really wanted to make the puzzle feel personal: it should know the name of the person who’s solving it, and at the end should reveal a secret message.</p>
+<p>At first, I wanted to send physical postcards, but I stumbled on way too many issues. The printing quality was always a problem. During the delivery, USPS scratched the postcard with the QR code and it didn’t always read correctly. Delivery sometimes took more than a week. In addition, many people didn’t want to leave their physical address, and the recipient could mistake the postcard for spam.</p>
+<p>I decided to shift the focus exclusively to the digital aspect. Buyers can print it themselves, transfer it to their phone, or hide it on their desktop.</p>
+<p><img src="/assets/hacker-gifts/01-Hacker-Gifts.png" alt="Early version of hacker.gifts website" /></p>
+<h2>Tech stack</h2>
+<p>I remember wasting <em>a lot</em> of time on which framework to use to build the website. The classic software engineering side project dilemmas. I was agonizing about this until one night I forked $32 for a Shopify store. It wasn’t perfect by my standards, but it definitely unlocked everything else.</p>
+<p>At first, I processed all orders manually. Shopify sends me a push notification, I run to the computer and quickly enter the data into a local script, then send the result by mail.</p>
+<p>In early days the adrenaline from every $20 brought a thrill. But I quickly got tired of getting up in the middle of the night. In addition, I wanted to create a pleasant impression and instant free delivery.</p>
+<p>It was time for <em>Automation</em>. Shopify can call a webhook for each order, and there I can generate a new postcard and send it by mail.</p>
+<p>I started with a microservice zoo — a script in Ruby, an AWS lambda in Node.js, order data in DynamoDB, files in S3, Mailchimp, all seasoned with a bit of Zapier. I tried to keep each individual thing very simple, but the result turned out to be a complexity monster. Debugging stuck orders was hell.</p>
+<p>When the COVID hit, I <a href="/back-to-rails">rewrote everything in Ruby on Rails</a>. Because Rails is an established framework, I didn’t need to reinvent the wheel at every step. I’ve got proper tests, queues, database, caching — all working in a nice consistent setup that didn’t rely on 3rd party services.</p>
+<p><img src="/assets/hacker-gifts/tests.png" alt="Sweet Rails tests" /></p>
+<h2>Growth and marketing</h2>
+<p>When I started, I knew absolutely nothing about growth and marketing.</p>
+<p>I remember spending my first $250 on ads — it got me ~200 likes on Facebook and zero orders. I tuned creative, targeting, copy — all with virtually no results. The problem was that I didn’t know how to position and explain my product. But I also <a href="https://medium.com/@andreamantovani/known-knowns-known-unknowns-unknown-unknowns-leadership-367f346b0953">didn’t know I didn’t know that</a>. Frustrating times.</p>
+<p>I found my first customers in a local Bay Area group for spouses of software engineers who worked for tech companies. Posting there felt very uncomfortable, but 30 minutes later I sold my first item!</p>
+<p>Since then, the product has grown mostly through word-of-mouth and organic Google search.</p>
+<p>I struggled with positioning the product until I read <a href="https://www.momtestbook.com/">The Mom Test</a>. That book really opened my eyes to what questions to ask, and I’ve made many improvements to the website since then.</p>
+<p>After much trial and error, I have identified two target audiences:</p>
+<ul>
+<li>Nerds who love side projects and fun puzzles. My product resonated with them once they dug deeper, but getting them to notice it was a challenge — these folks are completely blind to advertising and popular social media.</li>
+<li>Regular people who don’t understand the technology, but who want a thoughtful gift for a programmer. They look at Facebook and click on ads, but it’s difficult to convey the value of such a gift.</li>
+</ul>
+<p><img src="/assets/hacker-gifts/latest-landing-page.png" alt="Improved hacker.gifts landing page" /></p>
+<h2>Costs and profits</h2>
+<p>Technically the project is profitable. Here are some numbers from 2020, recent years were in the same ballpark.</p>
+<p>Typically I charged $19.99 for a puzzle, sometimes giving a discount.</p>
+<p>For the period from September 1, 2019 to September 1, 2020, there were 170 orders, with a total revenue of $3,162.50.</p>
+<p><img src="/assets/hacker-gifts/03-Revenue.png" alt="Improved hacker.gifts landing page" /></p>
+<p>Shopify eats ~4% from each transaction, charges $32/mo for the service and $36 for the domain.</p>
+<p>The backend needs a server on Heroku ($7/mo), Postgres DB ($10/mo) and one VPS ($10/mo) for the quest + domain ($13/y).</p>
+<p>Total expenses: $757.</p>
+<p>Profit $3,162.50 - 4% - $757 = $2,279.</p>
+<p>On the one hand, it’s very good for a pet project. In 2019, the project barely broke even. 2021-2023 were similar to 2020.</p>
+<p>But there’s one set of numbers that I’m really proud of.</p>
+<p><img src="/assets/hacker-gifts/02-Survey.png" alt="Improved hacker.gifts landing page" /></p>
+<p>At the end of the puzzle I have a small form for feedback. Not everyone fills it out, but this is what the statistics look like. Reading the feedback always made me smile. I’ve collected some on the <a href="https://hacker.gifts/blogs/guides/testimonials">testimonials</a> page.</p>
+<h2>Shutting It Down</h2>
+<p>For the last few years, I haven’t touched the project much. But there’s no such thing as a truly passive side project.</p>
+<p>I’m always anxious something is going to break and users won’t get their order. I have alerts for errors and watchdogs, but still feel the responsibility to deliver a great experience hanging over my shoulders.</p>
+<p>The tech is also not helping: every bit of my stack is aging fast, and without constant support the cost of any change grows. “The Heroku-18 stack is end-of-life” is April next year, but I know if I start updating it, something else will pop up — new Rails version, DB upgrade, certificates, etc. Even with fewer moving pieces than before, maintenance is not trivial.</p>
+<p>But the most important reason I’m shutting it down is to give space for new ideas to grow. In its current state, <a href="https://hacker.gifts">Hacker Gifts</a> still occupies my headspace that I could use for other things.</p>
+<p>Looking back, this project definitely fits the category of “a solution in search of a problem”. But I don’t blame myself. IMHO the solution is really clever, I haven’t seen anything like this anywhere before. I also really enjoyed building it, and I learned a ton about marketing, customer interviews, ads, and many other things.</p>
+<p>If you read this far and would like to try it out for free, use code <code>FRANTIC</code> at checkout <a href="https://hacker.gifts/">here</a>. I’ll keep the servers up until Jan 2024. Also check out <a href="https://robertovaccari.com/blog/2021_02_14_hacker_gifts/">Roberto Vaccari’s</a> review (spoilers!)</p>
+
+  <footer>
+    <time datetime="2023-10-29T12:00:00+00:00">Oct 29, 2023</time>
+  </footer>
+  
+
+
+
+
+
+
+  <h4>Related posts:</h4>
+  
+
+  
+
+    
+
+    
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+
+    
+      <p>
+        <a href="/octave">A side project story: octave.im (2013-2016)</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <p>
+        <a href="/onityper">Digital Typewriter</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+
+    
+      <p>
+        <a href="/no-constraints-no-fun">No constraints, no fun</a>
+      </p>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+
+    
+      <p>
+        <a href="/side-projects-are-hard">Why side projects are hard</a>
+      </p>
+      
+      
+        
+
+
+
+  <div class="about">
+  <div class="about_inner">
+    <p>Hello! This text lives here to convince you to subscribe. If you are reading this, consider clicking that subscribe button for more details.</p>
+    <p>I write about programming, software design and side projects <a style="margin-left: 5px" class="btn-subscribe" href="/subscribe/" target="_blank"><svg viewBox="0 0 800 800"><path d="M493 652H392c0-134-111-244-244-244V307c189 0 345 156 345 345zm71 0c0-228-188-416-416-416V132c285 0 520 235 520 520z"/><circle cx="219" cy="581" r="71"/></svg> Subscribe</a></p>
+  </div>
+</div>
+
+</article>
+
+    <script>
+      window.GoogleAnalyticsObject = 'ga';
+      window.ga = window.ga || function() {
+        (window.ga.q = window.ga.q || []).push(arguments);
+      };
+      window.ga.l = Date.now();
+
+      ga('create', 'UA-96545608-1', 'auto');
+      ga(function(tracker) {
+        tracker.set('sendHitTask', function(model) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', 'https://curiosity-seven.vercel.app/api/ev?' + model.get('hitPayload'), true);
+          xhr.send();
+        });
+      });
+      ga('send', 'pageview');
+    </script>
+    <script async defer src="https://curiosity-seven.vercel.app/api/leet" async></script>
+  </body>
+</html>

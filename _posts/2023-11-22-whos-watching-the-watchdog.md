@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Who's watching the watchdog?
-image: /assets/og_watchdog.png
+image: /assets/figma/og_watchdog.png
 excerpt: Making reliable systems that expect things to go wrong
 ---
 

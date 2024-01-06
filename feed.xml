@@ -5,11 +5,37 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2023-11-22T18:31:03.008Z</updated>
+  <updated>2024-01-06T17:12:37.992Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
 
+  
+    <entry>
+      <id>https://frantic.im/opening-mail</id>
+      <title>Opening Mail</title>
+      <updated>2024-01-06T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/opening-mail" />
+      <summary>First make the change easy, then make the easy change.</summary>
+      <content type="html"><![CDATA[
+        
+        
+        
+        <p>I never liked opening envelopes; they’re tricky and ripping them open is annoying. My letters would get stuck or tear with the envelope.</p>
+<p>The mail just used to stack up, and I’d miss important stuff because of it.</p>
+<p>But then I found this cool little gadget from Japan.</p>
+<a style="border: none" href="https://www.amazon.com/dp/B001GR4DQ8" target="_blank">
+  <img src="https://frantic.im/assets/ceramic-letter-opener.jpg" width="256">
+</a>
+<p>It’s well-made, affordable, and feels good to use. Plus, it’s safe.</p>
+<p>The best part? It actually made me enjoy opening my mail.</p>
+<p>After this experience, I started thinking differently about unpleasent tasks. Is there a tool or a service that add delight to mundane things?</p>
+<p>I also started noticing when people do this subconiously. For example, most software engineers I know hate blogging, but they like building their own blog engine to make blogging more pleasant (I’m very guilty of this too).</p>
+<p>Kent Beck <a href="https://twitter.com/KentBeck/status/250733358307500032">nailed it</a>: “for each desired change, make the change easy (warning: this may be hard), then make the easy change”.</p>
+
+      ]]></content>
+    </entry>
   
     <entry>
       <id>https://frantic.im/whos-watching-the-watchdog</id>
@@ -405,277 +431,6 @@ Things you can do:
 <h3>One more thing…</h3>
 <p>Re-reading this post might seem like I know what I’m doing. I don’t. It’s easy to connect the dots looking backward and assemble a story. But living through that story is a different experience.</p>
 <p>If any part of this story was interesting to you, please feel free to reach out. I have my email address published on this website and <a href="https://twitter.com/alex_frantic">Twitter</a> DMs are good, too.</p>
-
-      ]]></content>
-    </entry>
-  
-    <entry>
-      <id>https://frantic.im/react-api-evolution</id>
-      <title>React API evolution</title>
-      <updated>2021-03-11T12:00:00+00:00</updated>
-
-      <link rel="alternate" href="https://frantic.im/react-api-evolution" />
-      <summary>From React.createClass to hooks: why React is at odds with JavaScript</summary>
-      <content type="html"><![CDATA[
-        
-        
-        
-        <p>React is ~8 years old. I remember the day when I saw the first demo — I was amazed at how genius yet how simple it was! I still carry that excitement to this day.</p>
-<p>During this time React changed a bunch, but its core ideas have stayed the same. It’s still all about thinking about your UI code as a function of state, bringing state front and center, immutable data, one-directional data flows, composition over inheritance.</p>
-<p>In this post I’ll share how the developer APIs have evolved, specifically we’ll talk about defining components and sharing common code between components.</p>
-<iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube-nocookie.com/embed/QEGbuc-sKtE?rel=0" frameborder="0" allowfullscreen></iframe>
-<h2>2013, <a href="https://web.archive.org/web/20130607112820/http://facebook.github.io/react/">React v0.3.0</a>: <code>React.createClass</code></h2>
-<pre><code class="language-js"><span class="hljs-comment">/** <span class="hljs-doctag">@jsx</span> React.DOM */</span>
-<span class="hljs-keyword">var</span> <span class="hljs-title class_">Timer</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createClass</span>({
-  <span class="hljs-attr">propTypes</span>: {
-    <span class="hljs-attr">name</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">PropTypes</span>.<span class="hljs-property">string</span>.<span class="hljs-property">isRequired</span>,
-  },
-  <span class="hljs-attr">getInitialState</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> { <span class="hljs-attr">seconds</span>: <span class="hljs-number">0</span> };
-  },
-  <span class="hljs-attr">tick</span>: <span class="hljs-title class_">React</span>.<span class="hljs-title function_">autoBind</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({ <span class="hljs-attr">seconds</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">seconds</span> + <span class="hljs-number">1</span> });
-  }),
-  <span class="hljs-attr">componentDidMount</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
-    <span class="hljs-built_in">setInterval</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span>, <span class="hljs-number">1000</span>);
-  },
-  <span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> (
-      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-        Hello, {this.props.name}! It&#x27;s been {this.state.seconds} seconds
-      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-    );
-  },
-});
-
-<span class="hljs-title class_">React</span>.<span class="hljs-title function_">renderComponent</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Timer</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;Alex&quot;</span> /&gt;</span></span>, <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;main&quot;</span>));
-</code></pre>
-<p>Initeresting things to note here:</p>
-<ol>
-<li><code>/** @jsx React.DOM */</code> was required for the JSXTransformer to convert XML-in-JS syntax (like <code>&lt;div&gt;Hello&lt;/div&gt;</code>) to function calls (like <code>React.DOM.div({}, 'Hello')</code>)</li>
-<li><code>React.createClass</code> was used to create a component. I think in hindsight naming it <code>Class</code> and not <code>Component</code> was a big marketing mistake: with ES6 classes many people were pushing for React to adopt the “standard” way, although it had a lot of problems (more on that later).</li>
-<li>In development, React performed <code>props</code> validation at runtime (Flow and TypeScript didn’t exist back then), and the <code>PropTypes</code> API allowed for pretty complex definitions with nested objects and arrays.</li>
-<li>Initially, without <code>React.autoBind</code> the methods on the components had dynamically scoped <code>this</code>, which was pretty confusing: calling <code>this.tick</code> would result in something like “Can’t call <code>setState</code> of unndefined”. <code>autoBind</code> was doing something like <code>fn.bind(this)</code> to fix it on per-function basis, and eventually this behavior was moved directly into <code>React.createClass</code>.</li>
-<li>React focused on a pure, functional, declarative approach to bulding UIs, but also had escape hatches that allowed programmers take imperative actions or talk to DOM when needed via lifecycle methods and refs.</li>
-</ol>
-<p>If you look carefully at the example above, you’ll notice that there’s a memory leak! We <code>setInterval</code> without <code>clearInterval</code>-ing it. To fix the problem we’d have to call <code>clearInterval</code> from <code>componentWillUnmount</code>, however that wasn’t obvious from the APIs and programmers had to watch out for patterns like this.</p>
-<p>That was a common pitfall: managing resources and making sure parts that were not managed by React were in sync with the UI.</p>
-<p>It was clear there’s a need for a way for the components to share behavior traits. Early versions of React shipped with a solution to this problem: mixins.</p>
-<h3>Mixins</h3>
-<pre><code class="language-js"><span class="hljs-comment">/** <span class="hljs-doctag">@jsx</span> React.DOM */</span>
-
-<span class="hljs-keyword">var</span> <span class="hljs-title class_">SetIntervalMixin</span> = {
-  <span class="hljs-attr">componentWillMount</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">intervals</span> = [];
-  },
-  <span class="hljs-attr">setInterval</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">callback, interval</span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">intervals</span>.<span class="hljs-title function_">push</span>(<span class="hljs-built_in">setInterval</span>(callback, interval));
-  },
-  <span class="hljs-attr">componentWillUnmount</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">intervals</span>.<span class="hljs-title function_">map</span>(<span class="hljs-built_in">clearInterval</span>);
-  },
-};
-
-<span class="hljs-keyword">var</span> <span class="hljs-title class_">TickTock</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createClass</span>({
-  <span class="hljs-attr">mixins</span>: [<span class="hljs-title class_">SetIntervalMixin</span>],
-
-  <span class="hljs-attr">getInitialState</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> { <span class="hljs-attr">seconds</span>: <span class="hljs-number">0</span> };
-  },
-  <span class="hljs-attr">componentDidMount</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-built_in">setInterval</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span>, <span class="hljs-number">1000</span>);
-  },
-  <span class="hljs-attr">tick</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({ <span class="hljs-attr">seconds</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">seconds</span> + <span class="hljs-number">1</span> });
-  },
-  <span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>It&#x27;s been {this.state.seconds} seconds<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>;
-  },
-});
-</code></pre>
-<p>The code above fixes the memory leak and makes it easier to avoid this problem in the future: just include <code>SetIntervalMixin</code> and you are good to go!</p>
-<p>Mixins fixed some problems, but intruduced others: implicit dependencies, name clashes and snowballing complexities. <a href="https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html">Read more on the official blog post (2016)</a>.</p>
-<h2>2015, <a href="https://reactjs.org/blog/2015/01/27/react-v0.13.0-beta-1.html">React v0.13</a>: <code>class extends React.Component</code></h2>
-<p>The big feature of this release was ES6 class support:</p>
-<blockquote>
-<p>JavaScript originally didn’t have a built-in class system. Every popular framework built their own, and so did we. This means that you have a learn slightly different semantics for each framework.</p>
-</blockquote>
-<blockquote>
-<p>We figured that we’re not in the business of designing a class system. We just want to use whatever is the idiomatic JavaScript way of creating classes.</p>
-</blockquote>
-<pre><code class="language-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Timer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span> {
-  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) {
-    <span class="hljs-variable language_">super</span>(props);
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = {<span class="hljs-attr">seconds</span>: <span class="hljs-number">0</span>};
-  }
-  <span class="hljs-title function_">tick</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({<span class="hljs-attr">seconds</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">seconds</span> + <span class="hljs-number">1</span>});
-  }
-  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-built_in">setInterval</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>), <span class="hljs-number">1000</span>);
-  }
-  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> (
-      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-        Hello, {this.props.name}! It&#x27;s been {this.state.seconds} seconds
-      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-    );
-  }
-});
-
-<span class="hljs-title class_">Counter</span>.<span class="hljs-property">propTypes</span> = {
-  <span class="hljs-attr">name</span>: <span class="hljs-title class_">React</span>.<span class="hljs-property">PropTypes</span>.<span class="hljs-property">string</span>.<span class="hljs-property">isRequired</span>,
-};
-</code></pre>
-<p>However, in my opinion ES6 classes didn’t fix the problem, but made it worse.</p>
-<p>First, the benefits weren’t super valuable. React shipped <code>Component</code> and <code>PureComponent</code> to inherit from, inheriting other components was discouraged (in favor of <a href="https://reactjs.org/docs/composition-vs-inheritance.html">composition</a>).</p>
-<p>Second, the semantics resulted in a bunch of ergonomics problems.</p>
-<p>In the example above, if you forgot to do <code>this.tick.bind(this)</code>, you’ll get the same “Can’t call <code>setState</code> of unndefined” as in pre-<code>autoBind</code> days. There were several popular ways to address this, none of them seemed ideal though:</p>
-<ul>
-<li>Do it inline: easy to forget, <code>bind</code> returns a new function instance for every call (which hurts if you rely on <code>shouldComponentUpdate</code>):</li>
-</ul>
-<pre><code class="language-js">&lt;button onClick={<span class="hljs-variable language_">this</span>.<span class="hljs-property">increment</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>)} /&gt;
-</code></pre>
-<ul>
-<li>Do it in the constructor: verbose, easy to miss:</li>
-</ul>
-<pre><code class="language-js"><span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) {
-  <span class="hljs-comment">// ...</span>
-  <span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>);
-}
-</code></pre>
-<ul>
-<li>Arrow functions + E7 property initializers: its syntax is inconsistent with method definitions in subtle ways (also note <code>;</code> at the end of <code>tick</code>):</li>
-</ul>
-<pre><code class="language-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Timer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span> {
-  tick = <span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-comment">// ...</span>
-  };
-
-  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-built_in">setInterval</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span>, <span class="hljs-number">1000</span>);
-  }
-}
-</code></pre>
-<h3>Higher-order components</h3>
-<p>As mixing were goin away, the developers needed to fill the gap: find a way to reuse common functionality across components.</p>
-<p>HoC became a popular replacement for mixins. You can think of the pattern as writing a function that takes a component as its argument, and returns a new component that wraps it with some useful enhancement.</p>
-<p>Here’s an example of HoC that does the same thing as the <code>SetIntervalMixin</code> from the earlier example:</p>
-<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">withTimer</span>(<span class="hljs-params">Component</span>) {
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">extends</span> <span class="hljs-title class_">React</span>.<span class="hljs-property">Component</span> {
-    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) {
-      <span class="hljs-variable language_">super</span>(props);
-      <span class="hljs-variable language_">this</span>.<span class="hljs-property">intervals</span> = [];
-    }
-    <span class="hljs-built_in">setInterval</span> = <span class="hljs-function">(<span class="hljs-params">callback, interval</span>) =&gt;</span> {
-      <span class="hljs-variable language_">this</span>.<span class="hljs-property">intervals</span>.<span class="hljs-title function_">push</span>(<span class="hljs-built_in">setInterval</span>(callback, interval));
-    };
-    <span class="hljs-title function_">componentWillUnmount</span>(<span class="hljs-params"></span>) {
-      <span class="hljs-variable language_">this</span>.<span class="hljs-property">intervals</span>.<span class="hljs-title function_">map</span>(<span class="hljs-built_in">clearInterval</span>);
-    }
-    <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) {
-      <span class="hljs-comment">// Render the original component with some additional props</span>
-      <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Component</span> {<span class="hljs-attr">...this.props</span>} <span class="hljs-attr">setInterval</span>=<span class="hljs-string">{this.setInterval}</span> /&gt;</span></span>
-    }
-  }
-}
-
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">Timer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span> {
-  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) {
-    <span class="hljs-variable language_">super</span>(props);
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = {<span class="hljs-attr">seconds</span>: <span class="hljs-number">0</span>};
-  }
-  <span class="hljs-title function_">tick</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({<span class="hljs-attr">seconds</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">seconds</span> + <span class="hljs-number">1</span>});
-  }
-  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-built_in">setInterval</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">tick</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>));
-  }
-  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> (
-      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-        Hello, {this.props.name}! It&#x27;s been {this.state.seconds} seconds
-      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-    );
-  }
-});
-</code></pre>
-<p>HoC promise is to use functional composition to solve the trait problem. But they do come with their own drawbacks too, especially around the ergonomics:</p>
-<ol>
-<li>Creating and using them is verbose, it’s not uncommon to end up with wrappers on top of wrappers, e.g. <code>withTranslations(withTimer(connect()(Timer)))</code>.</li>
-<li>This indirection breaks <code>refs</code> and makes writing pure components harder, unless implemented carefully.</li>
-<li>Devtools show very deep wrapped component hierarchies that hurt readability:</li>
-</ol>
-<p><img src="https://frantic.im/assets/react-api-evolution/deep-hocs.png" alt="" /></p>
-<h3>Render props</h3>
-<p>React community kept looking for better ways to reuse logic in components and for some time a pattern called “render props” gained a bunch of popularity. I’m not going to dive into these dark ages, but the idea was similar to HoC.</p>
-<h2>2019, <a href="https://reactjs.org/blog/2019/02/06/react-v16.8.0.html">React v16.8</a>: Hooks</h2>
-<p>Around the time the release with ES6 was published, the React team made it possible to define components as simple functions, aka “stateless functional components”:</p>
-<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Timer</span>(<span class="hljs-params">props</span>) {
-  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Hello, {props.name}!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
-}
-
-<span class="hljs-title class_">React</span>DOM.<span class="hljs-title function_">render</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Timer</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;Alex&quot;</span> /&gt;</span></span>, <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;main&quot;</span>));
-</code></pre>
-<p>This was very popular: simple, concise, idiomatic. However, how do you get access to state or lifecycle methods?</p>
-<p>After a bunch of prototyping and explorations, the React team presented the way – hooks.</p>
-<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Timer</span>(<span class="hljs-params">props</span>) {
-  <span class="hljs-keyword">const</span> [seconds, setSeconds] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
-
-  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-keyword">const</span> interval = <span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setSeconds</span>(<span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span> s + <span class="hljs-number">1</span>), <span class="hljs-number">1000</span>);
-    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
-      <span class="hljs-built_in">clearInterval</span>(interval);
-    };
-  }, []);
-
-  <span class="hljs-keyword">return</span> (
-    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-      Hello, {props.name}! It&#x27;s been {seconds} seconds
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-  );
-}
-</code></pre>
-<p>Programmers familiar with algebraic effects saw the striking similarities.</p>
-<p>Notably, the mental model of hooks shifted from “lifecycle methods” to “sync things outside React’s control with UI”.</p>
-<p>For example, <code>useEffect</code> is built in a way that makes it easy to colocate resource acquisition and release, making memory leaks much easier to avoid. The second argument to <code>useEffect</code> is a list of dependencies, if any of them change between calls to the same <code>useEffect</code>, React will clean up the previous one and will recreate a new one. Getting this right with <code>componentDidMount</code> / <code>componentWillReceiveProps</code> / <code>componentWillUnmount</code> was hard.</p>
-<p>Hooks have solved the problem of sharing common functionality across components in a very elegant, composable ways:</p>
-<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">useInterval</span>(<span class="hljs-params">callback, ms</span>) {
-  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-keyword">const</span> interval = <span class="hljs-built_in">setInterval</span>(callback, ms);
-    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
-      <span class="hljs-built_in">clearInterval</span>(interval);
-    };
-  }, [callback, ms]);
-}
-
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">Timer</span>(<span class="hljs-params">props</span>) {
-  <span class="hljs-keyword">const</span> [seconds, setSeconds] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
-  <span class="hljs-title function_">useInterval</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setSeconds</span>(<span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span> s + <span class="hljs-number">1</span>), <span class="hljs-number">1000</span>);
-
-  <span class="hljs-keyword">return</span> (
-    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-      Hello, {props.name}! It&#x27;s been {seconds} seconds
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-  );
-}
-</code></pre>
-<p>But hooks were not without problems either: in the example above there’s a subtle problem with the callback we pass to <code>useInterval</code>: since it’s a new referance every time (in JS, <code>() =&gt; {}</code> !== <code>() =&gt; {}</code>) we end up re-creating interval every render. The solution looks like this:</p>
-<pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Timer</span>(<span class="hljs-params">props</span>) {
-  <span class="hljs-keyword">const</span> [seconds, setSeconds] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
-  <span class="hljs-keyword">const</span> increment = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setSeconds</span>(<span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span> s + <span class="hljs-number">1</span>), []);
-  <span class="hljs-title function_">useInterval</span>(increment, <span class="hljs-number">1000</span>);
-
-  <span class="hljs-comment">// ...</span>
-}
-</code></pre>
-<p>Compared to <code>React.Component</code> and mixins, React Hooks traded <code>this</code> and related class gotchas for JS scope gotchas. I think it was a good trade to make.</p>
-<h1>Conclusions</h1>
-<ol>
-<li>React did an awesome job keeping the API surface very small. Watching the documentation across all these years felt like the team is actively <em>removing</em> things that are non-essential.</li>
-<li>React evolved in a steady, backwards-compatible way. You can still use <code>React.createClass</code> APIs via a package, if you want to. Facebook code written in 2013 still works fine (after applying minor codemods).</li>
-<li>React is at odds with JavaScript: from JSX syntax, ES6 class method bindings gotchas to reinvention of algebraic effects.</li>
-</ol>
 
       ]]></content>
     </entry>

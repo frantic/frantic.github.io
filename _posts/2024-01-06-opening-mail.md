@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Opening Mail
-image: /assets/figma/og_opening_mail.png
+image: /figma/og_opening_mail.png
 excerpt: First make the change easy, then make the easy change.
 ---
 

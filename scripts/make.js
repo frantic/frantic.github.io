@@ -18,7 +18,7 @@ const md = new MarkdownIt({
     if (language && hljs.getLanguage(language)) {
       try {
         return hljs.highlight(code, { language }).value;
-      } catch (__) {}
+      } catch (__) { }
     }
     return "";
   },
@@ -265,6 +265,7 @@ async function store(url, fileName) {
 }
 
 async function download() {
+  console.log("Downloading images from Figma");
   const file = await figma("/v1/files/Nf5B58hyoTotF6XCs1AjHD?depth=2");
   const frames = {};
   const page1 = file.document.children[0];
@@ -284,4 +285,7 @@ async function download() {
       store(exports.images[id], path.join("figma", name + ".png"))
     )
   );
+
+  const buildScript = path.join(__dirname, "build");
+  execSync(buildScript);
 }

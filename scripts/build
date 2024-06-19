@@ -2,7 +2,7 @@
 
 set -o allexport
 source .env set
-+o allexport
+set +o allexport
 
 mkdir -p _build
 rm -rf _build/*

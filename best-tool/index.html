@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=640" />
 
-    <title>Why side projects are hard / frantic.im</title>
+    <title>No Best Tool For The Job / frantic.im</title>
     <meta name="author" content="Alex Kotliarskyi">
-    <meta name="description" content="Fun, misery and yak shaving expeditions">
+    <meta name="description" content="How do you choose the best tool for the job?">
 
-    <link rel="canonical" href="https://frantic.im/side-projects-are-hard">
+    <link rel="canonical" href="https://frantic.im/best-tool">
     <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
 
-    <meta property="og:title" content="Why side projects are hard">
-    <meta property="og:image" content="https://frantic.im/assets/side-projects/og-image.png">
-    <meta name="og:description" content="Fun, misery and yak shaving expeditions">
+    <meta property="og:title" content="No Best Tool For The Job">
+    <meta property="og:image" content="https://frantic.im/figma/og_best_tool.png">
+    <meta name="og:description" content="How do you choose the best tool for the job?">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@alex_frantic">
     <meta name="twitter:creator" content="@alex_frantic">
-    <meta name="twitter:title" content="Why side projects are hard">
-    <meta name="twitter:description" content="Fun, misery and yak shaving expeditions">
-    <meta name="twitter:image" content="https://frantic.im/assets/side-projects/og-image.png">
+    <meta name="twitter:title" content="No Best Tool For The Job">
+    <meta name="twitter:description" content="How do you choose the best tool for the job?">
+    <meta name="twitter:image" content="https://frantic.im/figma/og_best_tool.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -182,38 +182,37 @@ footer > a:hover { color: #000; }
 <article>
   <header>
     
-    <h1 class="title">Why side projects are hard</h1>
+    <h1 class="title">No Best Tool For The Job</h1>
   </header>
-  <p>It’s been one hour already since I typed <code>git init</code>. Next step would be to start the X side-project I’ve been thinking a lot about. I need a frontend and a backend. I’ll start with the later. So what tech should I use?</p>
-<p>That’s the question I spent an hour on without making any progress. See, I could use NodeJS, I know it reasonably well. But the project is about handling lots of concurrent connections with shared state between some of them. Making that work could be tricky, and if I mess up something the latency will get pretty bad. Go or Erlang seem like good candidates, they are used for similar systems. However, I haven’t used any of them before.</p>
-<p>Maybe I should take this side project opportunity to learn Erlang (or Elixir)? That seems attractive and fun, but will take me 10x as much time to build. I don’t have a lot of free time, so going Elixir route could mean I never ship the project.</p>
-<p>Wait, I don’t even know that the thing I’m building is useful in the first place. Maybe I should build a landing webpage first and see how people react? This will also help me finally formulate what this project is about. Sounds like a reasonable idea, but I suck at copywriting. I should watch a couple of YouTube videos on the topic.</p>
-<p>Damn, it’s been 2 hours now with no progress at all. Who said side projects are fun? This is not fun at all.</p>
-<p>Back to the backend choice. I think I’ll go with NodeJS, it will help me explore the problem space faster, and then I can rewrite it later if need be.</p>
-<p>Should I use an existing framework or build everything myself? I don’t want to pull large dependencies I don’t understand and trust. But without them I’d have to handle authentication, emails, all that stuff myself. Which is certainly doable, it’s just not something I’d want to spend the remaining one hour I have today.</p>
-<p>Wait, no. I don’t need accounts, my app will be very minimalistic and lightweight. This could save me time, but is this a proper long term solution? What’s my long term vision for this anyway? How do I build code in a way that will make it easy to change in the future?</p>
-<p>Back to code. Where do I store my data? That’s a tough choice. MongoDB is very popular, so I can probably google a solution to any problem fairly quickly. But I don’t really like its lack of schema, I prefer relational databases for this reason. But since I know the app is going to be focused on real-time, I might as well choose something more aligned with that. Redis sounds cool. I’m wondering how it persists data…</p>
-<p>Another half an hour reading on stuff and not making any progress. I don’t think Redis is the way to go, I’ll have to denormalize the data structures, but I don’t have a good idea yet about what data I need.</p>
-<p>Ok, screw all that. MongoDB it is. I just want to push it out and send a link to my friends to play with. How do I install MongoDB? Eww, but I don’t want to clutter my Mac with all these things. Gotta use VM. The last time I tried Vagrant it didn’t support efficient file watching and that’s the key for the fast iteration development environment I want.</p>
-<p>So I roll with Docker, it’s also supposed to make deployment easier. Actually, how do I deploy with Docker? Let’s read up on that a little bit to be prepared…</p>
-<pre><code>$ git status
-On branch master
-
-Untracked files:
-    Dockerfile
-    main.js
-
-Total time spent:
-  3 hours 25 minutes
-
-Mood:
-  fuck my life
-</code></pre>
-<p>Am I alone in this? I remember side projects used to be fun in the past, what’s changed?</p>
-<p><a href="/no-constraints-no-fun"><em>To be continued…</em></a></p>
+  <p>How do you choose the best tool for the job?</p>
+<p>Suppose you want to plant a tree in your backyard and need to dig a hole. You go to the nearby hardware supply store and see these options:</p>
+<p><img src="/figma/graden_tools_options.png" alt="" /></p>
+<p>You don’t have to be a PhD in Gardening to know which tool is best for the job. It’s self-evident from the size of the tool and its cost.</p>
+<p>The next day you decide to build a web app. You go to a catalog of website-building tools and you see this:</p>
+<p><img src="/figma/web_app_tools_options.png" alt="" /></p>
+<p>Let’s imagine for a moment that you are relatively new to programming. How would you pick the best tool for the job here?</p>
+<h2>All these programming tools look the same</h2>
+<p>Unlike tools for digging holes, all these websites look the same. They all promise the same thing — build your web app. It’s not clear why you’d pick one tool over the other. So you dig a little deeper…</p>
+<h2>Infinite fractal of categorization</h2>
+<p>…and discover an almost infinite amount of specialization. With hardware tools, the categories are more defined: here’s a shovel, and here’s an excavator. There’s nothing in between. With programming languages and frameworks, for any two tools, there seems to be another tool in between.</p>
+<p>The job of evaluating the tools becomes harder than the job of actually using the tool.</p>
+<p>You could just pick any tool and get started, but…</p>
+<h2>Too easy to choose the wrong tool</h2>
+<p>With hardware tools, the price and the size of the tool give you a strong hint of what it is best for. Sure, using an excavator to dig a hole for a tree sounds like a ton of fun, but buying or renting one is way too expensive. Plus, you need to learn how to drive one, get a license, and it definitely doesn’t fit into your backyard.</p>
+<p>With software tools, it costs almost nothing to choose the wrong tool for the job. They all optimize for getting started quickly. Building a static website with GraphQL — easy. Use Kafka for a one-person backoffice app — no problem. You can spin up both in under 5 minutes, for free.</p>
+<p>So how are you supposed to make a good choice for your web app? Well, you could search for some advice on Reddit, X, or HackerNews…</p>
+<h2>Advice overload</h2>
+<p>…and get overwhelmed with the amount of opposite opinions. “React is the best” / “React is the worst”, you should always render things on the server, you should make a single page app, use static types, use dynamic types, functional programming is the way, functional programming is too slow. The list of contradictions goes on and on.</p>
+<p>The people shouting the advice sound extremely confident. If you dig deeper, some of them are actually employed by the tech stack they are preaching, but even outside of obvious economic incentives, it’s just too much noise to sort through.</p>
+<p>Meta advice is just as polarized. “Pick a tool you already know” vs “learn new things”, “choose a popular tech stack with a large community” vs “choose niche tech stack with a great community”, “focus on clean code” vs “focus on business outcomes”.</p>
+<p>—</p>
+<p>So my mind gets <a href="/side-projects-are-hard/">stuck</a> on this one. How do you pick the best tool for the job?</p>
+<p>The only way out of this pickle situation I found so far is to turn around and face the question itself. What does “the best” even mean?</p>
+<p>Back to the tree planting, the choice is simple, so it’s obvious which tool is the best. In programming, we no longer have <a href="https://youtu.be/0Ttw9ks05G4?si=XR4z-Jwj825p7fkI&amp;t=222">that luxury</a>, thus maybe the concept of “the best” doesn’t work anymore. The options are just too close, too nuanced, and the consequences are too fuzzy. Even if you are an expert in these tools, there are still enough unknowns to make the choice non-trivial.</p>
+<p>When the options can’t be plotted on a single axis with clear “good” and “bad” fits, there’s no “best”. There’s only “good enough”. And if we give up chasing “the best tool for the job”, we might just free up enough mental space to use “the good enough tool” to actually plant that tree.</p>
 
   <footer>
-    <time datetime="2018-01-10T12:00:00+00:00">Jan 10, 2018</time>
+    <time datetime="2024-06-19T12:00:00+00:00">Jun 19, 2024</time>
   </footer>
   
 
@@ -231,15 +230,333 @@ Mood:
 
     
       
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
         
           
+        
+      
+    
+      
         
       
     
 
     
       <p>
-        <a href="/best-tool">No Best Tool For The Job</a>
+        <a href="/no-constraints-no-fun">No constraints, no fun</a>
       </p>
       
       
@@ -250,21 +567,9 @@ Mood:
     
 
     
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
+      
+        
+      
     
       
         
@@ -272,10 +577,14 @@ Mood:
         
       
     
+      
+        
+      
+    
 
     
       <p>
-        <a href="/hacker-gifts">A side project story: Hacker Gifts (2018-2024)</a>
+        <a href="/side-projects-are-hard">Why side projects are hard</a>
       </p>
       
       
@@ -286,57 +595,9 @@ Mood:
     
 
     
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
       
         
       
-    
-
-    
-
-  
-
-    
-
     
 
     
@@ -354,73 +615,9 @@ Mood:
         
       
     
-
-    
-
-  
-
-    
-
-    
       
         
-          
-        
       
-    
-
-    
-      <p>
-        <a href="/octave">A side project story: octave.im (2013-2016)</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
     
 
     
@@ -471,11 +668,173 @@ Mood:
 
     
       <p>
-        <a href="/onityper">Digital Typewriter</a>
+        <a href="/plotting-ideas">Plotting ideas</a>
       </p>
       
       
+    
+
+  
+
+    
+
+    
+      
         
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
 
 
 

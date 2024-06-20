@@ -13,3 +13,4 @@ I'm a cofounder and CTO of [Secta AI](https://secta.ai/). In the past, I worked 
 I have a few too many keyboards.
 
 [Follow my adventures here](/subscribe/).
+[View blog analytics](https://u.frantic.im/share/PdxrhczkbRQVIp61/frantic.im).

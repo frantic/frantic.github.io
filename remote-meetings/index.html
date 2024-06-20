@@ -240,23 +240,6 @@ footer > a:hover { color: #000; }
 
 </article>
 
-    <script>
-      window.GoogleAnalyticsObject = 'ga';
-      window.ga = window.ga || function() {
-        (window.ga.q = window.ga.q || []).push(arguments);
-      };
-      window.ga.l = Date.now();
-
-      ga('create', 'UA-96545608-1', 'auto');
-      ga(function(tracker) {
-        tracker.set('sendHitTask', function(model) {
-          var xhr = new XMLHttpRequest();
-          xhr.open('GET', 'https://curiosity-seven.vercel.app/api/ev?' + model.get('hitPayload'), true);
-          xhr.send();
-        });
-      });
-      ga('send', 'pageview');
-    </script>
-    <script async defer src="https://curiosity-seven.vercel.app/api/leet" async></script>
+    <script defer src="https://u.frantic.im/script.js" data-website-id="cd2ea49a-5998-477e-8f35-a6ab8d2df514"></script>
   </body>
 </html>

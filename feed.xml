@@ -5,7 +5,7 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2025-01-27T15:43:29.756Z</updated>
+  <updated>2025-01-27T16:02:32.728Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
@@ -340,7 +340,7 @@
 <p>After I upgraded to M1 Mac, the setup broke again and I decided to take a different path.</p>
 <p>I looked for Jekyll alternatives but didn’t find anything that I liked. Here’s what I need:</p>
 <ul>
-<li>Easy to install, indeally a single binary (supporting ARM &amp; x86)</li>
+<li>Easy to install, ideally a single binary (supporting ARM &amp; x86)</li>
 <li>Compatible with my Jekyll templates</li>
 <li>Hackable, without the need to install compiler toolchain</li>
 </ul>

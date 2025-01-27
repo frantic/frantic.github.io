@@ -17,7 +17,7 @@ After I upgraded to M1 Mac, the setup broke again and I decided to take a differ
 
 I looked for Jekyll alternatives but didn't find anything that I liked. Here's what I need:
 
-- Easy to install, indeally a single binary (supporting ARM & x86)
+- Easy to install, ideally a single binary (supporting ARM & x86)
 - Compatible with my Jekyll templates
 - Hackable, without the need to install compiler toolchain
 

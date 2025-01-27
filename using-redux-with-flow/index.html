@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=640" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Using Redux with Flow / frantic.im</title>
     <meta name="author" content="Alex Kotliarskyi">
@@ -30,7 +30,7 @@
     </script>
 
     <style type="text/css" media="screen">
-      * {
+      /* * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -137,7 +137,590 @@ footer > .separator { margin: 0 4px; }
 footer > a { margin-right: 5px; }
 footer > a:hover { color: #000; }
 
-/* syntax */
+.highlight .kd, .highlight .k {font-weight: bold; }
+.highlight .mi { color: blue; }
+.highlight .cm { color: grey; }
+
+.hljs-built_in, .hljs-keyword {font-weight: bold; }
+.hljs-string, hljs-number { color: blue; }
+.hljs-comment { color: grey; } */
+
+/* CSS Variables for theming */
+:root {
+  /* Light mode */
+  --background: hsl(40, 33%, 99%);
+  --text: hsl(220, 20%, 20%);
+  --text-secondary: hsl(220, 10%, 40%);
+  --accent: hsl(220, 60%, 50%);
+  --separator: hsl(220, 20%, 90%);
+  
+  /* Typography */
+  --body-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --heading-font: var(--body-font);
+  --line-height: 1.7;
+  --heading-line-height: 1.3;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: hsl(220, 10%, 12%);
+        --text: hsl(220, 20%, 90%);
+        --text-secondary: hsl(220, 10%, 70%);
+        --accent: hsl(220, 70%, 70%);
+        --separator: hsl(220, 10%, 20%);
+    }
+}
+
+/* Base styles */
+html {
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: var(--body-font);
+    line-height: var(--line-height);
+    margin: 0;
+    padding: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout */
+.container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+.container img {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    line-height: var(--heading-line-height);
+    font-weight: 700;
+    margin: 3rem 0 1.5rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    letter-spacing: -0.02em;
+    margin-top: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    letter-spacing: -0.015em;
+}
+
+p {
+    margin: 0 0 1.5rem;
+}
+
+/* Header */
+.site-header {
+    border-bottom: 1px solid var(--separator);
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+}
+
+.site-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Navigation */
+.nav {
+    margin-top: 1rem;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent);
+}
+
+/* Article */
+.article {
+    margin-bottom: 4rem;
+}
+
+.article-title {
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.article-title a, .site-header a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.article-title a:hover, .site-header a:hover {
+    text-decoration: none;
+}
+
+.article-meta {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.article-content {
+    font-size: 1.1rem;
+}
+
+pre {
+  font-size: 1rem;
+  background: #00000010;
+  padding: 16px 30px 14px;
+  margin: 1em -30px;
+  white-space: pre;
+  word-wrap: break-word;
+  font-style: normal;
+  overflow-x: auto;
+}
+
+blockquote {
+    border-left: 4px solid var(--separator);
+    padding-left: 1.5rem;
+    margin: 1.5rem -1rem;
+    color: var(--text-secondary);
+}
+
+/* Links */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Media queries */
+/* Subscribe section */
+.subscribe-section {
+    margin: 0 calc(50% - 50vw);
+    padding: 4rem calc(50vw - 50%);
+    background: linear-gradient(to right, 
+        hsl(220, 13%, 95%) 0%,
+        hsl(220, 13%, 97%) 50%,
+        hsl(220, 13%, 95%) 100%
+    );
+}
+
+@media (prefers-color-scheme: dark) {
+    .subscribe-section {
+        background: linear-gradient(to right, 
+            hsl(220, 13%, 10%) 0%,
+            hsl(220, 13%, 13%) 50%,
+            hsl(220, 13%, 10%) 100%
+        );
+    }
+}
+
+.subscribe-content {
+    /* max-width: 540px; */
+    margin: 0 auto;
+    /* padding: 0 2rem; */
+}
+
+.subscribe-title {
+    font-size: 1.5rem;
+    margin: 0 0 1rem;
+    letter-spacing: -0.01em;
+}
+
+.subscribe-text {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+}
+
+.subscribe-form {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.subscribe-input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-family: var(--body-font);
+    border: 1px solid var(--separator);
+    border-radius: 4px;
+    background: var(--background);
+    color: var(--text);
+}
+
+.subscribe-input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.subscribe-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-family: var(--body-font);
+    font-weight: 500;
+    color: var(--background);
+    background: var(--text);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.subscribe-button:hover {
+    opacity: 0.9;
+}
+
+.subscribe-footnote {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .subscribe-form {
+        flex-direction: column;
+    }
+    
+    .subscribe-button {
+        width: 100%;
+    }
+}
+
+/* Footer styles */
+.site-footer {
+    padding-top: 3rem;
+    border-top: 1px solid var(--separator);
+}
+
+.footer-section {
+    margin-bottom: 3rem;
+}
+
+.footer-heading {
+    font-size: 1.2rem;
+    margin: 0 0 1.5rem;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-list li {
+    margin-bottom: 1.2rem;
+}
+
+.footer-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: none;
+}
+
+.footer-link:hover .post-title {
+    color: var(--accent);
+}
+
+.post-title {
+    transition: color 0.2s ease;
+}
+
+.post-meta, .post-count {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.year-posts {
+    list-style: none;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.year-posts li {
+    margin-bottom: 0.5rem;
+}
+
+.year-posts a {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.year-posts a:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 1.5rem 1rem;
+    }
+
+    .container img {
+      max-width: calc(100% + 2rem);
+      margin: 0 -1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+.related-posts {
+  margin: 4rem 0;
+}
+
+.related-posts a {
+  color: var(--text);
+}
+
+.related-posts a:hover {
+  color: var(--text);
+}
+
+.related-posts h3 {
+  color: var(--text-secondary);
+}
+
+.related-posts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.related-posts li {
+  font-size: 1.75rem;
+  letter-spacing: -0.015em;
+  font-family: var(--heading-font);
+  line-height: var(--heading-line-height);
+  font-weight: 700;
+  margin: 1rem 0;
+}
+
+ /* Site footer */
+.site-footer {
+  margin: 0 calc(50% - 50vw);
+  padding: 4rem calc(50vw - 50%);
+  background: linear-gradient(to right, 
+      hsl(30, 33%, 97%) 0%,
+      hsl(25, 40%, 98%) 50%,
+      hsl(30, 33%, 97%) 100%
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  .site-footer {
+      background: linear-gradient(to right, 
+          hsl(30, 15%, 13%) 0%,
+          hsl(25, 20%, 15%) 50%,
+          hsl(30, 15%, 13%) 100%
+      );
+  }
+}
+
+.footer-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  /* padding: 0 1.5rem; */
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.footer-title {
+  font-family: var(--heading-font);
+  font-size: 1.2rem;
+  margin: 0 0 1rem;
+  font-weight: 500;
+}
+
+.footer-bio {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.footer-heading {
+  font-family: var(--heading-font);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 1rem;
+  color: var(--text-secondary);
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.social-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  text-decoration: none;
+  color: var(--text);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--separator);
+}
+
+.social-link:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.social-name {
+  font-weight: 500;
+}
+
+.social-handle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.social-link:hover .social-handle {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid var(--separator);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2rem;
+}
+
+.footer-copyright,
+.footer-colophon {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .site-footer {
+      padding: 3rem 0 2rem;
+  }
+
+  .footer-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+  }
+
+  .footer-bottom {
+      flex-direction: column;
+      gap: 0.5rem;
+  }
+
+  .footer-inner {
+      padding: 0 1rem;
+  }
+}
+.site-footer {
+  margin-top: 0;
+  margin-bottom: -3rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--separator);
+}
+
+.footer-section {
+  margin-bottom: 3rem;
+}
+
+.footer-heading {
+  font-size: 1.2rem;
+  margin: 0 0 1.5rem;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  margin-bottom: 1.2rem;
+}
+
+.footer-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: none;
+}
+
+.footer-link:hover .post-title {
+  color: var(--accent);
+}
+
+.post-title {
+  transition: color 0.2s ease;
+}
+
+.post-meta, .post-count {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
 .highlight .kd, .highlight .k {font-weight: bold; }
 .highlight .mi { color: blue; }
 .highlight .cm { color: grey; }
@@ -145,46 +728,46 @@ footer > a:hover { color: #000; }
 .hljs-built_in, .hljs-keyword {font-weight: bold; }
 .hljs-string, hljs-number { color: blue; }
 .hljs-comment { color: grey; }
+
       
     </style>
   </head>
 
   <body>
-    <ul class="menu">
-  
-  <li>
-    <a class="menu__item " style="" href="/blog/">
-      Blog
-    </a>
-  </li>
-  
-  <li>
-    <a class="menu__item " style="" href="/talks/">
-      Talks
-    </a>
-  </li>
-  
-  <li>
-    <a class="menu__item " style="" href="/projects/">
-      Projects
-    </a>
-  </li>
-  
-  <li>
-    <a class="menu__item " style="" href="/about/">
-      About
-    </a>
-  </li>
-  
-</ul>
+    <div class="container">
+  <header class="site-header">
+  <a href="/">
+    <h1 class="site-title">frantic.im</h1>
+  </a>
+  <nav class="nav">
+    <ul class="nav-list">
+      
+      <li><a href="/blog/" class="nav-link">Blog</a></li>
+      
+      <li><a href="/talks/" class="nav-link">Talks</a></li>
+      
+      <li><a href="/projects/" class="nav-link">Projects</a></li>
+      
+      <li><a href="/subscribe/" class="nav-link">Subscribe</a></li>
+      
+      <li><a href="/about/" class="nav-link">About</a></li>
+      
+    </ul>
+  </nav>
+</header>
 
 
-<article>
-  <header>
-    
-    <h1 class="title">Using Redux with Flow</h1>
-  </header>
-  <p>Redux is a great library for managing application’s state. But JavaScript is still a dynamically typed language, which comes with a lot of surprises at runtime. In this post I’ll show you how you can use Flow to embrace static type checking in your Redux-powered application. I choose to use Flow for the disjoint union support and the ability to convert the codebase incrementally. Read on to learn more.</p>
+  <main>
+    <article class="article ">
+      <h1 class="article-title">
+        <a href="/using-redux-with-flow"> Using Redux with Flow </a>
+      </h1>
+      
+      <div class="article-meta">
+        Posted on May 28, 2016
+      </div>
+      
+      <div class="article-content"><p>Redux is a great library for managing application’s state. But JavaScript is still a dynamically typed language, which comes with a lot of surprises at runtime. In this post I’ll show you how you can use Flow to embrace static type checking in your Redux-powered application. I choose to use Flow for the disjoint union support and the ability to convert the codebase incrementally. Read on to learn more.</p>
 <p>This post assumes that you are already familiar with Redux: actions, action creators, reducers, etc.</p>
 <h2>Init</h2>
 <p>Flow is a static type checker for JavaScript. It works by analyzing your source code, reading (and inferring) type information and making sure there are no conflicts. It’s very easy to get started:</p>
@@ -281,452 +864,533 @@ type <span class="hljs-title class_">State</span> = {
 <p>Flow is great because it lets us incrementally add type annotations to our app. Its support for <a href="http://flowtype.org/docs/disjoint-unions.html">disjoint unions</a> is perfectly suited for describing various Flux action types.</p>
 <p>In the next part we’ll explore how we can add types to <code>connect</code> function from <code>react-redux</code>.</p>
 <p>All code is available on Github, take a look at <a href="https://github.com/frantic/redux-flow-example/commits/master">commit-by-commit history</a> to see how Flow can be adopted incrementally. For a bigger example check out <a href="https://github.com/fbsamples/f8app">the open-sourced F8 app</a>.</p>
-
-  <footer>
-    <time datetime="2016-05-28T12:00:00+00:00">May 28, 2016</time>
-  </footer>
-  
-
-
-
-
-
-
-  <h4>Related posts:</h4>
-  
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-      
-        
-      
-    
-
-    
-      <p>
-        <a href="/react-api-evolution">React API evolution</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-      
-        
-          
-        
-      
-    
-      
-        
-      
-    
-
-    
-      <p>
-        <a href="/how-not-to-flux-set-actions">How not to use Flux: SET actions</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-      
-        
-          
-        
-      
-    
-      
-        
-      
-    
-
-    
-      <p>
-        <a href="/how-not-to-flux-loops">How not to use Flux: mini cycles</a>
-      </p>
-      
-      
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-          
-        
-      
-    
-      
-        
-          
-        
-      
-    
-
-    
-      <p>
-        <a href="/react-and-javascript-in-5-min">React-flavored JavaScript in 5 minutes</a>
-      </p>
-      
-      
-        
-
-
-
-  <div class="about">
-  <div class="about_inner">
-    <p>Hello! This text lives here to convince you to subscribe. If you are reading this, consider clicking that subscribe button for more details.</p>
-    <p>I write about programming, software design and side projects <a style="margin-left: 5px" class="btn-subscribe" href="/subscribe/" target="_blank"><svg viewBox="0 0 800 800"><path d="M493 652H392c0-134-111-244-244-244V307c189 0 345 156 345 345zm71 0c0-228-188-416-416-416V132c285 0 520 235 520 520z"/><circle cx="219" cy="581" r="71"/></svg> Subscribe</a></p>
-  </div>
 </div>
+    </article>
 
-</article>
+    
+
+
+
+
+
+
+    <div class="related-posts">
+      <h3>Related Posts</h3>
+      <ul>
+        
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <li>
+        <a href="/react-api-evolution" class="footer-link">
+          React API evolution
+        </a>
+      </li>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <li>
+        <a href="/how-not-to-flux-set-actions" class="footer-link">
+          How not to use Flux: SET actions
+        </a>
+      </li>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <li>
+        <a href="/how-not-to-flux-loops" class="footer-link">
+          How not to use Flux: mini cycles
+        </a>
+      </li>
+      
+      
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+      
+        
+          
+        
+      
+    
+
+    
+      <li>
+        <a href="/react-and-javascript-in-5-min" class="footer-link">
+          React-flavored JavaScript in 5 minutes
+        </a>
+      </li>
+      
+      
+        
+
+
+      </ul>
+    </div>
+
+  
+  </main>
+
+  <section class="subscribe-section">
+  <div class="subscribe-content">
+    <h2 class="subscribe-title">Oh look, another newsletter</h2>
+    <p class="subscribe-text">
+      Promise I won't send you anything life-changing. Just occasional thoughts
+      about making software, delivered straight to that inbox you're already
+      ignoring. This blog also has an
+      <a href="https://frantic.im/feed.xml">RSS feed</a>.
+    </p>
+    <form
+      class="subscribe-form"
+      action="https://buttondown.email/api/emails/embed-subscribe/frantic"
+      method="post"
+      target="popupwindow"
+      onsubmit="window.open('https://buttondown.email/frantic', 'popupwindow')"
+    >
+      <input
+        type="email"
+        name="email"
+        id="bd-email"
+        placeholder="your@email.com"
+        class="subscribe-input"
+        aria-label="Email address"
+      />
+      <button type="submit" class="subscribe-button">Subscribe</button>
+    </form>
+    <p class="subscribe-footnote">
+      No silly gifs, no AI-generated images. Unsubscribe whenever you realize
+      I'm not as interesting you hoped.
+    </p>
+  </div>
+</section>
+ <footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h2 class="footer-title">Alex Kotliarskyi</h2>
+        <p class="footer-bio">Software Engineer and UX zealot.</p>
+      </div>
+
+      <div class="footer-section">
+        <!-- <h3 class="footer-heading">Connect</h3> -->
+        <div class="social-links">
+          <a href="https://x.com/alex_frantic" class="social-link">
+            <span class="social-name">Twitter</span>
+            <span class="social-handle">@alex_frantic</span>
+          </a>
+          <a href="https://github.com/frantic" class="social-link">
+            <span class="social-name">GitHub</span>
+            <span class="social-handle">@frantic</span>
+          </a>
+          <a href="https://unsplash.com/@frantic" class="social-link">
+            <span class="social-name">Unsplash</span>
+            <span class="social-handle">@frantic</span>
+          </a>
+          <a href="https://bsky.app/profile/frantic.im" class="social-link">
+            <span class="social-name">Bluesky</span>
+            <span class="social-handle">@frantic.im</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        © 2025 Alex Kotliarskyi. All rights reserved.
+      </p>
+      <p class="footer-colophon">
+        <!-- TODO: Put something here -->
+      </p>
+    </div>
+  </div>
+</footer>
+
+</div>
 
     <script defer src="https://u.frantic.im/script.js" data-website-id="cd2ea49a-5998-477e-8f35-a6ab8d2df514"></script>
   </body>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=640" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>frantic.im / frantic.im</title>
     <meta name="author" content="Alex Kotliarskyi">
@@ -30,7 +30,7 @@
     </script>
 
     <style type="text/css" media="screen">
-      * {
+      /* * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -137,7 +137,590 @@ footer > .separator { margin: 0 4px; }
 footer > a { margin-right: 5px; }
 footer > a:hover { color: #000; }
 
-/* syntax */
+.highlight .kd, .highlight .k {font-weight: bold; }
+.highlight .mi { color: blue; }
+.highlight .cm { color: grey; }
+
+.hljs-built_in, .hljs-keyword {font-weight: bold; }
+.hljs-string, hljs-number { color: blue; }
+.hljs-comment { color: grey; } */
+
+/* CSS Variables for theming */
+:root {
+  /* Light mode */
+  --background: hsl(40, 33%, 99%);
+  --text: hsl(220, 20%, 20%);
+  --text-secondary: hsl(220, 10%, 40%);
+  --accent: hsl(220, 60%, 50%);
+  --separator: hsl(220, 20%, 90%);
+  
+  /* Typography */
+  --body-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --heading-font: var(--body-font);
+  --line-height: 1.7;
+  --heading-line-height: 1.3;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: hsl(220, 10%, 12%);
+        --text: hsl(220, 20%, 90%);
+        --text-secondary: hsl(220, 10%, 70%);
+        --accent: hsl(220, 70%, 70%);
+        --separator: hsl(220, 10%, 20%);
+    }
+}
+
+/* Base styles */
+html {
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: var(--body-font);
+    line-height: var(--line-height);
+    margin: 0;
+    padding: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout */
+.container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+.container img {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    line-height: var(--heading-line-height);
+    font-weight: 700;
+    margin: 3rem 0 1.5rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    letter-spacing: -0.02em;
+    margin-top: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    letter-spacing: -0.015em;
+}
+
+p {
+    margin: 0 0 1.5rem;
+}
+
+/* Header */
+.site-header {
+    border-bottom: 1px solid var(--separator);
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+}
+
+.site-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Navigation */
+.nav {
+    margin-top: 1rem;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent);
+}
+
+/* Article */
+.article {
+    margin-bottom: 4rem;
+}
+
+.article-title {
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.article-title a, .site-header a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.article-title a:hover, .site-header a:hover {
+    text-decoration: none;
+}
+
+.article-meta {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.article-content {
+    font-size: 1.1rem;
+}
+
+pre {
+  font-size: 1rem;
+  background: #00000010;
+  padding: 16px 30px 14px;
+  margin: 1em -30px;
+  white-space: pre;
+  word-wrap: break-word;
+  font-style: normal;
+  overflow-x: auto;
+}
+
+blockquote {
+    border-left: 4px solid var(--separator);
+    padding-left: 1.5rem;
+    margin: 1.5rem -1rem;
+    color: var(--text-secondary);
+}
+
+/* Links */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Media queries */
+/* Subscribe section */
+.subscribe-section {
+    margin: 0 calc(50% - 50vw);
+    padding: 4rem calc(50vw - 50%);
+    background: linear-gradient(to right, 
+        hsl(220, 13%, 95%) 0%,
+        hsl(220, 13%, 97%) 50%,
+        hsl(220, 13%, 95%) 100%
+    );
+}
+
+@media (prefers-color-scheme: dark) {
+    .subscribe-section {
+        background: linear-gradient(to right, 
+            hsl(220, 13%, 10%) 0%,
+            hsl(220, 13%, 13%) 50%,
+            hsl(220, 13%, 10%) 100%
+        );
+    }
+}
+
+.subscribe-content {
+    /* max-width: 540px; */
+    margin: 0 auto;
+    /* padding: 0 2rem; */
+}
+
+.subscribe-title {
+    font-size: 1.5rem;
+    margin: 0 0 1rem;
+    letter-spacing: -0.01em;
+}
+
+.subscribe-text {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+}
+
+.subscribe-form {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.subscribe-input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-family: var(--body-font);
+    border: 1px solid var(--separator);
+    border-radius: 4px;
+    background: var(--background);
+    color: var(--text);
+}
+
+.subscribe-input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.subscribe-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-family: var(--body-font);
+    font-weight: 500;
+    color: var(--background);
+    background: var(--text);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.subscribe-button:hover {
+    opacity: 0.9;
+}
+
+.subscribe-footnote {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .subscribe-form {
+        flex-direction: column;
+    }
+    
+    .subscribe-button {
+        width: 100%;
+    }
+}
+
+/* Footer styles */
+.site-footer {
+    padding-top: 3rem;
+    border-top: 1px solid var(--separator);
+}
+
+.footer-section {
+    margin-bottom: 3rem;
+}
+
+.footer-heading {
+    font-size: 1.2rem;
+    margin: 0 0 1.5rem;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-list li {
+    margin-bottom: 1.2rem;
+}
+
+.footer-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: none;
+}
+
+.footer-link:hover .post-title {
+    color: var(--accent);
+}
+
+.post-title {
+    transition: color 0.2s ease;
+}
+
+.post-meta, .post-count {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.year-posts {
+    list-style: none;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.year-posts li {
+    margin-bottom: 0.5rem;
+}
+
+.year-posts a {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.year-posts a:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 1.5rem 1rem;
+    }
+
+    .container img {
+      max-width: calc(100% + 2rem);
+      margin: 0 -1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+.related-posts {
+  margin: 4rem 0;
+}
+
+.related-posts a {
+  color: var(--text);
+}
+
+.related-posts a:hover {
+  color: var(--text);
+}
+
+.related-posts h3 {
+  color: var(--text-secondary);
+}
+
+.related-posts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.related-posts li {
+  font-size: 1.75rem;
+  letter-spacing: -0.015em;
+  font-family: var(--heading-font);
+  line-height: var(--heading-line-height);
+  font-weight: 700;
+  margin: 1rem 0;
+}
+
+ /* Site footer */
+.site-footer {
+  margin: 0 calc(50% - 50vw);
+  padding: 4rem calc(50vw - 50%);
+  background: linear-gradient(to right, 
+      hsl(30, 33%, 97%) 0%,
+      hsl(25, 40%, 98%) 50%,
+      hsl(30, 33%, 97%) 100%
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  .site-footer {
+      background: linear-gradient(to right, 
+          hsl(30, 15%, 13%) 0%,
+          hsl(25, 20%, 15%) 50%,
+          hsl(30, 15%, 13%) 100%
+      );
+  }
+}
+
+.footer-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  /* padding: 0 1.5rem; */
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.footer-title {
+  font-family: var(--heading-font);
+  font-size: 1.2rem;
+  margin: 0 0 1rem;
+  font-weight: 500;
+}
+
+.footer-bio {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.footer-heading {
+  font-family: var(--heading-font);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 1rem;
+  color: var(--text-secondary);
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.social-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  text-decoration: none;
+  color: var(--text);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--separator);
+}
+
+.social-link:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.social-name {
+  font-weight: 500;
+}
+
+.social-handle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.social-link:hover .social-handle {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid var(--separator);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2rem;
+}
+
+.footer-copyright,
+.footer-colophon {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .site-footer {
+      padding: 3rem 0 2rem;
+  }
+
+  .footer-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+  }
+
+  .footer-bottom {
+      flex-direction: column;
+      gap: 0.5rem;
+  }
+
+  .footer-inner {
+      padding: 0 1rem;
+  }
+}
+.site-footer {
+  margin-top: 0;
+  margin-bottom: -3rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--separator);
+}
+
+.footer-section {
+  margin-bottom: 3rem;
+}
+
+.footer-heading {
+  font-size: 1.2rem;
+  margin: 0 0 1.5rem;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  margin-bottom: 1.2rem;
+}
+
+.footer-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: none;
+}
+
+.footer-link:hover .post-title {
+  color: var(--accent);
+}
+
+.post-title {
+  transition: color 0.2s ease;
+}
+
+.post-meta, .post-count {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
 .highlight .kd, .highlight .k {font-weight: bold; }
 .highlight .mi { color: blue; }
 .highlight .cm { color: grey; }
@@ -145,32 +728,266 @@ footer > a:hover { color: #000; }
 .hljs-built_in, .hljs-keyword {font-weight: bold; }
 .hljs-string, hljs-number { color: blue; }
 .hljs-comment { color: grey; }
-      .content {
-  text-align: center;
-  margin-top: 40vh;
-}
-.links > a {
-  margin-left: 10px;
-  margin-bottom: 4px;
-  font-size: 70%;
-  border: none;
-}
 
+      
     </style>
   </head>
 
   <body>
-    <article class="content">
-  <p class="links">
-    <b>frantic.im</b>
-    <a href="/about">About</a>
-    <a href="/blog">Blog</a>
-    <a href="/talks">Talks</a>
-    <a href="https://github.com/frantic/">Github</a>
-    <a href="https://twitter.com/alex_frantic">Twitter</a>
-    <a href="https://unsplash.com/@frantic">Unsplash</a>
-  </p>
-</article>
+    <div class="container">
+  <header class="site-header">
+  <a href="/">
+    <h1 class="site-title">frantic.im</h1>
+  </a>
+  <nav class="nav">
+    <ul class="nav-list">
+      
+      <li><a href="/blog/" class="nav-link">Blog</a></li>
+      
+      <li><a href="/talks/" class="nav-link">Talks</a></li>
+      
+      <li><a href="/projects/" class="nav-link">Projects</a></li>
+      
+      <li><a href="/subscribe/" class="nav-link">Subscribe</a></li>
+      
+      <li><a href="/about/" class="nav-link">About</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+  <main>
+    <p>Latest blog posts:</p>
+    <div class="related-posts">
+      <ul>
+        
+        <li>
+          <a href="/best-tool"> No Best Tool For The Job </a>
+        </li>
+        
+        <li>
+          <a href="/opening-mail"> Opening Mail </a>
+        </li>
+        
+        <li>
+          <a href="/whos-watching-the-watchdog"> Who's watching the watchdog? </a>
+        </li>
+        
+        <li>
+          <a href="/hacker-gifts"> A side project story: Hacker Gifts (2018-2024) </a>
+        </li>
+        
+        <li>
+          <a href="/story-behind-hackathon-photo"> Story Behind Hackathon Photo </a>
+        </li>
+        
+        <li>
+          <a href="/javascript-gom-jabbar"> JavaScript Gom Jabbar </a>
+        </li>
+        
+        <li>
+          <a href="/shuhari"> Shuhari </a>
+        </li>
+        
+        <li>
+          <a href="/disposable-software"> Disposable Software </a>
+        </li>
+        
+        <li>
+          <a href="/no-why"> What were you trying to achieve? </a>
+        </li>
+        
+        <li>
+          <a href="/replacing-jekyll"> Replacing Jekyll for my blog </a>
+        </li>
+        
+        <li>
+          <a href="/leaving-facebook"> On Leaving Facebook </a>
+        </li>
+        
+        <li>
+          <a href="/react-api-evolution"> React API evolution </a>
+        </li>
+        
+        <li>
+          <a href="/octave"> A side project story: octave.im (2013-2016) </a>
+        </li>
+        
+        <li>
+          <a href="/back-to-rails"> Moving my serverless project to Ruby on Rails </a>
+        </li>
+        
+        <li>
+          <a href="/todo-for-robots"> TODO apps are meant for robots </a>
+        </li>
+        
+        <li>
+          <a href="/remote-meetings"> Optimize Your Meetings for Engagement </a>
+        </li>
+        
+        <li>
+          <a href="/no-strings"> Things that are not strings </a>
+        </li>
+        
+        <li>
+          <a href="/project-todo"> TODO file for personal projects </a>
+        </li>
+        
+        <li>
+          <a href="/no-internet"> Debugging home internet connection </a>
+        </li>
+        
+        <li>
+          <a href="/explain-programming"> Reconsidering the way I explain programming </a>
+        </li>
+        
+        <li>
+          <a href="/how-not-to-flux-set-actions"> How not to use Flux: SET actions </a>
+        </li>
+        
+        <li>
+          <a href="/onityper"> Digital Typewriter </a>
+        </li>
+        
+        <li>
+          <a href="/e2e-tests"> Improving end to end tests reliability </a>
+        </li>
+        
+        <li>
+          <a href="/how-to-convince-your-boss-to-use-react-native"> How to convince your boss to use React Native </a>
+        </li>
+        
+        <li>
+          <a href="/react-conf-2018"> React Conf 2018 Recap </a>
+        </li>
+        
+        <li>
+          <a href="/how-not-to-flux-loops"> How not to use Flux: mini cycles </a>
+        </li>
+        
+        <li>
+          <a href="/tomorrowman"> I'm a Tomorrowman </a>
+        </li>
+        
+        <li>
+          <a href="/macos-app-shortcuts"> Better way to switch between apps on macOS </a>
+        </li>
+        
+        <li>
+          <a href="/no-constraints-no-fun"> No constraints, no fun </a>
+        </li>
+        
+        <li>
+          <a href="/side-projects-are-hard"> Why side projects are hard </a>
+        </li>
+        
+        <li>
+          <a href="/the-first-react-native-app"> The Very First React Native App On the AppStore </a>
+        </li>
+        
+        <li>
+          <a href="/react-and-javascript-in-5-min"> React-flavored JavaScript in 5 minutes </a>
+        </li>
+        
+        <li>
+          <a href="/meta-language"> Understanding "Taming the Meta Language" </a>
+        </li>
+        
+        <li>
+          <a href="/cdtmp"> cdtmp </a>
+        </li>
+        
+        <li>
+          <a href="/plotting-ideas"> Plotting ideas </a>
+        </li>
+        
+        <li>
+          <a href="/good-errors-leave-trace"> Good errors leave trace </a>
+        </li>
+        
+        <li>
+          <a href="/keynote"> Geek's guide to making decent slides </a>
+        </li>
+        
+        <li>
+          <a href="/test-plan"> Test Plan </a>
+        </li>
+        
+        <li>
+          <a href="/blogpost-contexts"> Provide Context When Writing Blog Posts </a>
+        </li>
+        
+        <li>
+          <a href="/notify-on-completion"> Show OSX notification when long running command finishes and your terminal is not in focus </a>
+        </li>
+        
+        <li>
+          <a href="/ctrl-r"> My favorite shell shortcut </a>
+        </li>
+        
+        <li>
+          <a href="/using-redux-with-flow"> Using Redux with Flow </a>
+        </li>
+        
+        <li>
+          <a href="/copy-with-syntax"> Copying code with syntax highlighting </a>
+        </li>
+        
+        <li>
+          <a href="/hello-world"> Hello, world! </a>
+        </li>
+        
+      </ul>
+    </div>
+    <article class="article ">
+      <h3 class="article-title">
+        <a href="">  </a>
+      </h3>
+    </article>
+  </main>
+  <footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h2 class="footer-title">Alex Kotliarskyi</h2>
+        <p class="footer-bio">Software Engineer and UX zealot.</p>
+      </div>
+
+      <div class="footer-section">
+        <!-- <h3 class="footer-heading">Connect</h3> -->
+        <div class="social-links">
+          <a href="https://x.com/alex_frantic" class="social-link">
+            <span class="social-name">Twitter</span>
+            <span class="social-handle">@alex_frantic</span>
+          </a>
+          <a href="https://github.com/frantic" class="social-link">
+            <span class="social-name">GitHub</span>
+            <span class="social-handle">@frantic</span>
+          </a>
+          <a href="https://unsplash.com/@frantic" class="social-link">
+            <span class="social-name">Unsplash</span>
+            <span class="social-handle">@frantic</span>
+          </a>
+          <a href="https://bsky.app/profile/frantic.im" class="social-link">
+            <span class="social-name">Bluesky</span>
+            <span class="social-handle">@frantic.im</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        © 2025 Alex Kotliarskyi. All rights reserved.
+      </p>
+      <p class="footer-colophon">
+        <!-- TODO: Put something here -->
+      </p>
+    </div>
+  </div>
+</footer>
+
+</div>
 
     <script defer src="https://u.frantic.im/script.js" data-website-id="cd2ea49a-5998-477e-8f35-a6ab8d2df514"></script>
   </body>

@@ -17,9 +17,11 @@
     {% endfor %}
 
     {% if sameTagCount >= minCommonTags %}
-      <p>
-        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-      </p>
+      <li>
+        <a href="{{ site.baseurl }}{{ post.url }}" class="footer-link">
+          {{ post.title }}
+        </a>
+      </li>
       {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
       {% if maxRelatedCounter >= maxRelated %}
         {% break %}
@@ -31,6 +33,11 @@
 {% endcapture %}
 
 {% if maxRelatedCounter > 0 %}
-  <h4>Related posts:</h4>
-  {{ posts }}
-{% endif %}
+    <div class="related-posts">
+      <h3>Related Posts</h3>
+      <ul>
+        {{ posts }}
+      </ul>
+    </div>
+
+  {% endif %}

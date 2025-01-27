@@ -147,9 +147,12 @@ if (process.argv[2] == "--dev") {
   for (const folder of folders) {
     fs.watch(folder, (ev, file) => {
       if (ev === "change") {
-        rebuildPostsList();
-        renderFile(folder, file);
-        renderFile("pages", "blog.html");
+        try {
+          rebuildPostsList();
+          renderDir("_posts");
+          renderDir("pages");
+        } catch (e) {
+        }
       }
     });
   }

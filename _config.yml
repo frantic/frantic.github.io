@@ -19,5 +19,7 @@ data:
       link: /talks/
     - name: Projects
       link: /projects/
+    - name: Subscribe
+      link: /subscribe/
     - name: About
       link: /about/

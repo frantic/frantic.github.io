@@ -1,0 +1,12 @@
+<header class="site-header">
+  <a href="/">
+    <h1 class="site-title">frantic.im</h1>
+  </a>
+  <nav class="nav">
+    <ul class="nav-list">
+      {% for item in site.data.menu %}
+      <li><a href="{{ item.link }}" class="nav-link">{{ item.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>

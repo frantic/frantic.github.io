@@ -47,6 +47,11 @@ liquid.registerFilter("group_by_year", (posts) => {
   return [...items.entries()].map(([name, items]) => ({ name, items }));
 });
 
+liquid.registerFilter("sample", (posts, num) => {
+  const shuffled = [...posts].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, Number(num));
+});
+
 function inferFromFileName(fileName) {
   const basename = path.basename(fileName).split(".")[0];
   const match = basename.match(/^(\d\d\d\d-\d\d-\d\d)-(.*)$/);

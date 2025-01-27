@@ -40,4 +40,20 @@
       </ul>
     </div>
 
+{% else %}
+
+    <div class="related-posts">
+      <h3>Random Posts</h3>
+      <ul>
+        {% assign randomPosts = site.posts | sample: 4 %}
+        {% for post in randomPosts %}
+        <li>
+          <a href="{{ site.baseurl }}{{ post.url }}" class="footer-link">
+            {{ post.title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
   {% endif %}

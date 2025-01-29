@@ -557,11 +557,17 @@ a:hover {
 
 @media (prefers-color-scheme: dark) {
   .site-footer {
-      background: linear-gradient(to right, 
+      background: linear-gradient(to right,
+          hsl(165.25deg 15% 13%) 0%,
+          hsl(202.53deg 20% 15%) 50%,
+          hsl(208.41deg 15% 13%) 100%
+      );
+      
+      /* linear-gradient(to right, 
           hsl(30, 15%, 13%) 0%,
           hsl(25, 20%, 15%) 50%,
           hsl(30, 15%, 13%) 100%
-      );
+      ); */
   }
 }
 
@@ -859,26 +865,26 @@ new SQL('SELECT * FROM posts' + filter);
         
         
         <li>
-          <a href="/back-to-rails" class="footer-link">
-            Moving my serverless project to Ruby on Rails
+          <a href="/how-not-to-flux-loops" class="footer-link">
+            How not to use Flux: mini cycles
           </a>
         </li>
         
         <li>
-          <a href="/whos-watching-the-watchdog" class="footer-link">
-            Who's watching the watchdog?
+          <a href="/plotting-ideas" class="footer-link">
+            Plotting ideas
           </a>
         </li>
         
         <li>
-          <a href="/how-not-to-flux-set-actions" class="footer-link">
-            How not to use Flux: SET actions
+          <a href="/hn-stack" class="footer-link">
+            The Hacker News Stack
           </a>
         </li>
         
         <li>
-          <a href="/opening-mail" class="footer-link">
-            Opening Mail
+          <a href="/best-tool" class="footer-link">
+            No Best Tool For The Job
           </a>
         </li>
         

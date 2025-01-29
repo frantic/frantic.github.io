@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const http = require("http");
 const https = require("https");
+const EventEmitter = require('events');
 const { execSync } = require("child_process");
 const yaml = require("./lib/js-yaml.min");
 const hljs = require("./lib/highlight.min");
@@ -143,9 +144,13 @@ function renderDir(dir) {
   }
 }
 
+site.dev = process.argv[2] === "--dev";
+
 rebuildPostsList();
 renderDir("_posts");
 renderDir("pages");
+
+const changes = new EventEmitter();
 
 if (process.argv[2] == "--dev") {
   const folders = ["_drafts", "_includes", "_layouts", "_posts", "pages"];
@@ -156,6 +161,7 @@ if (process.argv[2] == "--dev") {
           rebuildPostsList();
           renderDir("_posts");
           renderDir("pages");
+          changes.emit("change");
         } catch (e) {
         }
       }
@@ -164,8 +170,17 @@ if (process.argv[2] == "--dev") {
 
   http
     .createServer((req, res) => {
+      if (req.url === '/changes') {
+        res.setHeader('Content-Type', 'text/event-stream');
+        res.writeHead(200);
+        const sendEvent = () => res.write('event: change\ndata:\n\n');
+        changes.on('change', sendEvent);
+        req.on('close', () => changes.off('change', sendEvent));
+        return;
+      }
+
       let fileName = __dirname + "/../_build" + req.url;
-      if (fs.statSync(fileName).isDirectory()) {
+      if (fs.existsSync(fileName) && fs.statSync(fileName).isDirectory()) {
         fileName += "/index.html";
       }
       fs.readFile(fileName, (err, data) => {

@@ -5,11 +5,36 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2025-01-27T16:11:47.019Z</updated>
+  <updated>2025-01-29T05:55:08.303Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
 
+  
+    <entry>
+      <id>https://frantic.im/hn-stack</id>
+      <title>The Hacker News Stack</title>
+      <updated>2025-01-28T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/hn-stack" />
+      <summary>Preview123s</summary>
+      <content type="html"><![CDATA[
+        
+        
+        
+        <p>If you want to build a web app The Hacker News Way, here’s the stack you should use:</p>
+<ul>
+<li><strong>Rust</strong> – the only language that gives you the priviledge of calling your app <em>“blazing fast”</em>. According to the undocumented Hacker News rules, any post mentioning Rust in the title starts with 10 points.</li>
+<li><strong>Postgres</strong> – the most beloved database that can do absolutely everything: manage data, handle row-level authorization, run job queues, replace Redis, vacuum your apartment (or its own tables… who cares?). No ORMs allowed.</li>
+<li><strong>HTMX</strong> – because JavaScript is obviously the worst part about web development. Bonus points: you get to call yourself the <a href="https://htmx.org/essays/lore/#htmx-ceo">CEO of HTMX</a>, very helpful in this turbulent job market.</li>
+<li><strong>Hetzner</strong> – for just $4.59/mo you can get a server that can easily handle HN’s famous <a href="https://news.ycombinator.com/item?id=20147951">hug-of-death</a>.</li>
+</ul>
+<p>Make sure you build your app while WFH, commuting to the office was invented by evil corporations.</p>
+<p>…</p>
+<p>If this post made your simle, maybe you should cut down on reading Hacker News. I know I should.</p>
+
+      ]]></content>
+    </entry>
   
     <entry>
       <id>https://frantic.im/best-tool</id>
@@ -319,57 +344,6 @@
 <p>Here’s a better question: <em>“what were you trying to achieve?”</em></p>
 <p>It focuses on the intent, not the means of getting there. Maybe the team was trying to scale this experiment really quickly or tried to align itself with other teams in the organization. You’ll see the current solution in its context.</p>
 <p>Then you can easily compare the original intention and the current company goals. Maybe some of these things are not relevant anymore, and instead of lengthy migration of the Redis cluster, the right thing to do is to remove it altogether. Or ignore it, and focus on the things your users really care about.</p>
-
-      ]]></content>
-    </entry>
-  
-    <entry>
-      <id>https://frantic.im/replacing-jekyll</id>
-      <title>Replacing Jekyll for my blog</title>
-      <updated>2022-08-08T12:00:00+00:00</updated>
-
-      <link rel="alternate" href="https://frantic.im/replacing-jekyll" />
-      <summary>How I replaced Jekyll with 200 lines of JavaScript</summary>
-      <content type="html"><![CDATA[
-        
-        
-        
-        <p>I <a href="https://frantic.im/hello-world">started this blog</a> in 2016. At the time, “static blogging” was becoming very popular and getting started was easy. I simply used <a href="https://jekyllrb.com/">Jekyll</a> with GitHub pages.</p>
-<p>But then I got a new laptop and the simplicity turned into a nighmare. A new Ruby version, an incompatible Jekyll gem version, cryptic C++ compilation errors of one of Jekyll’s dependencies. I’ve tried RVM, I’ve tried Bundler, I’ve tried Docker.</p>
-<p>At this point, blogging felt more like fighting with the tools.</p>
-<p>After I upgraded to M1 Mac, the setup broke again and I decided to take a different path.</p>
-<p>I looked for Jekyll alternatives but didn’t find anything that I liked. Here’s what I need:</p>
-<ul>
-<li>Easy to install, ideally a single binary (supporting ARM &amp; x86)</li>
-<li>Compatible with my Jekyll templates</li>
-<li>Hackable, without the need to install compiler toolchain</li>
-</ul>
-<p>Sometime in 2021 I re-implemented parts of Jekyll I cared about in JavaScript in ~200 lines of code. It only needs NodeJS, all the dependencies are vendored-in (so there’s no package.json, yarn, npm, pnpn or whatever). It only uses JS syntax that’s been stable for years, so there’s no TypeScript or Babel needed.</p>
-<p>I got to keep all the custom Jekyll theme files. Even the fancy <code>related.html</code> template that renders “Related posts” section at the bottom works without changes!</p>
-<p>On top of that, I added a few features that make it easier for me to write. I start by typing <code>blog</code> in my terminal, and I see this:</p>
-<pre><code>$ blog
-...
-Building pages/subscribe.md
-Building pages/talks.html
-Listening on http://localhost:9099/
-
-Things you can do:
-  n [title] - Create a new file in _posts
-  p         - Commit &amp; push to GitHub
-  e         - Edit in VSCode
-  w         - Open in browser
-</code></pre>
-<p>This little menu let’s me take the most common actions right from the console. For example, the first command converts “Fancy Blog Title” into “2022-08-08-fancy-blog-title.md”, creates this file in the right place from the template and opens it in the editor.</p>
-<p>It’s amazing how much these little inconveniences prevented me from writing!</p>
-<p>However, I can’t say I’m completely happy with the static blog setup. Here’s a few areas for improvement:</p>
-<ul>
-<li>Make it easier to insert images. Currently I have to put the png in the right place and manually link it from the blog’s content. When image is not found I get no errors. There’s no way to cleanup unused images. I wish I could just Cmd+V an image from the clipboard or use a tag that fetches it directly from Figma.</li>
-<li>Automatically generate OG image. The social previews are very important for attracting attention and branding. I want my blog engine to generate these based on post’s title during the build phase.</li>
-<li>Validate links. Currently the blog can be full of invalid links and I don’t even know it. At the build time, it should make sure that at least local links are working.</li>
-<li>Private sections &amp; posts. I have plenty of topics I would like to share only with a limited set of subscribers. I want to wrap parts of the posts in <code>&lt;private&gt;</code> tag and have it hidden from the public internet. This also includes “preview” posts I can share with some friends</li>
-<li>Grammarly &amp; Hemingway App integration. When the post is ready, I want a simple, automated way to send it to an AI that can help me fix typos and adjust my writing style.</li>
-</ul>
-<p>At this time, I’m not planning to turn this into a standalone product. I like that it’s just a part of this blog and I can keep it very simple and very specific to my needs.</p>
 
       ]]></content>
     </entry>

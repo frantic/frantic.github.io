@@ -5,7 +5,7 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2025-01-29T06:02:39.395Z</updated>
+  <updated>2025-01-29T06:07:10.116Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
@@ -17,7 +17,7 @@
       <updated>2025-01-28T12:00:00+00:00</updated>
 
       <link rel="alternate" href="https://frantic.im/hn-stack" />
-      <summary>Preview123s</summary>
+      <summary>If you want to build a web app The Hacker News Way, here's the stack you should use.</summary>
       <content type="html"><![CDATA[
         
         

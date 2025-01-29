@@ -3,6 +3,8 @@ layout: post
 title: JavaScript Gom Jabbar
 image: /figma/og_js_gom_jabbar.png
 excerpt: What's inside that package.json? Pain.
+tags:
+  - fun
 ---
 
 You have been using JavaScript for 10 years. It's time for your test. You are sitting in front of a computer. The test is simple: you have to open a package.json file and read it. The `package.json` is full of pain. You have to read it all.

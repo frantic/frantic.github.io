@@ -5,11 +5,31 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2025-01-29T16:44:45.121Z</updated>
+  <updated>2025-03-30T17:31:13.198Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
 
+  
+    <entry>
+      <id>https://frantic.im/caring-about-software-quality-is-getting-harder</id>
+      <title>Caring about software quality is getting harder</title>
+      <updated>2025-03-30T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/caring-about-software-quality-is-getting-harder" />
+      <summary></summary>
+      <content type="html"><![CDATA[
+        
+        
+        
+        <p>In 2017 I gave a <a href="https://www.youtube.com/watch?v=fjS5ssBn3fA">talk</a> at Chain React about building great user experiences with React Native. At the time the tech was new and the quality of the mobile apps built with React Native was poor. The gist of my talk was that it’s possible to build great apps with React Native, one just needs to care enough.</p>
+<p>My message didn’t resonate as well as I’d hoped. It’s hard to make people care about quality when the measuring stick of the technology is “look how fast I made this cross-platform app”. In contrast, inside the early iOS dev community, caring for quality was something that everyone shared.</p>
+<p>The modern generation of users grew up without knowing what it feels like to use an offline, low-latency, well-crafted apps and websites. There’s little incentive now to spend any resources on improving quality, while your competition spends it on more features and ads.</p>
+<p>I love my AI tools. They cured me from <a href="https://frantic.im/side-projects-are-hard">the blank page curse</a>, they help me learn new tech much faster, and produce boring boilerplate code.</p>
+<p>But they also make it easier than ever to not care about quality…</p>
+
+      ]]></content>
+    </entry>
   
     <entry>
       <id>https://frantic.im/hn-stack</id>
@@ -315,35 +335,6 @@
 <p>What would the world look like if we got rid of software maintanance costs?</p>
 <p>–</p>
 <p>Oh, about the microwave. I bought a new one, same brand and same model name. The new microwave sucks: the build quality is low, it’s loud. I want my old microwave back.</p>
-
-      ]]></content>
-    </entry>
-  
-    <entry>
-      <id>https://frantic.im/no-why</id>
-      <title>What were you trying to achieve?</title>
-      <updated>2022-11-07T12:00:00+00:00</updated>
-
-      <link rel="alternate" href="https://frantic.im/no-why" />
-      <summary>A senior engineer joins a team. Before long, they start noticing weird quirks in the codebase…</summary>
-      <content type="html"><![CDATA[
-        
-        
-        
-        <p>A senior engineer joins a team. Before long, they start noticing weird quirks in the codebase: two ID fields on the same DB table, one-off Redis cluster outside the company’s AWS, React components organized in a very unorthodox way.</p>
-<p>So they turn around to the teammate who has been on the team since the beginning and ask: <em>“why is it built this way?”</em></p>
-<p>But “why” is a terrible question for 2 reasons:</p>
-<ol>
-<li>
-<p>It makes people defensive. Subconsciously, the engineers who built the system might feel threatened. They’ll start making up arguments to justify the system’s current shape. “Well, Redis on XXX provider is actually superior because …”</p>
-</li>
-<li>
-<p>It doesn’t help you decide what to do with the system. Is it still the best solution or should you do something about it?</p>
-</li>
-</ol>
-<p>Here’s a better question: <em>“what were you trying to achieve?”</em></p>
-<p>It focuses on the intent, not the means of getting there. Maybe the team was trying to scale this experiment really quickly or tried to align itself with other teams in the organization. You’ll see the current solution in its context.</p>
-<p>Then you can easily compare the original intention and the current company goals. Maybe some of these things are not relevant anymore, and instead of lengthy migration of the Redis cluster, the right thing to do is to remove it altogether. Or ignore it, and focus on the things your users really care about.</p>
 
       ]]></content>
     </entry>

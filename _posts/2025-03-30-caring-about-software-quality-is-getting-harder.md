@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Caring about software quality is getting harder
+title: Who Cares
 image: /assets/og-image.jpg
 tags:
   - meta

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The Very First React Native App On the AppStore
+title: The Very First React Native App on the AppStore
 image: /assets/atscale/og-image.png
 excerpt: A little known story about the first React Native app that was published on the AppStore.
 tags:

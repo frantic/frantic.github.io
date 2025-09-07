@@ -1,6 +1,6 @@
 ---
 layout: post
-title: TODO file for personal projects
+title: TODO File for Personal Projects
 image: /assets/project-todo/TODO_file.png
 excerpt: "In most of my personal projects I have a file called TODO. I use it like this…"
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Things that are not strings
+title: Things That Are Not Strings
 image: /assets/no-strings/og-image.png
 excerpt: As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.
 css: |

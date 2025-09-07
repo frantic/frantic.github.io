@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How not to use Flux: SET actions"
+title: "How Not to Use Flux: SET Actions"
 image: /assets/flux/flux-one-way.png
 excerpt: Actions that are named `SET_*` is anti-pattern. It usually means that the code that should be in the reducer lives inside React component instead. This makes apps harder to reason about, debug and test.
 tags:

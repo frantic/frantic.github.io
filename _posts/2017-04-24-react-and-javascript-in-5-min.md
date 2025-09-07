@@ -1,6 +1,6 @@
 ---
 layout: post
-title: React-flavored JavaScript in 5 minutes
+title: React-Flavored JavaScript in 5 Minutes
 image: /assets/react-and-javascript-in-5-min/og-image.png
 excerpt: This document is for experienced software engineers who already know several other programming languages and just want a TL;DR summary on JavaScript in the context of React, Flow and the new ES6+ hotness.
 tags:

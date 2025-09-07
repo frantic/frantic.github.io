@@ -1,6 +1,6 @@
 ---
 layout: post
-title: React API evolution
+title: React API Evolution
 image: /assets/react-api-evolution/og-image.png
 excerpt: "From React.createClass to hooks: why React is at odds with JavaScript"
 tags:

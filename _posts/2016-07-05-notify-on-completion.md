@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Show OSX notification when long running command finishes and your terminal is not in focus
+title: Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus
 excerpt: Fighting lack of attention span with some advanced tooling hacks
 tags:
   - tips

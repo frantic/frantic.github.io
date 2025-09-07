@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Better way to switch between apps on macOS
+title: Better Way to Switch Between Apps on macOS
 image: /assets/macos-app-shortcuts/og-image.png
 excerpt: (+ video tutorial!) ⌘-tab sucks when you have more than two apps running. In this blog post I explore how we can make switching between apps more efficient.
 tags:

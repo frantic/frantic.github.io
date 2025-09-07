@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Replacing Jekyll for my blog
+title: Replacing Jekyll for My Blog
 image: /figma/og_replace_jekyll.png
 excerpt: How I replaced Jekyll with 200 lines of JavaScript
 tags:

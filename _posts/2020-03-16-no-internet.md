@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Debugging home internet connection
+title: Debugging Home Internet Connection
 image: /assets/no-internet/Dashboard.png
 excerpt: "Overengineered way of measuring your internet connectivity."
 ---

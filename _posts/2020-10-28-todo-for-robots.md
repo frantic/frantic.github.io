@@ -1,6 +1,6 @@
 ---
 layout: post
-title: TODO apps are meant for robots
+title: TODO Apps Are Meant for Robots
 image: /assets/og-image.jpg
 excerpt: "What if I'm a left-handed person in the world of right-handed tools?"
 ---

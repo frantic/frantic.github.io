@@ -1,6 +1,6 @@
 ---
 layout: post
-title: No constraints, no fun
+title: No Constraints, No Fun
 excerpt: Work vs Hackathon vs Competition vs Side Projects
 tags:
   - meta

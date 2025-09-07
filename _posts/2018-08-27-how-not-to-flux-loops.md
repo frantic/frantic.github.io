@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How not to use Flux: mini cycles"
+title: "How Not to Use Flux: Mini Cycles"
 image: /assets/flux/flux-one-way.png
 tags:
   - javascript

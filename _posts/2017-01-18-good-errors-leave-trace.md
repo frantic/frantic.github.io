@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Good errors leave trace
+title: Good Errors Leave Trace
 excerpt: Errors with extra informaton can help locate and fix the problems faster.
 tags:
   - programming

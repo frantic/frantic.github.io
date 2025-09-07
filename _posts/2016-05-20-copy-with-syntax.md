@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Copying code with syntax highlighting
+title: Copying Code with Syntax Highlighting
 tags:
   - tips
   - projects

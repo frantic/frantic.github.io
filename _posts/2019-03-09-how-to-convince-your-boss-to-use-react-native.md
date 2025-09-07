@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to convince your boss to use React Native
+title: How to Convince Your Boss to Use React Native
 excerpt: How to adopt React Native incrementally with little risk inside an existing native application and a team full of native engineers.
 image: /assets/gunnar-sigurdarson-1368301-unsplash.jpg
 tags:

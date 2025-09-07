@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Reconsidering the way I explain programming
+title: Reconsidering the Way I Explain Programming
 image: /assets/explain-programming/recursion-2.png
 excerpt: "Successful communication is so much about understanding the context and the people on the receiving end"
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Moving my serverless project to Ruby on Rails
+title: Moving My Serverless Project to Ruby on Rails
 image: /assets/back-to-rails/og-image.jpg
 excerpt: Serverless is like a black hole. It promised exciting adventures, but the gravity sucked me in and I spend most of my efforts dealing with its complexity, instead of focusing on my product.
 css: |
@@ -16,7 +16,7 @@ css: |
 
 I have a small side project: [digital gift cards for hackers](https://hacker.gifts). It uses Shopify for all the store-related stuff: frontend, payments, refunds, reports, etc.
 
-But unlike regular digital products (ebooks, videos) I wanted each card that the user purchases from the store to be unique. So I made a  script that generates personalized images and ran it manually for every order.
+But unlike regular digital products (ebooks, videos) I wanted each card that the user purchases from the store to be unique. So I made a script that generates personalized images and ran it manually for every order.
 
 The next logical step was automating this process. I started with serverless AWS Lambda. At the time it was the hot new tech and I wanted to learn more. It seemed very fitting for my use-case: single-responsibility functions that can run at any time and don’t require server maintenance.
 

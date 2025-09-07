@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Plotting ideas
+title: Plotting Ideas
 excerpt: Errors with extra information can help locate and fix the problems faster.
 tags:
   - thinking

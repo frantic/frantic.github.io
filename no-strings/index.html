@@ -49,10 +49,10 @@
   --step--2: clamp(0.75rem, 0.68rem + 0.2vw, 0.85rem);
   --step--1: clamp(0.9rem, 0.83rem + 0.25vw, 1rem);
   --step-0: clamp(1rem, 0.95rem + 0.35vw, 1.125rem);
-  --step-1: clamp(1.25rem, 1.1rem + 0.9vw, 1.6rem);
-  --step-2: clamp(1.5rem, 1.35rem + 1.2vw, 2rem);
-  --step-3: clamp(1.9rem, 1.7rem + 1.8vw, 2.6rem);
-  --step-4: clamp(2.4rem, 2.1rem + 2.5vw, 3.2rem);
+  --step-1: clamp(1.20rem, 1.1rem + 0.9vw, 1.6rem);
+  --step-2: clamp(1.40rem, 1.35rem + 1.2vw, 2rem);
+  --step-3: clamp(1.80rem, 1.7rem + 1.8vw, 2.6rem);
+  --step-4: clamp(2.40rem, 2.1rem + 2.5vw, 3.2rem);
 
   /* Rhythm */
   --line-height: 1.7;
@@ -148,15 +148,16 @@ body {
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--heading-font);
+  text-wrap: balance;
   font-weight: 700;
   line-height: var(--heading-line-height);
   margin: var(--space-7) 0 var(--space-5);
 }
 
-h1 { font-size: var(--step-4); letter-spacing: -0.015em; margin-top: var(--space-6); }
-h2 { font-size: var(--step-3); letter-spacing: -0.01em; }
-h3 { font-size: var(--step-2); }
-h4 { font-size: var(--step-1); }
+h1 { font-size: var(--step-2); letter-spacing: -0.0175em; margin-top: var(--space-6); }
+h2 { font-size: var(--step-1); letter-spacing: -0.01em; }
+h3 { font-size: var(--step-0); }
+h4 { font-size: var(--step-0); }
 h5 { font-size: var(--step-0); }
 h6 { font-size: var(--step--1); font-variant-caps: small-caps; letter-spacing: 0.04em; }
 
@@ -164,10 +165,6 @@ p, ul, ol, dl, figure, blockquote, pre, table { margin: 0 0 var(--space-5); }
 
 p {
   max-width: var(--max-measure);
-  text-wrap: pretty;
-  overflow-wrap: break-word;
-  word-break: normal;
-  hyphens: auto;
 }
 
 .lead { font-size: var(--step-1); color: var(--text); }
@@ -557,9 +554,7 @@ figcaption {
         <a href="/no-strings"> Things That Are Not Strings </a>
       </h1>
       
-      <div class="article-meta">
-        Posted on Aug 19, 2020
-      </div>
+      <div class="article-meta">Aug 19, 2020</div>
       
       <div class="article-content"><p>As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.</p>
 <p>Let’s take SQL for example. Every API in every programming language that I’ve seen considers SQL statement a string.</p>
@@ -642,26 +637,26 @@ new SQL('SELECT * FROM posts' + filter);
         
         
         <li>
-          <a href="/ctrl-r" class="footer-link">
-            My Favorite Shell Shortcut
+          <a href="/test-plan" class="footer-link">
+            Test Plan
           </a>
         </li>
         
         <li>
-          <a href="/e2e-tests" class="footer-link">
-            Improving End to End Tests Reliability
+          <a href="/get-your-shit-together-day" class="footer-link">
+            The Get Your Shit Together Day
           </a>
         </li>
         
         <li>
-          <a href="/how-to-convince-your-boss-to-use-react-native" class="footer-link">
-            How to Convince Your Boss to Use React Native
+          <a href="/blogpost-contexts" class="footer-link">
+            Provide Context When Writing Blog Posts
           </a>
         </li>
         
         <li>
-          <a href="/story-behind-hackathon-photo" class="footer-link">
-            Story Behind Hackathon Photo
+          <a href="/explain-programming" class="footer-link">
+            Reconsidering the Way I Explain Programming
           </a>
         </li>
         

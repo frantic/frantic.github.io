@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Replacing Jekyll for My Blog / frantic.im</title>
+    <title>The Get Your Shit Together Day / frantic.im</title>
     <meta name="author" content="Alex Kotliarskyi">
-    <meta name="description" content="How I replaced Jekyll with 200 lines of JavaScript">
+    <meta name="description" content="Everyone needs a Get Your Shit Together day every once in a while...">
 
-    <link rel="canonical" href="https://frantic.im/replacing-jekyll">
+    <link rel="canonical" href="https://frantic.im/get-your-shit-together-day">
     <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
 
-    <meta property="og:title" content="Replacing Jekyll for My Blog">
-    <meta property="og:image" content="https://frantic.im/figma/og_replace_jekyll.png">
-    <meta name="og:description" content="How I replaced Jekyll with 200 lines of JavaScript">
+    <meta property="og:title" content="The Get Your Shit Together Day">
+    <meta property="og:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta name="og:description" content="Everyone needs a Get Your Shit Together day every once in a while...">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@alex_frantic">
     <meta name="twitter:creator" content="@alex_frantic">
-    <meta name="twitter:title" content="Replacing Jekyll for My Blog">
-    <meta name="twitter:description" content="How I replaced Jekyll with 200 lines of JavaScript">
-    <meta name="twitter:image" content="https://frantic.im/figma/og_replace_jekyll.png">
+    <meta name="twitter:title" content="The Get Your Shit Together Day">
+    <meta name="twitter:description" content="Everyone needs a Get Your Shit Together day every once in a while...">
+    <meta name="twitter:image" content="https://frantic.im/assets/og-image.jpg">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -541,47 +541,15 @@ figcaption {
   <main>
     <article class="article ">
       <h1 class="article-title">
-        <a href="/replacing-jekyll"> Replacing Jekyll for My Blog </a>
+        <a href="/get-your-shit-together-day"> The Get Your Shit Together Day </a>
       </h1>
       
-      <div class="article-meta">Aug 8, 2022</div>
+      <div class="article-meta">Sep 18, 2025</div>
       
-      <div class="article-content"><p>I <a href="/hello-world">started this blog</a> in 2016. At the time, “static blogging” was becoming very popular and getting started was easy. I simply used <a href="https://jekyllrb.com/">Jekyll</a> with GitHub pages.</p>
-<p>But then I got a new laptop and the simplicity turned into a nighmare. A new Ruby version, an incompatible Jekyll gem version, cryptic C++ compilation errors of one of Jekyll’s dependencies. I’ve tried RVM, I’ve tried Bundler, I’ve tried Docker.</p>
-<p>At this point, blogging felt more like fighting with the tools.</p>
-<p>After I upgraded to M1 Mac, the setup broke again and I decided to take a different path.</p>
-<p>I looked for Jekyll alternatives but didn’t find anything that I liked. Here’s what I need:</p>
-<ul>
-<li>Easy to install, ideally a single binary (supporting ARM &amp; x86)</li>
-<li>Compatible with my Jekyll templates</li>
-<li>Hackable, without the need to install compiler toolchain</li>
-</ul>
-<p>Sometime in 2021 I re-implemented parts of Jekyll I cared about in JavaScript in ~200 lines of code. It only needs NodeJS, all the dependencies are vendored-in (so there’s no package.json, yarn, npm, pnpn or whatever). It only uses JS syntax that’s been stable for years, so there’s no TypeScript or Babel needed.</p>
-<p>I got to keep all the custom Jekyll theme files. Even the fancy <code>related.html</code> template that renders “Related posts” section at the bottom works without changes!</p>
-<p>On top of that, I added a few features that make it easier for me to write. I start by typing <code>blog</code> in my terminal, and I see this:</p>
-<pre><code>$ blog
-...
-Building pages/subscribe.md
-Building pages/talks.html
-Listening on http://localhost:9099/
-
-Things you can do:
-  n [title] - Create a new file in _posts
-  p         - Commit &amp; push to GitHub
-  e         - Edit in VSCode
-  w         - Open in browser
-</code></pre>
-<p>This little menu let’s me take the most common actions right from the console. For example, the first command converts “Fancy Blog Title” into “2022-08-08-fancy-blog-title.md”, creates this file in the right place from the template and opens it in the editor.</p>
-<p>It’s amazing how much these little inconveniences prevented me from writing!</p>
-<p>However, I can’t say I’m completely happy with the static blog setup. Here’s a few areas for improvement:</p>
-<ul>
-<li>Make it easier to insert images. Currently I have to put the png in the right place and manually link it from the blog’s content. When image is not found I get no errors. There’s no way to cleanup unused images. I wish I could just Cmd+V an image from the clipboard or use a tag that fetches it directly from Figma.</li>
-<li>Automatically generate OG image. The social previews are very important for attracting attention and branding. I want my blog engine to generate these based on post’s title during the build phase.</li>
-<li>Validate links. Currently the blog can be full of invalid links and I don’t even know it. At the build time, it should make sure that at least local links are working.</li>
-<li>Private sections &amp; posts. I have plenty of topics I would like to share only with a limited set of subscribers. I want to wrap parts of the posts in <code>&lt;private&gt;</code> tag and have it hidden from the public internet. This also includes “preview” posts I can share with some friends</li>
-<li>Grammarly &amp; Hemingway App integration. When the post is ready, I want a simple, automated way to send it to an AI that can help me fix typos and adjust my writing style.</li>
-</ul>
-<p>At this time, I’m not planning to turn this into a standalone product. I like that it’s just a part of this blog and I can keep it very simple and very specific to my needs.</p>
+      <div class="article-content"><p>The Get Your Shit Together day is a day off you take from work, family and other obligations. It’s a day you dedicate fully to things you’ve been always postponing. Fix squeeky door hinges, publish that blog post, repot your oversized plan. Really anything on your todo list that have been there for years.</p>
+<p>On the Get Your Shit Together day you are not allowed to work on anything typically considered urgent or important. There’s a whole life-worth of days for that.</p>
+<p>The Get Your Shit Together day feels good because you finally take action on things that have been eating up on you for so long. Action creates motivation. Motivation makes you want to do more things.</p>
+<p>Everyone needs a Get Your Shit Together day every once in a while…</p>
 </div>
     </article>
 
@@ -603,11 +571,7 @@ Things you can do:
 
     
       
-        
-      
     
-      
-        
       
     
 
@@ -624,9 +588,19 @@ Things you can do:
     
       
         
+          
+        
       
     
 
+    
+      <li>
+        <a href="/caring-about-software-quality-is-getting-harder" class="footer-link">
+          Who Cares
+        </a>
+      </li>
+      
+      
     
 
   
@@ -648,35 +622,25 @@ Things you can do:
     
       
         
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
+          
         
       
+    
+
+    
+      <li>
+        <a href="/best-tool" class="footer-link">
+          No Best Tool for the Job
+        </a>
+      </li>
+      
+      
+    
+
+  
+
+    
+
     
 
     
@@ -705,56 +669,6 @@ Things you can do:
 
     
 
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
     
 
     
@@ -800,46 +714,6 @@ Things you can do:
     
 
     
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
       
         
       
@@ -851,14 +725,6 @@ Things you can do:
 
     
 
-    
-      
-        
-      
-    
-      
-        
-      
     
 
     
@@ -896,14 +762,6 @@ Things you can do:
     
 
     
-      
-        
-      
-    
-      
-        
-      
-    
 
     
 
@@ -912,17 +770,13 @@ Things you can do:
     
 
     
-      
-        
-      
+
     
-      
-        
-      
+
+  
+
     
-      
-        
-      
+
     
 
     
@@ -940,18 +794,6 @@ Things you can do:
     
 
     
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
 
     
 
@@ -959,70 +801,6 @@ Things you can do:
 
     
 
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
     
 
     
@@ -1080,22 +858,6 @@ Things you can do:
         
       
     
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
       
         
       
@@ -1119,30 +881,6 @@ Things you can do:
 
     
 
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
     
       
         
@@ -1179,18 +917,6 @@ Things you can do:
 
     
 
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
     
 
     
@@ -1230,11 +956,15 @@ Things you can do:
         
       
     
+      
+        
+      
+    
 
     
       <li>
-        <a href="/hello-world" class="footer-link">
-          Hello, World!
+        <a href="/no-constraints-no-fun" class="footer-link">
+          No Constraints, No Fun
         </a>
       </li>
       
@@ -1242,6 +972,34 @@ Things you can do:
     
 
   
+
+    
+
+    
+      
+        
+      
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <li>
+        <a href="/side-projects-are-hard" class="footer-link">
+          Why Side Projects Are Hard
+        </a>
+      </li>
+      
+      
+        
 
 
       </ul>

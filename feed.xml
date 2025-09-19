@@ -5,11 +5,30 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2025-09-07T05:03:46.124Z</updated>
+  <updated>2025-09-19T03:41:42.650Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
 
+  
+    <entry>
+      <id>https://frantic.im/get-your-shit-together-day</id>
+      <title>The Get Your Shit Together Day</title>
+      <updated>2025-09-18T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/get-your-shit-together-day" />
+      <summary>Everyone needs a Get Your Shit Together day every once in a while...</summary>
+      <content type="html"><![CDATA[
+        
+        
+        
+        <p>The Get Your Shit Together day is a day off you take from work, family and other obligations. It’s a day you dedicate fully to things you’ve been always postponing. Fix squeeky door hinges, publish that blog post, repot your oversized plan. Really anything on your todo list that have been there for years.</p>
+<p>On the Get Your Shit Together day you are not allowed to work on anything typically considered urgent or important. There’s a whole life-worth of days for that.</p>
+<p>The Get Your Shit Together day feels good because you finally take action on things that have been eating up on you for so long. Action creates motivation. Motivation makes you want to do more things.</p>
+<p>Everyone needs a Get Your Shit Together day every once in a while…</p>
+
+      ]]></content>
+    </entry>
   
     <entry>
       <id>https://frantic.im/caring-about-software-quality-is-getting-harder</id>
@@ -313,28 +332,6 @@
 <p>People who grew up writing simple HTML and JS see React as breaking the rules. People who grew up writing React see <a href="https://htmx.org/">HTMX</a> as breaking the rules. And this process will never end.</p>
 <p>We need to realize is that everyone is on a different stage of this process. It doesn’t help the beginner to be thrown into “ha”: it will only confuse them.</p>
 <p>So should you follow the best practices of clean code? Well, yes and no: <a href="https://overreacted.io/goodbye-clean-code/">“Let clean code guide you. Then let it go.”</a></p>
-
-      ]]></content>
-    </entry>
-  
-    <entry>
-      <id>https://frantic.im/disposable-software</id>
-      <title>Disposable Software</title>
-      <updated>2023-03-27T12:00:00+00:00</updated>
-
-      <link rel="alternate" href="https://frantic.im/disposable-software" />
-      <summary>Questioning the status quo of software maintenance</summary>
-      <content type="html"><![CDATA[
-        
-        
-        
-        <p>Few weeks ago my microwave stopped working. I called several repair shops and they all told me the same thing: “just buy a new one, it’s cheaper than what we’ll charge for fixing it”.</p>
-<p>Maintaining software projects costs a lot of money. Thousands of books have been written on “clean code” and “best practices”, all focused on driving the maintanance costs down. Every company or team I worked on has a similar story: “we built this prototype in just a few weeks, but now it’s a mess and we can’t add new features”. Building something new is fun, maintaining old legacy systems is not fun.</p>
-<p>To add to the problem, businesses don’t understand the maintanance costs. After you ship a feature, the business considers it “done”. If you want to address tech debt, systematic bugs, refactorings, library upgrades, etc. it takes a lot of explanations and convincing. And even if you manage to get the budget, it’s not a priority. The business likes to ship new features, not maintain the old ones.</p>
-<p>But what if there was a magic tool. A tool that could build an app for your from scratch every time something about buisness domain changes. And it will use the latest libraries, latest best practices, hottest programming language. And it will be fast (minutes) and cheap (few dollars worth of GPU time).</p>
-<p>What would the world look like if we got rid of software maintanance costs?</p>
-<p>–</p>
-<p>Oh, about the microwave. I bought a new one, same brand and same model name. The new microwave sucks: the build quality is low, it’s loud. I want my old microwave back.</p>
 
       ]]></content>
     </entry>

@@ -11,9 +11,7 @@ layout: default
         <a href="{{ page.url }}"> {{ page.title }} </a>
       </h1>
       {% if page.date %}
-      <div class="article-meta">
-        Posted on {{ page.date | date: "%b %-d, %Y" }}
-      </div>
+      <div class="article-meta">{{ page.date | date: "%b %-d, %Y" }}</div>
       {% endif %}
       <div class="article-content">{{ content }}</div>
     </article>

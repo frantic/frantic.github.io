@@ -38,7 +38,7 @@
   --text-secondary: hsl(220, 10%, 42%);
   --accent: hsl(220, 72%, 46%);
   --accent-underline: color-mix(in srgb, var(--accent) 60%, transparent);
-  --separator: hsl(220, 20%, 90%);
+  --separator: hsla(220, 20%, 90%, 0.5);
 
   /* Typography */
   --body-font: Arial, Helvetica, "Helvetica Neue", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -176,6 +176,11 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
   border-bottom: 1px solid var(--separator);
   margin-bottom: var(--space-7);
   padding-bottom: var(--space-4);
+  display: flex;
+  gap: 0 var(--space-4);
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
 }
 
 .site-title {
@@ -185,20 +190,20 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 }
 
 /* Navigation */
-.nav { margin-top: var(--space-3); }
+.nav {  }
 
 .nav-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 .nav-link {
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: var(--step--1);
+  font-size: var(--step--2);
   transition: color 0.2s ease;
   text-underline-offset: var(--underline-offset);
 }
@@ -537,481 +542,202 @@ figcaption {
   </nav>
 </header>
 
-
   <main>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/get-your-shit-together-day"> The Get Your Shit Together Day </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Sep 18, 2025
-      </div>
-      <div class="article-content">Everyone needs a Get Your Shit Together day every once in a while...</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/caring-about-software-quality-is-getting-harder"> Who Cares </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Mar 30, 2025
-      </div>
-      <div class="article-content"></div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/hn-stack"> The Hacker News Stack </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Jan 28, 2025
-      </div>
-      <div class="article-content">If you want to build a web app The Hacker News Way, here's the stack you should use.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/best-tool"> No Best Tool for the Job </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Jun 19, 2024
-      </div>
-      <div class="article-content">How do you choose the best tool for the job?</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/opening-mail"> Opening Mail </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Jan 6, 2024
-      </div>
-      <div class="article-content">First make the change easy, then make the easy change.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/whos-watching-the-watchdog"> Who's Watching the Watchdog? </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Nov 22, 2023
-      </div>
-      <div class="article-content">Making reliable systems that expect things to go wrong</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/hacker-gifts"> A Side Project Story: Hacker Gifts </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Oct 29, 2023
-      </div>
-      <div class="article-content">This is a story about a side project that I started in 2018, and the reasons I'm shuting it down.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/story-behind-hackathon-photo"> Story Behind Hackathon Photo </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Jul 4, 2023
-      </div>
-      <div class="article-content">How a random stream of events ended up creating a picture with 57 million views</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/javascript-gom-jabbar"> JavaScript Gom Jabbar </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Jun 29, 2023
-      </div>
-      <div class="article-content">What's inside that package.json? Pain.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/shuhari"> Shuhari </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Jun 18, 2023
-      </div>
-      <div class="article-content">Follow the rules, break the rules, transcend the rules</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/disposable-software"> Disposable Software </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Mar 27, 2023
-      </div>
-      <div class="article-content">Questioning the status quo of software maintenance</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/no-why"> What Were You Trying to Achieve? </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Nov 7, 2022
-      </div>
-      <div class="article-content">A senior engineer joins a team. Before long, they start noticing weird quirks in the codebase…</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/replacing-jekyll"> Replacing Jekyll for My Blog </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Aug 8, 2022
-      </div>
-      <div class="article-content">How I replaced Jekyll with 200 lines of JavaScript</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/leaving-facebook"> On Leaving Facebook </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Jan 21, 2022
-      </div>
-      <div class="article-content">After 8.5 years at Facebook I joined a small startup called Replit. Leaving wasn't easy, and during the process I've talked to half a dozen friends who were in the similar situation.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/react-api-evolution"> React API Evolution </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Mar 11, 2021
-      </div>
-      <div class="article-content">From React.createClass to hooks: why React is at odds with JavaScript</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/octave"> A Side Project Story: Octave Cloud </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Feb 23, 2021
-      </div>
-      <div class="article-content">A story about my attempt at SaaS</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/back-to-rails"> Moving My Serverless Project to Ruby on Rails </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Nov 14, 2020
-      </div>
-      <div class="article-content">Serverless is like a black hole. It promised exciting adventures, but the gravity sucked me in and I spend most of my efforts dealing with its complexity, instead of focusing on my product.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/todo-for-robots"> TODO Apps Are Meant for Robots </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Oct 28, 2020
-      </div>
-      <div class="article-content">What if I'm a left-handed person in the world of right-handed tools?</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/remote-meetings"> Optimize Your Meetings for Engagement </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Sep 24, 2020
-      </div>
-      <div class="article-content">Imagine you meet a bunch of old friends that you haven’t seen in a while. Everybody’s sharing their stories, and everybody else is actively listening, asking questions, and are fully immersed.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/no-strings"> Things That Are Not Strings </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Aug 19, 2020
-      </div>
-      <div class="article-content">As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/project-todo"> TODO File for Personal Projects </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Apr 13, 2020
-      </div>
-      <div class="article-content">In most of my personal projects I have a file called TODO. I use it like this…</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/no-internet"> Debugging Home Internet Connection </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Mar 16, 2020
-      </div>
-      <div class="article-content">Overengineered way of measuring your internet connectivity.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/explain-programming"> Reconsidering the Way I Explain Programming </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Mar 12, 2020
-      </div>
-      <div class="article-content">Successful communication is so much about understanding the context and the people on the receiving end</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/how-not-to-flux-set-actions"> How Not to Use Flux: SET Actions </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Dec 15, 2019
-      </div>
-      <div class="article-content">Actions that are named `SET_*` is anti-pattern. It usually means that the code that should be in the reducer lives inside React component instead. This makes apps harder to reason about, debug and test.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/onityper"> Digital Typewriter </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Jun 9, 2019
-      </div>
-      <div class="article-content">What if you could use your favorite keyboard away from your computer? In this side project I'm building an old-fashioned typewriter from modern IoT parts.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/e2e-tests"> Improving End to End Tests Reliability </a>
-      </h1>
-      <div class="article-meta">
-        Posted on May 19, 2019
-      </div>
-      <div class="article-content">End-to-end tests are not flaky, if you cook them right.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/how-to-convince-your-boss-to-use-react-native"> How to Convince Your Boss to Use React Native </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Mar 9, 2019
-      </div>
-      <div class="article-content">How to adopt React Native incrementally with little risk inside an existing native application and a team full of native engineers.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/react-conf-2018"> React Conf 2018 Recap </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Oct 28, 2018
-      </div>
-      <div class="article-content">My favorite announcements from React Conf 2018</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/how-not-to-flux-loops"> How Not to Use Flux: Mini Cycles </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Aug 27, 2018
-      </div>
-      <div class="article-content"></div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/tomorrowman"> I'm a Tomorrowman </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Aug 22, 2018
-      </div>
-      <div class="article-content"></div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/macos-app-shortcuts"> Better Way to Switch Between Apps on macOS </a>
-      </h1>
-      <div class="article-meta">
-        Posted on May 17, 2018
-      </div>
-      <div class="article-content">(+ video tutorial!) ⌘-tab sucks when you have more than two apps running. In this blog post I explore how we can make switching between apps more efficient.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/no-constraints-no-fun"> No Constraints, No Fun </a>
-      </h1>
-      <div class="article-meta">
-        Posted on May 2, 2018
-      </div>
-      <div class="article-content">Work vs Hackathon vs Competition vs Side Projects</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/side-projects-are-hard"> Why Side Projects Are Hard </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Jan 10, 2018
-      </div>
-      <div class="article-content">Fun, misery and yak shaving expeditions</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/the-first-react-native-app"> The Very First React Native App on the AppStore </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Apr 28, 2017
-      </div>
-      <div class="article-content">A little known story about the first React Native app that was published on the AppStore.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/react-and-javascript-in-5-min"> React-Flavored JavaScript in 5 Minutes </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Apr 24, 2017
-      </div>
-      <div class="article-content">This document is for experienced software engineers who already know several other programming languages and just want a TL;DR summary on JavaScript in the context of React, Flow and the new ES6+ hotness.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/meta-language"> Understanding "Taming the Meta Language" </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Mar 24, 2017
-      </div>
-      <div class="article-content">I think I *finally* understood it</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/cdtmp"> cdtmp </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Mar 21, 2017
-      </div>
-      <div class="article-content">Create a temp directory and cd into it, and how it changed the way I try new things</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/plotting-ideas"> Plotting Ideas </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Feb 24, 2017
-      </div>
-      <div class="article-content">Errors with extra information can help locate and fix the problems faster.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/good-errors-leave-trace"> Good Errors Leave Trace </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Jan 18, 2017
-      </div>
-      <div class="article-content">Errors with extra informaton can help locate and fix the problems faster.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/keynote"> Geek's Guide to Making Decent Slides </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Dec 14, 2016
-      </div>
-      <div class="article-content">Using the 80/20 rule to make your slide deck better</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/test-plan"> Test Plan </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Sep 11, 2016
-      </div>
-      <div class="article-content">On why test plan is useful when making changes to large codebases.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/blogpost-contexts"> Provide Context When Writing Blog Posts </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Sep 1, 2016
-      </div>
-      <div class="article-content">One practical tip that will make your technical blog posts more useful.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/notify-on-completion"> Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Jul 5, 2016
-      </div>
-      <div class="article-content">Fighting lack of attention span with some advanced tooling hacks</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/ctrl-r"> My Favorite Shell Shortcut </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Jun 5, 2016
-      </div>
-      <div class="article-content">CTRL+R → search history</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/using-redux-with-flow"> Using Redux with Flow </a>
-      </h1>
-      <div class="article-meta">
-        Posted on May 28, 2016
-      </div>
-      <div class="article-content">How to use Flow to add type annotation to your Redux-powered app.</div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/copy-with-syntax"> Copying Code with Syntax Highlighting </a>
-      </h1>
-      <div class="article-meta">
-        Posted on May 20, 2016
-      </div>
-      <div class="article-content"></div>
-    </article>
-    
-    <article class="article ">
-      <h1 class="article-title">
-        <a href="/hello-world"> Hello, World! </a>
-      </h1>
-      <div class="article-meta">
-        Posted on Apr 2, 2016
-      </div>
-      <div class="article-content"></div>
-    </article>
-    
+    <p>Latest blog posts:</p>
+    <div class="related-posts">
+      <ul>
+        
+        <li>
+          <a href="/get-your-shit-together-day"> The Get Your Shit Together Day </a>
+        </li>
+        
+        <li>
+          <a href="/caring-about-software-quality-is-getting-harder"> Who Cares </a>
+        </li>
+        
+        <li>
+          <a href="/hn-stack"> The Hacker News Stack </a>
+        </li>
+        
+        <li>
+          <a href="/best-tool"> No Best Tool for the Job </a>
+        </li>
+        
+        <li>
+          <a href="/opening-mail"> Opening Mail </a>
+        </li>
+        
+        <li>
+          <a href="/whos-watching-the-watchdog"> Who's Watching the Watchdog? </a>
+        </li>
+        
+        <li>
+          <a href="/hacker-gifts"> A Side Project Story: Hacker Gifts </a>
+        </li>
+        
+        <li>
+          <a href="/story-behind-hackathon-photo"> Story Behind Hackathon Photo </a>
+        </li>
+        
+        <li>
+          <a href="/javascript-gom-jabbar"> JavaScript Gom Jabbar </a>
+        </li>
+        
+        <li>
+          <a href="/shuhari"> Shuhari </a>
+        </li>
+        
+        <li>
+          <a href="/disposable-software"> Disposable Software </a>
+        </li>
+        
+        <li>
+          <a href="/no-why"> What Were You Trying to Achieve? </a>
+        </li>
+        
+        <li>
+          <a href="/replacing-jekyll"> Replacing Jekyll for My Blog </a>
+        </li>
+        
+        <li>
+          <a href="/leaving-facebook"> On Leaving Facebook </a>
+        </li>
+        
+        <li>
+          <a href="/react-api-evolution"> React API Evolution </a>
+        </li>
+        
+        <li>
+          <a href="/octave"> A Side Project Story: Octave Cloud </a>
+        </li>
+        
+        <li>
+          <a href="/back-to-rails"> Moving My Serverless Project to Ruby on Rails </a>
+        </li>
+        
+        <li>
+          <a href="/todo-for-robots"> TODO Apps Are Meant for Robots </a>
+        </li>
+        
+        <li>
+          <a href="/remote-meetings"> Optimize Your Meetings for Engagement </a>
+        </li>
+        
+        <li>
+          <a href="/no-strings"> Things That Are Not Strings </a>
+        </li>
+        
+        <li>
+          <a href="/project-todo"> TODO File for Personal Projects </a>
+        </li>
+        
+        <li>
+          <a href="/no-internet"> Debugging Home Internet Connection </a>
+        </li>
+        
+        <li>
+          <a href="/explain-programming"> Reconsidering the Way I Explain Programming </a>
+        </li>
+        
+        <li>
+          <a href="/how-not-to-flux-set-actions"> How Not to Use Flux: SET Actions </a>
+        </li>
+        
+        <li>
+          <a href="/onityper"> Digital Typewriter </a>
+        </li>
+        
+        <li>
+          <a href="/e2e-tests"> Improving End to End Tests Reliability </a>
+        </li>
+        
+        <li>
+          <a href="/how-to-convince-your-boss-to-use-react-native"> How to Convince Your Boss to Use React Native </a>
+        </li>
+        
+        <li>
+          <a href="/react-conf-2018"> React Conf 2018 Recap </a>
+        </li>
+        
+        <li>
+          <a href="/how-not-to-flux-loops"> How Not to Use Flux: Mini Cycles </a>
+        </li>
+        
+        <li>
+          <a href="/tomorrowman"> I'm a Tomorrowman </a>
+        </li>
+        
+        <li>
+          <a href="/macos-app-shortcuts"> Better Way to Switch Between Apps on macOS </a>
+        </li>
+        
+        <li>
+          <a href="/no-constraints-no-fun"> No Constraints, No Fun </a>
+        </li>
+        
+        <li>
+          <a href="/side-projects-are-hard"> Why Side Projects Are Hard </a>
+        </li>
+        
+        <li>
+          <a href="/the-first-react-native-app"> The Very First React Native App on the AppStore </a>
+        </li>
+        
+        <li>
+          <a href="/react-and-javascript-in-5-min"> React-Flavored JavaScript in 5 Minutes </a>
+        </li>
+        
+        <li>
+          <a href="/meta-language"> Understanding "Taming the Meta Language" </a>
+        </li>
+        
+        <li>
+          <a href="/cdtmp"> cdtmp </a>
+        </li>
+        
+        <li>
+          <a href="/plotting-ideas"> Plotting Ideas </a>
+        </li>
+        
+        <li>
+          <a href="/good-errors-leave-trace"> Good Errors Leave Trace </a>
+        </li>
+        
+        <li>
+          <a href="/keynote"> Geek's Guide to Making Decent Slides </a>
+        </li>
+        
+        <li>
+          <a href="/test-plan"> Test Plan </a>
+        </li>
+        
+        <li>
+          <a href="/blogpost-contexts"> Provide Context When Writing Blog Posts </a>
+        </li>
+        
+        <li>
+          <a href="/notify-on-completion"> Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus </a>
+        </li>
+        
+        <li>
+          <a href="/ctrl-r"> My Favorite Shell Shortcut </a>
+        </li>
+        
+        <li>
+          <a href="/using-redux-with-flow"> Using Redux with Flow </a>
+        </li>
+        
+        <li>
+          <a href="/copy-with-syntax"> Copying Code with Syntax Highlighting </a>
+        </li>
+        
+        <li>
+          <a href="/hello-world"> Hello, World! </a>
+        </li>
+        
+      </ul>
+    </div>
   </main>
-
   <section class="subscribe-section">
   <div class="subscribe-content">
     <h2 class="subscribe-title">Oh look, another newsletter</h2>
@@ -1044,8 +770,7 @@ figcaption {
     </p>
   </div>
 </section>
-
-  <footer class="site-footer">
+ <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-content">
       <div class="footer-section">

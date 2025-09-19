@@ -38,7 +38,7 @@
   --text-secondary: hsl(220, 10%, 42%);
   --accent: hsl(220, 72%, 46%);
   --accent-underline: color-mix(in srgb, var(--accent) 60%, transparent);
-  --separator: hsl(220, 20%, 90%);
+  --separator: hsla(220, 20%, 90%, 0.5);
 
   /* Typography */
   --body-font: Arial, Helvetica, "Helvetica Neue", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -176,6 +176,11 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
   border-bottom: 1px solid var(--separator);
   margin-bottom: var(--space-7);
   padding-bottom: var(--space-4);
+  display: flex;
+  gap: 0 var(--space-4);
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
 }
 
 .site-title {
@@ -185,20 +190,20 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 }
 
 /* Navigation */
-.nav { margin-top: var(--space-3); }
+.nav {  }
 
 .nav-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 .nav-link {
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: var(--step--1);
+  font-size: var(--step--2);
   transition: color 0.2s ease;
   text-underline-offset: var(--underline-offset);
 }
@@ -566,26 +571,26 @@ figcaption {
         
         
         <li>
-          <a href="/todo-for-robots" class="footer-link">
-            TODO Apps Are Meant for Robots
+          <a href="/good-errors-leave-trace" class="footer-link">
+            Good Errors Leave Trace
           </a>
         </li>
         
         <li>
-          <a href="/leaving-facebook" class="footer-link">
-            On Leaving Facebook
+          <a href="/hacker-gifts" class="footer-link">
+            A Side Project Story: Hacker Gifts
           </a>
         </li>
         
         <li>
-          <a href="/cdtmp" class="footer-link">
-            cdtmp
+          <a href="/react-and-javascript-in-5-min" class="footer-link">
+            React-Flavored JavaScript in 5 Minutes
           </a>
         </li>
         
         <li>
-          <a href="/react-api-evolution" class="footer-link">
-            React API Evolution
+          <a href="/plotting-ideas" class="footer-link">
+            Plotting Ideas
           </a>
         </li>
         

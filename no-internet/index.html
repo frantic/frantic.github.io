@@ -38,7 +38,7 @@
   --text-secondary: hsl(220, 10%, 42%);
   --accent: hsl(220, 72%, 46%);
   --accent-underline: color-mix(in srgb, var(--accent) 60%, transparent);
-  --separator: hsl(220, 20%, 90%);
+  --separator: hsla(220, 20%, 90%, 0.5);
 
   /* Typography */
   --body-font: Arial, Helvetica, "Helvetica Neue", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -176,6 +176,11 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
   border-bottom: 1px solid var(--separator);
   margin-bottom: var(--space-7);
   padding-bottom: var(--space-4);
+  display: flex;
+  gap: 0 var(--space-4);
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
 }
 
 .site-title {
@@ -185,20 +190,20 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 }
 
 /* Navigation */
-.nav { margin-top: var(--space-3); }
+.nav {  }
 
 .nav-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 .nav-link {
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: var(--step--1);
+  font-size: var(--step--2);
   transition: color 0.2s ease;
   text-underline-offset: var(--underline-offset);
 }
@@ -654,26 +659,26 @@ curl -XPOST <span class="hljs-string">&#x27;http://localhost:8086/write?db=inet&
         
         
         <li>
-          <a href="/macos-app-shortcuts" class="footer-link">
-            Better Way to Switch Between Apps on macOS
+          <a href="/shuhari" class="footer-link">
+            Shuhari
           </a>
         </li>
         
         <li>
-          <a href="/story-behind-hackathon-photo" class="footer-link">
-            Story Behind Hackathon Photo
+          <a href="/keynote" class="footer-link">
+            Geek's Guide to Making Decent Slides
           </a>
         </li>
         
         <li>
-          <a href="/opening-mail" class="footer-link">
-            Opening Mail
+          <a href="/using-redux-with-flow" class="footer-link">
+            Using Redux with Flow
           </a>
         </li>
         
         <li>
-          <a href="/react-conf-2018" class="footer-link">
-            React Conf 2018 Recap
+          <a href="/no-strings" class="footer-link">
+            Things That Are Not Strings
           </a>
         </li>
         

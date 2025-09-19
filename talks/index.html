@@ -38,7 +38,7 @@
   --text-secondary: hsl(220, 10%, 42%);
   --accent: hsl(220, 72%, 46%);
   --accent-underline: color-mix(in srgb, var(--accent) 60%, transparent);
-  --separator: hsl(220, 20%, 90%);
+  --separator: hsla(220, 20%, 90%, 0.5);
 
   /* Typography */
   --body-font: Arial, Helvetica, "Helvetica Neue", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -176,6 +176,11 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
   border-bottom: 1px solid var(--separator);
   margin-bottom: var(--space-7);
   padding-bottom: var(--space-4);
+  display: flex;
+  gap: 0 var(--space-4);
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
 }
 
 .site-title {
@@ -185,20 +190,20 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 }
 
 /* Navigation */
-.nav { margin-top: var(--space-3); }
+.nav {  }
 
 .nav-list {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 .nav-link {
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: var(--step--1);
+  font-size: var(--step--2);
   transition: color 0.2s ease;
   text-underline-offset: var(--underline-offset);
 }
@@ -667,26 +672,26 @@ figcaption {
         
         
         <li>
-          <a href="/caring-about-software-quality-is-getting-harder" class="footer-link">
-            Who Cares
+          <a href="/no-constraints-no-fun" class="footer-link">
+            No Constraints, No Fun
           </a>
         </li>
         
         <li>
-          <a href="/remote-meetings" class="footer-link">
-            Optimize Your Meetings for Engagement
+          <a href="/replacing-jekyll" class="footer-link">
+            Replacing Jekyll for My Blog
           </a>
         </li>
         
         <li>
-          <a href="/react-and-javascript-in-5-min" class="footer-link">
-            React-Flavored JavaScript in 5 Minutes
+          <a href="/how-not-to-flux-loops" class="footer-link">
+            How Not to Use Flux: Mini Cycles
           </a>
         </li>
         
         <li>
-          <a href="/test-plan" class="footer-link">
-            Test Plan
+          <a href="/the-first-react-native-app" class="footer-link">
+            The Very First React Native App on the AppStore
           </a>
         </li>
         

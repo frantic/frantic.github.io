@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Hi! My name is Alex Kotliarskyi.
+My name is Alex Kotliarskyi.
 
 Software Engineer and UX zealot.
 

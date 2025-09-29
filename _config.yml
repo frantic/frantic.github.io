@@ -14,12 +14,8 @@ exclude:
 data:
   menu:
     - name: Blog
-      link: /blog/
-    - name: Talks
-      link: /talks/
-    - name: Projects
-      link: /projects/
+      link: /blog
     - name: Subscribe
       link: /subscribe/
     - name: About
-      link: /about/
+      link: /

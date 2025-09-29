@@ -4,18 +4,14 @@ title: How to subscribe
 permalink: /subscribe/
 ---
 
-## Email
-
-Get an email every time I publish a new blog post (which means approximately 0.5 email/month). There's a one-click unsubscribe link in every message. Powered by <a href="https://buttondown.email/refer/frantic" target="_blank">Buttondown</a>.
-
 {% include subscribe.html %}
 
 ## RSS
 
-Feed URL: `https://frantic.im/feed.xml`.
+Feed URL: [https://frantic.im/feed.xml](https://frantic.im/feed.xml).
 
-## Twitter
+## Social
 
-I don't tweet much, but you can follow [@alex_frantic](https://twitter.com/alex_frantic) to get updates when I write a new post or find something interesting.
+You can still follow and reach me at [@alex_frantic](https://twitter.com/alex_frantic) on X, [@frantic.im](https://bsky.app/profile/frantic.im) on Bluesky, and [LinkedIn](https://www.linkedin.com/in/alex-kotliarskyi/).
 
 {% include footer.html %}

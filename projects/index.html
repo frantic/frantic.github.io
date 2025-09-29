@@ -129,6 +129,7 @@ body {
 /* Container */
 .container {
   max-width: var(--max-measure);
+  min-height: 100vh;
   margin: 0 auto;
   padding: var(--space-6) var(--space-5);
 }
@@ -339,28 +340,13 @@ figcaption {
 .subscribe-section {
   margin: 0 calc(50% - 50vw);
   padding: 4rem calc(50vw - 50%);
-  background: linear-gradient(to right,
-    hsl(220, 13%, 95%) 0%,
-    hsl(220, 13%, 97%) 50%,
-    hsl(220, 13%, 95%) 100%
-  );
-}
-
-@media (prefers-color-scheme: dark) {
-  .subscribe-section {
-    background: linear-gradient(to right,
-      hsl(220, 13%, 10%) 0%,
-      hsl(220, 13%, 13%) 50%,
-      hsl(220, 13%, 10%) 100%
-    );
-  }
 }
 
 .subscribe-content { margin: 0 auto; }
 
 .subscribe-title { font-size: var(--step-1); margin: 0 0 1rem; letter-spacing: -0.01em; }
 
-.subscribe-text { font-size: var(--step-0); margin-bottom: 2rem; color: var(--text-secondary); }
+.subscribe-text { font-size: var(--step--1) }
 
 .subscribe-form { display: flex; gap: 1rem; margin-bottom: 1rem; }
 
@@ -392,7 +378,7 @@ figcaption {
 
 .subscribe-button:hover { filter: brightness(1.05); }
 
-.subscribe-footnote { font-size: var(--step--1); color: var(--text-secondary); margin: 0; }
+.subscribe-footnote { font-size: var(--step--2); color: var(--text-secondary); margin: 0; }
 
 @media (max-width: 600px) {
   .subscribe-form { flex-direction: column; }
@@ -403,23 +389,9 @@ figcaption {
 .site-footer {
   margin: 0 calc(50% - 50vw);
   padding: 4rem calc(50vw - 50%);
-  background: linear-gradient(to right,
-    hsl(30, 33%, 97%) 0%,
-    hsl(25, 40%, 98%) 50%,
-    hsl(30, 33%, 97%) 100%
-  );
-  border-top: 1px solid var(--separator);
 }
 
-@media (prefers-color-scheme: dark) {
-  .site-footer {
-    background: linear-gradient(to right,
-      hsl(165.25deg 15% 13%) 0%,
-      hsl(202.53deg 20% 15%) 50%,
-      hsl(208.41deg 15% 13%) 100%
-    );
-  }
-}
+.site-footer a { color: var(--text-secondary); text-decoration: none; }
 
 .footer-inner { max-width: var(--max-measure); margin: 0 auto; }
 
@@ -436,7 +408,7 @@ figcaption {
 
 .footer-heading { font-family: var(--heading-font); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 1rem; color: var(--text-secondary); }
 
-.social-links { display: flex; flex-direction: column; gap: 0.75rem; }
+.social-links { display: flex; flex-direction: row; gap: 0.75rem; }
 
 .social-link {
   display: flex; justify-content: space-between; align-items: baseline;
@@ -457,7 +429,6 @@ figcaption {
 .footer-copyright, .footer-colophon { font-size: 0.85rem; color: var(--text-secondary); margin: 0; }
 
 @media (max-width: 600px) {
-  .site-footer { padding: 3rem 0 2rem; }
   .footer-content { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
   .footer-bottom { flex-direction: column; gap: 0.5rem; }
   .footer-inner { padding: 0 1rem; }
@@ -467,14 +438,14 @@ figcaption {
 .related-posts { margin: var(--space-7) 0; }
 
 .related-posts a { color: var(--text); text-decoration: none; }
-.related-posts a:hover { color: var(--text); }
+.related-posts a:hover { color: var(--accent); }
 
-.related-posts h3 { color: var(--text-secondary); font-size: var(--step-0); margin-bottom: var(--space-4); }
+.related-posts h3 { color: var(--text-secondary); font-size: var(--step--1); margin-bottom: var(--space-4); }
 
 .related-posts ul { list-style: none; padding: 0; margin: 0; }
 
 .related-posts li {
-  font-size: var(--step-2);
+  font-size: var(--step-0);
   letter-spacing: -0.015em;
   font-family: var(--heading-font);
   line-height: var(--heading-line-height);
@@ -531,15 +502,11 @@ figcaption {
   <nav class="nav">
     <ul class="nav-list">
       
-      <li><a href="/blog/" class="nav-link">Blog</a></li>
-      
-      <li><a href="/talks/" class="nav-link">Talks</a></li>
-      
-      <li><a href="/projects/" class="nav-link">Projects</a></li>
+      <li><a href="/blog" class="nav-link">Blog</a></li>
       
       <li><a href="/subscribe/" class="nav-link">Subscribe</a></li>
       
-      <li><a href="/about/" class="nav-link">About</a></li>
+      <li><a href="/" class="nav-link">About</a></li>
       
     </ul>
   </nav>

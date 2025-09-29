@@ -129,6 +129,7 @@ body {
 /* Container */
 .container {
   max-width: var(--max-measure);
+  min-height: 100vh;
   margin: 0 auto;
   padding: var(--space-6) var(--space-5);
 }
@@ -339,28 +340,13 @@ figcaption {
 .subscribe-section {
   margin: 0 calc(50% - 50vw);
   padding: 4rem calc(50vw - 50%);
-  background: linear-gradient(to right,
-    hsl(220, 13%, 95%) 0%,
-    hsl(220, 13%, 97%) 50%,
-    hsl(220, 13%, 95%) 100%
-  );
-}
-
-@media (prefers-color-scheme: dark) {
-  .subscribe-section {
-    background: linear-gradient(to right,
-      hsl(220, 13%, 10%) 0%,
-      hsl(220, 13%, 13%) 50%,
-      hsl(220, 13%, 10%) 100%
-    );
-  }
 }
 
 .subscribe-content { margin: 0 auto; }
 
 .subscribe-title { font-size: var(--step-1); margin: 0 0 1rem; letter-spacing: -0.01em; }
 
-.subscribe-text { font-size: var(--step-0); margin-bottom: 2rem; color: var(--text-secondary); }
+.subscribe-text { font-size: var(--step--1) }
 
 .subscribe-form { display: flex; gap: 1rem; margin-bottom: 1rem; }
 
@@ -392,7 +378,7 @@ figcaption {
 
 .subscribe-button:hover { filter: brightness(1.05); }
 
-.subscribe-footnote { font-size: var(--step--1); color: var(--text-secondary); margin: 0; }
+.subscribe-footnote { font-size: var(--step--2); color: var(--text-secondary); margin: 0; }
 
 @media (max-width: 600px) {
   .subscribe-form { flex-direction: column; }
@@ -403,23 +389,9 @@ figcaption {
 .site-footer {
   margin: 0 calc(50% - 50vw);
   padding: 4rem calc(50vw - 50%);
-  background: linear-gradient(to right,
-    hsl(30, 33%, 97%) 0%,
-    hsl(25, 40%, 98%) 50%,
-    hsl(30, 33%, 97%) 100%
-  );
-  border-top: 1px solid var(--separator);
 }
 
-@media (prefers-color-scheme: dark) {
-  .site-footer {
-    background: linear-gradient(to right,
-      hsl(165.25deg 15% 13%) 0%,
-      hsl(202.53deg 20% 15%) 50%,
-      hsl(208.41deg 15% 13%) 100%
-    );
-  }
-}
+.site-footer a { color: var(--text-secondary); text-decoration: none; }
 
 .footer-inner { max-width: var(--max-measure); margin: 0 auto; }
 
@@ -436,7 +408,7 @@ figcaption {
 
 .footer-heading { font-family: var(--heading-font); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 1rem; color: var(--text-secondary); }
 
-.social-links { display: flex; flex-direction: column; gap: 0.75rem; }
+.social-links { display: flex; flex-direction: row; gap: 0.75rem; }
 
 .social-link {
   display: flex; justify-content: space-between; align-items: baseline;
@@ -457,7 +429,6 @@ figcaption {
 .footer-copyright, .footer-colophon { font-size: 0.85rem; color: var(--text-secondary); margin: 0; }
 
 @media (max-width: 600px) {
-  .site-footer { padding: 3rem 0 2rem; }
   .footer-content { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
   .footer-bottom { flex-direction: column; gap: 0.5rem; }
   .footer-inner { padding: 0 1rem; }
@@ -467,14 +438,14 @@ figcaption {
 .related-posts { margin: var(--space-7) 0; }
 
 .related-posts a { color: var(--text); text-decoration: none; }
-.related-posts a:hover { color: var(--text); }
+.related-posts a:hover { color: var(--accent); }
 
-.related-posts h3 { color: var(--text-secondary); font-size: var(--step-0); margin-bottom: var(--space-4); }
+.related-posts h3 { color: var(--text-secondary); font-size: var(--step--1); margin-bottom: var(--space-4); }
 
 .related-posts ul { list-style: none; padding: 0; margin: 0; }
 
 .related-posts li {
-  font-size: var(--step-2);
+  font-size: var(--step-0);
   letter-spacing: -0.015em;
   font-family: var(--heading-font);
   line-height: var(--heading-line-height);
@@ -528,15 +499,11 @@ figcaption {
   <nav class="nav">
     <ul class="nav-list">
       
-      <li><a href="/blog/" class="nav-link">Blog</a></li>
-      
-      <li><a href="/talks/" class="nav-link">Talks</a></li>
-      
-      <li><a href="/projects/" class="nav-link">Projects</a></li>
+      <li><a href="/blog" class="nav-link">Blog</a></li>
       
       <li><a href="/subscribe/" class="nav-link">Subscribe</a></li>
       
-      <li><a href="/about/" class="nav-link">About</a></li>
+      <li><a href="/" class="nav-link">About</a></li>
       
     </ul>
   </nav>
@@ -549,7 +516,9 @@ figcaption {
         <a href="/whos-watching-the-watchdog"> Who's Watching the Watchdog? </a>
       </h1>
       
-      <div class="article-meta">Nov 22, 2023</div>
+      <div class="article-meta">
+        Nov 22, 2023 by Alex Kotliarskyi
+      </div>
       
       <div class="article-content"><p>At my current company we have an automated pipeline for processing customer’s orders. It’s pretty complex — talking to multiple different services, training models, storing large files, updating the database, sending emails and push notifications.</p>
 <p>Sometimes things get stuck because of a temporary 3rd party outage or a bug in our code.</p>
@@ -581,26 +550,26 @@ figcaption {
         
         
         <li>
-          <a href="/tomorrowman" class="footer-link">
-            I'm a Tomorrowman
+          <a href="/keynote" class="footer-link">
+            Geek's Guide to Making Decent Slides
           </a>
         </li>
         
         <li>
-          <a href="/best-tool" class="footer-link">
-            No Best Tool for the Job
+          <a href="/octave" class="footer-link">
+            A Side Project Story: Octave Cloud
           </a>
         </li>
         
         <li>
-          <a href="/good-errors-leave-trace" class="footer-link">
-            Good Errors Leave Trace
+          <a href="/using-redux-with-flow" class="footer-link">
+            Using Redux with Flow
           </a>
         </li>
         
         <li>
-          <a href="/plotting-ideas" class="footer-link">
-            Plotting Ideas
+          <a href="/test-plan" class="footer-link">
+            Test Plan
           </a>
         </li>
         
@@ -612,12 +581,10 @@ figcaption {
 
   <section class="subscribe-section">
   <div class="subscribe-content">
-    <h2 class="subscribe-title">Oh look, another newsletter</h2>
+    <h2 class="subscribe-title">Get New Posts via Email</h2>
     <p class="subscribe-text">
-      Promise I won't send you anything life-changing. Just occasional thoughts
-      about making software, delivered straight to that inbox you're already
-      ignoring. This blog also has an
-      <a href="https://frantic.im/feed.xml">RSS feed</a>.
+      A cron job sends an email every time I publish a new blog post. Usually
+      once every 2 months.
     </p>
     <form
       class="subscribe-form"
@@ -637,50 +604,23 @@ figcaption {
       <button type="submit" class="subscribe-button">Subscribe</button>
     </form>
     <p class="subscribe-footnote">
-      No silly gifs, no AI-generated images. Unsubscribe whenever you realize
-      I'm not as interesting you hoped.
+      No spam. One click to unsubscribe. Powered by
+      <a href="https://buttondown.email/refer/frantic" target="_blank">
+        Buttondown
+      </a>
     </p>
   </div>
 </section>
  <footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h2 class="footer-title">Alex Kotliarskyi</h2>
-        <p class="footer-bio">Software Engineer and UX zealot.</p>
-      </div>
-
-      <div class="footer-section">
-        <!-- <h3 class="footer-heading">Connect</h3> -->
-        <div class="social-links">
-          <a href="https://x.com/alex_frantic" class="social-link">
-            <span class="social-name">Twitter</span>
-            <span class="social-handle">@alex_frantic</span>
-          </a>
-          <a href="https://github.com/frantic" class="social-link">
-            <span class="social-name">GitHub</span>
-            <span class="social-handle">@frantic</span>
-          </a>
-          <a href="https://unsplash.com/@frantic" class="social-link">
-            <span class="social-name">Unsplash</span>
-            <span class="social-handle">@frantic</span>
-          </a>
-          <a href="https://bsky.app/profile/frantic.im" class="social-link">
-            <span class="social-name">Bluesky</span>
-            <span class="social-handle">@frantic.im</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p class="footer-copyright">
-        © 2025 Alex Kotliarskyi. All rights reserved.
-      </p>
-      <p class="footer-colophon">
-        <!-- TODO: Put something here -->
-      </p>
-    </div>
+  <div class="footer-bottom">
+    <p class="footer-copyright">
+      © 2025 Alex Kotliarskyi. All rights reserved.
+    </p>
+    <p class="footer-colophon social-links">
+      <a target="_blank" href="https://x.com/alex_frantic">Twitter</a>
+      <a target="_blank" href="https://bsky.app/profile/frantic.im">Bluesky</a>
+      <a target="_blank" href="https://github.com/frantic">GitHub</a>
+    </p>
   </div>
 </footer>
 

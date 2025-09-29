@@ -112,6 +112,7 @@ body {
 @media (max-width: 600px) {
   .container { padding: var(--space-5) var(--space-4); }
   .container img { max-width: calc(100% + 2rem); margin: 0 -1rem; }
+  pre { margin: 1em calc(-1 * var(--space-4)); }
 }
 
 /* Typography */
@@ -257,7 +258,7 @@ pre {
   font-size: var(--step--1);
   background: color-mix(in srgb, var(--text) 6%, transparent);
   padding: 16px 30px 14px;
-  margin: 1em -30px;
+  margin: 1em calc(-1 * var(--space-5));
   white-space: pre;
   word-wrap: break-word;
   font-style: normal;

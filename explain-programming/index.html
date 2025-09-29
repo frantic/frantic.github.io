@@ -144,6 +144,7 @@ body {
 @media (max-width: 600px) {
   .container { padding: var(--space-5) var(--space-4); }
   .container img { max-width: calc(100% + 2rem); margin: 0 -1rem; }
+  pre { margin: 1em calc(-1 * var(--space-4)); }
 }
 
 /* Typography */
@@ -289,7 +290,7 @@ pre {
   font-size: var(--step--1);
   background: color-mix(in srgb, var(--text) 6%, transparent);
   padding: 16px 30px 14px;
-  margin: 1em -30px;
+  margin: 1em calc(-1 * var(--space-5));
   white-space: pre;
   word-wrap: break-word;
   font-style: normal;
@@ -573,26 +574,26 @@ figcaption {
         
         
         <li>
-          <a href="/hacker-gifts" class="footer-link">
-            A Side Project Story: Hacker Gifts
+          <a href="/leaving-facebook" class="footer-link">
+            On Leaving Facebook
           </a>
         </li>
         
         <li>
-          <a href="/shuhari" class="footer-link">
-            Shuhari
+          <a href="/best-tool" class="footer-link">
+            No Best Tool for the Job
           </a>
         </li>
         
         <li>
-          <a href="/story-behind-hackathon-photo" class="footer-link">
-            Story Behind Hackathon Photo
+          <a href="/hello-world" class="footer-link">
+            Hello, World!
           </a>
         </li>
         
         <li>
-          <a href="/how-to-convince-your-boss-to-use-react-native" class="footer-link">
-            How to Convince Your Boss to Use React Native
+          <a href="/get-your-shit-together-day" class="footer-link">
+            The Get Your Shit Together Day
           </a>
         </li>
         
@@ -602,39 +603,7 @@ figcaption {
   
   </main>
 
-  <section class="subscribe-section">
-  <div class="subscribe-content">
-    <h2 class="subscribe-title">Get New Posts via Email</h2>
-    <p class="subscribe-text">
-      A cron job sends an email every time I publish a new blog post. Usually
-      once every 2 months.
-    </p>
-    <form
-      class="subscribe-form"
-      action="https://buttondown.email/api/emails/embed-subscribe/frantic"
-      method="post"
-      target="popupwindow"
-      onsubmit="window.open('https://buttondown.email/frantic', 'popupwindow')"
-    >
-      <input
-        type="email"
-        name="email"
-        id="bd-email"
-        placeholder="your@email.com"
-        class="subscribe-input"
-        aria-label="Email address"
-      />
-      <button type="submit" class="subscribe-button">Subscribe</button>
-    </form>
-    <p class="subscribe-footnote">
-      No spam. One click to unsubscribe. Powered by
-      <a href="https://buttondown.email/refer/frantic" target="_blank">
-        Buttondown
-      </a>
-    </p>
-  </div>
-</section>
- <footer class="site-footer">
+  <footer class="site-footer">
   <div class="footer-bottom">
     <p class="footer-copyright">
       © 2025 Alex Kotliarskyi. All rights reserved.

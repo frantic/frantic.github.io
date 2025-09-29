@@ -144,6 +144,7 @@ body {
 @media (max-width: 600px) {
   .container { padding: var(--space-5) var(--space-4); }
   .container img { max-width: calc(100% + 2rem); margin: 0 -1rem; }
+  pre { margin: 1em calc(-1 * var(--space-4)); }
 }
 
 /* Typography */
@@ -289,7 +290,7 @@ pre {
   font-size: var(--step--1);
   background: color-mix(in srgb, var(--text) 6%, transparent);
   padding: 16px 30px 14px;
-  margin: 1em -30px;
+  margin: 1em calc(-1 * var(--space-5));
   white-space: pre;
   word-wrap: break-word;
   font-style: normal;
@@ -551,26 +552,26 @@ figcaption {
         
         
         <li>
-          <a href="/best-tool" class="footer-link">
-            No Best Tool for the Job
+          <a href="/how-not-to-flux-loops" class="footer-link">
+            How Not to Use Flux: Mini Cycles
           </a>
         </li>
         
         <li>
-          <a href="/onityper" class="footer-link">
-            Digital Typewriter
+          <a href="/no-why" class="footer-link">
+            What Were You Trying to Achieve?
           </a>
         </li>
         
         <li>
-          <a href="/using-redux-with-flow" class="footer-link">
-            Using Redux with Flow
+          <a href="/keynote" class="footer-link">
+            Geek's Guide to Making Decent Slides
           </a>
         </li>
         
         <li>
-          <a href="/opening-mail" class="footer-link">
-            Opening Mail
+          <a href="/notify-on-completion" class="footer-link">
+            Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus
           </a>
         </li>
         
@@ -580,39 +581,7 @@ figcaption {
   
   </main>
 
-  <section class="subscribe-section">
-  <div class="subscribe-content">
-    <h2 class="subscribe-title">Get New Posts via Email</h2>
-    <p class="subscribe-text">
-      A cron job sends an email every time I publish a new blog post. Usually
-      once every 2 months.
-    </p>
-    <form
-      class="subscribe-form"
-      action="https://buttondown.email/api/emails/embed-subscribe/frantic"
-      method="post"
-      target="popupwindow"
-      onsubmit="window.open('https://buttondown.email/frantic', 'popupwindow')"
-    >
-      <input
-        type="email"
-        name="email"
-        id="bd-email"
-        placeholder="your@email.com"
-        class="subscribe-input"
-        aria-label="Email address"
-      />
-      <button type="submit" class="subscribe-button">Subscribe</button>
-    </form>
-    <p class="subscribe-footnote">
-      No spam. One click to unsubscribe. Powered by
-      <a href="https://buttondown.email/refer/frantic" target="_blank">
-        Buttondown
-      </a>
-    </p>
-  </div>
-</section>
- <footer class="site-footer">
+  <footer class="site-footer">
   <div class="footer-bottom">
     <p class="footer-copyright">
       © 2025 Alex Kotliarskyi. All rights reserved.

@@ -5,11 +5,47 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2025-09-29T03:54:02.668Z</updated>
+  <updated>2025-10-12T20:48:05.397Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
 
+  
+    <entry>
+      <id>https://frantic.im/music-player</id>
+      <title>A Side Project Story: Music Player</title>
+      <updated>2025-10-11T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/music-player" />
+      <summary>One of my most successful side projects had exactly 2 daily active users.</summary>
+      <content type="html"><![CDATA[
+        
+        
+        
+        <p>One of my most successful side projects had exactly 2 daily active users.</p>
+<p>When I was growing up I loved listening to music, especially my parents’ cassette tapes and CDs. Back then music had a physical form. You had to take a magical artifact and carefully put it into a special machine that would produce sounds.</p>
+<p>My kids growing up experience none of that. From their perspective, we do something with our phones and music just appears from a speaker. The cause and effect far apart.</p>
+<p>I wanted to change that. I wanted to give them agency over what’s playing, and create an association between a physical medium, label, picture and song.</p>
+<p>So here are the principles I had in mind:</p>
+<ul>
+<li>One physical object == one song</li>
+<li>Adding new songs should be cheap and easy</li>
+</ul>
+<p>I did a brief research online and couldn’t find anything that fits the requirements. And I’ll be honest – I was delighted, it meant I can actually craft something novel and useful for my family and not just buy off-the-shelf solution.</p>
+<p>A few days later, I had the “Music Player” (this was way before I started understanding that a good name is important). Each record was an RFID card with an image and title printed on it. You had to take this simple artifact, tap it at a special device and the music would play.</p>
+<p><img src="/figma/music_player_components.png" alt="Components of the project: RFID cards, Raspberry Pi, Spotify and Sonos" /></p>
+<p>It was powered by an old Raspberry Pi, simple RFID card reader and my existing Sonos speaker. Spotify served as the music library, and adding new songs there was very easy. Here’s how it worked.</p>
+<p>The playback part was pretty <a href="https://github.com/frantic/miniplayer/blob/master/scripts/daemon.js">simple</a>: read RFID tag, find a song, send it to play on Sonos (this was the simplest setup because we already had an old Sonos speaker that we used for playing music).</p>
+<p>But what made this project successful was how easy it was to add new songs. When we found a song we liked we’d just add it to a playlist on Spotify.</p>
+<p>Which brings me to the secret sauce – the admin panel (not an overkill, I promise). It was a React app that used Spotify API to pull a list of songs from a hardcoded playlist ID. It compared the list with the existing database (stored in Firebase) of RFID ID &lt;&gt; song ID mapping, and if the song was missing from the DB, it would pull artwork, name and artist information from the song metadata. Then it rendered the grid of new songs that had a printer-friendly layout that I printed on a sticker paper, cut into individual labels and stuck them to new RFID cards. Then I used a separate RFID card reader plugged into my computer to quickly associate each card with corresponding song.</p>
+<p>This process took me about 10 minutes and my kids would help with it too! After a year we had more than 200 RFID-records.</p>
+<p>My kids played music on this Music Player every day for years. The youngest user was less than one year old and barely walked, but took no time to learn that tapping with a card plays the song that’s pictured on the card.</p>
+<p>Many friends (with families) that visited our house asked for a system like that. I gave them the instructions but nobody ended up building it. I can’t blame them – this project can feel like too much work to fit into a busy parenting life. If you want to try, the source code (with the shopping list of materials) is here <a href="https://github.com/frantic/miniplayer">https://github.com/frantic/miniplayer</a>.</p>
+<p>I loved building it, and my 2 favorite customers loved using it.</p>
+<p>P.S. As I was polishing this post I saw a <a href="https://fulghum.io/album-cards">similar project by Jordan Fulghum</a>, he used NFC tags &amp; Plex instead of RFIDs &amp; Spotify. Check it out!</p>
+
+      ]]></content>
+    </entry>
   
     <entry>
       <id>https://frantic.im/get-your-shit-together-day</id>
@@ -306,33 +342,6 @@
 <p>You stop to count how many tools and parsers work on your codebase: TypeScript, esbuild, swc, babel, eslint, prettier, jest, webpack, rollup, terser. You are not sure if you missed any. You are not sure if you want to know. The level of pain is so high you forget about anything else.</p>
 <p><code>engines</code> prominently lists <code>node</code>. And while you hate it with the depth of your soul, you are not going to Bun or Deno because you know this will not stop the pain. This will only make the pain worse.</p>
 <p>It’s the end of the file now. Final closing curly brace. You close the tab and take a breath. Look around. You are still alive, your hands and your brain intact. You survived. For now.</p>
-
-      ]]></content>
-    </entry>
-  
-    <entry>
-      <id>https://frantic.im/shuhari</id>
-      <title>Shuhari</title>
-      <updated>2023-06-18T12:00:00+00:00</updated>
-
-      <link rel="alternate" href="https://frantic.im/shuhari" />
-      <summary>Follow the rules, break the rules, transcend the rules</summary>
-      <content type="html"><![CDATA[
-        
-        
-        
-        <p>I’ve been trying to write a blog post about following “best practices” and how eventually you end up breaking them. But I couldn’t find the right words until I randomly stumbled upon a concept from Japanese martial art: <a href="https://en.wikipedia.org/wiki/Shuhari">Shuhari</a>.</p>
-<blockquote>
-<p>It is known that, when we learn or train in something, we pass through the stages of shu, ha, and ri. These stages are explained as follows. In shu, we repeat the forms and discipline ourselves so that our bodies absorb the forms that our forebears created. We remain faithful to these forms with no deviation. Next, in the stage of ha, once we have disciplined ourselves to acquire the forms and movements, we make innovations. In this process the forms may be broken and discarded. Finally, in ri, we completely depart from the forms, open the door to creative technique, and arrive in a place where we act in accordance with what our heart/mind desires, unhindered while not overstepping laws.</p>
-</blockquote>
-<p>To me, this explains everything I see in the software development industry.</p>
-<p>First, we follow the rules. Learn best practices. Read the <a href="https://en.wikipedia.org/wiki/Design_Patterns">Gang of Four</a>. “Keep it simple, stupid”, “Do not repeat yourself”. <em>shu</em>.</p>
-<p>Then, we rebel and break the rules. NoSQL, React, Rails and many others were the expression of breaking the established best practices. <em>ha</em>.</p>
-<p>Finally, we transcend the rules. There are no rules and no breaking the rules. You just do. <em>ri</em>.</p>
-<p>A beginner following tech Twitter or Hacker News nowadays will be very confused. Some people preach best practices, others are loudly recommend breaking them. <small>(Unfortunately you rarely see anything from those who transcend them.)</small></p>
-<p>People who grew up writing simple HTML and JS see React as breaking the rules. People who grew up writing React see <a href="https://htmx.org/">HTMX</a> as breaking the rules. And this process will never end.</p>
-<p>We need to realize is that everyone is on a different stage of this process. It doesn’t help the beginner to be thrown into “ha”: it will only confuse them.</p>
-<p>So should you follow the best practices of clean code? Well, yes and no: <a href="https://overreacted.io/goodbye-clean-code/">“Let clean code guide you. Then let it go.”</a></p>
 
       ]]></content>
     </entry>

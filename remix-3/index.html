@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>A Side Project Story: Music Player / frantic.im</title>
+    <title>Thoughts on Remix 3 / frantic.im</title>
     <meta name="author" content="Alex Kotliarskyi">
-    <meta name="description" content="One of my most successful side projects had exactly 2 daily active users.">
+    <meta name="description" content="The pendulum is about to swing the other direction">
 
-    <link rel="canonical" href="https://frantic.im/music-player">
+    <link rel="canonical" href="https://frantic.im/remix-3">
     <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
 
-    <meta property="og:title" content="A Side Project Story: Music Player">
-    <meta property="og:image" content="https://frantic.im/figma/og_music_player.png">
-    <meta name="og:description" content="One of my most successful side projects had exactly 2 daily active users.">
+    <meta property="og:title" content="Thoughts on Remix 3">
+    <meta property="og:image" content="https://frantic.im/figma/og_remix.png">
+    <meta name="og:description" content="The pendulum is about to swing the other direction">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@alex_frantic">
     <meta name="twitter:creator" content="@alex_frantic">
-    <meta name="twitter:title" content="A Side Project Story: Music Player">
-    <meta name="twitter:description" content="One of my most successful side projects had exactly 2 daily active users.">
-    <meta name="twitter:image" content="https://frantic.im/figma/og_music_player.png">
+    <meta name="twitter:title" content="Thoughts on Remix 3">
+    <meta name="twitter:description" content="The pendulum is about to swing the other direction">
+    <meta name="twitter:image" content="https://frantic.im/figma/og_remix.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -514,34 +514,93 @@ figcaption {
   <main>
     <article class="article ">
       <h1 class="article-title">
-        <a href="/music-player"> A Side Project Story: Music Player </a>
+        <a href="/remix-3"> Thoughts on Remix 3 </a>
       </h1>
       
       <div class="article-meta">
-        Oct 11, 2025 by Alex Kotliarskyi
+        Oct 12, 2025 by Alex Kotliarskyi
       </div>
       
-      <div class="article-content"><p>One of my most successful side projects had exactly 2 daily active users.</p>
-<p>When I was growing up I loved listening to music, especially my parents’ cassette tapes and CDs. Back then music had a physical form. You had to take a magical artifact and carefully put it into a special machine that would produce sounds.</p>
-<p>My kids growing up experience none of that. From their perspective, we do something with our phones and music just appears from a speaker. The cause and effect far apart.</p>
-<p>I wanted to change that. I wanted to give them agency over what’s playing, and create an association between a physical medium, label, picture and song.</p>
-<p>So here are the principles I had in mind:</p>
-<ul>
-<li>One physical object == one song</li>
-<li>Adding new songs should be cheap and easy</li>
-</ul>
-<p>I did a brief research online and couldn’t find anything that fits the requirements. And I’ll be honest – I was delighted, it meant I can actually craft something novel and useful for my family and not just buy off-the-shelf solution.</p>
-<p>A few days later, I had the “Music Player” (this was way before I started understanding that a good name is important). Each record was an RFID card with an image and title printed on it. You had to take this simple artifact, tap it at a special device and the music would play.</p>
-<p><img src="/figma/music_player_components.png" alt="Components of the project: RFID cards, Raspberry Pi, Spotify and Sonos" /></p>
-<p>It was powered by an old Raspberry Pi, simple RFID card reader and my existing Sonos speaker. Spotify served as the music library, and adding new songs there was very easy. Here’s how it worked.</p>
-<p>The playback part was pretty <a href="https://github.com/frantic/miniplayer/blob/master/scripts/daemon.js">simple</a>: read RFID tag, find a song, send it to play on Sonos (this was the simplest setup because we already had an old Sonos speaker that we used for playing music).</p>
-<p>But what made this project successful was how easy it was to add new songs. When we found a song we liked we’d just add it to a playlist on Spotify.</p>
-<p>Which brings me to the secret sauce – the admin panel (not an overkill, I promise). It was a React app that used Spotify API to pull a list of songs from a hardcoded playlist ID. It compared the list with the existing database (stored in Firebase) of RFID ID &lt;&gt; song ID mapping, and if the song was missing from the DB, it would pull artwork, name and artist information from the song metadata. Then it rendered the grid of new songs that had a printer-friendly layout that I printed on a sticker paper, cut into individual labels and stuck them to new RFID cards. Then I used a separate RFID card reader plugged into my computer to quickly associate each card with corresponding song.</p>
-<p>This process took me about 10 minutes and my kids would help with it too! After a year we had more than 200 RFID-records.</p>
-<p>My kids played music on this Music Player every day for years. The youngest user was less than one year old and barely walked, but took no time to learn that tapping with a card plays the song that’s pictured on the card.</p>
-<p>Many friends (with families) that visited our house asked for a system like that. I gave them the instructions but nobody ended up building it. I can’t blame them – this project can feel like too much work to fit into a busy parenting life. If you want to try, the source code (with the shopping list of materials) is here <a href="https://github.com/frantic/miniplayer">https://github.com/frantic/miniplayer</a>.</p>
-<p>I loved building it, and my 2 favorite customers loved using it.</p>
-<p>P.S. As I was polishing this post I saw a <a href="https://fulghum.io/album-cards">similar project by Jordan Fulghum</a>, he used NFC tags &amp; Plex instead of RFIDs &amp; Spotify. Check it out!</p>
+      <div class="article-content"><p><a href="https://remix.run/">Remix</a> is a web framework by <s>React underdogs</s> authors of the most popular React package. Few days ago at <a href="https://remix.run/jam/2025">Remix Jam 2025</a>, Ryan and Michael shared a sneak peak of Remix v3. There’s no official blog post or documentation yet. Here’s my attempt at explaining what it is about.</p>
+<p>Remix v1 was a React framework that managed data loading and server-side rendering. Its biggest achievement was the <a href="https://remix.run/">marketing website</a>. Early Remix was interesting because it was viewed as the first real contender for Next.js’s dominant position.</p>
+<p>Remix v2 struggled with its messaging and identity. One of the authors <a href="https://x.com/ryanflorence/status/1791479313939976313">described it</a> as <em>“Remix v2 is a Vite plugin that makes access to React Router v6 features more convenient through the Route Module API”</em>. This is definitely not how you beat Vercel’s marketing machine. The framework had its users, but definitely not the trajectory to make a dent in Next.js’s market share.</p>
+<p>Remix v3 is… very different. It represents a broader shift in web development sentiment and could be worth paying attention to. To understand why, let’s look at the state of modern React.</p>
+<h3>Modern React</h3>
+<p><strong>In 2025, React feels complicated.</strong> React Server Components introduced a more sophisticated way to render components on the server and hydrate them on client. The rules of what is allowed are nuanced: server components can be defined as <code>async</code> now and pass data to client components (but not all kinds data). Regular server-side functions can now be used on client via magic RPC actions. Developers need to learn <a href="https://react.dev/reference/rsc/use-client"><code>&quot;use client&quot;</code></a> vs <a href="https://react.dev/reference/rsc/use-server"><code>&quot;use server&quot;</code></a>.</p>
+<p>The speed, especially on big apps, started to be a common concern. Frameworks like Svelte introduced a way to sidestep virtual DOM diffing and produce the most efficient direct way of updating elements, while still looking reasonably declarative. So the React team opened access to the React compiler, a project that has been brewing up inside Meta for almost 8 years. It works by auto-memoizing your components and hooks. But not all components, because that could introduce subtle bugs. Now it’s about <a href="https://react.dev/reference/react-compiler/directives/use-memo"><code>&quot;use memo&quot;</code></a> and <a href="https://react.dev/reference/react-compiler/directives/use-no-memo"><code>&quot;use no memo&quot;</code></a> (aliased as <code>&quot;use forget&quot;</code> and <code>&quot;use no forget&quot;</code> which doesn’t help with the confusion).</p>
+<p>The core API surface of React keep growing. React has added async rendering APIs (<a href="https://react.dev/reference/react/Suspense"><code>Suspense</code></a>, <a href="https://react.dev/reference/react/startTransition"><code>startTransition</code></a>, <a href="https://react.dev/reference/react/useDeferredValue"><code>useDeferredValue</code></a>, <a href="https://react.dev/reference/react/useActionState"><code>useActionState</code></a>) to make web apps more responsive – now user interactions can be prioritized against less urgent but expensive component tree updates, but require you to reason about “active” and “pending” states. The other new APIs are also seen as complex and niche. Just look at the documentation for <a href="https://react.dev/reference/react/useEffectEvent"><code>useEffectEvent</code></a> (but try to guess what it’s doing before you click).</p>
+<p><strong>Nobody forces developer to use these features.</strong> In fact even the oldest <code>createReactClass</code> with mixins work just fine with the official <code>create-react-class</code> npm package. You can still use that style of React today, you don’t have to adopt any of the new modern features.</p>
+<p>Except, <a href="https://react.dev/learn/creating-a-react-app">you kind of have to</a> – these features are shoved into developers’ throats via <a href="https://nextjs.org/">Next.js</a>. React itself gave up attempts at being a framework. It was just too much work to keep up with fast paced JS tooling, and Facebook had their own setup not worth opensourcing.</p>
+<p>Next.js itself went though some painful transitions (<a href="https://nextjs.org/docs/pages">pages router</a> vs <a href="https://nextjs.org/docs/app/getting-started">app router</a>) and left developers who live on the bleeding edge badly hurt. On top of the API churn, Next.js has a whole another layer of complexity caused by Vercel. Vercel deploys fullstack Next.js apps in its own special way – some code runs in the browser, some in AWS Lambda (with 3x markup), and some in its proprietary worker runtime (“middleware” must be one of the biggest lies that caused developer-decades of confusion and frustration).</p>
+<p>All this stuff is just… too much. In fact, even explaining the problems these features and frameworks are trying to fix took Dan several <a href="https://overreacted.io/react-for-two-computers/">conferences</a> and <a href="https://overreacted.io/the-two-reacts/">blog posts</a> to describe. People who get it, get it. RSC, Suspense, React Compiler are really powerful and solve real problems some companies have.</p>
+<p>On top of that, LLMs suck at React. When asked to build an app, they all reach for React, but the resulting components are ugly soups of <code>useEffects</code> and random hacks to work around subtle bugs.</p>
+<h3>Remix v3</h3>
+<p>So in this state of complexity and frustration, Remix v3 is born. You can watch the <a href="https://remix.run/jam/2025">Remix Jam</a> recording (look for timestamps in the comments) + scroll through both authors’ X accounts to get a sense of it.</p>
+<p>On the frontend Remix still uses JSX, but there’s no React runtime. It doesn’t track state the way React does, but instead gives developers a <code>this.update()</code> function to call to tell Remix that something has changed. Instead of explicit state you can use anything, most commonly closure-captured variables:</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params"><span class="hljs-variable language_">this</span>: Remix.Handle</span>) {
+  <span class="hljs-comment">// State is just a closure</span>
+  <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
+
+  <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{count}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+        <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;p-2 text-green-500&quot;</span>
+        <span class="hljs-attr">on</span>=<span class="hljs-string">{dom.click((event,</span> <span class="hljs-attr">signal</span>) =&gt;</span> {
+          count++;
+          this.update();
+        })}
+      &gt;
+        Inc
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>This makes code more imperative, mechanically simpler. Do this, then do that. Transitions, instead of React’s promise of <code>view = f(state)</code>.</p>
+<p>Events are first class and use web’s built-in events mechanism. Instead of <code>onClick</code> there’s a universal <code>&quot;on&quot;</code> prop and a library of standard <code>dom</code> events + developers can define their own <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent"><code>CustomEvents</code></a>.</p>
+<p>To control async work, Remix relies on <a href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController/signal">signals</a>. E.g. to cancel a <code>fetch</code> when component unmounts the developers can do this:</p>
+<pre><code>function Cities(this: Remix.Handle) {
+  let list = [], isLoading = true;
+  fetch(&quot;https://api.remix.run/cities.json&quot;, { signal: this.signal })
+    .then(response =&gt; response.json())
+    .then(data =&gt; {
+      list = data;
+      isLoading = false;
+      this.update();
+    });
+
+  return () =&gt; …
+}
+</code></pre>
+<p>Remix will ship with a component library. React has a wide ecosystem of components that won’t work in Remix, so to stay competitive the team is working on high quality built-in components. Things like menus and forms with attention to detail and accessibility support. It also introduces subtle but nice quality-of-life improvements over React: built-in <code>css</code> prop, <code>class</code> instead of <code>className</code>.</p>
+<p>On the backend, Remix double-downs on Web Platform. The handlers take web <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request"><code>Request</code></a> and return <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response"><code>Response</code></a>. It also brings things like <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData"><code>FormData</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/File"><code>File</code></a> and others to the server. This makes the server runtime an implementation detail. Node, Deno, Bun – all have either native support or adapters for these web APIs, so Remix can run anywhere.</p>
+<p>In v3 the framework gave up on file-based routing. Just too much trouble to capture the range of things they want to support in just the file names. Instead it introduces a TypeScript-based way of defining the routes. TypeScript guarantees all routes are implemented and URL parameters are passed to handlers and links are never broken.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">let</span> routes = <span class="hljs-title function_">route</span>({
+  <span class="hljs-attr">home</span>: <span class="hljs-string">&quot;/&quot;</span>,
+  <span class="hljs-attr">about</span>: <span class="hljs-string">&quot;/about&quot;</span>,
+  <span class="hljs-attr">books</span>: {
+    <span class="hljs-attr">index</span>: { <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;GET&quot;</span>, <span class="hljs-attr">pattern</span>: <span class="hljs-string">&quot;/&quot;</span> },
+    <span class="hljs-attr">create</span>: { <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;POST&quot;</span>, <span class="hljs-attr">pattern</span>: <span class="hljs-string">&quot;/&quot;</span> },
+    <span class="hljs-attr">show</span>: <span class="hljs-string">&quot;/books/:slug&quot;</span>,
+  },
+});
+
+<span class="hljs-comment">// Implementation on server</span>
+router.<span class="hljs-title function_">map</span>(routes.<span class="hljs-property">books</span>, booksHandlers)
+
+<span class="hljs-comment">// Reference on clients</span>
+&lt;a href={routes.<span class="hljs-property">home</span>.<span class="hljs-title function_">href</span>()}&gt;…&lt;/a&gt;;
+</code></pre>
+<p>The server also comes with built-in sane things like logging and file storage.</p>
+<p><a href="https://www.youtube.com/watch?v=zqhE-CepH2g">The gap</a> is what happens between the client and the server. Remix v3’s approach feels a lot less magical than RSC. There’s no custom JSON hydration streams. Instead Remix reinvents iFrames by creating async loading boundaries and uses HTML as wire format, <a href="https://htmx.org/">HTMX</a>-style. There are also hints of using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">Web Components</a> to bring together HTML and JS.</p>
+<h3>Sumamry</h3>
+<p>Remix keeps leaning into the Web Platform and TypeScript, takes control of wider portion of the full stack, ditches nuanced parts of React for a simple <code>this.update()</code>, which makes the code less magical and easier to understand for humans and LLMs. Remix is the <a href="https://grugbrain.dev/">Grug Brain</a> version of what Next.js should have been.</p>
+<p>So what happens next?</p>
+<p>You’ll hear a lot of noise and hot takes (including this post). YouTube influencers are already recording videos and generating surprised faces for video thumbnails to try to take advantage of the next hype wave. Grumpy Hacker News will complain about yet another JS framework.</p>
+<p>It will seem like you have to learn Remix now and migrate all your projects to it. You don’t. React is still fine (nobody got fired for choosing React) and you can keep using the good parts (seems to be a <a href="https://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">common JS thing</a>).</p>
+<p>Remix v3 is a signal of stronger <a href="https://cassidoo.co/post/annoyed-at-react/">frustrations</a> in React community and desire for a change. The functional ↔ imperative pendulum is starting to swing the other direction.</p>
+<p><img src="/figma/og_remix.png" alt="" /></p>
 </div>
     </article>
 
@@ -563,20 +622,6 @@ figcaption {
 
     
       
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
     
       
     
@@ -587,10 +632,6 @@ figcaption {
 
     
 
-    
-      
-        
-      
     
       
         
@@ -624,6 +665,10 @@ figcaption {
         
       
     
+      
+        
+      
+    
 
     
 
@@ -643,6 +688,94 @@ figcaption {
 
     
 
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+
+    
+
+  
+
+    
+
+    
+      
+        
+      
     
 
     
@@ -666,11 +799,17 @@ figcaption {
         
       
     
+      
+        
+          
+        
+      
+    
 
     
       <li>
-        <a href="/hacker-gifts" class="footer-link">
-          A Side Project Story: Hacker Gifts
+        <a href="/react-api-evolution" class="footer-link">
+          React API Evolution
         </a>
       </li>
       
@@ -682,14 +821,6 @@ figcaption {
     
 
     
-
-    
-
-  
-
-    
-
-    
       
         
       
@@ -726,64 +857,6 @@ figcaption {
     
 
     
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-          
-        
-      
-    
-
-    
-      <li>
-        <a href="/octave" class="footer-link">
-          A Side Project Story: Octave Cloud
-        </a>
-      </li>
-      
-      
-    
-
-  
-
-    
-
-    
 
     
 
@@ -807,50 +880,6 @@ figcaption {
 
     
 
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
     
 
     
@@ -870,11 +899,15 @@ figcaption {
         
       
     
+      
+        
+      
+    
 
     
       <li>
-        <a href="/onityper" class="footer-link">
-          Digital Typewriter
+        <a href="/how-not-to-flux-set-actions" class="footer-link">
+          How Not to Use Flux: SET Actions
         </a>
       </li>
       
@@ -906,18 +939,6 @@ figcaption {
         
       
     
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
       
         
       
@@ -934,14 +955,6 @@ figcaption {
         
       
     
-      
-        
-      
-    
-      
-        
-      
-    
 
     
 
@@ -949,38 +962,6 @@ figcaption {
 
     
 
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-      
-    
-
-    
-
-  
-
-    
-
-    
-      
-        
-      
     
       
         
@@ -995,8 +976,38 @@ figcaption {
 
     
       <li>
-        <a href="/no-constraints-no-fun" class="footer-link">
-          No Constraints, No Fun
+        <a href="/react-conf-2018" class="footer-link">
+          React Conf 2018 Recap
+        </a>
+      </li>
+      
+      
+    
+
+  
+
+    
+
+    
+      
+        
+          
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    
+      <li>
+        <a href="/how-not-to-flux-loops" class="footer-link">
+          How Not to Use Flux: Mini Cycles
         </a>
       </li>
       

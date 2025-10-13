@@ -5,11 +5,106 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2025-10-12T20:48:05.397Z</updated>
+  <updated>2025-10-13T07:16:17.046Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
 
+  
+    <entry>
+      <id>https://frantic.im/remix-3</id>
+      <title>Thoughts on Remix 3</title>
+      <updated>2025-10-12T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/remix-3" />
+      <summary>The pendulum is about to swing the other direction</summary>
+      <content type="html"><![CDATA[
+        
+        
+        
+        <p><a href="https://remix.run/">Remix</a> is a web framework by <s>React underdogs</s> authors of the most popular React package. Few days ago at <a href="https://remix.run/jam/2025">Remix Jam 2025</a>, Ryan and Michael shared a sneak peak of Remix v3. There’s no official blog post or documentation yet. Here’s my attempt at explaining what it is about.</p>
+<p>Remix v1 was a React framework that managed data loading and server-side rendering. Its biggest achievement was the <a href="https://remix.run/">marketing website</a>. Early Remix was interesting because it was viewed as the first real contender for Next.js’s dominant position.</p>
+<p>Remix v2 struggled with its messaging and identity. One of the authors <a href="https://x.com/ryanflorence/status/1791479313939976313">described it</a> as <em>“Remix v2 is a Vite plugin that makes access to React Router v6 features more convenient through the Route Module API”</em>. This is definitely not how you beat Vercel’s marketing machine. The framework had its users, but definitely not the trajectory to make a dent in Next.js’s market share.</p>
+<p>Remix v3 is… very different. It represents a broader shift in web development sentiment and could be worth paying attention to. To understand why, let’s look at the state of modern React.</p>
+<h3>Modern React</h3>
+<p><strong>In 2025, React feels complicated.</strong> React Server Components introduced a more sophisticated way to render components on the server and hydrate them on client. The rules of what is allowed are nuanced: server components can be defined as <code>async</code> now and pass data to client components (but not all kinds data). Regular server-side functions can now be used on client via magic RPC actions. Developers need to learn <a href="https://react.dev/reference/rsc/use-client"><code>&quot;use client&quot;</code></a> vs <a href="https://react.dev/reference/rsc/use-server"><code>&quot;use server&quot;</code></a>.</p>
+<p>The speed, especially on big apps, started to be a common concern. Frameworks like Svelte introduced a way to sidestep virtual DOM diffing and produce the most efficient direct way of updating elements, while still looking reasonably declarative. So the React team opened access to the React compiler, a project that has been brewing up inside Meta for almost 8 years. It works by auto-memoizing your components and hooks. But not all components, because that could introduce subtle bugs. Now it’s about <a href="https://react.dev/reference/react-compiler/directives/use-memo"><code>&quot;use memo&quot;</code></a> and <a href="https://react.dev/reference/react-compiler/directives/use-no-memo"><code>&quot;use no memo&quot;</code></a> (aliased as <code>&quot;use forget&quot;</code> and <code>&quot;use no forget&quot;</code> which doesn’t help with the confusion).</p>
+<p>The core API surface of React keep growing. React has added async rendering APIs (<a href="https://react.dev/reference/react/Suspense"><code>Suspense</code></a>, <a href="https://react.dev/reference/react/startTransition"><code>startTransition</code></a>, <a href="https://react.dev/reference/react/useDeferredValue"><code>useDeferredValue</code></a>, <a href="https://react.dev/reference/react/useActionState"><code>useActionState</code></a>) to make web apps more responsive – now user interactions can be prioritized against less urgent but expensive component tree updates, but require you to reason about “active” and “pending” states. The other new APIs are also seen as complex and niche. Just look at the documentation for <a href="https://react.dev/reference/react/useEffectEvent"><code>useEffectEvent</code></a> (but try to guess what it’s doing before you click).</p>
+<p><strong>Nobody forces developer to use these features.</strong> In fact even the oldest <code>createReactClass</code> with mixins work just fine with the official <code>create-react-class</code> npm package. You can still use that style of React today, you don’t have to adopt any of the new modern features.</p>
+<p>Except, <a href="https://react.dev/learn/creating-a-react-app">you kind of have to</a> – these features are shoved into developers’ throats via <a href="https://nextjs.org/">Next.js</a>. React itself gave up attempts at being a framework. It was just too much work to keep up with fast paced JS tooling, and Facebook had their own setup not worth opensourcing.</p>
+<p>Next.js itself went though some painful transitions (<a href="https://nextjs.org/docs/pages">pages router</a> vs <a href="https://nextjs.org/docs/app/getting-started">app router</a>) and left developers who live on the bleeding edge badly hurt. On top of the API churn, Next.js has a whole another layer of complexity caused by Vercel. Vercel deploys fullstack Next.js apps in its own special way – some code runs in the browser, some in AWS Lambda (with 3x markup), and some in its proprietary worker runtime (“middleware” must be one of the biggest lies that caused developer-decades of confusion and frustration).</p>
+<p>All this stuff is just… too much. In fact, even explaining the problems these features and frameworks are trying to fix took Dan several <a href="https://overreacted.io/react-for-two-computers/">conferences</a> and <a href="https://overreacted.io/the-two-reacts/">blog posts</a> to describe. People who get it, get it. RSC, Suspense, React Compiler are really powerful and solve real problems some companies have.</p>
+<p>On top of that, LLMs suck at React. When asked to build an app, they all reach for React, but the resulting components are ugly soups of <code>useEffects</code> and random hacks to work around subtle bugs.</p>
+<h3>Remix v3</h3>
+<p>So in this state of complexity and frustration, Remix v3 is born. You can watch the <a href="https://remix.run/jam/2025">Remix Jam</a> recording (look for timestamps in the comments) + scroll through both authors’ X accounts to get a sense of it.</p>
+<p>On the frontend Remix still uses JSX, but there’s no React runtime. It doesn’t track state the way React does, but instead gives developers a <code>this.update()</code> function to call to tell Remix that something has changed. Instead of explicit state you can use anything, most commonly closure-captured variables:</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Counter</span>(<span class="hljs-params"><span class="hljs-variable language_">this</span>: Remix.Handle</span>) {
+  <span class="hljs-comment">// State is just a closure</span>
+  <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
+
+  <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{count}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+        <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;p-2 text-green-500&quot;</span>
+        <span class="hljs-attr">on</span>=<span class="hljs-string">{dom.click((event,</span> <span class="hljs-attr">signal</span>) =&gt;</span> {
+          count++;
+          this.update();
+        })}
+      &gt;
+        Inc
+      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>This makes code more imperative, mechanically simpler. Do this, then do that. Transitions, instead of React’s promise of <code>view = f(state)</code>.</p>
+<p>Events are first class and use web’s built-in events mechanism. Instead of <code>onClick</code> there’s a universal <code>&quot;on&quot;</code> prop and a library of standard <code>dom</code> events + developers can define their own <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent"><code>CustomEvents</code></a>.</p>
+<p>To control async work, Remix relies on <a href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController/signal">signals</a>. E.g. to cancel a <code>fetch</code> when component unmounts the developers can do this:</p>
+<pre><code>function Cities(this: Remix.Handle) {
+  let list = [], isLoading = true;
+  fetch(&quot;https://api.remix.run/cities.json&quot;, { signal: this.signal })
+    .then(response =&gt; response.json())
+    .then(data =&gt; {
+      list = data;
+      isLoading = false;
+      this.update();
+    });
+
+  return () =&gt; …
+}
+</code></pre>
+<p>Remix will ship with a component library. React has a wide ecosystem of components that won’t work in Remix, so to stay competitive the team is working on high quality built-in components. Things like menus and forms with attention to detail and accessibility support. It also introduces subtle but nice quality-of-life improvements over React: built-in <code>css</code> prop, <code>class</code> instead of <code>className</code>.</p>
+<p>On the backend, Remix double-downs on Web Platform. The handlers take web <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request"><code>Request</code></a> and return <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response"><code>Response</code></a>. It also brings things like <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData"><code>FormData</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/File"><code>File</code></a> and others to the server. This makes the server runtime an implementation detail. Node, Deno, Bun – all have either native support or adapters for these web APIs, so Remix can run anywhere.</p>
+<p>In v3 the framework gave up on file-based routing. Just too much trouble to capture the range of things they want to support in just the file names. Instead it introduces a TypeScript-based way of defining the routes. TypeScript guarantees all routes are implemented and URL parameters are passed to handlers and links are never broken.</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">let</span> routes = <span class="hljs-title function_">route</span>({
+  <span class="hljs-attr">home</span>: <span class="hljs-string">&quot;/&quot;</span>,
+  <span class="hljs-attr">about</span>: <span class="hljs-string">&quot;/about&quot;</span>,
+  <span class="hljs-attr">books</span>: {
+    <span class="hljs-attr">index</span>: { <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;GET&quot;</span>, <span class="hljs-attr">pattern</span>: <span class="hljs-string">&quot;/&quot;</span> },
+    <span class="hljs-attr">create</span>: { <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;POST&quot;</span>, <span class="hljs-attr">pattern</span>: <span class="hljs-string">&quot;/&quot;</span> },
+    <span class="hljs-attr">show</span>: <span class="hljs-string">&quot;/books/:slug&quot;</span>,
+  },
+});
+
+<span class="hljs-comment">// Implementation on server</span>
+router.<span class="hljs-title function_">map</span>(routes.<span class="hljs-property">books</span>, booksHandlers)
+
+<span class="hljs-comment">// Reference on clients</span>
+&lt;a href={routes.<span class="hljs-property">home</span>.<span class="hljs-title function_">href</span>()}&gt;…&lt;/a&gt;;
+</code></pre>
+<p>The server also comes with built-in sane things like logging and file storage.</p>
+<p><a href="https://www.youtube.com/watch?v=zqhE-CepH2g">The gap</a> is what happens between the client and the server. Remix v3’s approach feels a lot less magical than RSC. There’s no custom JSON hydration streams. Instead Remix reinvents iFrames by creating async loading boundaries and uses HTML as wire format, <a href="https://htmx.org/">HTMX</a>-style. There are also hints of using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">Web Components</a> to bring together HTML and JS.</p>
+<h3>Sumamry</h3>
+<p>Remix keeps leaning into the Web Platform and TypeScript, takes control of wider portion of the full stack, ditches nuanced parts of React for a simple <code>this.update()</code>, which makes the code less magical and easier to understand for humans and LLMs. Remix is the <a href="https://grugbrain.dev/">Grug Brain</a> version of what Next.js should have been.</p>
+<p>So what happens next?</p>
+<p>You’ll hear a lot of noise and hot takes (including this post). YouTube influencers are already recording videos and generating surprised faces for video thumbnails to try to take advantage of the next hype wave. Grumpy Hacker News will complain about yet another JS framework.</p>
+<p>It will seem like you have to learn Remix now and migrate all your projects to it. You don’t. React is still fine (nobody got fired for choosing React) and you can keep using the good parts (seems to be a <a href="https://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">common JS thing</a>).</p>
+<p>Remix v3 is a signal of stronger <a href="https://cassidoo.co/post/annoyed-at-react/">frustrations</a> in React community and desire for a change. The functional ↔ imperative pendulum is starting to swing the other direction.</p>
+<p><img src="/figma/og_remix.png" alt="" /></p>
+
+      ]]></content>
+    </entry>
   
     <entry>
       <id>https://frantic.im/music-player</id>
@@ -308,40 +403,6 @@
 <p>Now, looking at it, I do regret not processing the picture more: the horizon line is a bit tilted, you can spot chromatic abberation, the windows are overexposed.</p>
 <p>Today that picture has 57 million views and used all over the internet. It even ended up on <a href="https://news.ycombinator.com/item?id=21010674">Hacker News</a> with the classic “It looks like a sweatshop” and “exact type of workplace I wouldn’t want anyone to end up” comments.</p>
 <p>Conclusions? None, I guess. I just love how a stream of random events brought this to life.</p>
-
-      ]]></content>
-    </entry>
-  
-    <entry>
-      <id>https://frantic.im/javascript-gom-jabbar</id>
-      <title>JavaScript Gom Jabbar</title>
-      <updated>2023-06-29T12:00:00+00:00</updated>
-
-      <link rel="alternate" href="https://frantic.im/javascript-gom-jabbar" />
-      <summary>What's inside that package.json? Pain.</summary>
-      <content type="html"><![CDATA[
-        
-        
-        
-        <p>You have been using JavaScript for 10 years. It’s time for your test. You are sitting in front of a computer. The test is simple: you have to open a package.json file and read it. The <code>package.json</code> is full of pain. You have to read it all.</p>
-<p>You look at <code>version</code>, you haven’t reached 1.0 yet. Semver causes unpleasant memories, but you’ve learned to ignore them for so long that you don’t even notice the tickling sensation in your skull.</p>
-<p>You wish you used a different <code>name</code> for your package, but some random internet person has squatted that name 7 years ago and never updated their package since. It’s only mildly discomforting. Maybe the test isn’t so bad after all?</p>
-<p>Both <code>main</code> and <code>browser</code> fields are present, you sense traces of Isomorphic JavaScript. In a flash, you remember requiring <code>fs</code> module from your browser bundle. These memories are very unpleasant. The hacks you had to do to make it work were even more unpleasant.</p>
-<p>The <code>type</code> is set to <code>module</code>. This has something to do with the migration from <code>requires</code> to <code>imports</code>. Why do we have to care about this, again? The extensive pain you’ve experienced trying to importing ES5 modules from ESM modules and vice versa overwhelms you again.</p>
-<p>You make your way to <code>scripts</code>. What a hot, painful mess it is. You can’t look at them without your heart rate going to 150. lint, lintall, lintfast, lintdiff. Parallel runs, obscure arguments, double-escaping JSON-formatted arguments. Subcommands calling npm even through you switched to yarn and then pnpm. Thousands of variations, premutations and details make you shiver. Why do these things have to be here? Why do they need to be so complicated?</p>
-<p>Some scripts still use <code>watchman</code>. Gotta remember to not use symlinks because it doesn’t support them (and the issue has been open since 2015). There’s also this gulp-based script that nobody has the guts to replace with anything else that’s considered more modern. You think that there’s actually no modern version of gulp but it feels outdated and you definitely want to get rid of it. The pains spreads from your head into your neck and shoulders.</p>
-<p>The pain is barely tolerable when you reach <code>dependencies</code>. So, so many of them. There’s <code>left-pad</code>, the legendary tiny package that broke all internet, collectively causing the amount of pain and drama comparable to the destruction of Alderaan.</p>
-<p>Every time you modify dependency list, some of the dependencies print out screens-worth of messages to your console, asking for donations, warning about breaking changes. You gave up trying to understand these. You only hope none of them are malicious enough to steal your secrets or ruin your computer. The threat of potential pain of that magnitute is frighting.</p>
-<p>There’s also moment.js. You love that library, it has a really pleasant API. But the internet decided it’s too “mutable”, too fat, it doesn’t support treeshaking and now you have to migrate to date-fns. You haven’t started yet, but you already feel the painful refactoring in your bones.</p>
-<p>Looking at every package in that list causes some amount of trauma recall. But what’s even more concerning is that the version of these packages are way behind what’s considered “current”. You know that you should upgrade them. But you also have tried that before and you know how much suffering it brings. Things will break in so many ways, big and loud ways, small and subtle ways.</p>
-<p>The next thing in this damn file is <code>resolutions</code>. Yes, you remember this one. It’s a suffering you choose to avoid dealing with package upgrades.</p>
-<p>You scroll down to <code>devDependencies</code>. You can’t remember the time when you only needed non-dev dependencies. Why do we have this split? Yes, right, to cause more pain.</p>
-<p><code>eslint</code>. Its configuration got so strict that you can’t even write code anymore. Any small misstep and you get an angry red underline. Your CI is configured to treat any lint problem as the end of the world. It gives a false sense of security to your junior engineers on the team. You survived serveral holy wars on which rules to enable. The pain is proportional to the amount of <code>eslint-ignore</code>s you have all over your codebase. There’s a lot.</p>
-<p>You also notice <code>postcss</code> hiding there. This package is a mystery to you. You don’t use it directly, it’s a requirement of a dependency of a dependency. But it’s the package that’s constantly causing you pain by throwing obscure C++ compilation errors on any new platform you try to <code>npm install</code> on. If CSS itself wasn’t painful enough.</p>
-<p>Oh, dear <code>jest</code>. It started as a fast test runner. But now it’s big and fat, it depends on some babel packages while the rest of your app is transpiled by a mix of esbuild and swc. Properly configuring it with ESM and TypeScript was a PhD science project.</p>
-<p>You stop to count how many tools and parsers work on your codebase: TypeScript, esbuild, swc, babel, eslint, prettier, jest, webpack, rollup, terser. You are not sure if you missed any. You are not sure if you want to know. The level of pain is so high you forget about anything else.</p>
-<p><code>engines</code> prominently lists <code>node</code>. And while you hate it with the depth of your soul, you are not going to Bun or Deno because you know this will not stop the pain. This will only make the pain worse.</p>
-<p>It’s the end of the file now. Final closing curly brace. You close the tab and take a breath. Look around. You are still alive, your hands and your brain intact. You survived. For now.</p>
 
       ]]></content>
     </entry>

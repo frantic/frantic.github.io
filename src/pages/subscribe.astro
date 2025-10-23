@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Subscribe from '../components/Subscribe.astro';
+---
+<BaseLayout title="How to subscribe">
+  <div class="container">
+    <Header />
+    <main>
+      <article class="article">
+        <h1 class="article-title">
+          <a href="/subscribe">How to subscribe</a>
+        </h1>
+        <div class="article-content">
+          <Subscribe />
+          <h2>RSS</h2>
+          <p>
+            Feed URL: <a href="https://frantic.im/feed.xml">https://frantic.im/feed.xml</a>.
+          </p>
+          <h2>Social</h2>
+          <p>
+            You can still follow and reach me at <a href="https://twitter.com/alex_frantic">@alex_frantic</a> on X,
+            <a href="https://bsky.app/profile/frantic.im">@frantic.im</a> on Bluesky, and
+            <a href="https://www.linkedin.com/in/alex-kotliarskyi/">LinkedIn</a>.
+          </p>
+        </div>
+      </article>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

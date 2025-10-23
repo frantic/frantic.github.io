@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout title="CS47">
+  <div class="container">
+    <Header />
+    <main>
+      <article class="article">
+        <h1 class="article-title">
+          <a href="/cs47">CS47</a>
+        </h1>
+        <div class="article-content">
+          <table>
+            <tr>
+              <td>Code</td>
+              <td><a href="https://github.com/frantic/todo">github.com/frantic/todo</a></td>
+            </tr>
+            <tr>
+              <td>Live</td>
+              <td><a href="https://reflect.sh/poetic-play">reflect.sh/poetic-play</a> (expired)</td>
+            </tr>
+            <tr>
+              <td>Expo</td>
+              <td><a href="https://expo.io/@frantic/todo">@frantic/todo</a></td>
+            </tr>
+            <tr>
+              <td>Slides</td>
+              <td>
+                <a href="https://docs.google.com/presentation/d/1zEf6aSoibTat91xPEy0tOJFQeSglg5aS_-j5QznCQAM/edit?usp=sharing">
+                  Google Docs
+                </a>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </article>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  td {
+    vertical-align: top;
+  }
+</style>

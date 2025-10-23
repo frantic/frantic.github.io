@@ -1,0 +1,21 @@
+---
+const menuItems = [
+  { name: 'Blog', href: '/blog' },
+  { name: 'Subscribe', href: '/subscribe' },
+  { name: 'About', href: '/' }
+];
+---
+<header class="site-header" data-nosnippet>
+  <a href="/">
+    <h1 class="site-title">frantic.im</h1>
+  </a>
+  <nav class="nav">
+    <ul class="nav-list">
+      {menuItems.map((item) => (
+        <li>
+          <a class="nav-link" href={item.href}>{item.name}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>

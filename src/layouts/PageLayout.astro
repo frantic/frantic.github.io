@@ -1,0 +1,30 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  class?: string;
+}
+
+const { title, description, image, class: className } = Astro.props as Props;
+---
+<BaseLayout title={title} description={description} image={image}>
+  <div class="container">
+    <Header />
+    <main>
+      <article class={`article ${className ?? ''}`.trim()}>
+        <h1 class="article-title">
+          <a href={Astro.url.pathname}>{title}</a>
+        </h1>
+        <div class="article-content">
+          <slot />
+        </div>
+      </article>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

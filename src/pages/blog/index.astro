@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Subscribe from '../../components/Subscribe.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout title="Blog">
+  <div class="container">
+    <Header />
+    <main>
+      <article class="article">
+        <h1 class="article-title">
+          <a href="/blog">Blog</a>
+        </h1>
+        <div class="article-content">
+          <p>Latest blog posts:</p>
+          <div class="related-posts">
+            <ul>
+              {posts.map((post) => (
+                <li>
+                  <a href={`/${post.slug}`}>{post.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </article>
+    </main>
+    <Subscribe />
+    <Footer />
+  </div>
+</BaseLayout>

@@ -1,0 +1,43 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  pubDate: Date;
+  tags?: string[];
+  slug: string;
+}
+
+const { title, description, image, pubDate, tags = [], slug } = Astro.props as Props;
+const formatter = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric'
+});
+const formattedDate = formatter.format(pubDate);
+---
+<BaseLayout title={title} description={description} image={image} type="article">
+  <div class="container">
+    <Header />
+    <main>
+      <article class="article">
+        <h1 class="article-title" data-nosnippet>
+          <a href={`/${slug}`}>{title}</a>
+        </h1>
+        <div class="article-meta" data-nosnippet>
+          {formattedDate} by Alex Kotliarskyi
+        </div>
+        <div class="article-content">
+          <slot />
+        </div>
+      </article>
+      <RelatedPosts currentSlug={slug} tags={tags} />
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

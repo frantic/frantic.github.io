@@ -1,0 +1,60 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+}
+
+const siteTitle = 'frantic.im';
+const defaultDescription = 'Occasional posts on technology and stuff';
+const defaultImage = '/assets/og-image.jpg';
+const { title, description, image, type = 'website' } = Astro.props as Props;
+const pageTitle = title ? `${title} · ${siteTitle}` : siteTitle;
+const pageDescription = description ?? defaultDescription;
+const canonicalUrl = Astro.canonicalURL?.toString();
+const site = Astro.site ?? new URL('https://frantic.im');
+const resolvedImage = new URL(image ?? defaultImage, site).toString();
+const ogTitle = title ?? siteTitle;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="author" content="Alex Kotliarskyi" />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <link rel="alternate" type="application/rss+xml" title="frantic.im" href="/feed.xml" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content={type} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    <meta property="og:image" content={resolvedImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@alex_frantic" />
+    <meta name="twitter:creator" content="@alex_frantic" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={resolvedImage} />
+  </head>
+  <body>
+    <slot />
+    <script is:inline>
+      if ('ethereum' in window) {
+        const favicon = document.querySelector('link[rel="icon"]');
+        if (favicon) {
+          favicon.href = '/assets/favicon-hex.png';
+        }
+      }
+    </script>
+    <script
+      async
+      src="https://u.frantic.im/script.js"
+      data-website-id="cd2ea49a-5998-477e-8f35-a6ab8d2df514"
+    ></script>
+  </body>
+</html>

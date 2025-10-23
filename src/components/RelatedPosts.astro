@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  currentSlug: string;
+  tags?: string[];
+}
+
+const { currentSlug, tags = [] } = Astro.props as Props;
+const posts = await getCollection('blog');
+const others = posts.filter((post) => post.slug !== currentSlug);
+const byDate = (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+
+let heading = 'Recent Posts';
+let related = [] as typeof posts;
+
+if (tags.length > 0) {
+  const matches = others.filter((post) => {
+    const postTags = post.data.tags ?? [];
+    return postTags.some((tag) => tags.includes(tag));
+  });
+  if (matches.length > 0) {
+    heading = 'Related Posts';
+    related = matches.sort(byDate).slice(0, 4);
+  }
+}
+
+if (related.length === 0) {
+  related = others.sort(byDate).slice(0, 4);
+}
+---
+{related.length > 0 && (
+  <div class="related-posts">
+    <h3>{heading}</h3>
+    <ul>
+      {related.map((post) => (
+        <li>
+          <a href={`/${post.slug}`}>{post.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}

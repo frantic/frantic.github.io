@@ -1,0 +1,21 @@
+---
+pubDate: 2025-01-28
+title: The Hacker News Stack
+image: /figma/og_hn_stack.png
+excerpt: If you want to build a web app The Hacker News Way, here's the stack you should use.
+tags:
+  - fun
+---
+
+If you want to build a web app The Hacker News Way, here's the stack you should use:
+
+- **Rust** -- the only language that gives you the priviledge of calling your app _"blazing fast"_. According to the undocumented Hacker News rules, any post mentioning Rust in the title starts with 10 points.
+- **Postgres** -- the most beloved database that can do absolutely everything: manage data, handle row-level authorization, run job queues, replace Redis, vacuum your apartment (or its own tables… who cares?). No ORMs allowed.
+- **HTMX** -- because JavaScript is obviously the worst part about web development. Bonus points: you get to call yourself the [CEO of HTMX](https://htmx.org/essays/lore/#htmx-ceo), very helpful in this turbulent job market.
+- **Hetzner** -- for just $4.59/mo you can get a server that can easily handle HN's famous [hug-of-death](https://news.ycombinator.com/item?id=20147951).
+
+Make sure you build your app while WFH, commuting to the office was invented by evil corporations.
+
+...
+
+If this post made your simle, maybe you should cut down on reading Hacker News. I know I should.

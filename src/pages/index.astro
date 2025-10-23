@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Subscribe from '../components/Subscribe.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const latest = sorted.slice(0, 5);
+---
+<BaseLayout title="Alex Kotliarskyi" image="/assets/og-image.jpg">
+  <div class="container">
+    <Header />
+    <main>
+      <article class="article">
+        <h1 class="article-title">
+          <a href="/">Alex Kotliarskyi</a>
+        </h1>
+        <div class="article-content">
+          <p>
+            I'm a software engineer based in Seattle. I work at OpenAI on making GPUs do useful things. I like building products,
+            obsessing over UX and little details, and connecting the dots.
+          </p>
+          <p>
+            In the past I cofounded <a href="https://secta.ai/">Secta AI</a>, worked at
+            <a href="https://replit.com/site/careers">Replit</a> and <a href="/leaving-facebook">Facebook</a> building mobile
+            apps, developer efficiency tools, React Native, Oculus and Messenger.
+          </p>
+          <p>
+            I write about technology and side projects. Here are a few of the latest blog posts:
+          </p>
+          <div class="related-posts">
+            <ul>
+              {latest.map((post) => (
+                <li>
+                  <a href={`/${post.slug}`}>{post.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <p>
+            <a href="/blog">View all</a> {posts.length} posts, <a href="/subscribe">subscribe</a> or check out blog
+            <a href="https://u.frantic.im/share/PdxrhczkbRQVIp61/frantic.im"> analytics</a>.
+          </p>
+        </div>
+      </article>
+    </main>
+    <Subscribe />
+    <Footer />
+  </div>
+</BaseLayout>

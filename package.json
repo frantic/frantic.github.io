@@ -1,0 +1,16 @@
+{
+  "name": "frantic-im",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.5",
+    "astro": "^4.10.2"
+  }
+}

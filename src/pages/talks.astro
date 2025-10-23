@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const talks = [
+  {
+    title: 'CS47: Managing Application State with Redux',
+    type: 'slides',
+    location: 'Stanford University',
+    date: new Date('2018-11-01'),
+    url: '/cs47'
+  },
+  {
+    title: 'Building stellar user experiences with React Native',
+    type: 'video',
+    location: 'Chain React',
+    date: new Date('2017-07-18'),
+    url: 'https://www.youtube.com/watch?v=fjS5ssBn3fA'
+  },
+  {
+    title: 'Software Development in Silicon Valley',
+    type: 'video',
+    location: 'Kyiv Polytechnic Institute',
+    date: new Date('2016-12-03'),
+    url: 'https://www.youtube.com/watch?v=5n9vuCuKA-Q'
+  },
+  {
+    title: 'React Native Intro Class',
+    type: 'video',
+    location: 'Airbnb',
+    date: new Date('2016-09-13'),
+    url: 'https://www.youtube.com/watch?v=I8b0v0uFXLs'
+  },
+  {
+    title: 'React Native: Under the Hood',
+    type: 'video',
+    location: 'You Gotta Love Frontend Conference',
+    date: new Date('2015-08-12'),
+    url: 'https://www.youtube.com/watch?v=hDviGU-57lU'
+  },
+  {
+    title: 'React Native Tutorial',
+    type: 'video',
+    location: 'React NYC Meetup',
+    date: new Date('2015-03-26'),
+    url: 'https://speakerdeck.com/frantic/react-native-tutorial-nyc-15'
+  }
+];
+
+const formatter = new Intl.DateTimeFormat('en-US', {
+  month: 'numeric',
+  day: 'numeric',
+  year: 'numeric'
+});
+---
+<BaseLayout title="Talks">
+  <div class="container">
+    <Header />
+    <main>
+      <article class="article">
+        <h1 class="article-title">
+          <a href="/talks">Talks</a>
+        </h1>
+        <div class="article-content">
+          <p>I used to enjoy traveling and speaking at conferences.</p>
+          <ul>
+            {talks.map((talk) => (
+              <li>
+                <a href={talk.url}>{talk.title}</a>
+                <span class="date">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24">
+                    <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
+                  </svg>
+                  {` ${talk.location} ${formatter.format(talk.date)}`}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

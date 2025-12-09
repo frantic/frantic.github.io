@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Good Errors Leave Trace
-excerpt: Errors with extra informaton can help locate and fix the problems faster.
+excerpt: Errors with extra information can help locate and fix the problems faster.
 tags:
   - programming
 ---
@@ -42,7 +42,7 @@ For example, for massive scale backend systems it's almost impossible to look at
 
 The nastiest errors happen during error reporting.
 
-When error reporting code tries to be smart and has untrivial amounts of logic, it will inevitably have bugs on its own. Erros while reporting error are the worst, because they usually hide the original cause.
+When error reporting code tries to be smart and has untrivial amounts of logic, it will inevitably have bugs on its own. Errors while reporting error are the worst, because they usually hide the original cause.
 
 Unfortunately they are easy to miss too, because the error path is not usually the common path. The error reporting code gets less coverage in terms of automated and manual tests.
 
@@ -70,7 +70,7 @@ Exception: Error while reporting error
 
 ## Performance
 
-Be aware of the perf cost of including additional information. In particular, often times the error message is formated using some kind of `sprintf` function. Make sure the error message is prepared only when the error has actually been triggered. We had this funny bug in React Native in the early days:
+Be aware of the perf cost of including additional information. In particular, often times the error message is formatted using some kind of `sprintf` function. Make sure the error message is prepared only when the error has actually been triggered. We had this funny bug in React Native in the early days:
 
     invariant(
       VALID[name],

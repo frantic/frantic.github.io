@@ -2,7 +2,7 @@
 layout: post
 title: "A Side Project Story: Hacker Gifts"
 image: /figma/og_hacker_gifts.png
-excerpt: This is a story about a side project that I started in 2018, and the reasons I'm shuting it down.
+excerpt: This is a story about a side project that I started in 2018, and the reasons I'm shutting it down.
 tags:
   - projects
 ---

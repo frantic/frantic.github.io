@@ -51,7 +51,7 @@ Initeresting things to note here:
 2. `React.createClass` was used to create a component. I think in hindsight naming it `Class` and not `Component` was a big marketing mistake: with ES6 classes many people were pushing for React to adopt the "standard" way, although it had a lot of problems (more on that later).
 3. In development, React performed `props` validation at runtime (Flow and TypeScript didn't exist back then), and the `PropTypes` API allowed for pretty complex definitions with nested objects and arrays.
 4. Initially, without `React.autoBind` the methods on the components had dynamically scoped `this`, which was pretty confusing: calling `this.tick` would result in something like "Can't call `setState` of unndefined". `autoBind` was doing something like `fn.bind(this)` to fix it on per-function basis, and eventually this behavior was moved directly into `React.createClass`.
-5. React focused on a pure, functional, declarative approach to bulding UIs, but also had escape hatches that allowed programmers take imperative actions or talk to DOM when needed via lifecycle methods and refs.
+5. React focused on a pure, functional, declarative approach to building UIs, but also had escape hatches that allowed programmers take imperative actions or talk to DOM when needed via lifecycle methods and refs.
 
 If you look carefully at the example above, you'll notice that there's a memory leak! We `setInterval` without `clearInterval`-ing it. To fix the problem we'd have to call `clearInterval` from `componentWillUnmount`, however that wasn't obvious from the APIs and programmers had to watch out for patterns like this.
 
@@ -96,7 +96,7 @@ var TickTock = React.createClass({
 
 The code above fixes the memory leak and makes it easier to avoid this problem in the future: just include `SetIntervalMixin` and you are good to go!
 
-Mixins fixed some problems, but intruduced others: implicit dependencies, name clashes and snowballing complexities. [Read more on the official blog post (2016)](https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html).
+Mixins fixed some problems, but introduced others: implicit dependencies, name clashes and snowballing complexities. [Read more on the official blog post (2016)](https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html).
 
 ## 2015, [React v0.13](https://reactjs.org/blog/2015/01/27/react-v0.13.0-beta-1.html): `class extends React.Component`
 
@@ -171,7 +171,7 @@ class Timer extends React.Component {
 
 ### Higher-order components
 
-As mixing were goin away, the developers needed to fill the gap: find a way to reuse common functionality across components.
+As mixing were going away, the developers needed to fill the gap: find a way to reuse common functionality across components.
 
 HoC became a popular replacement for mixins. You can think of the pattern as writing a function that takes a component as its argument, and returns a new component that wraps it with some useful enhancement.
 
@@ -228,7 +228,7 @@ HoC promise is to use functional composition to solve the trait problem. But the
 
 ### Render props
 
-React community kept looking for better ways to reuse logic in components and for some time a pattern called "render props" gained a bunch of popularity. I'm not going to dive into these dark ages, but the idea was similar to HoC.
+React community kept looking for better ways to reuse logic in components and for some time a pattern called "render props" gained a bunch of popularity. I'm not goingg to dive into these dark ages, but the idea was similar to HoC.
 
 ## 2019, [React v16.8](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html): Hooks
 
@@ -295,7 +295,7 @@ function Timer(props) {
 }
 ```
 
-But hooks were not without problems either: in the example above there's a subtle problem with the callback we pass to `useInterval`: since it's a new referance every time (in JS, `() => {}` !== `() => {}`) we end up re-creating interval every render. The solution looks like this:
+But hooks were not without problems either: in the example above there's a subtle problem with the callback we pass to `useInterval`: since it's a new reference every time (in JS, `() => {}` !== `() => {}`) we end up re-creating interval every render. The solution looks like this:
 
 ```js
 function Timer(props) {

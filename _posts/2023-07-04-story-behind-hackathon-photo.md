@@ -36,7 +36,7 @@ I forgot about this for a while, until several months later I got an email from 
 
 They sent me a bunch of cool prizes: PeakDesign Messenger bag, straps and clips, Moment lens for iPhone, and even a printed version of my photo.
 
-Now, looking at it, I do regret not processing the picture more: the horizon line is a bit tilted, you can spot chromatic abberation, the windows are overexposed.
+Now, looking at it, I do regret not processing the picture more: the horizon line is a bit tilted, you can spot chromatic aberration, the windows are overexposed.
 
 Today that picture has 57 million views and used all over the internet. It even ended up on [Hacker News](https://news.ycombinator.com/item?id=21010674) with the classic "It looks like a sweatshop" and "exact type of workplace I wouldn't want anyone to end up" comments.
 

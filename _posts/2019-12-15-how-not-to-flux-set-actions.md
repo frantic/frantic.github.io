@@ -101,7 +101,7 @@ function reducer(state, action) {
 
 Note that the React component in this case doesn't care how this event is handled, it just tells the system about what happened.
 
-The reducer tests in this case are more meaningful, capturing the essense of the business logic:
+The reducer tests in this case are more meaningful, capturing the essence of the business logic:
 
 ```javascript
 test("INCREMENT action", () => {
@@ -122,4 +122,4 @@ Examples:
 
 ---
 
-P.S. The "no `SET_*` actions" rule can be generalized: actions should not be derrived from state. If you need some information from state to construct an action, it's a sign that the action should be simpler and the computation you are trying to perform should probably live in the reducer.
+P.S. The "no `SET_*` actions" rule can be generalized: actions should not be derived from state. If you need some information from state to construct an action, it's a sign that the action should be simpler and the computation you are trying to perform should probably live in the reducer.

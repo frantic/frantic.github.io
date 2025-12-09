@@ -19,7 +19,7 @@ It's well-made, affordable, and feels good to use. Plus, it's safe.
 
 The best part? It actually made me enjoy opening my mail.
 
-After this experience, I started thinking differently about unpleasent tasks. Is there a tool or a service that add delight to mundane things?
+After this experience, I started thinking differently about unpleasant tasks. Is there a tool or a service that add delight to mundane things?
 
 I also started noticing when people do this subconiously. For example, most software engineers I know hate blogging, but they like building their own blog engine to make blogging more pleasant (I'm very guilty of this too).
 

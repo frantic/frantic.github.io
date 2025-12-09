@@ -32,7 +32,7 @@ on run argv
     set frontApp to name of first application process whose frontmost is true
     if frontApp is not "iTerm2" then
       set notifTitle to item 1 of argv
-      set notifBody to "succeded"
+      set notifBody to "succeeded"
       set errorCode to item 2 of argv
       if errorCode is not "0"
         set notifBody to "failed with error code " & errorCode

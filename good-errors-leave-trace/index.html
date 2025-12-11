@@ -6,20 +6,20 @@
 
     <title>Good Errors Leave Trace / frantic.im</title>
     <meta name="author" content="Alex Kotliarskyi">
-    <meta name="description" content="Errors with extra informaton can help locate and fix the problems faster.">
+    <meta name="description" content="Errors with extra information can help locate and fix the problems faster.">
 
     <link rel="canonical" href="https://frantic.im/good-errors-leave-trace">
     <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
 
     <meta property="og:title" content="Good Errors Leave Trace">
     <meta property="og:image" content="https://frantic.im">
-    <meta name="og:description" content="Errors with extra informaton can help locate and fix the problems faster.">
+    <meta name="og:description" content="Errors with extra information can help locate and fix the problems faster.">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@alex_frantic">
     <meta name="twitter:creator" content="@alex_frantic">
     <meta name="twitter:title" content="Good Errors Leave Trace">
-    <meta name="twitter:description" content="Errors with extra informaton can help locate and fix the problems faster.">
+    <meta name="twitter:description" content="Errors with extra information can help locate and fix the problems faster.">
     <meta name="twitter:image" content="https://frantic.im">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
@@ -542,7 +542,7 @@ figcaption {
 <p>For example, for massive scale backend systems it’s almost impossible to look at an error reported by one of hundreds of services and figure out what went wrong. To help pinpoint the cause, it’s a good idea to log a lot of additional information with the crash report and then aggregate and display that information. For example, server OS version, service version, arguments, queries per second, memory and CPU utilization, free disk space, active thread etc.</p>
 <h2>Errors while reporting errors</h2>
 <p>The nastiest errors happen during error reporting.</p>
-<p>When error reporting code tries to be smart and has untrivial amounts of logic, it will inevitably have bugs on its own. Erros while reporting error are the worst, because they usually hide the original cause.</p>
+<p>When error reporting code tries to be smart and has untrivial amounts of logic, it will inevitably have bugs on its own. Errors while reporting error are the worst, because they usually hide the original cause.</p>
 <p>Unfortunately they are easy to miss too, because the error path is not usually the common path. The error reporting code gets less coverage in terms of automated and manual tests.</p>
 <p>However, a few languages do have good tools to help with this case – Chained Exceptions. For example, when an exception is thrown when processing another exception, <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/chained.html">Java</a> and <a href="https://www.python.org/dev/peps/pep-3134/">Python 3</a> will report both original and new errors:</p>
 <pre><code>Traceback (most recent call last):
@@ -564,7 +564,7 @@ Traceback (most recent call last):
 Exception: Error while reporting error
 </code></pre>
 <h2>Performance</h2>
-<p>Be aware of the perf cost of including additional information. In particular, often times the error message is formated using some kind of <code>sprintf</code> function. Make sure the error message is prepared only when the error has actually been triggered. We had this funny bug in React Native in the early days:</p>
+<p>Be aware of the perf cost of including additional information. In particular, often times the error message is formatted using some kind of <code>sprintf</code> function. Make sure the error message is prepared only when the error has actually been triggered. We had this funny bug in React Native in the early days:</p>
 <pre><code>invariant(
   VALID[name],
   'Bad style name ' + name + '. Valid styles: ' + JSON.stringify(VALID)

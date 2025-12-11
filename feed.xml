@@ -5,7 +5,7 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2025-10-23T04:28:44.294Z</updated>
+  <updated>2025-12-11T15:28:38.781Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
@@ -197,14 +197,14 @@ router.<span class="hljs-title function_">map</span>(routes.<span class="hljs-pr
         
         <p>If you want to build a web app The Hacker News Way, here’s the stack you should use:</p>
 <ul>
-<li><strong>Rust</strong> – the only language that gives you the priviledge of calling your app <em>“blazing fast”</em>. According to the undocumented Hacker News rules, any post mentioning Rust in the title starts with 10 points.</li>
+<li><strong>Rust</strong> – the only language that gives you the privilege of calling your app <em>“blazing fast”</em>. According to the undocumented Hacker News rules, any post mentioning Rust in the title starts with 10 points.</li>
 <li><strong>Postgres</strong> – the most beloved database that can do absolutely everything: manage data, handle row-level authorization, run job queues, replace Redis, vacuum your apartment (or its own tables… who cares?). No ORMs allowed.</li>
 <li><strong>HTMX</strong> – because JavaScript is obviously the worst part about web development. Bonus points: you get to call yourself the <a href="https://htmx.org/essays/lore/#htmx-ceo">CEO of HTMX</a>, very helpful in this turbulent job market.</li>
 <li><strong>Hetzner</strong> – for just $4.59/mo you can get a server that can easily handle HN’s famous <a href="https://news.ycombinator.com/item?id=20147951">hug-of-death</a>.</li>
 </ul>
 <p>Make sure you build your app while WFH, commuting to the office was invented by evil corporations.</p>
 <p>…</p>
-<p>If this post made your simle, maybe you should cut down on reading Hacker News. I know I should.</p>
+<p>If this post made your smile, maybe you should cut down on reading Hacker News. I know I should.</p>
 
       ]]></content>
     </entry>
@@ -269,7 +269,7 @@ router.<span class="hljs-title function_">map</span>(routes.<span class="hljs-pr
 </a>
 <p>It’s well-made, affordable, and feels good to use. Plus, it’s safe.</p>
 <p>The best part? It actually made me enjoy opening my mail.</p>
-<p>After this experience, I started thinking differently about unpleasent tasks. Is there a tool or a service that add delight to mundane things?</p>
+<p>After this experience, I started thinking differently about unpleasant tasks. Is there a tool or a service that add delight to mundane things?</p>
 <p>I also started noticing when people do this subconiously. For example, most software engineers I know hate blogging, but they like building their own blog engine to make blogging more pleasant (I’m very guilty of this too).</p>
 <p>Kent Beck <a href="https://twitter.com/KentBeck/status/250733358307500032">nailed it</a>: “for each desired change, make the change easy (warning: this may be hard), then make the easy change”.</p>
 
@@ -310,7 +310,7 @@ router.<span class="hljs-title function_">map</span>(routes.<span class="hljs-pr
       <updated>2023-10-29T12:00:00+00:00</updated>
 
       <link rel="alternate" href="https://frantic.im/hacker-gifts" />
-      <summary>This is a story about a side project that I started in 2018, and the reasons I'm shuting it down.</summary>
+      <summary>This is a story about a side project that I started in 2018, and the reasons I'm shutting it down.</summary>
       <content type="html"><![CDATA[
         
         
@@ -402,7 +402,7 @@ router.<span class="hljs-title function_">map</span>(routes.<span class="hljs-pr
 – Niv Dror, ProductHunt/Angelist</p>
 </blockquote>
 <p>They sent me a bunch of cool prizes: PeakDesign Messenger bag, straps and clips, Moment lens for iPhone, and even a printed version of my photo.</p>
-<p>Now, looking at it, I do regret not processing the picture more: the horizon line is a bit tilted, you can spot chromatic abberation, the windows are overexposed.</p>
+<p>Now, looking at it, I do regret not processing the picture more: the horizon line is a bit tilted, you can spot chromatic aberration, the windows are overexposed.</p>
 <p>Today that picture has 57 million views and used all over the internet. It even ended up on <a href="https://news.ycombinator.com/item?id=21010674">Hacker News</a> with the classic “It looks like a sweatshop” and “exact type of workplace I wouldn’t want anyone to end up” comments.</p>
 <p>Conclusions? None, I guess. I just love how a stream of random events brought this to life.</p>
 

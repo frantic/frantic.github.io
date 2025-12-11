@@ -557,7 +557,7 @@ figcaption {
 <li><code>React.createClass</code> was used to create a component. I think in hindsight naming it <code>Class</code> and not <code>Component</code> was a big marketing mistake: with ES6 classes many people were pushing for React to adopt the “standard” way, although it had a lot of problems (more on that later).</li>
 <li>In development, React performed <code>props</code> validation at runtime (Flow and TypeScript didn’t exist back then), and the <code>PropTypes</code> API allowed for pretty complex definitions with nested objects and arrays.</li>
 <li>Initially, without <code>React.autoBind</code> the methods on the components had dynamically scoped <code>this</code>, which was pretty confusing: calling <code>this.tick</code> would result in something like “Can’t call <code>setState</code> of unndefined”. <code>autoBind</code> was doing something like <code>fn.bind(this)</code> to fix it on per-function basis, and eventually this behavior was moved directly into <code>React.createClass</code>.</li>
-<li>React focused on a pure, functional, declarative approach to bulding UIs, but also had escape hatches that allowed programmers take imperative actions or talk to DOM when needed via lifecycle methods and refs.</li>
+<li>React focused on a pure, functional, declarative approach to building UIs, but also had escape hatches that allowed programmers take imperative actions or talk to DOM when needed via lifecycle methods and refs.</li>
 </ol>
 <p>If you look carefully at the example above, you’ll notice that there’s a memory leak! We <code>setInterval</code> without <code>clearInterval</code>-ing it. To fix the problem we’d have to call <code>clearInterval</code> from <code>componentWillUnmount</code>, however that wasn’t obvious from the APIs and programmers had to watch out for patterns like this.</p>
 <p>That was a common pitfall: managing resources and making sure parts that were not managed by React were in sync with the UI.</p>
@@ -595,7 +595,7 @@ figcaption {
 });
 </code></pre>
 <p>The code above fixes the memory leak and makes it easier to avoid this problem in the future: just include <code>SetIntervalMixin</code> and you are good to go!</p>
-<p>Mixins fixed some problems, but intruduced others: implicit dependencies, name clashes and snowballing complexities. <a href="https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html">Read more on the official blog post (2016)</a>.</p>
+<p>Mixins fixed some problems, but introduced others: implicit dependencies, name clashes and snowballing complexities. <a href="https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html">Read more on the official blog post (2016)</a>.</p>
 <h2>2015, <a href="https://reactjs.org/blog/2015/01/27/react-v0.13.0-beta-1.html">React v0.13</a>: <code>class extends React.Component</code></h2>
 <p>The big feature of this release was ES6 class support:</p>
 <blockquote>
@@ -659,7 +659,7 @@ figcaption {
 }
 </code></pre>
 <h3>Higher-order components</h3>
-<p>As mixing were goin away, the developers needed to fill the gap: find a way to reuse common functionality across components.</p>
+<p>As mixing were going away, the developers needed to fill the gap: find a way to reuse common functionality across components.</p>
 <p>HoC became a popular replacement for mixins. You can think of the pattern as writing a function that takes a component as its argument, and returns a new component that wraps it with some useful enhancement.</p>
 <p>Here’s an example of HoC that does the same thing as the <code>SetIntervalMixin</code> from the earlier example:</p>
 <pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">withTimer</span>(<span class="hljs-params">Component</span>) {
@@ -709,7 +709,7 @@ figcaption {
 </ol>
 <p><img src="/assets/react-api-evolution/deep-hocs.png" alt="" /></p>
 <h3>Render props</h3>
-<p>React community kept looking for better ways to reuse logic in components and for some time a pattern called “render props” gained a bunch of popularity. I’m not going to dive into these dark ages, but the idea was similar to HoC.</p>
+<p>React community kept looking for better ways to reuse logic in components and for some time a pattern called “render props” gained a bunch of popularity. I’m not goingg to dive into these dark ages, but the idea was similar to HoC.</p>
 <h2>2019, <a href="https://reactjs.org/blog/2019/02/06/react-v16.8.0.html">React v16.8</a>: Hooks</h2>
 <p>Around the time the release with ES6 was published, the React team made it possible to define components as simple functions, aka “stateless functional components”:</p>
 <pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Timer</span>(<span class="hljs-params">props</span>) {
@@ -761,7 +761,7 @@ figcaption {
   );
 }
 </code></pre>
-<p>But hooks were not without problems either: in the example above there’s a subtle problem with the callback we pass to <code>useInterval</code>: since it’s a new referance every time (in JS, <code>() =&gt; {}</code> !== <code>() =&gt; {}</code>) we end up re-creating interval every render. The solution looks like this:</p>
+<p>But hooks were not without problems either: in the example above there’s a subtle problem with the callback we pass to <code>useInterval</code>: since it’s a new reference every time (in JS, <code>() =&gt; {}</code> !== <code>() =&gt; {}</code>) we end up re-creating interval every render. The solution looks like this:</p>
 <pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Timer</span>(<span class="hljs-params">props</span>) {
   <span class="hljs-keyword">const</span> [seconds, setSeconds] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
   <span class="hljs-keyword">const</span> increment = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setSeconds</span>(<span class="hljs-function">(<span class="hljs-params">s</span>) =&gt;</span> s + <span class="hljs-number">1</span>), []);

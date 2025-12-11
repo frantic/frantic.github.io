@@ -587,7 +587,7 @@ New State: {value: 42}
 }
 </code></pre>
 <p>Note that the React component in this case doesn’t care how this event is handled, it just tells the system about what happened.</p>
-<p>The reducer tests in this case are more meaningful, capturing the essense of the business logic:</p>
+<p>The reducer tests in this case are more meaningful, capturing the essence of the business logic:</p>
 <pre><code class="language-javascript"><span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;INCREMENT action&quot;</span>, <span class="hljs-function">() =&gt;</span> {
   <span class="hljs-keyword">const</span> store = <span class="hljs-title function_">createStore</span>({ <span class="hljs-attr">value</span>: <span class="hljs-number">2</span> });
   store.<span class="hljs-title function_">dispatch</span>({ <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;INCREMENT&quot;</span> });

@@ -5,11 +5,38 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2026-02-16T20:35:48.959Z</updated>
+  <updated>2026-02-16T20:36:41.452Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
 
+  
+    <entry>
+      <id>https://frantic.im/suddenly</id>
+      <title>Slow, Then Suddenly</title>
+      <updated>2026-02-16T12:00:00+00:00</updated>
+
+      <link rel="alternate" href="https://frantic.im/suddenly" />
+      <summary></summary>
+      <content type="html"><![CDATA[
+        
+        
+        
+        <p>Many years ago, I was invited to an adventure. My colleague from Facebook was assembling a little skunk works crew for a mission at Apple’s headquarters. We were to build the first prototype of the Facebook app for Apple TV. It was 2014.</p>
+<p>Our team of 5 had React and GraphQL legends. I felt very fortunate and very excited.</p>
+<p>We got to work. But instead of building the actual app, we jumped into building the infrastructure. We ported React to work with then not-yet-announced TVML, used the limited APIs of their JS flavor to talk to our GraphQL servers, set up auth, CI and many other developer experience basics.</p>
+<p>After a day of this, no progress was made on the actual app. The Apple guy was neither impressed nor disappointed – it was normal for big companies to bring their engineers to Apple’s HQ for “partnership” where nothing useful would come up with that.</p>
+<p>But we went home excited for the next day. We knew what leverage we built for ourselves. I kept hacking on the CI/CD pipeline well into the night, reducing the overhead down to a few seconds.</p>
+<p>The next day started just like the previous one. After coffees and small talk, the Apple dived into reading the news, expecting nothing significant.</p>
+<p>But the next time he looked at the shared monitor connected to the Apple TV, something very strange was happening. We had the first version of the app on the screen. And then the second. And the third. In less than an hour we iterated on several different concepts, the UI changing almost instantly and showed real production data. We had our friends list, photos and videos show up on the TV, we could rearrange everything.</p>
+<p>The Apple guy was blown away. From his perspective we made almost no progress at first but then everything happened all at once.</p>
+<p>From my perspective, I was having the time of my life. The system translated our intentions into the real product at the insane speed. Any idea you had for the experience, you could make it and see it on the real device right away.</p>
+<p>If you look at what’s happening with AI software development early 2026, it does seem very familiar. A handful of engineers investing in their software factories, which from outside looks unnecessarily complicated and are yet to produce anything of value. But don’t dismiss them yet. Pay attention.</p>
+<p>Slow at first, but then suddenly all at once.</p>
+<p>P.S. That speed was intoxicating, but in the end it didn’t matter. The Facebook Apple TV app never shipped. The leadership poured all resources into mobile and didn’t have time for the side quests.</p>
+
+      ]]></content>
+    </entry>
   
     <entry>
       <id>https://frantic.im/remix-3</id>
@@ -369,42 +396,6 @@ router.<span class="hljs-title function_">map</span>(routes.<span class="hljs-pr
 <p>But the most important reason I’m shutting it down is to give space for new ideas to grow. In its current state, <a href="https://hacker.gifts">Hacker Gifts</a> still occupies my headspace that I could use for other things.</p>
 <p>Looking back, this project definitely fits the category of “a solution in search of a problem”. But I don’t blame myself. IMHO the solution is really clever, I haven’t seen anything like this anywhere before. I also really enjoyed building it, and I learned a ton about marketing, customer interviews, ads, and many other things.</p>
 <p>If you read this far and would like to try it out for free, use code <code>FRANTIC</code> at checkout <a href="https://hacker.gifts/">here</a>. I’ll keep the servers up until Jan 2024. Also check out <a href="https://robertovaccari.com/blog/2021_02_14_hacker_gifts/">Roberto Vaccari’s</a> review (spoilers!)</p>
-
-      ]]></content>
-    </entry>
-  
-    <entry>
-      <id>https://frantic.im/story-behind-hackathon-photo</id>
-      <title>Story Behind Hackathon Photo</title>
-      <updated>2023-07-04T12:00:00+00:00</updated>
-
-      <link rel="alternate" href="https://frantic.im/story-behind-hackathon-photo" />
-      <summary>How a random stream of events ended up creating a picture with 57 million views</summary>
-      <content type="html"><![CDATA[
-        
-        
-        
-        <p>I’ve seen <a href="https://unsplash.com/photos/QBpZGqEMsKg">this photo</a> on the internet, sometimes even billboards and posters. Maybe you’ve seen it too? Here’s the story behind it.</p>
-<p><img src="https://frantic.im/assets/hackathon.jpg" alt="" /></p>
-<p>In 2017 I was working on React Native team. We were friends with all other developer experience teams around Facebook. One of them worked on <a href="https://nuclide.io/">Nuclide</a> (RIP), a set of plugins for Atom editor turning it into multi-platform IDE. Nuclide struggled with adoption outside Facebook walls.</p>
-<p>Around that time, Unsplash was becoming very popular. They were the first to provide high quality stock photos for free (very bold strategy for its time). Their photos were spreading like a wildfire.</p>
-<p>So I had this “genius” idea: make a photo of MacBook Pro with Atom/Nuclide running on it, upload it to Unsplash and get programming blog posts use it as their cover photo (for free). People will notice a cool looking editor and will start asking “what is it?”, eventually finding Nuclide (now you know why I’m not working in marketing).</p>
-<p>I took my old Canon 6D to the office and we did a photoshoot. I uploaded the picture (along with others from my Lightroom collection, to make it less sketchy).</p>
-<p><img src="https://frantic.im/assets/nuclide.jpg" alt="Nuclide/Atom on MacBook Pro" /></p>
-<p>The plan didn’t work. The image got some downloads, but not much. It was lost in a sea of similar pictures. A year later, Facebook gave up on Nuclide and marketing efforts became irrelevant.</p>
-<p>However, one thing came out of this process I did not expect.</p>
-<p>Together with the Nuclide photo, I uploaded a picture I took that year in Ukraine. I was a judge at <a href="https://www.devchallenge.it/">DevChallenge</a> hackathon in Kyiv, and during the break I snapped a few photos with a wide 24mm lens. I really liked how concentrated everyone was, staff members walking the rows, the uniformity, lighting, stickers on the notebooks. I don’t think the photo was very good by photography standards, but I loved the spirit of that place and wanted to capture it.</p>
-<p><img src="https://frantic.im/assets/hackathon_lightroom.png" alt="Other pictures from that hackathon in Kyiv" /></p>
-<p>During the uploading process Unsplash asked if I wanted to submit my pictures to their first ever “Unsplash Awards” and I thought “sure why not?”.</p>
-<p>I forgot about this for a while, until several months later I got an email from Unspash notifying me that I won <a href="https://awards.unsplash.com/2017/#/tech-and-business">“Unsplash Awards 2017” in “Tech and business”</a>.</p>
-<blockquote>
-<p>In a way, Alex’s photo captures a reflection of modern life: staring at a screen. Our lives, especially in our twenties, feels like a competition. From school, to university, to getting a job and progressing through our careers – it’s a never ending competition. The photo draws your eyes out across the rows of workers, all seemingly identical – but at the same time, showing small hints of color and personality from every worker that highlight and humanizes their unique history and personality. It makes me think of 20 years from now, what technology will be ubiquitous.
-– Niv Dror, ProductHunt/Angelist</p>
-</blockquote>
-<p>They sent me a bunch of cool prizes: PeakDesign Messenger bag, straps and clips, Moment lens for iPhone, and even a printed version of my photo.</p>
-<p>Now, looking at it, I do regret not processing the picture more: the horizon line is a bit tilted, you can spot chromatic aberration, the windows are overexposed.</p>
-<p>Today that picture has 57 million views and used all over the internet. It even ended up on <a href="https://news.ycombinator.com/item?id=21010674">Hacker News</a> with the classic “It looks like a sweatshop” and “exact type of workplace I wouldn’t want anyone to end up” comments.</p>
-<p>Conclusions? None, I guess. I just love how a stream of random events brought this to life.</p>
 
       ]]></content>
     </entry>

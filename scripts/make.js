@@ -65,6 +65,32 @@ function inferFromFileName(fileName) {
   };
 }
 
+function normalizeHeader(fileName, header = {}) {
+  const normalized = { ...header };
+
+  if (fileName.startsWith("_notes/")) {
+    if (!normalized.layout) {
+      normalized.layout = "post";
+    }
+    if (normalized.slug) {
+      normalized.url = `/${normalized.slug}`;
+    } else if (normalized.url && !normalized.url.startsWith("/")) {
+      normalized.url = `/${normalized.url}`;
+    }
+    if (normalized.date instanceof Date) {
+      const date = normalized.date.toISOString().split("T")[0];
+      normalized.date = `${date}T12:00:00+00:00`;
+    } else if (
+      typeof normalized.date === "string" &&
+      /^\d{4}-\d{2}-\d{2}$/.test(normalized.date)
+    ) {
+      normalized.date = `${normalized.date}T12:00:00+00:00`;
+    }
+  }
+
+  return normalized;
+}
+
 function load(fileName) {
   const content = fs.readFileSync(fileName, "utf8");
   const format = fileName.endsWith(".md")
@@ -74,8 +100,10 @@ function load(fileName) {
     const [_, rawHeader, rawBody] = content.split(/^---$/gm);
     return {
       header: {
-        ...inferFromFileName(fileName),
-        ...yaml.load(rawHeader),
+        ...normalizeHeader(fileName, {
+          ...inferFromFileName(fileName),
+          ...yaml.load(rawHeader),
+        }),
       },
       body: format(rawBody.trim()),
     };
@@ -108,12 +136,18 @@ function render(fileName, data = {}) {
 
 const site = yaml.load(fs.readFileSync("_config.yml", "utf8"));
 site.time = new Date().toISOString();
+const postSourceDirs = ["_posts", "_notes"];
 
 function rebuildPostsList() {
-  site.posts = fs
-    .readdirSync("_posts")
-    .map((file) => {
-      const { header, body } = load(path.join("_posts", file));
+  site.posts = postSourceDirs
+    .flatMap((dir) =>
+      fs
+        .readdirSync(dir)
+        .map((file) => path.join(dir, file))
+        .filter((fileName) => path.extname(fileName) === ".md")
+    )
+    .map((fileName) => {
+      const { header, body } = load(fileName);
       return { ...header, content: body };
     })
     .sort((p1, p2) => p2.date.localeCompare(p1.date));
@@ -147,19 +181,23 @@ function renderDir(dir) {
 site.dev = process.argv[2] === "--dev";
 
 rebuildPostsList();
-renderDir("_posts");
+for (const dir of postSourceDirs) {
+  renderDir(dir);
+}
 renderDir("pages");
 
 const changes = new EventEmitter();
 
 if (process.argv[2] == "--dev") {
-  const folders = ["_drafts", "_includes", "_layouts", "_posts", "pages"];
+  const folders = ["_drafts", "_includes", "_layouts", ...postSourceDirs, "pages"];
   for (const folder of folders) {
     fs.watch(folder, (ev, file) => {
       if (ev === "change") {
         try {
           rebuildPostsList();
-          renderDir("_posts");
+          for (const dir of postSourceDirs) {
+            renderDir(dir);
+          }
           renderDir("pages");
           changes.emit("change");
         } catch (e) {

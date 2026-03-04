@@ -15,7 +15,7 @@ feed_title: frantic.im — Links
       <li class="links-item">
         <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
         {% if link.note %}<span class="links-note">— {{ link.note }}</span>{% endif %}
-        <span class="links-meta"><time>{{ link.date | slice: 0, 10 }}</time> · {{ link.domain }}</span>
+        <span class="links-meta">Added <time>{{ link.date | slice: 0, 10 }}</time> · {{ link.domain }}</span>
       </li>
       {% endfor %}
     </ul>

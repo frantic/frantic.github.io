@@ -464,6 +464,7 @@ figcaption {
 
 .links-item {
   padding: var(--space-4) 0;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -475,7 +476,7 @@ figcaption {
   display: block;
   color: var(--text-secondary);
   margin-top: var(--space-1);
-  font-size: 0.85em;
+  font-size: var(--step--1);
   font-variant-numeric: tabular-nums;
   opacity: 0.5;
 }

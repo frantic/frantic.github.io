@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://frantic.im/links/</id>
+  <title>frantic.im — Links</title>
+  <link rel="self" href="https://frantic.im/links/feed.xml" />
+  <link rel="alternate" href="https://frantic.im/links/" />
+  <icon>https://frantic.im/favicon.png</icon>
+  <subtitle>Interesting stuff from around the internet</subtitle>
+  <updated>2026-03-04T04:05:35.435Z</updated>
+  <author>
+    <name>Alex Kotliarskyi</name>
+  </author>
+
+  
+    <entry>
+      <id>https://100r.co/site/home.html</id>
+      <title>Hundred Rabbits</title>
+      <updated>2025-03-02T12:00:00Z</updated>
+      <link rel="alternate" href="https://100r.co/site/home.html" />
+      <summary>Two artists living on a sailboat making open source software</summary>
+      <content type="html"><![CDATA[
+        <a href="https://100r.co/site/home.html">Hundred Rabbits</a>
+        <p>Two artists living on a sailboat making open source software</p>
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://grugbrain.dev/</id>
+      <title>The Grug Brained Developer</title>
+      <updated>2025-02-15T12:00:00Z</updated>
+      <link rel="alternate" href="https://grugbrain.dev/" />
+      
+      <content type="html"><![CDATA[
+        <a href="https://grugbrain.dev/">The Grug Brained Developer</a>
+        
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://www.robinsloan.com/notes/home-cooked/</id>
+      <title>An App Can Be a Home-Cooked Meal</title>
+      <updated>2025-01-20T12:00:00Z</updated>
+      <link rel="alternate" href="https://www.robinsloan.com/notes/home-cooked/" />
+      
+      <content type="html"><![CDATA[
+        <a href="https://www.robinsloan.com/notes/home-cooked/">An App Can Be a Home-Cooked Meal</a>
+        
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://blog.jim-nielsen.com/2024/sanding-ui/</id>
+      <title>Sanding UI</title>
+      <updated>2025-01-05T12:00:00Z</updated>
+      <link rel="alternate" href="https://blog.jim-nielsen.com/2024/sanding-ui/" />
+      
+      <content type="html"><![CDATA[
+        <a href="https://blog.jim-nielsen.com/2024/sanding-ui/">Sanding UI</a>
+        
+      ]]></content>
+    </entry>
+  
+    <entry>
+      <id>https://www.scattered-thoughts.net/writing/things-unlearned/</id>
+      <title>Things I&#39;ve Learned and Unlearned</title>
+      <updated>2024-12-10T12:00:00Z</updated>
+      <link rel="alternate" href="https://www.scattered-thoughts.net/writing/things-unlearned/" />
+      <summary>Hard-won lessons about building software</summary>
+      <content type="html"><![CDATA[
+        <a href="https://www.scattered-thoughts.net/writing/things-unlearned/">Things I've Learned and Unlearned</a>
+        <p>Hard-won lessons about building software</p>
+      ]]></content>
+    </entry>
+  
+</feed>

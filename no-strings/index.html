@@ -10,6 +10,7 @@
 
     <link rel="canonical" href="https://frantic.im/no-strings">
     <link rel="alternate" type="application/rss+xml" title="frantic.im" href="https://frantic.im/feed.xml">
+    
 
     <meta property="og:title" content="Things That Are Not Strings">
     <meta property="og:image" content="https://frantic.im/assets/no-strings/og-image.png">
@@ -487,6 +488,30 @@ figcaption {
 .hljs-string, .hljs-number { color: #2b6cb0; }
 .hljs-comment { color: #6b7280; }
 
+/* Links page */
+.links-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-6) 0;
+}
+
+.links-item {
+  padding: var(--space-4) 0;
+  line-height: 1.5;
+}
+
+.links-note {
+  color: var(--text-secondary);
+}
+
+.links-meta {
+  display: block;
+  color: var(--text-secondary);
+  margin-top: var(--space-1);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.5;
+}
+
       em {
   font-size: 150%;
   line-height: 1.3;
@@ -511,6 +536,8 @@ figcaption {
     <ul class="nav-list">
       
       <li><a href="/blog" class="nav-link">Blog</a></li>
+      
+      <li><a href="/links" class="nav-link">Links</a></li>
       
       <li><a href="/subscribe/" class="nav-link">Subscribe</a></li>
       
@@ -612,26 +639,26 @@ new SQL('SELECT * FROM posts' + filter);
         
         
         <li>
-          <a href="/replacing-jekyll" class="footer-link">
-            Replacing Jekyll for My Blog
+          <a href="/no-constraints-no-fun" class="footer-link">
+            No Constraints, No Fun
           </a>
         </li>
         
         <li>
-          <a href="/remote-meetings" class="footer-link">
-            Optimize Your Meetings for Engagement
+          <a href="/get-your-shit-together-day" class="footer-link">
+            The Get Your Shit Together Day
           </a>
         </li>
         
         <li>
-          <a href="/react-api-evolution" class="footer-link">
-            React API Evolution
+          <a href="/ctrl-r" class="footer-link">
+            My Favorite Shell Shortcut
           </a>
         </li>
         
         <li>
-          <a href="/how-not-to-flux-set-actions" class="footer-link">
-            How Not to Use Flux: SET Actions
+          <a href="/hn-stack" class="footer-link">
+            The Hacker News Stack
           </a>
         </li>
         

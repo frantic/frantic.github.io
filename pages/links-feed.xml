@@ -1,0 +1,31 @@
+---
+layout: null
+permalink: /links/feed.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>{{ site.url }}/links/</id>
+  <title>{{ site.title | escape }} — Links</title>
+  <link rel="self" href="{{ site.url }}{{ site.baseurl }}/links/feed.xml" />
+  <link rel="alternate" href="{{ site.url }}{{ site.baseurl }}/links/" />
+  <icon>{{ site.url }}{{ site.baseurl }}/favicon.png</icon>
+  <subtitle>Interesting stuff from around the internet</subtitle>
+  <updated>{{ site.time | date_to_rfc822 }}</updated>
+  <author>
+    <name>{{ site.author }}</name>
+  </author>
+
+  {% for link in site.links limit:100 %}
+    <entry>
+      <id>{{ link.url }}</id>
+      <title>{{ link.title | escape }}</title>
+      <updated>{{ link.date }}T12:00:00Z</updated>
+      <link rel="alternate" href="{{ link.url }}" />
+      {% if link.note %}<summary>{{ link.note | escape }}</summary>{% endif %}
+      <content type="html"><![CDATA[
+        <a href="{{ link.url }}">{{ link.title }}</a>
+        {% if link.note %}<p>{{ link.note }}</p>{% endif %}
+      ]]></content>
+    </entry>
+  {% endfor %}
+</feed>

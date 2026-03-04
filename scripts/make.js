@@ -88,6 +88,10 @@ function normalizeHeader(fileName, header = {}) {
     }
   }
 
+  if (normalized.permalink) {
+    normalized.url = normalized.permalink;
+  }
+
   return normalized;
 }
 
@@ -138,6 +142,22 @@ const site = yaml.load(fs.readFileSync("_config.yml", "utf8"));
 site.time = new Date().toISOString();
 const postSourceDirs = ["_posts", "_notes"];
 
+function loadLinks() {
+  const linksFile = path.join(__dirname, "..", "_data", "links.yml");
+  if (fs.existsSync(linksFile)) {
+    const links = yaml.load(fs.readFileSync(linksFile, "utf8")) || [];
+    site.links = links
+      .map((l) => {
+        const date = l.date instanceof Date ? l.date.toISOString().split("T")[0] : String(l.date);
+        const domain = new URL(l.url).hostname.replace(/^www\./, "");
+        return { ...l, date, domain };
+      })
+      .sort((a, b) => b.date.localeCompare(a.date));
+  } else {
+    site.links = [];
+  }
+}
+
 function rebuildPostsList() {
   site.posts = postSourceDirs
     .flatMap((dir) =>
@@ -164,9 +184,14 @@ function renderFile(dir, file) {
     header: { url },
   } = load(source);
 
-  const destination = [".md", ".html"].includes(path.extname(file))
-    ? path.join("_build", url, "index.html")
-    : path.join("_build", file);
+  let destination;
+  if ([".md", ".html"].includes(path.extname(file))) {
+    destination = path.join("_build", url, "index.html");
+  } else if (url && url.includes("/")) {
+    destination = path.join("_build", url);
+  } else {
+    destination = path.join("_build", file);
+  }
 
   fs.mkdirSync(path.dirname(destination), { recursive: true });
   fs.writeFileSync(destination, render(path.join(dir, file), { site }));
@@ -181,6 +206,7 @@ function renderDir(dir) {
 site.dev = process.argv[2] === "--dev";
 
 rebuildPostsList();
+loadLinks();
 for (const dir of postSourceDirs) {
   renderDir(dir);
 }
@@ -195,6 +221,7 @@ if (process.argv[2] == "--dev") {
       if (ev === "change") {
         try {
           rebuildPostsList();
+          loadLinks();
           for (const dir of postSourceDirs) {
             renderDir(dir);
           }

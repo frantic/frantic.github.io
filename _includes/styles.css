@@ -475,6 +475,7 @@ figcaption {
   display: block;
   color: var(--text-secondary);
   margin-top: var(--space-1);
+  font-size: 0.85em;
   font-variant-numeric: tabular-nums;
   opacity: 0.5;
 }

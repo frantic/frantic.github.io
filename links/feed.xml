@@ -6,11 +6,23 @@
   <link rel="alternate" href="https://frantic.im/links/" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Interesting stuff from around the internet</subtitle>
-  <updated>2026-03-07T21:49:15.735Z</updated>
+  <updated>2026-03-07T23:12:46.215Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
 
+  
+    <entry>
+      <id>https://tropes.fyi/tropes-md</id>
+      <title>tropes.md - Tropes</title>
+      <updated>2026-03-07T12:00:00Z</updated>
+      <link rel="alternate" href="https://tropes.fyi/tropes-md" />
+      
+      <content type="html"><![CDATA[
+        <a href="https://tropes.fyi/tropes-md">tropes.md - Tropes</a>
+        
+      ]]></content>
+    </entry>
   
     <entry>
       <id>https://www.experimental-history.com/p/face-it-youre-a-crazy-person</id>

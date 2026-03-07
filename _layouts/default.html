@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@alex_frantic">
     <meta name="twitter:title" content="{{ page.title | escape }}">
     <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-    <meta name="twitter:image" content="{{ page.image | prepend: site.baseurl | prepend: site.url }}">
+    <meta name="twitter:image" content="{{ og_image | prepend: site.baseurl | prepend: site.url }}">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>

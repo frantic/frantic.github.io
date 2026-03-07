@@ -188,14 +188,12 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
-.article-og {
-  display: block;
-  height: auto;
+img.article-og {
   max-width: calc(100% + 3rem);
   margin: 0 -1.5rem var(--space-7);
 }
 @media (max-width: 600px) {
-  .article-og {
+  img.article-og {
     max-width: calc(100% + 2 * var(--space-4));
     margin: 0 calc(-1 * var(--space-4)) var(--space-7);
   }

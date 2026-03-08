@@ -1,7 +1,6 @@
 ---
 layout: post
 title: On Leaving Facebook
-image: /assets/og-image.jpg
 excerpt: "After 8.5 years at Facebook I joined a small startup called Replit. Leaving wasn't easy, and during the process I've talked to half a dozen friends who were in the similar situation."
 ---
 

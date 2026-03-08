@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Who Cares
-image: /assets/og-image.jpg
 tags:
   - meta
   - thinking

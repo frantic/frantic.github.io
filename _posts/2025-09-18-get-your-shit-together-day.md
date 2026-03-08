@@ -1,7 +1,6 @@
 ---
 layout: post
 title: The Get Your Shit Together Day
-image: /assets/og-image.jpg
 excerpt: Everyone needs a Get Your Shit Together day every once in a while...
 tags:
   - thinking

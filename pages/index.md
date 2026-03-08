@@ -1,6 +1,6 @@
 ---
 title: Alex Kotliarskyi
-image: /assets/og-image.jpg
+image: /assets/og-image.png
 layout: page
 url: /
 ---

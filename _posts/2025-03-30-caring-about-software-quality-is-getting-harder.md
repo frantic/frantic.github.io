@@ -1,6 +1,9 @@
 ---
 layout: post
 title: Who Cares
+permalink: /who-cares
+permalinks:
+  - /caring-about-software-quality-is-getting-harder
 tags:
   - meta
   - thinking

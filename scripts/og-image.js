@@ -259,7 +259,10 @@ if (require.main === module) {
       if (!file.endsWith('.md')) continue;
       const content = fs.readFileSync(file, 'utf8');
       const titleMatch = content.match(/^title:\s*["']?(.+?)["']?\s*$/m);
-      const slug = path.basename(file, '.md').replace(/^\d{4}-\d{2}-\d{2}-/, '');
+      const permalinkMatch = content.match(/^permalink:\s*\/?(.+?)\s*$/m);
+      const slugMatch = content.match(/^slug:\s*["']?(.+?)["']?\s*$/m);
+      const fileSlug = path.basename(file, '.md').replace(/^\d{4}-\d{2}-\d{2}-/, '');
+      const slug = permalinkMatch ? permalinkMatch[1] : (slugMatch ? slugMatch[1] : fileSlug);
       const title = titleMatch ? titleMatch[1] : slug;
 
       // Alternate styles based on title hash

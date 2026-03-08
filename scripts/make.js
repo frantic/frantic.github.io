@@ -203,6 +203,24 @@ function renderDir(dir) {
   }
 }
 
+function generateRedirects() {
+  let count = 0;
+  for (const post of site.posts) {
+    if (!post.permalinks) continue;
+    const targets = Array.isArray(post.permalinks) ? post.permalinks : [post.permalinks];
+    for (let oldUrl of targets) {
+      if (!oldUrl.startsWith('/')) oldUrl = '/' + oldUrl;
+      const canonical = post.url;
+      const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Redirecting...</title><link rel="canonical" href="${canonical}"><meta http-equiv="refresh" content="0;url=${canonical}"></head><body><p>Redirected to <a href="${canonical}">${canonical}</a></p></body></html>`;
+      const dest = path.join('_build', oldUrl, 'index.html');
+      fs.mkdirSync(path.dirname(dest), { recursive: true });
+      fs.writeFileSync(dest, html);
+      count++;
+    }
+  }
+  if (count > 0) process.stdout.write(`Generated ${count} redirect(s)\n`);
+}
+
 site.dev = process.argv[2] === "--dev";
 
 rebuildPostsList();
@@ -211,6 +229,7 @@ for (const dir of postSourceDirs) {
   renderDir(dir);
 }
 renderDir("pages");
+generateRedirects();
 
 const changes = new EventEmitter();
 
@@ -226,6 +245,7 @@ if (process.argv[2] == "--dev") {
             renderDir(dir);
           }
           renderDir("pages");
+          generateRedirects();
           changes.emit("change");
         } catch (e) {
         }

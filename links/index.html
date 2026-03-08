@@ -103,6 +103,7 @@ html {
   hanging-punctuation: first allow-end;
   quotes: var(--open-quote) var(--close-quote) var(--open-quote-single) var(--close-quote-single);
   text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 *, *:before, *:after { box-sizing: inherit; }
@@ -144,10 +145,11 @@ body {
   margin: 0 -1.5rem;
 }
 
+video, iframe { max-width: 100%; height: auto; }
+
 @media (max-width: 600px) {
   .container { padding: var(--space-5) var(--space-4); }
   .container img { max-width: calc(100% + 2rem); margin: 0 -1rem; }
-  pre { margin: 1em calc(-1 * var(--space-4)); }
 }
 
 /* Typography */
@@ -324,6 +326,10 @@ pre {
 
 pre code { font-size: inherit; }
 
+@media (max-width: 600px) {
+  pre { margin: 1em calc(-1 * var(--space-4)); padding: 16px var(--space-4) 14px; }
+}
+
 /* Lists */
 ul, ol { padding-left: 1.3em; }
 
@@ -337,6 +343,8 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   font-variant-numeric: tabular-nums; /* aligns numbers */
+  display: block;
+  overflow-x: auto;
 }
 
 th, td {
@@ -565,61 +573,67 @@ figcaption {
   </nav>
 </header>
 
+
   <main>
-    <p>This is a list of websites and blog posts I found interesting. You can subscribe to it via a separate <a href="/links/feed.xml">RSS feed</a>.</p>
-    <ul class="links-list">
-      
-      <li class="links-item">
-        <a href="https://tropes.fyi/tropes-md" target="_blank" rel="noopener">tropes.md - Tropes</a>
-        
-        <span class="links-meta">Added <time>2026-03-07</time> · tropes.fyi</span>
-      </li>
-      
-      <li class="links-item">
-        <a href="https://www.experimental-history.com/p/face-it-youre-a-crazy-person" target="_blank" rel="noopener">Face it: you're a crazy person - by Adam Mastroianni</a>
-        <span class="links-note">— The point of the Coffee Beans Procedure is this: if you can’t answer those questions, if you don’t even find them interesting, then you should not open a coffee shop</span>
-        <span class="links-meta">Added <time>2026-03-05</time> · experimental-history.com</span>
-      </li>
-      
-      <li class="links-item">
-        <a href="https://qouteall.fun/qouteall-blog/2025/Traps%20to%20Developers" target="_blank" rel="noopener">Traps to Developers | qouteall notes</a>
-        
-        <span class="links-meta">Added <time>2026-03-04</time> · qouteall.fun</span>
-      </li>
-      
-      <li class="links-item">
-        <a href="https://zoo.js.org/?v8=true" target="_blank" rel="noopener">JavaScript engines zoo</a>
-        
-        <span class="links-meta">Added <time>2026-03-04</time> · zoo.js.org</span>
-      </li>
-      
-      <li class="links-item">
-        <a href="https://muratbuffalo.blogspot.com/2025/12/optimize-for-momentum.html" target="_blank" rel="noopener">Optimize for momentum</a>
-        
-        <span class="links-meta">Added <time>2026-03-04</time> · muratbuffalo.blogspot.com</span>
-      </li>
-      
-      <li class="links-item">
-        <a href="https://nolanlawson.com/2022/06/09/the-collapse-of-complex-software/" target="_blank" rel="noopener">The collapse of complex software | Read the Tea Leaves</a>
-        
-        <span class="links-meta">Added <time>2026-03-04</time> · nolanlawson.com</span>
-      </li>
-      
-      <li class="links-item">
-        <a href="https://alexanderbjoy.com/two-sentence-journal-approaches/" target="_blank" rel="noopener">Approaches to writing two-sentence journal entries</a>
-        
-        <span class="links-meta">Added <time>2026-03-04</time> · alexanderbjoy.com</span>
-      </li>
-      
-      <li class="links-item">
-        <a href="https://loggingsucks.com/" target="_blank" rel="noopener">Logging Sucks - Your Logs Are Lying To You</a>
-        
-        <span class="links-meta">Added <time>2026-03-04</time> · loggingsucks.com</span>
-      </li>
-      
-    </ul>
-  </main>
-  <footer class="site-footer">
+    <article class="article ">
+      <h1 class="article-title">
+        <a href="/links/"> Links </a>
+      </h1>
+      <div class="article-content"><p>Websites and blog posts I found interesting. You can subscribe via a separate <a href="/links/feed.xml">RSS feed</a>.</p>
+
+<ul class="links-list">
+  
+  <li class="links-item">
+    <a href="https://tropes.fyi/tropes-md" target="_blank" rel="noopener">tropes.md - Tropes</a>
+    
+    <span class="links-meta">Added <time>2026-03-07</time> · tropes.fyi</span>
+  </li>
+  
+  <li class="links-item">
+    <a href="https://www.experimental-history.com/p/face-it-youre-a-crazy-person" target="_blank" rel="noopener">Face it: you're a crazy person - by Adam Mastroianni</a>
+    <span class="links-note">— The point of the Coffee Beans Procedure is this: if you can’t answer those questions, if you don’t even find them interesting, then you should not open a coffee shop</span>
+    <span class="links-meta">Added <time>2026-03-05</time> · experimental-history.com</span>
+  </li>
+  
+  <li class="links-item">
+    <a href="https://qouteall.fun/qouteall-blog/2025/Traps%20to%20Developers" target="_blank" rel="noopener">Traps to Developers | qouteall notes</a>
+    
+    <span class="links-meta">Added <time>2026-03-04</time> · qouteall.fun</span>
+  </li>
+  
+  <li class="links-item">
+    <a href="https://zoo.js.org/?v8=true" target="_blank" rel="noopener">JavaScript engines zoo</a>
+    
+    <span class="links-meta">Added <time>2026-03-04</time> · zoo.js.org</span>
+  </li>
+  
+  <li class="links-item">
+    <a href="https://muratbuffalo.blogspot.com/2025/12/optimize-for-momentum.html" target="_blank" rel="noopener">Optimize for momentum</a>
+    
+    <span class="links-meta">Added <time>2026-03-04</time> · muratbuffalo.blogspot.com</span>
+  </li>
+  
+  <li class="links-item">
+    <a href="https://nolanlawson.com/2022/06/09/the-collapse-of-complex-software/" target="_blank" rel="noopener">The collapse of complex software | Read the Tea Leaves</a>
+    
+    <span class="links-meta">Added <time>2026-03-04</time> · nolanlawson.com</span>
+  </li>
+  
+  <li class="links-item">
+    <a href="https://alexanderbjoy.com/two-sentence-journal-approaches/" target="_blank" rel="noopener">Approaches to writing two-sentence journal entries</a>
+    
+    <span class="links-meta">Added <time>2026-03-04</time> · alexanderbjoy.com</span>
+  </li>
+  
+  <li class="links-item">
+    <a href="https://loggingsucks.com/" target="_blank" rel="noopener">Logging Sucks - Your Logs Are Lying To You</a>
+    
+    <span class="links-meta">Added <time>2026-03-04</time> · loggingsucks.com</span>
+  </li>
+  
+</ul>
+
+<footer class="site-footer">
   <div class="footer-bottom">
     <p class="footer-copyright">
       ©&nbsp;2025 Alex&nbsp;Kotliarskyi. All&nbsp;rights&nbsp;reserved.
@@ -631,7 +645,9 @@ figcaption {
     </p>
   </div>
 </footer>
-
+</div>
+    </article>
+  </main>
 </div>
 
     

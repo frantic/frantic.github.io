@@ -103,6 +103,7 @@ html {
   hanging-punctuation: first allow-end;
   quotes: var(--open-quote) var(--close-quote) var(--open-quote-single) var(--close-quote-single);
   text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 *, *:before, *:after { box-sizing: inherit; }
@@ -144,10 +145,11 @@ body {
   margin: 0 -1.5rem;
 }
 
+video, iframe { max-width: 100%; height: auto; }
+
 @media (max-width: 600px) {
   .container { padding: var(--space-5) var(--space-4); }
   .container img { max-width: calc(100% + 2rem); margin: 0 -1rem; }
-  pre { margin: 1em calc(-1 * var(--space-4)); }
 }
 
 /* Typography */
@@ -324,6 +326,10 @@ pre {
 
 pre code { font-size: inherit; }
 
+@media (max-width: 600px) {
+  pre { margin: 1em calc(-1 * var(--space-4)); padding: 16px var(--space-4) 14px; }
+}
+
 /* Lists */
 ul, ol { padding-left: 1.3em; }
 
@@ -337,6 +343,8 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   font-variant-numeric: tabular-nums; /* aligns numbers */
+  display: block;
+  overflow-x: auto;
 }
 
 th, td {

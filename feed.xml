@@ -5,7 +5,7 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2026-03-08T00:33:02.394Z</updated>
+  <updated>2026-03-08T00:39:46.764Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
@@ -192,11 +192,11 @@ router.<span class="hljs-title function_">map</span>(routes.<span class="hljs-pr
     </entry>
   
     <entry>
-      <id>https://frantic.im/caring-about-software-quality-is-getting-harder</id>
+      <id>https://frantic.im/who-cares</id>
       <title>Who Cares</title>
       <updated>2025-03-30T12:00:00+00:00</updated>
 
-      <link rel="alternate" href="https://frantic.im/caring-about-software-quality-is-getting-harder" />
+      <link rel="alternate" href="https://frantic.im/who-cares" />
       <summary></summary>
       <content type="html"><![CDATA[
         

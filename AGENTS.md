@@ -11,4 +11,8 @@ This is Alex Kotliarskyi's blog (frantic.im).
 - Posts live in `posts/` and `notes/`
 - Layouts in `layouts/`, includes in `includes/`, pages in `pages/`
 
+## Hosting
+
+The static blog is served on :8001 via systemd (frantic-blog.service).
+
 ## Remembered Notes

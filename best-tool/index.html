@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Jun 19, 2024 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/figma/og_best_tool.png" alt="" />
       
-      <img class="article-og" src="/figma/og_best_tool.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>How do you choose the best tool for the job?</p>
 <p>Suppose you want to plant a tree in your backyard and need to dig a hole. You go to the nearby hardware supply store and see these options:</p>
 <p><img src="/figma/graden_tools_options.png" alt="" /></p>

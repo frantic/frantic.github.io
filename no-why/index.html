@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Nov 7, 2022 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/figma/og_no_why.png" alt="" />
       
-      <img class="article-og" src="/figma/og_no_why.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>A senior engineer joins a team. Before long, they start noticing weird quirks in the codebase: two ID fields on the same DB table, one-off Redis cluster outside the company’s AWS, React components organized in a very unorthodox way.</p>
 <p>So they turn around to the teammate who has been on the team since the beginning and ask: <em>“why is it built this way?”</em></p>
 <p>But “why” is a terrible question for 2 reasons:</p>
@@ -595,26 +601,26 @@ figcaption {
         
         
         <li>
-          <a href="/disposable-software" class="footer-link">
-            Disposable Software
+          <a href="/using-redux-with-flow" class="footer-link">
+            Using Redux with Flow
           </a>
         </li>
         
         <li>
-          <a href="/shuhari" class="footer-link">
-            Shuhari
+          <a href="/notify-on-completion" class="footer-link">
+            Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus
           </a>
         </li>
         
         <li>
-          <a href="/suddenly" class="footer-link">
-            Slow, Then Suddenly
+          <a href="/octave" class="footer-link">
+            A Side Project Story: Octave Cloud
           </a>
         </li>
         
         <li>
-          <a href="/music-player" class="footer-link">
-            A Side Project Story: Music Player
+          <a href="/no-why" class="footer-link">
+            What Were You Trying to Achieve?
           </a>
         </li>
         

@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Apr 13, 2020 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/assets/project-todo/TODO_file.png" alt="" />
       
-      <img class="article-og" src="/assets/project-todo/TODO_file.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>If you know me, you know that I’m not a very organized person. I hate rigid productivity systems. I’ve tried many things: Trello, Things, Github Issues, Pivotal Tracker, etc. But they all end up in the same state — detached from the real work I’m doing.</p>
 <p>Here’s what worked for me.</p>
 <p>In most of my personal projects I have a file called <strong>TODO</strong>. I use it like this.</p>
@@ -617,26 +623,26 @@ should happen next. No new features!
         
         
         <li>
-          <a href="/tomorrowman" class="footer-link">
-            I'm a Tomorrowman
+          <a href="/ctrl-r" class="footer-link">
+            My Favorite Shell Shortcut
           </a>
         </li>
         
         <li>
-          <a href="/notify-on-completion" class="footer-link">
-            Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus
+          <a href="/using-redux-with-flow" class="footer-link">
+            Using Redux with Flow
           </a>
         </li>
         
         <li>
-          <a href="/hello-world" class="footer-link">
-            Hello, World!
+          <a href="/react-api-evolution" class="footer-link">
+            React API Evolution
           </a>
         </li>
         
         <li>
-          <a href="/e2e-tests" class="footer-link">
-            Improving End to End Tests Reliability
+          <a href="/cdtmp" class="footer-link">
+            cdtmp
           </a>
         </li>
         

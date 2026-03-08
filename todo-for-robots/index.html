@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Oct 28, 2020 by Alex Kotliarskyi
       </div>
       
-      
       <img class="article-og" src="/assets/og/todo-for-robots.png" alt="" width="1200" height="630" />
+      
       <div class="article-content"><p>In my lifetime I’ve tried a dozen todo apps. In the beginning they all seem different, novel and special. Slick UI, shortcuts, tags, subtasks, the list goes on and on.</p>
 <p>But all our stories were the same: I start using the new app, then after awhile I stop using it.</p>
 <p>Up until the last week I thought the problem was in myself (you probably think so too). After all, <a href="https://gettingthingsdone.com/">David Allen</a> seems to have figured this shit out. Also there are people leaving long 5 star reviews on every major todo list app, they discuss them on forums, recommend them to friends.</p>
@@ -614,26 +620,26 @@ figcaption {
         
         
         <li>
+          <a href="/the-first-react-native-app" class="footer-link">
+            The Very First React Native App on the AppStore
+          </a>
+        </li>
+        
+        <li>
+          <a href="/how-not-to-flux-set-actions" class="footer-link">
+            How Not to Use Flux: SET Actions
+          </a>
+        </li>
+        
+        <li>
+          <a href="/best-tool" class="footer-link">
+            No Best Tool for the Job
+          </a>
+        </li>
+        
+        <li>
           <a href="/copy-with-syntax" class="footer-link">
             Copying Code with Syntax Highlighting
-          </a>
-        </li>
-        
-        <li>
-          <a href="/remix-3" class="footer-link">
-            Thoughts on Remix 3
-          </a>
-        </li>
-        
-        <li>
-          <a href="/javascript-gom-jabbar" class="footer-link">
-            JavaScript Gom Jabbar
-          </a>
-        </li>
-        
-        <li>
-          <a href="/no-strings" class="footer-link">
-            Things That Are Not Strings
           </a>
         </li>
         

@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Mar 21, 2017 by Alex Kotliarskyi
       </div>
       
-      
       <img class="article-og" src="/assets/og/cdtmp.png" alt="" width="1200" height="630" />
+      
       <div class="article-content"><p>I have this line in my <code>.zshrc</code>:</p>
 <pre><code class="language-sh"><span class="hljs-built_in">alias</span> cdtmp=<span class="hljs-string">&#x27;cd `mktemp -d /tmp/frantic-XXXXXX`&#x27;</span>
 </code></pre>

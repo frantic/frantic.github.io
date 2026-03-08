@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         May 19, 2019 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/assets/chunchia-350094-unsplash.jpg" alt="" />
       
-      <img class="article-og" src="/assets/chunchia-350094-unsplash.jpg" alt="" width="1200" height="630" />
       <div class="article-content"><p>Are you trying to establish a good end-to-end testing infrastructure at your company? This is how Facebook does it.</p>
 <h2>The problem</h2>
 <p>End-to-end (E2E) tests verify that the product works on the high level. For example, if you have an e-commerce website, E2E test could simulate an important user behavior: open the website in a browser, search for a product, add it to the cart and performing checkout.</p>

@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Jul 4, 2023 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/assets/hackathon.jpg" alt="" />
       
-      <img class="article-og" src="/assets/hackathon.jpg" alt="" width="1200" height="630" />
       <div class="article-content"><p>I’ve seen <a href="https://unsplash.com/photos/QBpZGqEMsKg">this photo</a> on the internet, sometimes even billboards and posters. Maybe you’ve seen it too? Here’s the story behind it.</p>
 <p><img src="/assets/hackathon.jpg" alt="" /></p>
 <p>In 2017 I was working on React Native team. We were friends with all other developer experience teams around Facebook. One of them worked on <a href="https://nuclide.io/">Nuclide</a> (RIP), a set of plugins for Atom editor turning it into multi-platform IDE. Nuclide struggled with adoption outside Facebook walls.</p>
@@ -602,26 +608,26 @@ figcaption {
         
         
         <li>
-          <a href="/react-conf-2018" class="footer-link">
-            React Conf 2018 Recap
+          <a href="/todo-for-robots" class="footer-link">
+            TODO Apps Are Meant for Robots
           </a>
         </li>
         
         <li>
-          <a href="/meta-language" class="footer-link">
-            Understanding "Taming the Meta Language"
+          <a href="/project-todo" class="footer-link">
+            TODO File for Personal Projects
           </a>
         </li>
         
         <li>
-          <a href="/tomorrowman" class="footer-link">
-            I'm a Tomorrowman
+          <a href="/back-to-rails" class="footer-link">
+            Moving My Serverless Project to Ruby on Rails
           </a>
         </li>
         
         <li>
-          <a href="/get-your-shit-together-day" class="footer-link">
-            The Get Your Shit Together Day
+          <a href="/opening-mail" class="footer-link">
+            Opening Mail
           </a>
         </li>
         

@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Jun 9, 2019 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/assets/onityper/onityper.jpg" alt="" />
       
-      <img class="article-og" src="/assets/onityper/onityper.jpg" alt="" width="1200" height="630" />
       <div class="article-content"><p>What if you could use your favorite keyboard away from your computer?</p>
 <p>A long time ago I learned about an interesting “text editor”. Its main feature was, uhh, the lack of text editing. That’s right, you can’t change anything you’ve typed.</p>
 <p>The idea behind it is very interesting. It’s about two modes of writing. One where you produce as much text as possible, without trying to organize or correct it in any way. The other one is where you edit and restructure the text until it’s consistent and easy to read.</p>

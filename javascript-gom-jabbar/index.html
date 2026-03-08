@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Jun 29, 2023 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/figma/og_js_gom_jabbar.png" alt="" />
       
-      <img class="article-og" src="/figma/og_js_gom_jabbar.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>You have been using JavaScript for 10 years. It’s time for your test. You are sitting in front of a computer. The test is simple: you have to open a package.json file and read it. The <code>package.json</code> is full of pain. You have to read it all.</p>
 <p>You look at <code>version</code>, you haven’t reached 1.0 yet. Semver causes unpleasant memories, but you’ve learned to ignore them for so long that you don’t even notice the tickling sensation in your skull.</p>
 <p>You wish you used a different <code>name</code> for your package, but some random internet person has squatted that name 7 years ago and never updated their package since. It’s only mildly discomforting. Maybe the test isn’t so bad after all?</p>

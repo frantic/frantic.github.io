@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Oct 29, 2023 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/figma/og_hacker_gifts.png" alt="" />
       
-      <img class="article-og" src="/figma/og_hacker_gifts.png" alt="" width="1200" height="630" />
       <div class="article-content"><p><em>This is a story about a side project, <a href="https://hacker.gifts/">Hacker Gifts</a>, that I started in 2018, and the reasons I’m shutting it down.</em></p>
 <p>February 2018. London, 9 pm. It’s dark outside and raining. Vlad is holding a flashlight and is looking for… something. One hour ago a girl he didn’t know gave him two numbers over the phone and hung up. The numbers looked like GPS coordinates not too far from his house, so Vlad decided to check it out. The people on the street are gazing at Vlad suspiciously, and all he can think about is “How did I get into all of this?”</p>
 <p>He got into all of that because of me.</p>

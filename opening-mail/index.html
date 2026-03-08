@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Jan 6, 2024 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/figma/og_opening_mail.png" alt="" />
       
-      <img class="article-og" src="/figma/og_opening_mail.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>I never liked opening envelopes; they’re tricky and ripping them open is annoying. My letters would get stuck or tear with the envelope.</p>
 <p>The mail just used to stack up, and I’d miss important stuff because of it.</p>
 <p>But then I found this cool little gadget from Japan.</p>
@@ -592,26 +598,26 @@ figcaption {
         
         
         <li>
-          <a href="/remix-3" class="footer-link">
-            Thoughts on Remix 3
-          </a>
-        </li>
-        
-        <li>
           <a href="/whos-watching-the-watchdog" class="footer-link">
             Who's Watching the Watchdog?
           </a>
         </li>
         
         <li>
-          <a href="/no-internet" class="footer-link">
-            Debugging Home Internet Connection
+          <a href="/onityper" class="footer-link">
+            Digital Typewriter
           </a>
         </li>
         
         <li>
-          <a href="/hacker-gifts" class="footer-link">
-            A Side Project Story: Hacker Gifts
+          <a href="/how-not-to-flux-set-actions" class="footer-link">
+            How Not to Use Flux: SET Actions
+          </a>
+        </li>
+        
+        <li>
+          <a href="/hello-world" class="footer-link">
+            Hello, World!
           </a>
         </li>
         

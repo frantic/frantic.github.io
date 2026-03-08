@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Sep 24, 2020 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/assets/remote-meetings/og-image.png" alt="" />
       
-      <img class="article-og" src="/assets/remote-meetings/og-image.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>— So, does anybody have any feedback? Or questions?</p>
 <p>Silence. 15 seconds feel like forever. I can’t tell by people’s expressions if they agree with what I have just presented. I know they must have things to say, why aren’t they speaking up?</p>
 <p>This was so much easier with in-person meetings. Remote sucks!</p>
@@ -617,26 +623,26 @@ figcaption {
         
         
         <li>
-          <a href="/how-not-to-flux-loops" class="footer-link">
-            How Not to Use Flux: Mini Cycles
+          <a href="/project-todo" class="footer-link">
+            TODO File for Personal Projects
           </a>
         </li>
         
         <li>
-          <a href="/onityper" class="footer-link">
-            Digital Typewriter
+          <a href="/remote-meetings" class="footer-link">
+            Optimize Your Meetings for Engagement
           </a>
         </li>
         
         <li>
-          <a href="/story-behind-hackathon-photo" class="footer-link">
-            Story Behind Hackathon Photo
+          <a href="/plotting-ideas" class="footer-link">
+            Plotting Ideas
           </a>
         </li>
         
         <li>
-          <a href="/best-tool" class="footer-link">
-            No Best Tool for the Job
+          <a href="/react-and-javascript-in-5-min" class="footer-link">
+            React-Flavored JavaScript in 5 Minutes
           </a>
         </li>
         

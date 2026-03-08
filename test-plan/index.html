@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Sep 11, 2016 by Alex Kotliarskyi
       </div>
       
-      
       <img class="article-og" src="/assets/og/test-plan.png" alt="" width="1200" height="630" />
+      
       <div class="article-content"><p>At Facebook we use Phabricator to review and discuss each change to the codebase. I believe it has a lot of advantages compared to Github’s pull request model. In this post I want to discuss a particular one – the mandatory “test plan” field.</p>
 <p>Initially I was very confused by it and used to spend either too much or too little time composing the test plan. With time I learned to appreciate it and found a couple of strategies that made it extremely useful.</p>
 <p><a href="https://www.phacility.com/phabricator/">Phabricator</a>’s Differential product operates in terms of revisions. Revision is a meaningful change to the codebase that introduces a feature or fixes a bug. See <a href="https://secure.phabricator.com/D16507">D16507</a> for example. Each revision has a bunch of information associated with it. Test plan is just another field on the revision where the author is supposed to write some text describing how the feature he wrote can be tested.</p>

@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Aug 8, 2022 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/figma/og_replace_jekyll.png" alt="" />
       
-      <img class="article-og" src="/figma/og_replace_jekyll.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>I <a href="/hello-world">started this blog</a> in 2016. At the time, “static blogging” was becoming very popular and getting started was easy. I simply used <a href="https://jekyllrb.com/">Jekyll</a> with GitHub pages.</p>
 <p>But then I got a new laptop and the simplicity turned into a nighmare. A new Ruby version, an incompatible Jekyll gem version, cryptic C++ compilation errors of one of Jekyll’s dependencies. I’ve tried RVM, I’ve tried Bundler, I’ve tried Docker.</p>
 <p>At this point, blogging felt more like fighting with the tools.</p>

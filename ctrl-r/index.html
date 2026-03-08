@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Jun 5, 2016 by Alex Kotliarskyi
       </div>
       
-      
       <img class="article-og" src="/assets/og/ctrl-r.png" alt="" width="1200" height="630" />
+      
       <div class="article-content"><p>If I had to name my favorite most awesome shell shortcut, that would be:</p>
 <p><strong><code>Ctrl+R</code></strong></p>
 <p>Reverse history search. It’s supported by bash, zsh and maybe others. The idea is that you can press <code>Ctrl+R</code> and start typing, and the shell will search through every command that you’ve ever executed that contains given characters, starting from the most recent history record. Press <code>Ctrl+R</code> a couple of times while in this mode and the shell will continue the search backwards. Press <code>Enter</code> to execute the command as is or any cursor movement keys to edit the command line. <code>Ctrl+C</code> will cancel the search and bring you back to normal business.</p>

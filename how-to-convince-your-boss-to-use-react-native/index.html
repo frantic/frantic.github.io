@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Mar 9, 2019 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/assets/gunnar-sigurdarson-1368301-unsplash.jpg" alt="" />
       
-      <img class="article-og" src="/assets/gunnar-sigurdarson-1368301-unsplash.jpg" alt="" width="1200" height="630" />
       <div class="article-content"><p>Likely you landed on this article because you are excited about React Native. Awesome! If you have a team of web engineers and a brand new app, it’s easy to make a case for starting with React Native.</p>
 <p>However, most companies already have apps in the stores. They used native stack to build their apps: Xcode or Android Studio. React Native can add value for these companies too, but making a hybrid app comes with some challenges.</p>
 <p>During the last 4 years I helped integrate React Native into Facebook and Oculus apps. Here are a few lessons I learned.</p>

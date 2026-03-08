@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Sep 1, 2016 by Alex Kotliarskyi
       </div>
       
-      
       <img class="article-og" src="/assets/og/blogpost-contexts.png" alt="" width="1200" height="630" />
+      
       <div class="article-content"><p>I enjoy reading technical blog posts, even on the subject that is not directly related to my field of work. However I’ve noticed that in most cases one particular thing is always missing.</p>
 <p>When writing a blog post you have something that your readers don’t – it’s the context, the “why” and the “how” you got to the subject.</p>
 <p>When looking for the intro many people start with some generic definitions of the subject copied from the Wikipedia. “Neural network is a computer system …”</p>

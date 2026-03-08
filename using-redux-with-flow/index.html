@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         May 28, 2016 by Alex Kotliarskyi
       </div>
       
-      
       <img class="article-og" src="/assets/og/using-redux-with-flow.png" alt="" width="1200" height="630" />
+      
       <div class="article-content"><p>Redux is a great library for managing application’s state. But JavaScript is still a dynamically typed language, which comes with a lot of surprises at runtime. In this post I’ll show you how you can use Flow to embrace static type checking in your Redux-powered application. I choose to use Flow for the disjoint union support and the ability to convert the codebase incrementally. Read on to learn more.</p>
 <p>This post assumes that you are already familiar with Redux: actions, action creators, reducers, etc.</p>
 <h2>Init</h2>

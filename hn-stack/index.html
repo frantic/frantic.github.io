@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Jan 28, 2025 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/figma/og_hn_stack.png" alt="" />
       
-      <img class="article-og" src="/figma/og_hn_stack.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>If you want to build a web app The Hacker News Way, here’s the stack you should use:</p>
 <ul>
 <li><strong>Rust</strong> – the only language that gives you the privilege of calling your app <em>“blazing fast”</em>. According to the undocumented Hacker News rules, any post mentioning Rust in the title starts with 10 points.</li>

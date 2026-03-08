@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Feb 16, 2026 by Alex Kotliarskyi
       </div>
       
-      
       <img class="article-og" src="/assets/og/suddenly.png" alt="" width="1200" height="630" />
+      
       <div class="article-content"><p>Many years ago, I was invited to an adventure. My colleague from Facebook was assembling a little skunk works crew for a mission at Apple’s headquarters. We were to build the first prototype of the Facebook app for Apple TV. It was 2014.</p>
 <p>An engineer from Apple met us at the Infinity Loop. His task was to show us the new APIs and answer technical questions.</p>
 <p>We got to work. But instead of building the actual app, we jumped into building the infrastructure. We ported React to work with then not-yet-announced TVML, used the limited APIs of their JS flavor to talk to our GraphQL servers, set up auth, CI and many other developer experience basics.</p>
@@ -593,26 +599,26 @@ figcaption {
         
         
         <li>
-          <a href="/hacker-gifts" class="footer-link">
-            A Side Project Story: Hacker Gifts
+          <a href="/octave" class="footer-link">
+            A Side Project Story: Octave Cloud
           </a>
         </li>
         
         <li>
-          <a href="/project-todo" class="footer-link">
-            TODO File for Personal Projects
+          <a href="/hn-stack" class="footer-link">
+            The Hacker News Stack
           </a>
         </li>
         
         <li>
-          <a href="/good-errors-leave-trace" class="footer-link">
-            Good Errors Leave Trace
+          <a href="/replacing-jekyll" class="footer-link">
+            Replacing Jekyll for My Blog
           </a>
         </li>
         
         <li>
-          <a href="/suddenly" class="footer-link">
-            Slow, Then Suddenly
+          <a href="/copy-with-syntax" class="footer-link">
+            Copying Code with Syntax Highlighting
           </a>
         </li>
         

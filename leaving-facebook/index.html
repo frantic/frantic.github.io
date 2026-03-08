@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Jan 21, 2022 by Alex Kotliarskyi
       </div>
       
-      
       <img class="article-og" src="/assets/og/leaving-facebook.png" alt="" width="1200" height="630" />
+      
       <div class="article-content"><p>I left Facebook (Meta) in 2021 to join a small startup called Replit. Leaving wasn’t easy, and during the process I’ve talked to half a dozen friends who were in the similar situation. I hope this post would be useful to senior engineers who are looking to leave.</p>
 <p>Disclaimers:</p>
 <ul>
@@ -668,26 +674,26 @@ figcaption {
         
         
         <li>
-          <a href="/shuhari" class="footer-link">
-            Shuhari
+          <a href="/no-constraints-no-fun" class="footer-link">
+            No Constraints, No Fun
           </a>
         </li>
         
         <li>
-          <a href="/cdtmp" class="footer-link">
-            cdtmp
+          <a href="/whos-watching-the-watchdog" class="footer-link">
+            Who's Watching the Watchdog?
           </a>
         </li>
         
         <li>
-          <a href="/replacing-jekyll" class="footer-link">
-            Replacing Jekyll for My Blog
+          <a href="/todo-for-robots" class="footer-link">
+            TODO Apps Are Meant for Robots
           </a>
         </li>
         
         <li>
-          <a href="/best-tool" class="footer-link">
-            No Best Tool for the Job
+          <a href="/ctrl-r" class="footer-link">
+            My Favorite Shell Shortcut
           </a>
         </li>
         

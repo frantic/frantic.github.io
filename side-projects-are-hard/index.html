@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Jan 10, 2018 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/assets/side-projects/og-image.png" alt="" />
       
-      <img class="article-og" src="/assets/side-projects/og-image.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>It’s been one hour already since I typed <code>git init</code>. Next step would be to start the X side-project I’ve been thinking a lot about. I need a frontend and a backend. I’ll start with the later. So what tech should I use?</p>
 <p>That’s the question I spent an hour on without making any progress. See, I could use NodeJS, I know it reasonably well. But the project is about handling lots of concurrent connections with shared state between some of them. Making that work could be tricky, and if I mess up something the latency will get pretty bad. Go or Erlang seem like good candidates, they are used for similar systems. However, I haven’t used any of them before.</p>
 <p>Maybe I should take this side project opportunity to learn Erlang (or Elixir)? That seems attractive and fun, but will take me 10x as much time to build. I don’t have a lot of free time, so going Elixir route could mean I never ship the project.</p>

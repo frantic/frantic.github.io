@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -558,8 +564,8 @@ figcaption {
         <a href="/talks/"> Talks </a>
       </h1>
       
-      
       <img class="article-og" src="/assets/og/talks/.png" alt="" width="1200" height="630" />
+      
       <div class="article-content"><p>I used to enjoy traveling and speaking at conferences.</p>
 
 <ul>
@@ -683,26 +689,26 @@ figcaption {
         
         
         <li>
-          <a href="/get-your-shit-together-day" class="footer-link">
-            The Get Your Shit Together Day
+          <a href="/project-todo" class="footer-link">
+            TODO File for Personal Projects
           </a>
         </li>
         
         <li>
-          <a href="/hn-stack" class="footer-link">
-            The Hacker News Stack
+          <a href="/e2e-tests" class="footer-link">
+            Improving End to End Tests Reliability
+          </a>
+        </li>
+        
+        <li>
+          <a href="/best-tool" class="footer-link">
+            No Best Tool for the Job
           </a>
         </li>
         
         <li>
           <a href="/notify-on-completion" class="footer-link">
             Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus
-          </a>
-        </li>
-        
-        <li>
-          <a href="/disposable-software" class="footer-link">
-            Disposable Software
           </a>
         </li>
         

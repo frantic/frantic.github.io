@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -562,8 +568,8 @@ figcaption {
         Mar 27, 2023 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/figma/og_disposable_software.png" alt="" />
       
-      <img class="article-og" src="/figma/og_disposable_software.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>Few weeks ago my microwave stopped working. I called several repair shops and they all told me the same thing: “just buy a new one, it’s cheaper than what we’ll charge for fixing it”.</p>
 <p>Maintaining software projects costs a lot of money. Thousands of books have been written on “clean code” and “best practices”, all focused on driving the maintenance costs down. Every company or team I worked on has a similar story: “we built this prototype in just a few weeks, but now it’s a mess and we can’t add new features”. Building something new is fun, maintaining old legacy systems is not fun.</p>
 <p>To add to the problem, businesses don’t understand the maintenance costs. After you ship a feature, the business considers it “done”. If you want to address tech debt, systematic bugs, refactorings, library upgrades, etc. it takes a lot of explanations and convincing. And even if you manage to get the budget, it’s not a priority. The business likes to ship new features, not maintain the old ones.</p>
@@ -588,26 +594,26 @@ figcaption {
         
         
         <li>
-          <a href="/ctrl-r" class="footer-link">
-            My Favorite Shell Shortcut
+          <a href="/caring-about-software-quality-is-getting-harder" class="footer-link">
+            Who Cares
           </a>
         </li>
         
         <li>
-          <a href="/cdtmp" class="footer-link">
-            cdtmp
+          <a href="/music-player" class="footer-link">
+            A Side Project Story: Music Player
           </a>
         </li>
         
         <li>
-          <a href="/get-your-shit-together-day" class="footer-link">
-            The Get Your Shit Together Day
+          <a href="/onityper" class="footer-link">
+            Digital Typewriter
           </a>
         </li>
         
         <li>
-          <a href="/replacing-jekyll" class="footer-link">
-            Replacing Jekyll for My Blog
+          <a href="/best-tool" class="footer-link">
+            No Best Tool for the Job
           </a>
         </li>
         

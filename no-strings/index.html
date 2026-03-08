@@ -224,7 +224,13 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 img.article-og {
   max-width: calc(100% + 3rem);
+  width: calc(100% + 3rem);
+  height: auto;
   margin: 0 -1.5rem var(--space-7);
+  aspect-ratio: 1200 / 630;
+}
+img.article-og--custom {
+  aspect-ratio: auto;
 }
 @media (max-width: 600px) {
   img.article-og {
@@ -572,8 +578,8 @@ figcaption {
         Aug 19, 2020 by Alex Kotliarskyi
       </div>
       
+      <img class="article-og article-og--custom" src="/assets/no-strings/og-image.png" alt="" />
       
-      <img class="article-og" src="/assets/no-strings/og-image.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.</p>
 <p>Let’s take SQL for example. Every API in every programming language that I’ve seen considers SQL statement a string.</p>
 <pre><code>function execute(sql: string): Promise&lt;Result&gt;
@@ -655,26 +661,26 @@ new SQL('SELECT * FROM posts' + filter);
         
         
         <li>
-          <a href="/get-your-shit-together-day" class="footer-link">
-            The Get Your Shit Together Day
+          <a href="/ctrl-r" class="footer-link">
+            My Favorite Shell Shortcut
           </a>
         </li>
         
         <li>
-          <a href="/back-to-rails" class="footer-link">
-            Moving My Serverless Project to Ruby on Rails
+          <a href="/how-not-to-flux-set-actions" class="footer-link">
+            How Not to Use Flux: SET Actions
           </a>
         </li>
         
         <li>
-          <a href="/octave" class="footer-link">
-            A Side Project Story: Octave Cloud
+          <a href="/replacing-jekyll" class="footer-link">
+            Replacing Jekyll for My Blog
           </a>
         </li>
         
         <li>
-          <a href="/no-why" class="footer-link">
-            What Were You Trying to Achieve?
+          <a href="/react-api-evolution" class="footer-link">
+            React API Evolution
           </a>
         </li>
         

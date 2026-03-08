@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Sep 24, 2020 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/remote-meetings/og-image.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>— So, does anybody have any feedback? Or questions?</p>
 <p>Silence. 15 seconds feel like forever. I can’t tell by people’s expressions if they agree with what I have just presented. I know they must have things to say, why aren’t they speaking up?</p>
 <p>This was so much easier with in-person meetings. Remote sucks!</p>
@@ -604,26 +617,26 @@ figcaption {
         
         
         <li>
-          <a href="/music-player" class="footer-link">
-            A Side Project Story: Music Player
+          <a href="/how-not-to-flux-loops" class="footer-link">
+            How Not to Use Flux: Mini Cycles
           </a>
         </li>
         
         <li>
-          <a href="/explain-programming" class="footer-link">
-            Reconsidering the Way I Explain Programming
+          <a href="/onityper" class="footer-link">
+            Digital Typewriter
           </a>
         </li>
         
         <li>
-          <a href="/project-todo" class="footer-link">
-            TODO File for Personal Projects
+          <a href="/story-behind-hackathon-photo" class="footer-link">
+            Story Behind Hackathon Photo
           </a>
         </li>
         
         <li>
-          <a href="/tomorrowman" class="footer-link">
-            I'm a Tomorrowman
+          <a href="/best-tool" class="footer-link">
+            No Best Tool for the Job
           </a>
         </li>
         

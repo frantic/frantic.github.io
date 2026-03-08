@@ -14,7 +14,7 @@
 
     <meta property="og:title" content="I&#39;m a Tomorrowman">
     
-    <meta property="og:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta property="og:image" content="https://frantic.im/assets/og/tomorrowman.png">
     <meta name="og:description" content="Occasional posts on technology and stuff">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@alex_frantic">
     <meta name="twitter:title" content="I&#39;m a Tomorrowman">
     <meta name="twitter:description" content="Occasional posts on technology and stuff">
-    <meta name="twitter:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta name="twitter:image" content="https://frantic.im/assets/og/tomorrowman.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -221,6 +221,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
+
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
 
 .article-meta {
   color: var(--text-secondary);
@@ -551,6 +562,8 @@ figcaption {
         Aug 22, 2018 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/og/tomorrowman.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>No, I shouldn’t be writing this <em>now</em>. I’m tired, it’s late, I have some other stuff that needs to be done. Words just don’t flow, sentences seem incomplete and the overall structure could be better.</p>
 <p>“You know what? – says my brain – Tomorrow is a much better time to finish this blog post. You’ll be more inspired and refreshed. You’ll have more time and will make this post perfect. Tomorrow it will be much easier to write.”</p>
 <p>But, of course, tomorrow never comes. After 24 hours it’s still going to be <em>now</em>.</p>
@@ -571,26 +584,26 @@ figcaption {
         
         
         <li>
-          <a href="/good-errors-leave-trace" class="footer-link">
-            Good Errors Leave Trace
+          <a href="/no-why" class="footer-link">
+            What Were You Trying to Achieve?
           </a>
         </li>
         
         <li>
-          <a href="/cdtmp" class="footer-link">
-            cdtmp
+          <a href="/e2e-tests" class="footer-link">
+            Improving End to End Tests Reliability
           </a>
         </li>
         
         <li>
-          <a href="/meta-language" class="footer-link">
-            Understanding "Taming the Meta Language"
+          <a href="/shuhari" class="footer-link">
+            Shuhari
           </a>
         </li>
         
         <li>
-          <a href="/suddenly" class="footer-link">
-            Slow, Then Suddenly
+          <a href="/react-api-evolution" class="footer-link">
+            React API Evolution
           </a>
         </li>
         

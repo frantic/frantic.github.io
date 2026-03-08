@@ -14,7 +14,7 @@
 
     <meta property="og:title" content="Using Redux with Flow">
     
-    <meta property="og:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta property="og:image" content="https://frantic.im/assets/og/using-redux-with-flow.png">
     <meta name="og:description" content="How to use Flow to add type annotation to your Redux-powered app.">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@alex_frantic">
     <meta name="twitter:title" content="Using Redux with Flow">
     <meta name="twitter:description" content="How to use Flow to add type annotation to your Redux-powered app.">
-    <meta name="twitter:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta name="twitter:image" content="https://frantic.im/assets/og/using-redux-with-flow.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -221,6 +221,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
+
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
 
 .article-meta {
   color: var(--text-secondary);
@@ -551,6 +562,8 @@ figcaption {
         May 28, 2016 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/og/using-redux-with-flow.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>Redux is a great library for managing application’s state. But JavaScript is still a dynamically typed language, which comes with a lot of surprises at runtime. In this post I’ll show you how you can use Flow to embrace static type checking in your Redux-powered application. I choose to use Flow for the disjoint union support and the ability to convert the codebase incrementally. Read on to learn more.</p>
 <p>This post assumes that you are already familiar with Redux: actions, action creators, reducers, etc.</p>
 <h2>Init</h2>

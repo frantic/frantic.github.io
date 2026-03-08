@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Oct 11, 2025 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/figma/og_music_player.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>One of my most successful side projects had exactly 2 daily active users.</p>
 <p>When I was growing up I loved listening to music, especially my parents’ cassette tapes and CDs. Back then music had a physical form. You had to take a magical artifact and carefully put it into a special machine that would produce sounds.</p>
 <p>My kids growing up experience none of that. From their perspective, we do something with our phones and music just appears from a speaker. The cause and effect far apart.</p>

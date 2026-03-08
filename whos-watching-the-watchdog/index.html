@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Nov 22, 2023 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/figma/og_watchdog.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>At my current company we have an automated pipeline for processing customer’s orders. It’s pretty complex — talking to multiple different services, training models, storing large files, updating the database, sending emails and push notifications.</p>
 <p>Sometimes things get stuck because of a temporary 3rd party outage or a bug in our code.</p>
 <p>So we built a watchdog service: it monitors the stream of orders and makes sure the orders get processed within reasonable timeframe (3 hours). The watchdog only looks at the final invariant — was the order fulfilled and delivered to the customer? It doesn’t care about any intermediary steps.</p>
@@ -581,26 +594,26 @@ figcaption {
         
         
         <li>
-          <a href="/remix-3" class="footer-link">
-            Thoughts on Remix 3
-          </a>
-        </li>
-        
-        <li>
           <a href="/get-your-shit-together-day" class="footer-link">
             The Get Your Shit Together Day
           </a>
         </li>
         
         <li>
-          <a href="/project-todo" class="footer-link">
-            TODO File for Personal Projects
+          <a href="/hacker-gifts" class="footer-link">
+            A Side Project Story: Hacker Gifts
           </a>
         </li>
         
         <li>
-          <a href="/good-errors-leave-trace" class="footer-link">
-            Good Errors Leave Trace
+          <a href="/octave" class="footer-link">
+            A Side Project Story: Octave Cloud
+          </a>
+        </li>
+        
+        <li>
+          <a href="/javascript-gom-jabbar" class="footer-link">
+            JavaScript Gom Jabbar
           </a>
         </li>
         

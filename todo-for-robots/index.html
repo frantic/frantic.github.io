@@ -14,7 +14,7 @@
 
     <meta property="og:title" content="TODO Apps Are Meant for Robots">
     
-    <meta property="og:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta property="og:image" content="https://frantic.im/assets/og/todo-for-robots.png">
     <meta name="og:description" content="What if I'm a left-handed person in the world of right-handed tools?">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@alex_frantic">
     <meta name="twitter:title" content="TODO Apps Are Meant for Robots">
     <meta name="twitter:description" content="What if I'm a left-handed person in the world of right-handed tools?">
-    <meta name="twitter:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta name="twitter:image" content="https://frantic.im/assets/og/todo-for-robots.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -221,6 +221,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
+
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
 
 .article-meta {
   color: var(--text-secondary);
@@ -551,6 +562,8 @@ figcaption {
         Oct 28, 2020 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/og/todo-for-robots.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>In my lifetime I’ve tried a dozen todo apps. In the beginning they all seem different, novel and special. Slick UI, shortcuts, tags, subtasks, the list goes on and on.</p>
 <p>But all our stories were the same: I start using the new app, then after awhile I stop using it.</p>
 <p>Up until the last week I thought the problem was in myself (you probably think so too). After all, <a href="https://gettingthingsdone.com/">David Allen</a> seems to have figured this shit out. Also there are people leaving long 5 star reviews on every major todo list app, they discuss them on forums, recommend them to friends.</p>
@@ -601,26 +614,26 @@ figcaption {
         
         
         <li>
-          <a href="/react-conf-2018" class="footer-link">
-            React Conf 2018 Recap
+          <a href="/copy-with-syntax" class="footer-link">
+            Copying Code with Syntax Highlighting
           </a>
         </li>
         
         <li>
-          <a href="/explain-programming" class="footer-link">
-            Reconsidering the Way I Explain Programming
+          <a href="/remix-3" class="footer-link">
+            Thoughts on Remix 3
           </a>
         </li>
         
         <li>
-          <a href="/hn-stack" class="footer-link">
-            The Hacker News Stack
+          <a href="/javascript-gom-jabbar" class="footer-link">
+            JavaScript Gom Jabbar
           </a>
         </li>
         
         <li>
-          <a href="/e2e-tests" class="footer-link">
-            Improving End to End Tests Reliability
+          <a href="/no-strings" class="footer-link">
+            Things That Are Not Strings
           </a>
         </li>
         

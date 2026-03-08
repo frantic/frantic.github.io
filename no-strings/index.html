@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -561,6 +572,8 @@ figcaption {
         Aug 19, 2020 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/no-strings/og-image.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>As programmers, we have a collective delusion that anything that can be represented as a string, is a string. This thinking causes a whole bunch of problems.</p>
 <p>Let’s take SQL for example. Every API in every programming language that I’ve seen considers SQL statement a string.</p>
 <pre><code>function execute(sql: string): Promise&lt;Result&gt;
@@ -642,8 +655,14 @@ new SQL('SELECT * FROM posts' + filter);
         
         
         <li>
-          <a href="/opening-mail" class="footer-link">
-            Opening Mail
+          <a href="/get-your-shit-together-day" class="footer-link">
+            The Get Your Shit Together Day
+          </a>
+        </li>
+        
+        <li>
+          <a href="/back-to-rails" class="footer-link">
+            Moving My Serverless Project to Ruby on Rails
           </a>
         </li>
         
@@ -654,14 +673,8 @@ new SQL('SELECT * FROM posts' + filter);
         </li>
         
         <li>
-          <a href="/react-and-javascript-in-5-min" class="footer-link">
-            React-Flavored JavaScript in 5 Minutes
-          </a>
-        </li>
-        
-        <li>
-          <a href="/react-conf-2018" class="footer-link">
-            React Conf 2018 Recap
+          <a href="/no-why" class="footer-link">
+            What Were You Trying to Achieve?
           </a>
         </li>
         

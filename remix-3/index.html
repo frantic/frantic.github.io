@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Oct 12, 2025 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/figma/og_remix.png" alt="" width="1200" height="630" />
       <div class="article-content"><p><a href="https://remix.run/">Remix</a> is a web framework by <s>React underdogs</s> authors of the most popular React package. A few days ago at <a href="https://remix.run/jam/2025">Remix Jam 2025</a>, Ryan and Michael shared a sneak peek of Remix v3. There’s no official blog post or documentation yet. Here’s my attempt at explaining what it is about.</p>
 <p>Remix v1 was a React framework that managed data loading and server-side rendering. Its biggest achievement was the <a href="https://remix.run/">marketing website</a>. Early Remix was interesting because it was viewed as the first real contender for Next.js’s dominant position.</p>
 <p>Remix v2 struggled with its messaging and identity. One of the authors <a href="https://x.com/ryanflorence/status/1791479313939976313">described it</a> as <em>“Remix v2 is a Vite plugin that makes access to React Router v6 features more convenient through the Route Module API”</em>. This is definitely not how you beat Vercel’s marketing machine. The framework had its users, but definitely not the trajectory to make a dent in Next.js’s market share.</p>

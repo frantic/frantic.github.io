@@ -14,7 +14,7 @@
 
     <meta property="og:title" content="No Constraints, No Fun">
     
-    <meta property="og:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta property="og:image" content="https://frantic.im/assets/og/no-constraints-no-fun.png">
     <meta name="og:description" content="Work vs Hackathon vs Competition vs Side Projects">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@alex_frantic">
     <meta name="twitter:title" content="No Constraints, No Fun">
     <meta name="twitter:description" content="Work vs Hackathon vs Competition vs Side Projects">
-    <meta name="twitter:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta name="twitter:image" content="https://frantic.im/assets/og/no-constraints-no-fun.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -221,6 +221,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
+
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
 
 .article-meta {
   color: var(--text-secondary);
@@ -551,6 +562,8 @@ figcaption {
         May 2, 2018 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/og/no-constraints-no-fun.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>When I’m at work, my code is a communication tool. I think carefully about naming variables and functions, formatting, comments. I give up my opinions about code style, because consistency is more important. I split my work into logical chunks so that other people on the team can understand and review what’s going on. I use the same technology stack as other engineers, which makes it easier to share code, onboard new people and optimize. Maintainability is important, so any time invested in making things stable and approachable is worth it.</p>
 <p>When I’m at a hackathon, all that matters is an interesting product. It’s important to spend time thinking about how it’s different from other things that exist already. Time is also a limiting factor and forces me to use the technology I’m familiar with that gets things done. Code quality, performance, design and other things hardly matter. The code is disposable, it doesn’t really matter if it even works properly, so it’s a good idea to use mocks and fake data. It’s all about a proof of concept.</p>
 <p>When I’m at a programming competition, rapid test cycle is the key. I write tests for non trivial building blocks, compose them and test again. I know that the price of mistake is very high (I’ll end up spending way more time debugging). Code readability doesn’t matter.</p>

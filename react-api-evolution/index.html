@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Mar 11, 2021 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/react-api-evolution/og-image.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>React is ~8 years old. I remember the day when I saw the first demo — I was amazed at how genius yet how simple it was! I still carry that excitement to this day.</p>
 <p>During this time React changed a bunch, but its core ideas have stayed the same. It’s still all about thinking about your UI code as a function of state, bringing state front and center, immutable data, one-directional data flows, composition over inheritance.</p>
 <p>In this post I’ll share how the developer APIs have evolved, specifically we’ll talk about defining components and sharing common code between components.</p>

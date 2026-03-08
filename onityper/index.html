@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,13 +562,9 @@ figcaption {
         Jun 9, 2019 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/onityper/onityper.jpg" alt="" width="1200" height="630" />
       <div class="article-content"><p>What if you could use your favorite keyboard away from your computer?</p>
-<div class="fig">
-  <img src="/assets/onityper/onityper.jpg">
-  <div class="label">
-    This is what it looks like for now. Check out GIF demo further down.
-  </div>
-</div>
 <p>A long time ago I learned about an interesting “text editor”. Its main feature was, uhh, the lack of text editing. That’s right, you can’t change anything you’ve typed.</p>
 <p>The idea behind it is very interesting. It’s about two modes of writing. One where you produce as much text as possible, without trying to organize or correct it in any way. The other one is where you edit and restructure the text until it’s consistent and easy to read.</p>
 <p>Doing the first part on modern computers is a challenge for me. I get distracted very easily. I’m also tempted to start editing right away, often times ending up in a loop rewriting a sentence over and over again.</p>

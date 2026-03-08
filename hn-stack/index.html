@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Jan 28, 2025 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/figma/og_hn_stack.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>If you want to build a web app The Hacker News Way, here’s the stack you should use:</p>
 <ul>
 <li><strong>Rust</strong> – the only language that gives you the privilege of calling your app <em>“blazing fast”</em>. According to the undocumented Hacker News rules, any post mentioning Rust in the title starts with 10 points.</li>

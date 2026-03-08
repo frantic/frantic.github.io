@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -559,6 +570,8 @@ figcaption {
         Nov 14, 2020 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/back-to-rails/og-image.jpg" alt="" width="1200" height="630" />
       <div class="article-content"><p>I have a small side project: <a href="https://hacker.gifts">digital gift cards for hackers</a>. It uses Shopify for all the store-related stuff: frontend, payments, refunds, reports, etc.</p>
 <p>But unlike regular digital products (ebooks, videos) I wanted each card that the user purchases from the store to be unique. So I made a script that generates personalized images and ran it manually for every order.</p>
 <p>The next logical step was automating this process. I started with serverless AWS Lambda. At the time it was the hot new tech and I wanted to learn more. It seemed very fitting for my use-case: single-responsibility functions that can run at any time and don’t require server maintenance.</p>
@@ -631,14 +644,14 @@ figcaption {
         
         
         <li>
-          <a href="/caring-about-software-quality-is-getting-harder" class="footer-link">
-            Who Cares
+          <a href="/replacing-jekyll" class="footer-link">
+            Replacing Jekyll for My Blog
           </a>
         </li>
         
         <li>
-          <a href="/no-why" class="footer-link">
-            What Were You Trying to Achieve?
+          <a href="/blogpost-contexts" class="footer-link">
+            Provide Context When Writing Blog Posts
           </a>
         </li>
         
@@ -649,8 +662,8 @@ figcaption {
         </li>
         
         <li>
-          <a href="/hn-stack" class="footer-link">
-            The Hacker News Stack
+          <a href="/tomorrowman" class="footer-link">
+            I'm a Tomorrowman
           </a>
         </li>
         

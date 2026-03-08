@@ -14,7 +14,7 @@
 
     <meta property="og:title" content="Talks">
     
-    <meta property="og:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta property="og:image" content="https://frantic.im/assets/og/talks/.png">
     <meta name="og:description" content="Occasional posts on technology and stuff">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@alex_frantic">
     <meta name="twitter:title" content="Talks">
     <meta name="twitter:description" content="Occasional posts on technology and stuff">
-    <meta name="twitter:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta name="twitter:image" content="https://frantic.im/assets/og/talks/.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -221,6 +221,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
+
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
 
 .article-meta {
   color: var(--text-secondary);
@@ -547,6 +558,8 @@ figcaption {
         <a href="/talks/"> Talks </a>
       </h1>
       
+      
+      <img class="article-og" src="/assets/og/talks/.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>I used to enjoy traveling and speaking at conferences.</p>
 
 <ul>
@@ -670,26 +683,26 @@ figcaption {
         
         
         <li>
-          <a href="/project-todo" class="footer-link">
-            TODO File for Personal Projects
+          <a href="/get-your-shit-together-day" class="footer-link">
+            The Get Your Shit Together Day
           </a>
         </li>
         
         <li>
-          <a href="/no-internet" class="footer-link">
-            Debugging Home Internet Connection
+          <a href="/hn-stack" class="footer-link">
+            The Hacker News Stack
           </a>
         </li>
         
         <li>
-          <a href="/hacker-gifts" class="footer-link">
-            A Side Project Story: Hacker Gifts
+          <a href="/notify-on-completion" class="footer-link">
+            Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus
           </a>
         </li>
         
         <li>
-          <a href="/no-why" class="footer-link">
-            What Were You Trying to Achieve?
+          <a href="/disposable-software" class="footer-link">
+            Disposable Software
           </a>
         </li>
         

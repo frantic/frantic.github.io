@@ -14,7 +14,7 @@
 
     <meta property="og:title" content="Slow, Then Suddenly">
     
-    <meta property="og:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta property="og:image" content="https://frantic.im/assets/og/suddenly.png">
     <meta name="og:description" content="Occasional posts on technology and stuff">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@alex_frantic">
     <meta name="twitter:title" content="Slow, Then Suddenly">
     <meta name="twitter:description" content="Occasional posts on technology and stuff">
-    <meta name="twitter:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta name="twitter:image" content="https://frantic.im/assets/og/suddenly.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -221,6 +221,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
+
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
 
 .article-meta {
   color: var(--text-secondary);
@@ -551,6 +562,8 @@ figcaption {
         Feb 16, 2026 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/og/suddenly.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>Many years ago, I was invited to an adventure. My colleague from Facebook was assembling a little skunk works crew for a mission at Apple’s headquarters. We were to build the first prototype of the Facebook app for Apple TV. It was 2014.</p>
 <p>An engineer from Apple met us at the Infinity Loop. His task was to show us the new APIs and answer technical questions.</p>
 <p>We got to work. But instead of building the actual app, we jumped into building the infrastructure. We ported React to work with then not-yet-announced TVML, used the limited APIs of their JS flavor to talk to our GraphQL servers, set up auth, CI and many other developer experience basics.</p>
@@ -580,26 +593,26 @@ figcaption {
         
         
         <li>
-          <a href="/disposable-software" class="footer-link">
-            Disposable Software
-          </a>
-        </li>
-        
-        <li>
           <a href="/hacker-gifts" class="footer-link">
             A Side Project Story: Hacker Gifts
           </a>
         </li>
         
         <li>
-          <a href="/explain-programming" class="footer-link">
-            Reconsidering the Way I Explain Programming
+          <a href="/project-todo" class="footer-link">
+            TODO File for Personal Projects
           </a>
         </li>
         
         <li>
-          <a href="/get-your-shit-together-day" class="footer-link">
-            The Get Your Shit Together Day
+          <a href="/good-errors-leave-trace" class="footer-link">
+            Good Errors Leave Trace
+          </a>
+        </li>
+        
+        <li>
+          <a href="/suddenly" class="footer-link">
+            Slow, Then Suddenly
           </a>
         </li>
         

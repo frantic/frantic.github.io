@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Oct 28, 2018 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/react-conf-2018/og-image.jpg" alt="" width="1200" height="630" />
       <div class="article-content"><p>This was more exciting than a couple of previous WWDC, combined! The big announcements: Hooks, Suspense, Concurrent Mode and React Native’s new architecture.</p>
 <p>The conference was taking place in Las Vegas. It had only one track with keynotes, talks and lighting talks. There were plenty of long breaks for attendees to chat.</p>
 <p>All content was live streamed and the <a href="https://www.youtube.com/channel/UCz5vTaEhvh7dOHEyd1efcaQ/videos">video recordings</a> became available in just one day! (This is crazy, I’ve never seen the content from a conference appear online this fast).</p>

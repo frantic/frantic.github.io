@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Dec 15, 2019 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/flux/flux-one-way.png" alt="" width="1200" height="630" />
       <div class="article-content"><p><em>TL;DR: Instead of thinking about your actions as something that changes application state, consider them events instead.</em></p>
 <p>In this article by Flux I mean one way data flow pattern implementations like Redux, useReducer or Elm Architecture</p>
 <p>Every time I see an action with a name that starts with <code>SET_*</code>, I know there’s a problem.</p>

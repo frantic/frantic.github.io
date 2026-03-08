@@ -14,7 +14,7 @@
 
     <meta property="og:title" content="Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus">
     
-    <meta property="og:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta property="og:image" content="https://frantic.im/assets/og/notify-on-completion.png">
     <meta name="og:description" content="Fighting lack of attention span with some advanced tooling hacks">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@alex_frantic">
     <meta name="twitter:title" content="Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus">
     <meta name="twitter:description" content="Fighting lack of attention span with some advanced tooling hacks">
-    <meta name="twitter:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta name="twitter:image" content="https://frantic.im/assets/og/notify-on-completion.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -221,6 +221,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
+
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
 
 .article-meta {
   color: var(--text-secondary);
@@ -551,6 +562,8 @@ figcaption {
         Jul 5, 2016 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/og/notify-on-completion.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>Sometimes I run commands that take a while to finish: <code>git pull</code>, <code>npm install</code>, etc. My attention span is pretty short, so I easily get distracted and forget about it. 15 minutes later (after reading Hacker News/Twitter/etc.) I come back to my terminal and discover that I forgot to <code>cd</code> into the correct folder. So I fix the problem, run the slow command again, get distracted and there my next 15 minutes go.</p>
 <p>Sure, there must be a better way?</p>
 <p><strong>Solution #1</strong>. Make all tools fast and get more patient. Maybe that’d work in a parallel universe.</p>

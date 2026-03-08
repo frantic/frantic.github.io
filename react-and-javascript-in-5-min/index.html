@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Apr 24, 2017 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/react-and-javascript-in-5-min/og-image.png" alt="" width="1200" height="630" />
       <div class="article-content"><p><em>This document is for experienced software engineers who already know several other programming languages and just want a TL;DR summary on JavaScript in the context of React, Flow and the new ES6+ hotness.</em></p>
 <h2>20 seconds of history</h2>
 <p>JS has been designed and implemented in 10 days around 1995. It had (and still has) a bunch of weird quirks. All major browsers adopted it and JS spread like wildfire, but everyone had their own opinions on how it should work. In 2005 the spec became open standard (ECMAScript, or ES). In the recent few years the work on the standard gained a lot of momentum.</p>

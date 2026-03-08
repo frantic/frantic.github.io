@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Mar 12, 2020 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/explain-programming/recursion-2.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>“Do you know a recipe for a recursive salad?” - I asked. “It consists of tomatoes, olives and a recursive salad”.</p>
 <p>My joke falls flat. Michael’s eyes confused and waiting for the explanation. I regroup and try a different strategy - sketching:</p>
 <p><img src="/assets/explain-programming/recursion-1.png" alt="" /></p>
@@ -604,26 +617,26 @@ figcaption {
         
         
         <li>
-          <a href="/remix-3" class="footer-link">
-            Thoughts on Remix 3
+          <a href="/caring-about-software-quality-is-getting-harder" class="footer-link">
+            Who Cares
           </a>
         </li>
         
         <li>
-          <a href="/get-your-shit-together-day" class="footer-link">
-            The Get Your Shit Together Day
+          <a href="/hn-stack" class="footer-link">
+            The Hacker News Stack
           </a>
         </li>
         
         <li>
-          <a href="/macos-app-shortcuts" class="footer-link">
-            Better Way to Switch Between Apps on macOS
+          <a href="/no-strings" class="footer-link">
+            Things That Are Not Strings
           </a>
         </li>
         
         <li>
-          <a href="/notify-on-completion" class="footer-link">
-            Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus
+          <a href="/project-todo" class="footer-link">
+            TODO File for Personal Projects
           </a>
         </li>
         

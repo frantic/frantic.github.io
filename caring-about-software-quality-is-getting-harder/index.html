@@ -14,7 +14,7 @@
 
     <meta property="og:title" content="Who Cares">
     
-    <meta property="og:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta property="og:image" content="https://frantic.im/assets/og/caring-about-software-quality-is-getting-harder.png">
     <meta name="og:description" content="Occasional posts on technology and stuff">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@alex_frantic">
     <meta name="twitter:title" content="Who Cares">
     <meta name="twitter:description" content="Occasional posts on technology and stuff">
-    <meta name="twitter:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta name="twitter:image" content="https://frantic.im/assets/og/caring-about-software-quality-is-getting-harder.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -221,6 +221,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
+
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
 
 .article-meta {
   color: var(--text-secondary);
@@ -551,6 +562,8 @@ figcaption {
         Mar 30, 2025 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/og/caring-about-software-quality-is-getting-harder.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>In 2017 I gave a <a href="https://www.youtube.com/watch?v=fjS5ssBn3fA">talk</a> at Chain React about building great user experiences with React Native. At the time the tech was new and the quality of the mobile apps built with React Native was poor. The gist of my talk was that it’s possible to build great apps with React Native, one just needs to care enough.</p>
 <p>My message didn’t resonate as well as I’d hoped. It’s hard to make people care about quality when the measuring stick of the technology is “look how fast I made this cross-platform app”. In contrast, inside the early iOS dev community, caring for quality was something that everyone shared.</p>
 <p>The modern generation of users grew up without knowing what it feels like to use an offline, low-latency, well-crafted apps and websites. There’s little incentive now to spend any resources on improving quality, while your competition spends it on more features and ads.</p>

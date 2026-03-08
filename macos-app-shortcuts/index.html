@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         May 17, 2018 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/macos-app-shortcuts/og-image.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>Does this look familiar? This happens to me all the time…</p>
 <p><img src="/assets/macos-app-shortcuts/cmd-tab.png" alt="" /></p>
 <p>I’m in the middle of a productive day and I need to run a few commands in my terminal. To do so I need to focus the iTerm app, which is already running.</p>

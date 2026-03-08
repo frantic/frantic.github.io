@@ -14,7 +14,7 @@
 
     <meta property="og:title" content="Provide Context When Writing Blog Posts">
     
-    <meta property="og:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta property="og:image" content="https://frantic.im/assets/og/blogpost-contexts.png">
     <meta name="og:description" content="One practical tip that will make your technical blog posts more useful.">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@alex_frantic">
     <meta name="twitter:title" content="Provide Context When Writing Blog Posts">
     <meta name="twitter:description" content="One practical tip that will make your technical blog posts more useful.">
-    <meta name="twitter:image" content="https://frantic.im/assets/og-image.jpg">
+    <meta name="twitter:image" content="https://frantic.im/assets/og/blogpost-contexts.png">
 
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
@@ -221,6 +221,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
+
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
 
 .article-meta {
   color: var(--text-secondary);
@@ -551,6 +562,8 @@ figcaption {
         Sep 1, 2016 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/og/blogpost-contexts.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>I enjoy reading technical blog posts, even on the subject that is not directly related to my field of work. However I’ve noticed that in most cases one particular thing is always missing.</p>
 <p>When writing a blog post you have something that your readers don’t – it’s the context, the “why” and the “how” you got to the subject.</p>
 <p>When looking for the intro many people start with some generic definitions of the subject copied from the Wikipedia. “Neural network is a computer system …”</p>

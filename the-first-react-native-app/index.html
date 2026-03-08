@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -559,6 +570,8 @@ figcaption {
         Apr 28, 2017 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/atscale/og-image.png" alt="" width="1200" height="630" />
       <div class="article-content"><p><em>In September 2014 we published an app to the AppStore. It was the first React Native app ever shipped to production. You probably haven’t heard about it.</em></p>
 <img src="/assets/atscale/og-image.png">
 <p>It was only the beginning, the React Native team had about 6 people working on it. React Native wasn’t even called React Native back then. The first ReactConf wasn’t announced, Android support wasn’t available. No Animated API, no Flow types support, no ES6 classes.</p>

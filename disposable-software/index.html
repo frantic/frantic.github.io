@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Mar 27, 2023 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/figma/og_disposable_software.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>Few weeks ago my microwave stopped working. I called several repair shops and they all told me the same thing: “just buy a new one, it’s cheaper than what we’ll charge for fixing it”.</p>
 <p>Maintaining software projects costs a lot of money. Thousands of books have been written on “clean code” and “best practices”, all focused on driving the maintenance costs down. Every company or team I worked on has a similar story: “we built this prototype in just a few weeks, but now it’s a mess and we can’t add new features”. Building something new is fun, maintaining old legacy systems is not fun.</p>
 <p>To add to the problem, businesses don’t understand the maintenance costs. After you ship a feature, the business considers it “done”. If you want to address tech debt, systematic bugs, refactorings, library upgrades, etc. it takes a lot of explanations and convincing. And even if you manage to get the budget, it’s not a priority. The business likes to ship new features, not maintain the old ones.</p>
@@ -575,26 +588,26 @@ figcaption {
         
         
         <li>
-          <a href="/remix-3" class="footer-link">
-            Thoughts on Remix 3
+          <a href="/ctrl-r" class="footer-link">
+            My Favorite Shell Shortcut
           </a>
         </li>
         
         <li>
-          <a href="/whos-watching-the-watchdog" class="footer-link">
-            Who's Watching the Watchdog?
+          <a href="/cdtmp" class="footer-link">
+            cdtmp
           </a>
         </li>
         
         <li>
-          <a href="/project-todo" class="footer-link">
-            TODO File for Personal Projects
+          <a href="/get-your-shit-together-day" class="footer-link">
+            The Get Your Shit Together Day
           </a>
         </li>
         
         <li>
-          <a href="/react-api-evolution" class="footer-link">
-            React API Evolution
+          <a href="/replacing-jekyll" class="footer-link">
+            Replacing Jekyll for My Blog
           </a>
         </li>
         

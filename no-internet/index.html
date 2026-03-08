@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Mar 16, 2020 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/no-internet/Dashboard.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>Having spotty internet connection is worse than having no internet at all.</p>
 <p>In the apartment we are living now the internet is great 95% of the time. The remaining 5% were annoying enough to get serious about fixing the problem.</p>
 <p>I should note that I’m a noob when it comes to networks. In retrospect I should have figured it out sooner. But it was a fun yak shaving expedition I want to share with you.</p>
@@ -659,26 +672,26 @@ curl -XPOST <span class="hljs-string">&#x27;http://localhost:8086/write?db=inet&
         
         
         <li>
-          <a href="/plotting-ideas" class="footer-link">
-            Plotting Ideas
+          <a href="/e2e-tests" class="footer-link">
+            Improving End to End Tests Reliability
           </a>
         </li>
         
         <li>
-          <a href="/using-redux-with-flow" class="footer-link">
-            Using Redux with Flow
+          <a href="/no-why" class="footer-link">
+            What Were You Trying to Achieve?
           </a>
         </li>
         
         <li>
-          <a href="/blogpost-contexts" class="footer-link">
-            Provide Context When Writing Blog Posts
+          <a href="/javascript-gom-jabbar" class="footer-link">
+            JavaScript Gom Jabbar
           </a>
         </li>
         
         <li>
-          <a href="/remix-3" class="footer-link">
-            Thoughts on Remix 3
+          <a href="/how-not-to-flux-set-actions" class="footer-link">
+            How Not to Use Flux: SET Actions
           </a>
         </li>
         

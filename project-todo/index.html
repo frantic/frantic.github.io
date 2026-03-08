@@ -222,6 +222,17 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 .article-title a, .site-header a { color: var(--text); text-decoration: none; }
 .article-title a:hover, .site-header a:hover { text-decoration: none; }
 
+img.article-og {
+  max-width: calc(100% + 3rem);
+  margin: 0 -1.5rem var(--space-7);
+}
+@media (max-width: 600px) {
+  img.article-og {
+    max-width: calc(100% + 2 * var(--space-4));
+    margin: 0 calc(-1 * var(--space-4)) var(--space-7);
+  }
+}
+
 .article-meta {
   color: var(--text-secondary);
   font-size: var(--step--1);
@@ -551,6 +562,8 @@ figcaption {
         Apr 13, 2020 by Alex Kotliarskyi
       </div>
       
+      
+      <img class="article-og" src="/assets/project-todo/TODO_file.png" alt="" width="1200" height="630" />
       <div class="article-content"><p>If you know me, you know that I’m not a very organized person. I hate rigid productivity systems. I’ve tried many things: Trello, Things, Github Issues, Pivotal Tracker, etc. But they all end up in the same state — detached from the real work I’m doing.</p>
 <p>Here’s what worked for me.</p>
 <p>In most of my personal projects I have a file called <strong>TODO</strong>. I use it like this.</p>
@@ -604,26 +617,26 @@ should happen next. No new features!
         
         
         <li>
-          <a href="/how-not-to-flux-loops" class="footer-link">
-            How Not to Use Flux: Mini Cycles
+          <a href="/tomorrowman" class="footer-link">
+            I'm a Tomorrowman
           </a>
         </li>
         
         <li>
-          <a href="/remote-meetings" class="footer-link">
-            Optimize Your Meetings for Engagement
+          <a href="/notify-on-completion" class="footer-link">
+            Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus
           </a>
         </li>
         
         <li>
-          <a href="/macos-app-shortcuts" class="footer-link">
-            Better Way to Switch Between Apps on macOS
+          <a href="/hello-world" class="footer-link">
+            Hello, World!
           </a>
         </li>
         
         <li>
-          <a href="/side-projects-are-hard" class="footer-link">
-            Why Side Projects Are Hard
+          <a href="/e2e-tests" class="footer-link">
+            Improving End to End Tests Reliability
           </a>
         </li>
         

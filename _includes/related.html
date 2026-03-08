@@ -34,7 +34,7 @@
 
 {% if maxRelatedCounter > 0 %}
     <div class="related-posts">
-      <h3>Related Posts</h3>
+      <p class="related-posts-label">Related Posts</p>
       <ul>
         {{ posts }}
       </ul>
@@ -43,7 +43,7 @@
 {% else %}
 
     <div class="related-posts">
-      <h3>Random Posts</h3>
+      <p class="related-posts-label">Random Posts</p>
       <ul>
         {% assign randomPosts = site.posts | sample: 4 %}
         {% for post in randomPosts %}

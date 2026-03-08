@@ -34,13 +34,13 @@
     <style type="text/css" media="screen">
       /* Typography-first theme for frantic.im (Arial-centric) */
 :root {
-  /* Color scheme – light */
-  --background: hsl(40, 33%, 99%);
-  --text: hsl(220, 20%, 18%);
-  --text-secondary: hsl(220, 10%, 42%);
-  --accent: hsl(220, 72%, 46%);
-  --accent-underline: color-mix(in srgb, var(--accent) 60%, transparent);
-  --separator: hsla(220, 20%, 90%, 0.5);
+  /* Color scheme – light (warm paper) */
+  --background: #f0ebe3;
+  --text: #2d2926;
+  --text-secondary: #6b6460;
+  --accent: #8b5e3c;
+  --accent-underline: color-mix(in srgb, var(--accent) 50%, transparent);
+  --separator: #d5cec4;
 
   /* Typography */
   --body-font: Arial, Helvetica, "Helvetica Neue", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -86,12 +86,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: hsl(223, 16%, 12%);
-    --text: hsl(220, 20%, 92%);
-    --text-secondary: hsl(220, 10%, 70%);
-    --accent: hsl(220, 80%, 70%);
+    --background: #1e1b18;
+    --text: #d4d0ca;
+    --text-secondary: #8a8480;
+    --accent: #c49a6c;
     --accent-underline: color-mix(in srgb, var(--accent) 40%, transparent);
-    --separator: hsl(220, 12%, 22%);
+    --separator: #3a3530;
   }
 }
 
@@ -623,26 +623,26 @@ should happen next. No new features!
         
         
         <li>
-          <a href="/ctrl-r" class="footer-link">
-            My Favorite Shell Shortcut
+          <a href="/hacker-gifts" class="footer-link">
+            A Side Project Story: Hacker Gifts
           </a>
         </li>
         
         <li>
-          <a href="/using-redux-with-flow" class="footer-link">
-            Using Redux with Flow
+          <a href="/remix-3" class="footer-link">
+            Thoughts on Remix 3
           </a>
         </li>
         
         <li>
-          <a href="/react-api-evolution" class="footer-link">
-            React API Evolution
+          <a href="/blogpost-contexts" class="footer-link">
+            Provide Context When Writing Blog Posts
           </a>
         </li>
         
         <li>
-          <a href="/cdtmp" class="footer-link">
-            cdtmp
+          <a href="/project-todo" class="footer-link">
+            TODO File for Personal Projects
           </a>
         </li>
         

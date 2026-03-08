@@ -7,7 +7,7 @@ tags:
   - productivity
 ---
 
-When preparing presentations I often want to include a few code blocks in the slides, with proper syntax highlighting. However, what sounds like a very strightforward task always turns out to be complicated.
+When preparing presentations I often want to include a few code blocks in the slides, with proper syntax highlighting. However, what sounds like a very straightforward task always turns out to be complicated.
 
 You see, none of the code editors I use (Sublime Text, Atom, VSCode) preserve colorful syntax highlighting of the code. Press ⌘C/⌘V and you get only text. There are plugins for these editors that try to help with that, but what happens under the hood is completely different: they rely on [pygments](http://pygments.org/). This solution is not great, as it uses a different tool to actually do highlighting that produces different result.
 

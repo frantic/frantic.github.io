@@ -8,7 +8,7 @@ I left Facebook (Meta) in 2021 to join a small startup called Replit. Leaving wa
 
 Disclaimers:
 * This post isn't sponsored by Replit, Facebook (Meta), or any other company or product mentioned here.
-* The advice might not work for you in you are in a different spot in your career.
+* The advice might not work for you if you are in a different spot in your career.
 
 
 ### History so far
@@ -29,7 +29,7 @@ The magic was gone.
 
 Things I care a lot about, like quality, craft and focus, weren't as important as scale, metrics and PSC.
 
-None of this happened suddenly, just a very slow process. That was one of the reason it was hard to leave.
+None of this happened suddenly, just a very slow process. That was one of the reasons it was hard to leave.
 
 ### Why is it so hard to quit Facebook
 
@@ -41,9 +41,9 @@ The stock is doing well and is very liquid. Refreshers are constantly added in a
 
 The benefits are top notch. Almost every doctor I visited said “wow” when looking at the health insurance. It's very comfortable to know that you are likely not going to receive a huge bill for doing an ultra sound for a routine checkup.
 
-Then there's the Prestige. Facebook gets a lot of blame in media lately, but in everyday life it's still very prestigious place to be working at. Getting a mortgage or a car loan is easy, saying you work for Facebook gets you on the fast line.
+Then there's the Prestige. Facebook gets a lot of blame in media lately, but in everyday life it's still a very prestigious place to be working at. Getting a mortgage or a car loan is easy, saying you work for Facebook gets you on the fast line.
 
-It's comfortable to know that even if your project fails, you are not going to loose your job, your savings or your RSUs.
+It's comfortable to know that even if your project fails, you are not going to lose your job, your savings or your RSUs.
 
 It's comfortable to know your next steps on the career ladder. Getting from level N to N+1 is documented in the wiki, you make a plan with your manager from the blueprint and keep executing.
 
@@ -122,15 +122,15 @@ Facebook aims to pay top 5% of the market. Which means almost everywhere you go,
 
 Comparing FAANG and startup offers is hard. Facebook stock is basically cash. Startup equity throws you into long articles about ISOs and tax complications. I've spent tens of hours trying to figure out how to reason about these and still didn't have a satisfying answer.
 
-To cut the chase, the best offer I got was roughly 70% of what I was making at Facebook.
+To cut to the chase, the best offer I got was roughly 70% of what I was making at Facebook.
 
-However, I found the process of comparing raw numbers like that very damaging. It spawns a rational though: if I were leaving Facebook to find a more fulfilling role, maybe I should stay, take the 30% difference and invest in a personal trainer or a couch? Plus an extra exotic vacation to boost that happiness levels.
+However, I found the process of comparing raw numbers like that very damaging. It spawns a rational thought: if I were leaving Facebook to find a more fulfilling role, maybe I should stay, take the 30% difference and invest in a personal trainer or a coach? Plus an extra exotic vacation to boost that happiness levels.
 
 The way out of this is to consider the total compensation as a lagging factor. You can optimize it within a certain range, but it's much better idea to invest into the leading factors instead.
 
 You should also read this article on [salary negotiation](https://www.kalzumeus.com/2012/01/23/salary-negotiation/). Senior Engineer Jobsearch goes over this too: when speaking to the recruiters you are at disadvantage and you should at the very least be aware of basic tactics.
 
-In my experience, having competing offers made it possible to get better numbers. But numbers is not the only thing.
+In my experience, having competing offers made it possible to get better numbers. But numbers are not the only thing.
 
 
 ### Making a decision
@@ -159,7 +159,7 @@ I do miss a bunch of Facebook internal tools. Phabricator, Workplace, Scuba, Del
 
 During the first month I had to unlearn a bunch of Facebook skills. E.g. a common thought that crept into my decision process there was “Is this big enough scope? Can I communicate the importance of this and get people involved recognized?”
 
-After joining Replit 9 months ago, I've shipped [debugger](https://blog.replit.com/multiplayer-debugging), [the new design system](https://blog.replit.com/rui-eng), [web3 support](https://blog.replit.com/solidity). The team is top notch, and the vibes remind me my early days at Facebook so much.
+After joining Replit 9 months ago, I've shipped [debugger](https://blog.replit.com/multiplayer-debugging), [the new design system](https://blog.replit.com/rui-eng), [web3 support](https://blog.replit.com/solidity). The team is top notch, and the vibes remind me of my early days at Facebook so much.
 
 A common question I get is about work/life balance. And I view it a little different too now. At Facebook I could get by barely working a few hours a day. But the job was so unsatisfying that it spilled the frustration in the “life” part. So I re-frame the question: how's work affecting your life? For me leaving Facebook was definitely a huge improvement.
 

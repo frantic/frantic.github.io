@@ -89,7 +89,7 @@ The type checker will point us to every place in the source code that needs to b
 
 ## Deprecations and other meta information
 
-Let's imagine there was a new fundamental discovery in physics that makes our naїve escape velocity calculation obsolete. How do we deprecate the old function?
+Let's imagine there was a new fundamental discovery in physics that makes our naïve escape velocity calculation obsolete. How do we deprecate the old function?
 
 We can put this fact into meta language by adding a comment to the documentation or writing a provoking Medium post. But it's much more constructive to bring this information down into the code itself.
 

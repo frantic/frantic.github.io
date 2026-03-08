@@ -42,7 +42,7 @@ For example, for massive scale backend systems it's almost impossible to look at
 
 The nastiest errors happen during error reporting.
 
-When error reporting code tries to be smart and has untrivial amounts of logic, it will inevitably have bugs on its own. Errors while reporting error are the worst, because they usually hide the original cause.
+When error reporting code tries to be smart and has nontrivial amounts of logic, it will inevitably have bugs on its own. Errors while reporting error are the worst, because they usually hide the original cause.
 
 Unfortunately they are easy to miss too, because the error path is not usually the common path. The error reporting code gets less coverage in terms of automated and manual tests.
 
@@ -77,7 +77,7 @@ Be aware of the perf cost of including additional information. In particular, of
       'Bad style name ' + name + '. Valid styles: ' + JSON.stringify(VALID)
     );
 
-As you can see, the error message argument string is computed every time before the function call, even when the invarian doesn't fire.
+As you can see, the error message argument string is computed every time before the function call, even when the invariant doesn't fire.
 
 ## Errors visibility
 
@@ -93,7 +93,7 @@ Takeaways:
 
 1. Choose unique and helpful error messages
 2. Include more information about which piece of data was wrong
-3. But don't try to be too clever about the advice above, its will lead to even worse errors.
+3. But don't try to be too clever about the advice above, it will lead to even worse errors.
 4. Make sure your [Test Plan](/test-plan) includes code path that triggers errors.
 
 Errors are tools. Use them.

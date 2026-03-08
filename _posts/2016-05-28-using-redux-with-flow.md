@@ -22,7 +22,7 @@ $ touch .flowconfig
 $ ./node_modules/.bin/flow
 ```
 
-Flow will check only the files that have special `/* @flow */` or `// @flow` comment in them. See [Flow's Getting Starget](http://flowtype.org/docs/getting-started.html) guide for more information.
+Flow will check only the files that have special `/* @flow */` or `// @flow` comment in them. See [Flow's Getting Started](http://flowtype.org/docs/getting-started.html) guide for more information.
 
 ## Reducers
 

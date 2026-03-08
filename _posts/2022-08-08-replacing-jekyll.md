@@ -9,7 +9,7 @@ tags:
 
 I [started this blog](/hello-world) in 2016. At the time, "static blogging" was becoming very popular and getting started was easy. I simply used [Jekyll](https://jekyllrb.com/) with GitHub pages.
 
-But then I got a new laptop and the simplicity turned into a nighmare. A new Ruby version, an incompatible Jekyll gem version, cryptic C++ compilation errors of one of Jekyll's dependencies. I've tried RVM, I've tried Bundler, I've tried Docker.
+But then I got a new laptop and the simplicity turned into a nightmare. A new Ruby version, an incompatible Jekyll gem version, cryptic C++ compilation errors of one of Jekyll's dependencies. I've tried RVM, I've tried Bundler, I've tried Docker.
 
 At this point, blogging felt more like fighting with the tools.
 
@@ -41,7 +41,7 @@ Things you can do:
   w         - Open in browser
 ```
 
-This little menu let's me take the most common actions right from the console. For example, the first command converts "Fancy Blog Title" into "2022-08-08-fancy-blog-title.md", creates this file in the right place from the template and opens it in the editor.
+This little menu lets me take the most common actions right from the console. For example, the first command converts "Fancy Blog Title" into "2022-08-08-fancy-blog-title.md", creates this file in the right place from the template and opens it in the editor.
 
 It's amazing how much these little inconveniences prevented me from writing!
 

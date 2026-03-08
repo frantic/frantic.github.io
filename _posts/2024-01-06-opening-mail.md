@@ -21,6 +21,6 @@ The best part? It actually made me enjoy opening my mail.
 
 After this experience, I started thinking differently about unpleasant tasks. Is there a tool or a service that add delight to mundane things?
 
-I also started noticing when people do this subconiously. For example, most software engineers I know hate blogging, but they like building their own blog engine to make blogging more pleasant (I'm very guilty of this too).
+I also started noticing when people do this subconsciously. For example, most software engineers I know hate blogging, but they like building their own blog engine to make blogging more pleasant (I'm very guilty of this too).
 
 Kent Beck [nailed it](https://twitter.com/KentBeck/status/250733358307500032): "for each desired change, make the change easy (warning: this may be hard), then make the easy change".

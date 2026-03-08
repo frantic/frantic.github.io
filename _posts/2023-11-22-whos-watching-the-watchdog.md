@@ -5,7 +5,7 @@ image: /figma/og_watchdog.png
 excerpt: Making reliable systems that expect things to go wrong
 ---
 
-At my current company we have an automated pipeline for processing customer's orders. It's pretty complex — talking to multiple different services, training models, storing large files, updating the database, sending emails and push notifications.
+At my current company we have an automated pipeline for processing customers' orders. It's pretty complex — talking to multiple different services, training models, storing large files, updating the database, sending emails and push notifications.
 
 Sometimes things get stuck because of a temporary 3rd party outage or a bug in our code.
 

@@ -13,7 +13,7 @@ In most of my personal projects I have a file called **TODO**. I use it like thi
 
 When I have an idea about a feature or a bug, I just open the TODO file (Cmd+P → TODO → Enter), go to the end (Cmd+↓) and start typing.
 
-If I'm away from my computer, I'll use [Things](https://culturedcode.com/things/) to capture the ideas and then move the to the TODO file.
+If I'm away from my computer, I'll use [Things](https://culturedcode.com/things/) to capture the ideas and then move them to the TODO file.
 
 My TODO file captures a whole bunch of things related to the project. I don't have to actually do anything about these things at the moment, just capture items in my backlog.
 

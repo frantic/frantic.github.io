@@ -13,6 +13,6 @@ It's a day you dedicate fully to things you've been always postponing. Fix squea
 
 On the Get Your Shit Together day you are not allowed to work on anything typically considered urgent or important. There's a whole life-worth of days for that.
 
-The Get Your Shit Together day feels good because you finally take action on things that have been eating up on you for so long. Action creates motivation. Motivation makes you want to do more things.
+The Get Your Shit Together day feels good because you finally take action on things that have been eating away at you for so long. Action creates motivation. Motivation makes you want to do more things.
 
 If you read this far and this idea resonates with you, pick a random day next month and block your calendar. I promise it'll be worth it.

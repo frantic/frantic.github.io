@@ -42,11 +42,11 @@ function reducer(state, action) {
 
 ## Problem #1: Business logic inside the component
 
-In this example the bussness logic is incrementing the value, i.e. `value = value + 1`. If we use `SET_*` action, the logic ends up inside the component. It's not great because the React component should not care about these details, its main purpose is rendering and dispatching actions.
+In this example the business logic is incrementing the value, i.e. `value = value + 1`. If we use `SET_*` action, the logic ends up inside the component. It's not great because the React component should not care about these details, its main purpose is rendering and dispatching actions.
 
 As the application and the team grows, it's going to be very tempting to put more stuff into the component. E.g. if we wanted to have a max value for the counter, the most intuitive thing in this example would be to put it into the `onClick` handler.
 
-## Problem #2: Not leaveraging reducer
+## Problem #2: Not leveraging reducer
 
 Reducer is a beautiful pattern that's older than JavaScript itself. Given a state and an action reducer returns a new state. It's easy to type check, easy to test, easy to reason about.
 

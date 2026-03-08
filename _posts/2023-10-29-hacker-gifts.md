@@ -37,7 +37,7 @@ I decided to shift the focus exclusively to the digital aspect. Buyers can print
 
 ## Tech stack
 
-I remember wasting _a lot_ of time on which framework to use to build the website. The classic software engineering side project dilemmas. I was agonizing about this until one night I forked $32 for a Shopify store. It wasn't perfect by my standards, but it definitely unlocked everything else.
+I remember wasting _a lot_ of time on which framework to use to build the website. The classic software engineering side project dilemmas. I was agonizing about this until one night I forked out $32 for a Shopify store. It wasn't perfect by my standards, but it definitely unlocked everything else.
 
 At first, I processed all orders manually. Shopify sends me a push notification, I run to the computer and quickly enter the data into a local script, then send the result by mail.
 

@@ -46,8 +46,7 @@ A couple of screenshots:
   <img class="screenshot" src="/assets/atscale/screen01.png" alt="The landing screen of the app, contained general information about the conference – date and venue">
 </a>
 <a href="/assets/atscale/screen02.png">
-  <img class="screenshot" src="/assets/atscale/screen02.png" alt="Schedule screen for one of the tracks. User could swipe left/right to switch between the tracks or tap the corresponding but
-ton at the top."></a>
+  <img class="screenshot" src="/assets/atscale/screen02.png" alt="Schedule screen for one of the tracks. User could swipe left/right to switch between the tracks or tap the corresponding button at the top."></a>
 <a href="/assets/atscale/screen03.png">
   <img class="screenshot" src="/assets/atscale/screen03.png" alt="Screen with the details of the selected talk. Contained time, duration, title, description and the list of speakers">
 </a>

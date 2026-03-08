@@ -48,7 +48,7 @@ This guide assumes you are integrating React Native into an existing application
 
 But you don't have to rewrite your application! **React Native can be adopted incrementally**.
 
-Find an area in your application that will immediately get benefits from being implemented in React Native. For example, it could be a screen that is useful but but doesn't get much development attention or a surface that's implemented as a WebView. For example, Facebook started with Pokes, Instagram rebuilt "liked photos", etc.
+Find an area in your application that will immediately get benefits from being implemented in React Native. For example, it could be a screen that is useful but doesn't get much development attention or a surface that's implemented as a WebView. For example, Facebook started with Pokes, Instagram rebuilt "liked photos", etc.
 
 It has to be with a scope that you can build yourself within few days. It will be a great campground to test different aspects of integration: build system, session sharing, logging, crash reporting, etc.
 

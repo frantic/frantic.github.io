@@ -22,7 +22,7 @@ After months of attending large VC-only meetings I think I found a pattern. I’
 * Somebody’s speaking up but they focus on a minor detail and talk through it forever, nobody’s willing to stop them
 * In the end everyone is frustrated, the meeting feels like a waste of time and feels like it could have been replaced by a group post.
 
-But not all meetings where like that. A few were actually really good.
+But not all meetings were like that. A few were actually really good.
 
 **Here’s the secret sauce:**
 

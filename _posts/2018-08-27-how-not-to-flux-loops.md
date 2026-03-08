@@ -8,7 +8,7 @@ tags:
   - flux
 ---
 
-This his how the data flows in a typical Flux architecture: React components subscribe to updates in the store. When something happens, the components dispatch actions, the store updates its state in response and notifies React components, which re-render with the new data. Redux and all other Flux implementations work this way.
+This is how the data flows in a typical Flux architecture: React components subscribe to updates in the store. When something happens, the components dispatch actions, the store updates its state in response and notifies React components, which re-render with the new data. Redux and all other Flux implementations work this way.
 
 Actions generally don't return anything, because all the updates are supposed to come from the store. All arrows point in the same direction. Nice and clean.
 

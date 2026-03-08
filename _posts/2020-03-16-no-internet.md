@@ -19,7 +19,7 @@ We called ISP but got nothing useful: they said metrics on their end looked good
 
 I needed a way to prove that something was wrong.
 
-I built a script that every 5 minutes downloaded a 25MB file and recorded what the download speed was. It also logged errors. Finally I could put the Raspberry Pi I had for a good use!
+I built a script that every 5 minutes downloaded a 25MB file and recorded what the download speed was. It also logged errors. Finally I could put the Raspberry Pi I had to good use!
 
 ```bash
 #!/bin/bash
@@ -43,7 +43,7 @@ $ crontab -e
 */5 * * * * /home/pi/inet/dload.sh
 ```
 
-Unfortunately, first half hour of running this didn't reveal any problems (except underwhelming connection speed). I've decided to up my game a little and use production grade tools.
+Unfortunately, the first half hour of running this didn't reveal any problems (except underwhelming connection speed). I've decided to up my game a little and use production grade tools.
 
 ## Installing and configuring Grafana
 

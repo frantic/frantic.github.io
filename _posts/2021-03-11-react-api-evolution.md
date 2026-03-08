@@ -50,7 +50,7 @@ Initeresting things to note here:
 1. `/** @jsx React.DOM */` was required for the JSXTransformer to convert XML-in-JS syntax (like `<div>Hello</div>`) to function calls (like `React.DOM.div({}, 'Hello')`)
 2. `React.createClass` was used to create a component. I think in hindsight naming it `Class` and not `Component` was a big marketing mistake: with ES6 classes many people were pushing for React to adopt the "standard" way, although it had a lot of problems (more on that later).
 3. In development, React performed `props` validation at runtime (Flow and TypeScript didn't exist back then), and the `PropTypes` API allowed for pretty complex definitions with nested objects and arrays.
-4. Initially, without `React.autoBind` the methods on the components had dynamically scoped `this`, which was pretty confusing: calling `this.tick` would result in something like "Can't call `setState` of unndefined". `autoBind` was doing something like `fn.bind(this)` to fix it on per-function basis, and eventually this behavior was moved directly into `React.createClass`.
+4. Initially, without `React.autoBind` the methods on the components had dynamically scoped `this`, which was pretty confusing: calling `this.tick` would result in something like "Can't call `setState` of undefined". `autoBind` was doing something like `fn.bind(this)` to fix it on per-function basis, and eventually this behavior was moved directly into `React.createClass`.
 5. React focused on a pure, functional, declarative approach to building UIs, but also had escape hatches that allowed programmers take imperative actions or talk to DOM when needed via lifecycle methods and refs.
 
 If you look carefully at the example above, you'll notice that there's a memory leak! We `setInterval` without `clearInterval`-ing it. To fix the problem we'd have to call `clearInterval` from `componentWillUnmount`, however that wasn't obvious from the APIs and programmers had to watch out for patterns like this.
@@ -138,7 +138,7 @@ First, the benefits weren't super valuable. React shipped `Component` and `PureC
 
 Second, the semantics resulted in a bunch of ergonomics problems.
 
-In the example above, if you forgot to do `this.tick.bind(this)`, you'll get the same "Can't call `setState` of unndefined" as in pre-`autoBind` days. There were several popular ways to address this, none of them seemed ideal though:
+In the example above, if you forgot to do `this.tick.bind(this)`, you'll get the same "Can't call `setState` of undefined" as in pre-`autoBind` days. There were several popular ways to address this, none of them seemed ideal though:
 
 - Do it inline: easy to forget, `bind` returns a new function instance for every call (which hurts if you rely on `shouldComponentUpdate`):
 

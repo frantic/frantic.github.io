@@ -6,7 +6,7 @@ excerpt: "What if I'm a left-handed person in the world of right-handed tools?"
 
 In my lifetime I've tried a dozen todo apps. In the beginning they all seem different, novel and special. Slick UI, shortcuts, tags, subtasks, the list goes on and on.
 
-But all our stories were the same: I start using the new app, then after awhile I stop using it.
+But all our stories were the same: I start using the new app, then after a while I stop using it.
 
 Up until the last week I thought the problem was in myself (you probably think so too). After all, [David Allen](https://gettingthingsdone.com/) seems to have figured this shit out. Also there are people leaving long 5 star reviews on every major todo list app, they discuss them on forums, recommend them to friends.
 

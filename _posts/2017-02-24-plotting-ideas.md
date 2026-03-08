@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Plotting Ideas
-excerpt: Errors with extra information can help locate and fix the problems faster.
+excerpt: A technique for expanding your understanding of a problem space and generating new ideas.
 tags:
   - thinking
   - models

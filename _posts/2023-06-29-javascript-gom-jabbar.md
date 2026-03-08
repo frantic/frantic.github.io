@@ -15,19 +15,19 @@ You wish you used a different `name` for your package, but some random internet 
 
 Both `main` and `browser` fields are present, you sense traces of Isomorphic JavaScript. In a flash, you remember requiring `fs` module from your browser bundle. These memories are very unpleasant. The hacks you had to do to make it work were even more unpleasant.
 
-The `type` is set to `module`. This has something to do with the migration from `requires` to `imports`. Why do we have to care about this, again? The extensive pain you've experienced trying to importing ES5 modules from ESM modules and vice versa overwhelms you again.
+The `type` is set to `module`. This has something to do with the migration from `requires` to `imports`. Why do we have to care about this, again? The extensive pain you've experienced trying to import ES5 modules from ESM modules and vice versa overwhelms you again.
 
-You make your way to `scripts`. What a hot, painful mess it is. You can't look at them without your heart rate going to 150. lint, lintall, lintfast, lintdiff. Parallel runs, obscure arguments, double-escaping JSON-formatted arguments. Subcommands calling npm even through you switched to yarn and then pnpm. Thousands of variations, permutations and details make you shiver. Why do these things have to be here? Why do they need to be so complicated?
+You make your way to `scripts`. What a hot, painful mess it is. You can't look at them without your heart rate going to 150. lint, lintall, lintfast, lintdiff. Parallel runs, obscure arguments, double-escaping JSON-formatted arguments. Subcommands calling npm even though you switched to yarn and then pnpm. Thousands of variations, permutations and details make you shiver. Why do these things have to be here? Why do they need to be so complicated?
 
-Some scripts still use `watchman`. Gotta remember to not use symlinks because it doesn't support them (and the issue has been open since 2015). There's also this gulp-based script that nobody has the guts to replace with anything else that's considered more modern. You think that there's actually no modern version of gulp but it feels outdated and you definitely want to get rid of it. The pains spreads from your head into your neck and shoulders.
+Some scripts still use `watchman`. Gotta remember to not use symlinks because it doesn't support them (and the issue has been open since 2015). There's also this gulp-based script that nobody has the guts to replace with anything else that's considered more modern. You think that there's actually no modern version of gulp but it feels outdated and you definitely want to get rid of it. The pain spreads from your head into your neck and shoulders.
 
 The pain is barely tolerable when you reach `dependencies`. So, so many of them. There's `left-pad`, the legendary tiny package that broke all internet, collectively causing the amount of pain and drama comparable to the destruction of Alderaan.
 
-Every time you modify dependency list, some of the dependencies print out screens-worth of messages to your console, asking for donations, warning about breaking changes. You gave up trying to understand these. You only hope none of them are malicious enough to steal your secrets or ruin your computer. The threat of potential pain of that magnitute is frighting.
+Every time you modify dependency list, some of the dependencies print out screens-worth of messages to your console, asking for donations, warning about breaking changes. You gave up trying to understand these. You only hope none of them are malicious enough to steal your secrets or ruin your computer. The threat of potential pain of that magnitude is frightening.
 
 There's also moment.js. You love that library, it has a really pleasant API. But the internet decided it's too "mutable", too fat, it doesn't support treeshaking and now you have to migrate to date-fns. You haven't started yet, but you already feel the painful refactoring in your bones.
 
-Looking at every package in that list causes some amount of trauma recall. But what's even more concerning is that the version of these packages are way behind what's considered "current". You know that you should upgrade them. But you also have tried that before and you know how much suffering it brings. Things will break in so many ways, big and loud ways, small and subtle ways.
+Looking at every package in that list causes some amount of trauma recall. But what's even more concerning is that the versions of these packages are way behind what's considered "current". You know that you should upgrade them. But you also have tried that before and you know how much suffering it brings. Things will break in so many ways, big and loud ways, small and subtle ways.
 
 The next thing in this damn file is `resolutions`. Yes, you remember this one. It's a suffering you choose to avoid dealing with package upgrades.
 

@@ -13,7 +13,7 @@ In 2017 I was working on React Native team. We were friends with all other devel
 
 Around that time, Unsplash was becoming very popular. They were the first to provide high quality stock photos for free (very bold strategy for its time). Their photos were spreading like a wildfire.
 
-So I had this "genius" idea: make a photo of MacBook Pro with Atom/Nuclide running on it, upload it to Unsplash and get programming blog posts use it as their cover photo (for free). People will notice a cool looking editor and will start asking "what is it?", eventually finding Nuclide (now you know why I'm not working in marketing).
+So I had this "genius" idea: make a photo of MacBook Pro with Atom/Nuclide running on it, upload it to Unsplash and get programming blog posts to use it as their cover photo (for free). People will notice a cool looking editor and will start asking "what is it?", eventually finding Nuclide (now you know why I'm not working in marketing).
 
 I took my old Canon 6D to the office and we did a photoshoot. I uploaded the picture (along with others from my Lightroom collection, to make it less sketchy).
 
@@ -29,7 +29,7 @@ Together with the Nuclide photo, I uploaded a picture I took that year in Ukrain
 
 During the uploading process Unsplash asked if I wanted to submit my pictures to their first ever "Unsplash Awards" and I thought "sure why not?".
 
-I forgot about this for a while, until several months later I got an email from Unspash notifying me that I won ["Unsplash Awards 2017" in "Tech and business"](https://awards.unsplash.com/2017/#/tech-and-business).
+I forgot about this for a while, until several months later I got an email from Unsplash notifying me that I won ["Unsplash Awards 2017" in "Tech and business"](https://awards.unsplash.com/2017/#/tech-and-business).
 
 > In a way, Alex's photo captures a reflection of modern life: staring at a screen. Our lives, especially in our twenties, feels like a competition. From school, to university, to getting a job and progressing through our careers – it’s a never ending competition. The photo draws your eyes out across the rows of workers, all seemingly identical – but at the same time, showing small hints of color and personality from every worker that highlight and humanizes their unique history and personality. It makes me think of 20 years from now, what technology will be ubiquitous.
 > -- Niv Dror, ProductHunt/Angelist
@@ -38,6 +38,6 @@ They sent me a bunch of cool prizes: PeakDesign Messenger bag, straps and clips,
 
 Now, looking at it, I do regret not processing the picture more: the horizon line is a bit tilted, you can spot chromatic aberration, the windows are overexposed.
 
-Today that picture has 57 million views and used all over the internet. It even ended up on [Hacker News](https://news.ycombinator.com/item?id=21010674) with the classic "It looks like a sweatshop" and "exact type of workplace I wouldn't want anyone to end up" comments.
+Today that picture has 57 million views and is used all over the internet. It even ended up on [Hacker News](https://news.ycombinator.com/item?id=21010674) with the classic "It looks like a sweatshop" and "exact type of workplace I wouldn't want anyone to end up" comments.
 
 Conclusions? None, I guess. I just love how a stream of random events brought this to life.

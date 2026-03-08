@@ -602,9 +602,9 @@ figcaption {
 }
 </code></pre>
 <h2>Problem #1: Business logic inside the component</h2>
-<p>In this example the bussness logic is incrementing the value, i.e. <code>value = value + 1</code>. If we use <code>SET_*</code> action, the logic ends up inside the component. It’s not great because the React component should not care about these details, its main purpose is rendering and dispatching actions.</p>
+<p>In this example the business logic is incrementing the value, i.e. <code>value = value + 1</code>. If we use <code>SET_*</code> action, the logic ends up inside the component. It’s not great because the React component should not care about these details, its main purpose is rendering and dispatching actions.</p>
 <p>As the application and the team grows, it’s going to be very tempting to put more stuff into the component. E.g. if we wanted to have a max value for the counter, the most intuitive thing in this example would be to put it into the <code>onClick</code> handler.</p>
-<h2>Problem #2: Not leaveraging reducer</h2>
+<h2>Problem #2: Not leveraging reducer</h2>
 <p>Reducer is a beautiful pattern that’s older than JavaScript itself. Given a state and an action reducer returns a new state. It’s easy to type check, easy to test, easy to reason about.</p>
 <p>When we put the business logic outside of reducer, we miss out on all these advantages. The <code>SET_*</code> actions essentially turn the predictable store into a global variable.</p>
 <h2>Problem #3: Hard to debug and test</h2>

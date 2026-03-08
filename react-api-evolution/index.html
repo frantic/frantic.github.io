@@ -611,7 +611,7 @@ figcaption {
 <li><code>/** @jsx React.DOM */</code> was required for the JSXTransformer to convert XML-in-JS syntax (like <code>&lt;div&gt;Hello&lt;/div&gt;</code>) to function calls (like <code>React.DOM.div({}, 'Hello')</code>)</li>
 <li><code>React.createClass</code> was used to create a component. I think in hindsight naming it <code>Class</code> and not <code>Component</code> was a big marketing mistake: with ES6 classes many people were pushing for React to adopt the “standard” way, although it had a lot of problems (more on that later).</li>
 <li>In development, React performed <code>props</code> validation at runtime (Flow and TypeScript didn’t exist back then), and the <code>PropTypes</code> API allowed for pretty complex definitions with nested objects and arrays.</li>
-<li>Initially, without <code>React.autoBind</code> the methods on the components had dynamically scoped <code>this</code>, which was pretty confusing: calling <code>this.tick</code> would result in something like “Can’t call <code>setState</code> of unndefined”. <code>autoBind</code> was doing something like <code>fn.bind(this)</code> to fix it on per-function basis, and eventually this behavior was moved directly into <code>React.createClass</code>.</li>
+<li>Initially, without <code>React.autoBind</code> the methods on the components had dynamically scoped <code>this</code>, which was pretty confusing: calling <code>this.tick</code> would result in something like “Can’t call <code>setState</code> of undefined”. <code>autoBind</code> was doing something like <code>fn.bind(this)</code> to fix it on per-function basis, and eventually this behavior was moved directly into <code>React.createClass</code>.</li>
 <li>React focused on a pure, functional, declarative approach to building UIs, but also had escape hatches that allowed programmers take imperative actions or talk to DOM when needed via lifecycle methods and refs.</li>
 </ol>
 <p>If you look carefully at the example above, you’ll notice that there’s a memory leak! We <code>setInterval</code> without <code>clearInterval</code>-ing it. To fix the problem we’d have to call <code>clearInterval</code> from <code>componentWillUnmount</code>, however that wasn’t obvious from the APIs and programmers had to watch out for patterns like this.</p>
@@ -686,7 +686,7 @@ figcaption {
 <p>However, in my opinion ES6 classes didn’t fix the problem, but made it worse.</p>
 <p>First, the benefits weren’t super valuable. React shipped <code>Component</code> and <code>PureComponent</code> to inherit from, inheriting other components was discouraged (in favor of <a href="https://reactjs.org/docs/composition-vs-inheritance.html">composition</a>).</p>
 <p>Second, the semantics resulted in a bunch of ergonomics problems.</p>
-<p>In the example above, if you forgot to do <code>this.tick.bind(this)</code>, you’ll get the same “Can’t call <code>setState</code> of unndefined” as in pre-<code>autoBind</code> days. There were several popular ways to address this, none of them seemed ideal though:</p>
+<p>In the example above, if you forgot to do <code>this.tick.bind(this)</code>, you’ll get the same “Can’t call <code>setState</code> of undefined” as in pre-<code>autoBind</code> days. There were several popular ways to address this, none of them seemed ideal though:</p>
 <ul>
 <li>Do it inline: easy to forget, <code>bind</code> returns a new function instance for every call (which hurts if you rely on <code>shouldComponentUpdate</code>):</li>
 </ul>

@@ -597,7 +597,7 @@ figcaption {
 <p>For example, for massive scale backend systems it’s almost impossible to look at an error reported by one of hundreds of services and figure out what went wrong. To help pinpoint the cause, it’s a good idea to log a lot of additional information with the crash report and then aggregate and display that information. For example, server OS version, service version, arguments, queries per second, memory and CPU utilization, free disk space, active thread etc.</p>
 <h2>Errors while reporting errors</h2>
 <p>The nastiest errors happen during error reporting.</p>
-<p>When error reporting code tries to be smart and has untrivial amounts of logic, it will inevitably have bugs on its own. Errors while reporting error are the worst, because they usually hide the original cause.</p>
+<p>When error reporting code tries to be smart and has nontrivial amounts of logic, it will inevitably have bugs on its own. Errors while reporting error are the worst, because they usually hide the original cause.</p>
 <p>Unfortunately they are easy to miss too, because the error path is not usually the common path. The error reporting code gets less coverage in terms of automated and manual tests.</p>
 <p>However, a few languages do have good tools to help with this case – Chained Exceptions. For example, when an exception is thrown when processing another exception, <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/chained.html">Java</a> and <a href="https://www.python.org/dev/peps/pep-3134/">Python 3</a> will report both original and new errors:</p>
 <pre><code>Traceback (most recent call last):
@@ -625,7 +625,7 @@ Exception: Error while reporting error
   'Bad style name ' + name + '. Valid styles: ' + JSON.stringify(VALID)
 );
 </code></pre>
-<p>As you can see, the error message argument string is computed every time before the function call, even when the invarian doesn’t fire.</p>
+<p>As you can see, the error message argument string is computed every time before the function call, even when the invariant doesn’t fire.</p>
 <h2>Errors visibility</h2>
 <p>Depending on severity and environment, error can be silenced completely or very loud.</p>
 <p>In React Native, for example, we make development errors very visible and actionable information when possible. There are systems out there that do even better! Ruby on Rails has a plugin called <a href="https://github.com/charliesome/better_errors">better_errors</a> that can show a helpful webpage with stack trace, source code and REPL. It’s one of the best error UX I’ve seen.</p>
@@ -635,7 +635,7 @@ Exception: Error while reporting error
 <ol>
 <li>Choose unique and helpful error messages</li>
 <li>Include more information about which piece of data was wrong</li>
-<li>But don’t try to be too clever about the advice above, its will lead to even worse errors.</li>
+<li>But don’t try to be too clever about the advice above, it will lead to even worse errors.</li>
 <li>Make sure your <a href="/test-plan">Test Plan</a> includes code path that triggers errors.</li>
 </ol>
 <p>Errors are tools. Use them.</p>

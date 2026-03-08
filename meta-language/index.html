@@ -629,7 +629,7 @@ let escape_velocity (Kilograms mass) (Meters radius) =
 </code></pre>
 <p>The type checker will point us to every place in the source code that needs to be changed in order to support the new units.</p>
 <h2>Deprecations and other meta information</h2>
-<p>Let’s imagine there was a new fundamental discovery in physics that makes our naїve escape velocity calculation obsolete. How do we deprecate the old function?</p>
+<p>Let’s imagine there was a new fundamental discovery in physics that makes our naïve escape velocity calculation obsolete. How do we deprecate the old function?</p>
 <p>We can put this fact into meta language by adding a comment to the documentation or writing a provoking Medium post. But it’s much more constructive to bring this information down into the code itself.</p>
 <p>We can use the same trick as before with the C function and rename <code>escape_velocity</code> to <code>escape_velocity_DEPRECATED</code> or something <a href="https://github.com/facebook/react/blob/80bff5397bf854750dbe7c286f61654ea58938c5/src/umd/ReactUMDEntry.js#L21">bizarre like that</a>. However it will mean our API change will break client code, it’s also non-standard (anyone can have their custom suffixes) and it doesn’t really suggest a better method to use.</p>
 <p>What if there was language support for pushing this information from meta into the language itself? Something like</p>
@@ -676,26 +676,26 @@ let escape_velocity (Kilograms mass) (Meters radius) =
         
         
         <li>
-          <a href="/todo-for-robots" class="footer-link">
-            TODO Apps Are Meant for Robots
+          <a href="/meta-language" class="footer-link">
+            Understanding "Taming the Meta Language"
           </a>
         </li>
         
         <li>
-          <a href="/suddenly" class="footer-link">
-            Slow, Then Suddenly
+          <a href="/no-why" class="footer-link">
+            What Were You Trying to Achieve?
           </a>
         </li>
         
         <li>
-          <a href="/get-your-shit-together-day" class="footer-link">
-            The Get Your Shit Together Day
+          <a href="/javascript-gom-jabbar" class="footer-link">
+            JavaScript Gom Jabbar
           </a>
         </li>
         
         <li>
-          <a href="/back-to-rails" class="footer-link">
-            Moving My Serverless Project to Ruby on Rails
+          <a href="/explain-programming" class="footer-link">
+            Reconsidering the Way I Explain Programming
           </a>
         </li>
         

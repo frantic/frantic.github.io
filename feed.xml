@@ -5,7 +5,7 @@
   <link rel="self" href="https://frantic.im/feed.xml" />
   <icon>https://frantic.im/favicon.png</icon>
   <subtitle>Occasional posts on technology and stuff</subtitle>
-  <updated>2026-03-08T01:49:13.292Z</updated>
+  <updated>2026-03-08T02:37:25.020Z</updated>
   <author>
     <name>Alex Kotliarskyi</name>
   </author>
@@ -23,15 +23,15 @@
         
         
         <p>Many years ago, I was invited to an adventure. My colleague from Facebook was assembling a little skunk works crew for a mission at Apple’s headquarters. We were to build the first prototype of the Facebook app for Apple TV. It was 2014.</p>
-<p>An engineer from Apple met us at the Infinity Loop. His task was to show us the new APIs and answer technical questions.</p>
+<p>An engineer from Apple met us at the Infinite Loop. His task was to show us the new APIs and answer technical questions.</p>
 <p>We got to work. But instead of building the actual app, we jumped into building the infrastructure. We ported React to work with then not-yet-announced TVML, used the limited APIs of their JS flavor to talk to our GraphQL servers, set up auth, CI and many other developer experience basics.</p>
 <p>After a day of this, no progress was made on the actual app. The Apple guy was neither impressed nor disappointed – it was normal for big companies to bring their engineers to Apple’s HQ for “partnership” collaboration sessions that produced zero value.</p>
 <p>But we went home excited for the next day. We knew what leverage we built for ourselves. I kept hacking on the CI/CD pipeline well into the night, reducing the overhead down to a few seconds.</p>
 <p>The next day started just like the previous one. After coffees and small talk, our host dived into reading the news, expecting nothing significant.</p>
-<p>But the next time he looked at the shared monitor connected to the Apple TV, something very strange was happening. We had the first version of the app on the screen. And then the second. And the third. In less than an hour we iterated on several different concepts, the UI changing almost instantly and showed real production data. We had our friends list, photos and videos show up on the TV, we could rearrange everything.</p>
+<p>But the next time he looked at the shared monitor connected to the Apple TV, something very strange was happening. We had the first version of the app on the screen. And then the second. And the third. In less than an hour we iterated on several different concepts, the UI changing almost instantly and showing real production data. We had our friends list, photos and videos show up on the TV, we could rearrange everything.</p>
 <p>The Apple guy was blown away. From his perspective we made almost no progress at first but then everything happened all at once.</p>
-<p>From my perspective, I was having the time of my life. The system translated our intentions into the real product at the insane speed. Any idea you had for the experience, you could make it and see it on the real device right away.</p>
-<p>If you look at what’s happening with AI software development early 2026, it does seem very familiar. A handful of engineers investing in their software factories, which from outside looks unnecessarily complicated and are yet to produce anything of value. But don’t dismiss them yet. Pay attention.</p>
+<p>From my perspective, I was having the time of my life. The system translated our intentions into the real product at an insane speed. Any idea you had for the experience, you could make it and see it on the real device right away.</p>
+<p>If you look at what’s happening with AI software development early 2026, it does seem very familiar. A handful of engineers investing in their software factories, which from the outside look unnecessarily complicated and are yet to produce anything of value. But don’t dismiss them yet. Pay attention.</p>
 <p>Slow at first, but then suddenly all at once.</p>
 <p>P.S. That speed was intoxicating, but in the end it didn’t matter. The Facebook Apple TV app never shipped. The leadership poured all resources into mobile and didn’t have time for the side quests.</p>
 
@@ -185,7 +185,7 @@ router.<span class="hljs-title function_">map</span>(routes.<span class="hljs-pr
         <p>The Get Your Shit Together day is a day off you take from work, family and other obligations.</p>
 <p>It’s a day you dedicate fully to things you’ve been always postponing. Fix squeaky door hinges, repot your plant, publish that blog post, start a side project. Really anything on your todo list that has been there for years.</p>
 <p>On the Get Your Shit Together day you are not allowed to work on anything typically considered urgent or important. There’s a whole life-worth of days for that.</p>
-<p>The Get Your Shit Together day feels good because you finally take action on things that have been eating up on you for so long. Action creates motivation. Motivation makes you want to do more things.</p>
+<p>The Get Your Shit Together day feels good because you finally take action on things that have been eating away at you for so long. Action creates motivation. Motivation makes you want to do more things.</p>
 <p>If you read this far and this idea resonates with you, pick a random day next month and block your calendar. I promise it’ll be worth it.</p>
 
       ]]></content>
@@ -297,7 +297,7 @@ router.<span class="hljs-title function_">map</span>(routes.<span class="hljs-pr
 <p>It’s well-made, affordable, and feels good to use. Plus, it’s safe.</p>
 <p>The best part? It actually made me enjoy opening my mail.</p>
 <p>After this experience, I started thinking differently about unpleasant tasks. Is there a tool or a service that add delight to mundane things?</p>
-<p>I also started noticing when people do this subconiously. For example, most software engineers I know hate blogging, but they like building their own blog engine to make blogging more pleasant (I’m very guilty of this too).</p>
+<p>I also started noticing when people do this subconsciously. For example, most software engineers I know hate blogging, but they like building their own blog engine to make blogging more pleasant (I’m very guilty of this too).</p>
 <p>Kent Beck <a href="https://twitter.com/KentBeck/status/250733358307500032">nailed it</a>: “for each desired change, make the change easy (warning: this may be hard), then make the easy change”.</p>
 
       ]]></content>
@@ -314,7 +314,7 @@ router.<span class="hljs-title function_">map</span>(routes.<span class="hljs-pr
         
         
         
-        <p>At my current company we have an automated pipeline for processing customer’s orders. It’s pretty complex — talking to multiple different services, training models, storing large files, updating the database, sending emails and push notifications.</p>
+        <p>At my current company we have an automated pipeline for processing customers’ orders. It’s pretty complex — talking to multiple different services, training models, storing large files, updating the database, sending emails and push notifications.</p>
 <p>Sometimes things get stuck because of a temporary 3rd party outage or a bug in our code.</p>
 <p>So we built a watchdog service: it monitors the stream of orders and makes sure the orders get processed within reasonable timeframe (3 hours). The watchdog only looks at the final invariant — was the order fulfilled and delivered to the customer? It doesn’t care about any intermediary steps.</p>
 <p>This system has saved us many times. When the watchdog finds a stuck order, it posts in our special channel in Slack. We investigate the problem and address the root cause, so hopefully we won’t see new orders stuck for the same reason.</p>
@@ -357,7 +357,7 @@ router.<span class="hljs-title function_">map</span>(routes.<span class="hljs-pr
 <p>I decided to shift the focus exclusively to the digital aspect. Buyers can print it themselves, transfer it to their phone, or hide it on their desktop.</p>
 <p><img src="https://frantic.im/assets/hacker-gifts/01-Hacker-Gifts.png" alt="Early version of hacker.gifts website" /></p>
 <h2>Tech stack</h2>
-<p>I remember wasting <em>a lot</em> of time on which framework to use to build the website. The classic software engineering side project dilemmas. I was agonizing about this until one night I forked $32 for a Shopify store. It wasn’t perfect by my standards, but it definitely unlocked everything else.</p>
+<p>I remember wasting <em>a lot</em> of time on which framework to use to build the website. The classic software engineering side project dilemmas. I was agonizing about this until one night I forked out $32 for a Shopify store. It wasn’t perfect by my standards, but it definitely unlocked everything else.</p>
 <p>At first, I processed all orders manually. Shopify sends me a push notification, I run to the computer and quickly enter the data into a local script, then send the result by mail.</p>
 <p>In early days the adrenaline from every $20 brought a thrill. But I quickly got tired of getting up in the middle of the night. In addition, I wanted to create a pleasant impression and instant free delivery.</p>
 <p>It was time for <em>Automation</em>. Shopify can call a webhook for each order, and there I can generate a new postcard and send it by mail.</p>

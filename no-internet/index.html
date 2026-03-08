@@ -583,7 +583,7 @@ figcaption {
 <p>The symptom was the same: at random times the internet connection would just disappear. WiFi signal was strong, but no traffic is getting through.</p>
 <p>We called ISP but got nothing useful: they said metrics on their end looked good, no disruptions in service.</p>
 <p>I needed a way to prove that something was wrong.</p>
-<p>I built a script that every 5 minutes downloaded a 25MB file and recorded what the download speed was. It also logged errors. Finally I could put the Raspberry Pi I had for a good use!</p>
+<p>I built a script that every 5 minutes downloaded a 25MB file and recorded what the download speed was. It also logged errors. Finally I could put the Raspberry Pi I had to good use!</p>
 <pre><code class="language-bash"><span class="hljs-meta">#!/bin/bash</span>
 
 url=<span class="hljs-string">&quot;https://speedtest....:8080/download?nocache=...&quot;</span>
@@ -601,7 +601,7 @@ speed=$(curl -Lo /dev/null -skw <span class="hljs-string">&quot;%{speed_download
 
 */5 * * * * /home/pi/inet/dload.sh
 </code></pre>
-<p>Unfortunately, first half hour of running this didn’t reveal any problems (except underwhelming connection speed). I’ve decided to up my game a little and use production grade tools.</p>
+<p>Unfortunately, the first half hour of running this didn’t reveal any problems (except underwhelming connection speed). I’ve decided to up my game a little and use production grade tools.</p>
 <h2>Installing and configuring Grafana</h2>
 <p>I always wanted to learn more about <a href="https://grafana.com/">Grafana</a>, and this sounded like a perfect opportunity. I thought plotting the results of the download script would help me investigate the problem.</p>
 <p>I’ll skip the part where I tried different backends for storing the data. I didn’t care much about any particular solution, just needed something basic to store enough data to plot a simple bar chart. However, every tool tries to sell itself as enterprise level, high scale, etc. and comes with five million services that make up an advanced distributed architecture.</p>
@@ -684,26 +684,26 @@ curl -XPOST <span class="hljs-string">&#x27;http://localhost:8086/write?db=inet&
         
         
         <li>
-          <a href="/suddenly" class="footer-link">
-            Slow, Then Suddenly
+          <a href="/opening-mail" class="footer-link">
+            Opening Mail
           </a>
         </li>
         
         <li>
-          <a href="/notify-on-completion" class="footer-link">
-            Show OSX Notification When Long-Running Command Finishes and Your Terminal Is Not in Focus
+          <a href="/javascript-gom-jabbar" class="footer-link">
+            JavaScript Gom Jabbar
           </a>
         </li>
         
         <li>
-          <a href="/best-tool" class="footer-link">
-            No Best Tool for the Job
+          <a href="/how-not-to-flux-loops" class="footer-link">
+            How Not to Use Flux: Mini Cycles
           </a>
         </li>
         
         <li>
-          <a href="/no-constraints-no-fun" class="footer-link">
-            No Constraints, No Fun
+          <a href="/hn-stack" class="footer-link">
+            The Hacker News Stack
           </a>
         </li>
         

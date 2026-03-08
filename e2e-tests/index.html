@@ -580,10 +580,10 @@ figcaption {
 <h2>The problem</h2>
 <p>End-to-end (E2E) tests verify that the product works on the high level. For example, if you have an e-commerce website, E2E test could simulate an important user behavior: open the website in a browser, search for a product, add it to the cart and performing checkout.</p>
 <p>It’s hard to make end to end tests reliable, because (by definition) these tests rely on all components of your system. If each component has a reliability of 99%, the test that depends on ten systems has 10% chance to fail. This matters even more when you run hundreds of tests a day.</p>
-<p>E2E tests often get bad reputation among developers due to this flakiness . See <a href="https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html">Google Testing Blog: Just Say No to More End-to-End Tests</a>.</p>
-<p>When the engineering organization is growing, we have to scale our tooling. We can’t expect thousands engineers to be experts in end-to-end testing. So whenever somebody is writing a new test or investigating a failure, it should not require prior experience dealing with E2E tests.</p>
+<p>E2E tests often get a bad reputation among developers due to this flakiness . See <a href="https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html">Google Testing Blog: Just Say No to More End-to-End Tests</a>.</p>
+<p>When the engineering organization is growing, we have to scale our tooling. We can’t expect thousands of engineers to be experts in end-to-end testing. So whenever somebody is writing a new test or investigating a failure, it should not require prior experience dealing with E2E tests.</p>
 <h2>The solution</h2>
-<p>Over the years engineers at Facebook figured ways to improve E2E testing practice. You can watch the tech talk linked at the end for more details. Here are some improvements that I think were really important.</p>
+<p>Over the years engineers at Facebook figured out ways to improve E2E testing practice. You can watch the tech talk linked at the end for more details. Here are some improvements that I think were really important.</p>
 <h2>1. Make testing API declarative</h2>
 <p>This is very basic trick, but many engineers writing test don’t realize that testing code is also, eh, code, and it will benefit from a healthy amount of abstraction.</p>
 <p>Most examples on the internet about how to write E2E tests are very basic and look something like this:</p>

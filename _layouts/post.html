@@ -15,8 +15,9 @@ layout: default
         {{ page.date | date: "%b %-d, %Y" }} by {{ site.author }}
       </div>
       {% endif %}
-      {% if page.image %}{% assign post_og = page.image %}{% else %}{% assign post_og = page.url | remove_first: '/' | prepend: '/assets/og/' | append: '.png' %}{% endif %}
-      <img class="article-og" src="{{ post_og }}" alt="" width="1200" height="630" />
+      {% if page.image %}{% assign post_og = page.image %}<img class="article-og article-og--custom" src="{{ post_og }}" alt="" />
+      {% else %}{% assign post_og = page.url | remove_first: '/' | prepend: '/assets/og/' | append: '.png' %}<img class="article-og" src="{{ post_og }}" alt="" width="1200" height="630" />
+      {% endif %}
       <div class="article-content">{{ content }}</div>
     </article>
 

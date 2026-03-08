@@ -7,7 +7,8 @@ permalink: /blog/
 <div class="container">
   {% include header.html %}
   <main>
-    <p class="system-text">Latest blog posts:</p>
+    <h1>Blog</h1>
+    <p>All {{ site.posts | size }} posts. Starred (★) are my favorites. See also blog <a href="https://u.frantic.im/share/PdxrhczkbRQVIp61/frantic.im">analytics</a>.</p>
     <div class="related-posts">
       <ul>
         {% for post in site.posts %}

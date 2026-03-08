@@ -43,8 +43,9 @@
   --separator: #d5cec4;
 
   /* Typography */
-  --body-font: Arial, Helvetica, "Helvetica Neue", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --heading-font: var(--body-font);
+  --body-font: "Palatino Linotype", Palatino, "Book Antiqua", "Iowan Old Style", Georgia, serif;
+  --heading-font: system-ui, -apple-system, "Segoe UI", Arial, Helvetica, sans-serif;
+  --system-font: var(--mono-font);
   --mono-font: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 
   /* Fluid type scale */
@@ -177,6 +178,7 @@ small, .small { font-size: var(--step--1); color: var(--text-secondary); }
 
 /* Header */
 .site-header {
+  font-family: var(--system-font);
   border-bottom: 1px solid var(--separator);
   margin-bottom: var(--space-7);
   padding-bottom: var(--space-4);
@@ -241,7 +243,8 @@ img.article-og--custom {
 
 .article-meta {
   color: var(--text-secondary);
-  font-size: var(--step--1);
+  font-size: var(--step--2);
+  font-family: var(--system-font);
   margin-bottom: var(--space-5);
 }
 
@@ -374,7 +377,7 @@ figcaption {
   flex: 1;
   padding: 0.8rem 1rem;
   font-size: var(--step--1);
-  font-family: var(--body-font);
+  font-family: var(--heading-font);
   border: 1px solid var(--separator);
   border-radius: 6px;
   background: var(--background);
@@ -386,7 +389,7 @@ figcaption {
 .subscribe-button {
   padding: 0.8rem 1.25rem;
   font-size: var(--step--1);
-  font-family: var(--body-font);
+  font-family: var(--heading-font);
   font-weight: 600;
   color: var(--background);
   background: var(--text);
@@ -426,7 +429,7 @@ figcaption {
 
 .footer-bio { font-size: var(--step--1); line-height: 1.6; color: var(--text-secondary); margin: 0; }
 
-.footer-heading { font-family: var(--heading-font); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 1rem; color: var(--text-secondary); }
+.footer-heading { font-family: var(--system-font); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 1rem; color: var(--text-secondary); }
 
 .social-links { display: flex; flex-direction: row; gap: 0.75rem; }
 
@@ -446,11 +449,11 @@ figcaption {
 
 .footer-bottom { padding-top: var(--space-6); border-top: 1px solid var(--separator); display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-6); }
 
-.footer-copyright, .footer-colophon { font-size: 0.85rem; color: var(--text-secondary); margin: 0; }
+.footer-copyright, .footer-colophon { font-size: var(--step--2); color: var(--text-secondary); margin: 0; font-family: var(--system-font); }
 
 @media (max-width: 600px) {
   .footer-content { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2rem; }
-  .footer-bottom { flex-direction: column; gap: 0.5rem; }
+  .footer-bottom { flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
   .footer-inner { padding: 0 1rem; }
 }
 
@@ -460,7 +463,9 @@ figcaption {
 .related-posts a { color: var(--text); text-decoration: none; }
 .related-posts a:hover { color: var(--accent); }
 
-.related-posts h3 { color: var(--text-secondary); font-size: var(--step--1); margin-bottom: var(--space-4); }
+.system-text { font-family: var(--system-font); font-size: var(--step--2); color: var(--text-secondary); }
+
+.related-posts-label { color: var(--text-secondary); font-size: var(--step--2); font-family: var(--system-font); margin-bottom: var(--space-4); }
 
 .related-posts ul { list-style: none; padding: 0; margin: 0; }
 
@@ -526,10 +531,11 @@ figcaption {
 .links-meta {
   display: block;
   color: var(--text-secondary);
+  font-family: var(--system-font);
   margin-top: var(--space-1);
-  font-size: var(--step--1);
+  font-size: var(--step--2);
   font-variant-numeric: tabular-nums;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
       h3 {

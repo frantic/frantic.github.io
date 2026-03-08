@@ -1,25 +1,21 @@
 ---
-layout: default
+layout: page
 title: Links
 permalink: /links/
 feed: /links/feed.xml
 feed_title: frantic.im — Links
 ---
 
-<div class="container">
-  {% include header.html %}
-  <main>
-    <h1>Links</h1>
-    <p>This is a list of websites and blog posts I found interesting. You can subscribe to it via a separate <a href="/links/feed.xml">RSS feed</a>.</p>
-    <ul class="links-list">
-      {% for link in site.links %}
-      <li class="links-item">
-        <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
-        {% if link.note %}<span class="links-note">— {{ link.note }}</span>{% endif %}
-        <span class="links-meta">Added <time>{{ link.date | slice: 0, 10 }}</time> · {{ link.domain }}</span>
-      </li>
-      {% endfor %}
-    </ul>
-  </main>
-  {% include footer.html %}
-</div>
+<p>Websites and blog posts I found interesting. You can subscribe via a separate <a href="/links/feed.xml">RSS feed</a>.</p>
+
+<ul class="links-list">
+  {% for link in site.links %}
+  <li class="links-item">
+    <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
+    {% if link.note %}<span class="links-note">— {{ link.note }}</span>{% endif %}
+    <span class="links-meta">Added <time>{{ link.date | slice: 0, 10 }}</time> · {{ link.domain }}</span>
+  </li>
+  {% endfor %}
+</ul>
+
+{% include footer.html %}

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Who Cares
+featured: true
 permalink: /who-cares
 permalinks:
   - /caring-about-software-quality-is-getting-harder

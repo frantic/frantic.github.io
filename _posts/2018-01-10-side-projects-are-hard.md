@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Why Side Projects Are Hard
+featured: true
 image: /assets/side-projects/og-image.png
 excerpt: Fun, misery and yak shaving expeditions
 tags:

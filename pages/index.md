@@ -9,17 +9,15 @@ I'm a software engineer based in Seattle. I work at [OpenAI](https://openai.com/
 
 In the past I cofounded [Secta AI](https://secta.ai/), worked at [Replit](https://replit.com/site/careers) and [Facebook](/leaving-facebook) building mobile apps, developer efficiency tools, React Native, Oculus and Messenger.
 
-I write about technology and side projects. Here are a few of the latest blog posts:
-
-{% assign latest = site.posts | slice: 0, 5 %}
+I write about technology and side projects. Here are some featured posts:
 
 <div class="related-posts">
   <ul>
-    {% for post in latest %}
+    {% for post in site.posts %}{% if post.featured %}
     <li>
-       <a href="{{ post.url }}">{{ post.title }} </a>
+       <a href="{{ post.url }}">{{ post.title }}</a>
     </li>
-    {% endfor %}
+    {% endif %}{% endfor %}
   </ul>
 </div>
 

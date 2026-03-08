@@ -1,6 +1,7 @@
 ---
 title: "Slow, Then Suddenly"
 slug: "suddenly"
+featured: true
 date: 2026-02-16
 ---
 

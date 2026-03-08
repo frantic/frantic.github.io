@@ -43,16 +43,17 @@
 {% else %}
 
     <div class="related-posts">
-      <p class="related-posts-label">Random Posts</p>
+      <p class="related-posts-label">Featured Posts</p>
       <ul>
-        {% assign randomPosts = site.posts | sample: 4 %}
-        {% for post in randomPosts %}
+        {% assign featuredCount = 0 %}
+        {% for post in site.posts %}{% if post.featured and post.url != page.url %}
         <li>
           <a href="{{ site.baseurl }}{{ post.url }}" class="footer-link">
             {{ post.title }}
           </a>
         </li>
-        {% endfor %}
+        {% assign featuredCount = featuredCount | plus: 1 %}{% if featuredCount >= 4 %}{% break %}{% endif %}
+        {% endif %}{% endfor %}
       </ul>
     </div>
 

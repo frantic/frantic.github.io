@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Disposable Software
+featured: true
 image: /figma/og_disposable_software.png
 excerpt: Questioning the status quo of software maintenance
 ---

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: JavaScript Gom Jabbar
+featured: true
 image: /figma/og_js_gom_jabbar.png
 excerpt: What's inside that package.json? Pain.
 tags:

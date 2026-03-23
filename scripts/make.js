@@ -286,7 +286,7 @@ if (process.argv[2] == "--dev") {
   console.log("  n [title] - Create a new file in posts");
   console.log("  p         - Commit & push to GitHub");
   console.log("  e         - Edit in VSCode");
-  console.log("  w         - Open in browser");
+  console.log("  w / o     - Open in browser");
   console.log("  d         - Show git diff");
   console.log("  f         - Download images from Figma");
   console.log("");
@@ -317,7 +317,7 @@ if (process.argv[2] == "--dev") {
       execSync(`code .`);
     } else if (command === "d") {
       execSync(`git diff -w --color >&2`);
-    } else if (command === "w") {
+    } else if (command === "w" || command === "o") {
       execSync(`open http://localhost:9099/blog`);
     } else if (command === "f") {
       download();

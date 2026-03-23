@@ -239,8 +239,8 @@ if (require.main === module) {
 
   if (args[0] === '--all') {
     // Generate for all posts
-    const postsDir = path.join(__dirname, '..', '_posts');
-    const notesDir = path.join(__dirname, '..', '_notes');
+    const postsDir = path.join(__dirname, '..', 'posts');
+    const notesDir = path.join(__dirname, '..', 'notes');
     const outDir = path.join(__dirname, '..', 'assets', 'og');
     fs.mkdirSync(outDir, { recursive: true });
 

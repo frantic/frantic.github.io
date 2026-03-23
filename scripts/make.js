@@ -31,7 +31,7 @@ const liquid = new Liquid({
     existsSync: (file) => fs.existsSync(file),
     resolve: (root, file, ext) => path.resolve(root, ext ? file + ext : file),
   },
-  root: path.resolve(__dirname, "..", "_includes/"),
+  root: path.resolve(__dirname, "..", "includes/"),
   dynamicPartials: false,
 });
 
@@ -68,7 +68,7 @@ function inferFromFileName(fileName) {
 function normalizeHeader(fileName, header = {}) {
   const normalized = { ...header };
 
-  if (fileName.startsWith("_notes/")) {
+  if (fileName.startsWith("notes/")) {
     if (!normalized.layout) {
       normalized.layout = "post";
     }
@@ -129,7 +129,7 @@ function render(fileName, data = {}) {
   body = liquid.parseAndRenderSync(body, data);
 
   if (layout) {
-    return render(path.join(__dirname, "..", "_layouts", layout + ".html"), {
+    return render(path.join(__dirname, "..", "layouts", layout + ".html"), {
       ...data,
       content: body,
     });
@@ -140,10 +140,10 @@ function render(fileName, data = {}) {
 
 const site = yaml.load(fs.readFileSync("_config.yml", "utf8"));
 site.time = new Date().toISOString();
-const postSourceDirs = ["_posts", "_notes"];
+const postSourceDirs = ["posts", "notes"];
 
 function loadLinks() {
-  const linksFile = path.join(__dirname, "..", "_data", "links.yml");
+  const linksFile = path.join(__dirname, "..", "data", "links.yml");
   if (fs.existsSync(linksFile)) {
     const links = yaml.load(fs.readFileSync(linksFile, "utf8")) || [];
     site.links = links
@@ -234,7 +234,7 @@ generateRedirects();
 const changes = new EventEmitter();
 
 if (process.argv[2] == "--dev") {
-  const folders = ["_drafts", "_includes", "_layouts", ...postSourceDirs, "pages"];
+  const folders = ["drafts", "includes", "layouts", ...postSourceDirs, "pages"];
   for (const folder of folders) {
     fs.watch(folder, (ev, file) => {
       if (ev === "change") {
@@ -283,7 +283,7 @@ if (process.argv[2] == "--dev") {
   console.log("Listening on http://localhost:9099/");
   console.log("");
   console.log("Things you can do:");
-  console.log("  n [title] - Create a new file in _posts");
+  console.log("  n [title] - Create a new file in posts");
   console.log("  p         - Commit & push to GitHub");
   console.log("  e         - Edit in VSCode");
   console.log("  w         - Open in browser");
@@ -309,7 +309,7 @@ if (process.argv[2] == "--dev") {
         path.join(__dirname, ".post-template"),
         "utf-8"
       );
-      const fileName = `_posts/${prefix}-${slug}.md`;
+      const fileName = `posts/${prefix}-${slug}.md`;
       fs.writeFileSync(fileName, content.replace("$TILE", name));
       console.log("Created", fileName);
       execSync(`code ${fileName}`);

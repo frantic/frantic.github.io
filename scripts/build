@@ -1,7 +1,9 @@
 #!/bin/bash
 
 set -o allexport
-source .env set
+if [[ -f .env ]]; then
+  source .env
+fi
 set +o allexport
 
 mkdir -p _build

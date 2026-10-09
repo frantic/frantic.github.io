@@ -1,7 +1,7 @@
 ---
 title: "Carbon Intelligence"
 slug: "carbon-intelligence"
-excerpt: "Everyone goes thought the same thing "
+excerpt: "Report #250012-22-N9"
 date: 2026-10-09
 ---
 

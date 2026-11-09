@@ -1,5 +1,5 @@
 ---
-title: "Managing Coding Agents Is Exhausting"
+title: "I'm the Bottleneck"
 slug: "bottleneck"
 excerpt: "Who knew wielding a great power will be so exhausting?"
 date: 2026-11-09

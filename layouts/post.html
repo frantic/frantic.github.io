@@ -19,6 +19,7 @@ layout: default
       {% else %}{% assign post_og = page.url | remove_first: '/' | prepend: '/assets/og/' | append: '.png' %}<img class="article-og" src="{{ post_og }}" alt="" width="1200" height="630" />
       {% endif %}
       <div class="article-content">{{ content }}</div>
+      {% include subscribe-inline.html %}
     </article>
 
     {% include related.html %}

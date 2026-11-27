@@ -173,6 +173,74 @@ function rebuildPostsList() {
       return { ...header, content: body };
     })
     .sort((p1, p2) => p2.date.localeCompare(p1.date));
+  site.related = computeRelated(site.posts);
+}
+
+// Related posts: TF-IDF text similarity + bonus for shared tags.
+// A post can override with `related: [slug, ...]` in its front matter.
+const STOP_WORDS = new Set(
+  ("the a an and or but if of to in on at for with is it this that was are be as by from i you we " +
+    "they he she my your our not have has had do does did so what when how why which who just can " +
+    "will would there their them about more than like into out up one all also its it's i'm don't " +
+    "been were then very really get got some any no yes only even much most other").split(" ")
+);
+const TAG_BONUS = 0.1;
+const MIN_SCORE = 0.03;
+const MAX_RELATED = 4;
+
+function computeRelated(posts) {
+  const docs = posts.map((post) => {
+    const text = `${post.title} `.repeat(3) + post.content
+      .replace(/<pre[\s\S]*?<\/pre>/g, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&[a-z#0-9]+;/g, " ");
+    const tf = Object.create(null);
+    for (const w of text.toLowerCase().match(/[a-z][a-z'-]{2,}/g) || []) {
+      if (!STOP_WORDS.has(w)) tf[w] = (tf[w] || 0) + 1;
+    }
+    return { post, tf };
+  });
+  const df = Object.create(null);
+  for (const d of docs) for (const w in d.tf) df[w] = (df[w] || 0) + 1;
+  for (const d of docs) {
+    d.vec = Object.create(null);
+    let norm = 0;
+    for (const w in d.tf) {
+      const x = (1 + Math.log(d.tf[w])) * Math.log(docs.length / df[w]);
+      d.vec[w] = x;
+      norm += x * x;
+    }
+    norm = Math.sqrt(norm) || 1;
+    for (const w in d.vec) d.vec[w] /= norm;
+  }
+  const cosine = (a, b) => {
+    let sum = 0;
+    for (const w in a.vec) if (b.vec[w]) sum += a.vec[w] * b.vec[w];
+    return sum;
+  };
+  const toLink = (p) => ({ url: p.url, title: p.title });
+  const bySlug = Object.fromEntries(posts.map((p) => [p.url.replace(/^\/|\/$/g, ""), p]));
+
+  const related = {};
+  for (const d of docs) {
+    const { post } = d;
+    if (Array.isArray(post.related)) {
+      related[post.url] = post.related.map((slug) => bySlug[slug]).filter(Boolean).map(toLink);
+      continue;
+    }
+    const tags = post.tags || [];
+    related[post.url] = docs
+      .filter((o) => o !== d)
+      .map((o) => ({
+        post: o.post,
+        score: cosine(d, o) + TAG_BONUS * (o.post.tags || []).filter((t) => tags.includes(t)).length,
+      }))
+      .filter((r) => r.score >= MIN_SCORE)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, MAX_RELATED)
+      .map((r) => toLink(r.post));
+  }
+  return related;
 }
 
 function renderFile(dir, file) {

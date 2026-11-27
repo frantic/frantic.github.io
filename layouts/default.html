@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    {% capture page_desc %}{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% elsif page.auto_excerpt %}{{ page.auto_excerpt | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}{% endcapture %}
     <title>{% if page.title %}{{ page.title | escape }} / {% endif %}{{ site.title | escape }}</title>
     <meta name="author" content="{{ site.author }}">
-    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="description" content="{{ page_desc | escape }}">
 
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
@@ -15,15 +16,20 @@
     <meta property="og:title" content="{{ page.title | escape }}">
     {% if page.image %}{% assign og_image = page.image %}{% else %}{% assign og_image = page.url | remove_first: '/' | prepend: '/assets/og/' | append: '.png' %}{% endif %}
     <meta property="og:image" content="{{ og_image | prepend: site.baseurl | prepend: site.url }}">
-    <meta name="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <meta property="og:description" content="{{ page_desc | escape }}">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@alex_frantic">
     <meta name="twitter:creator" content="@alex_frantic">
     <meta name="twitter:title" content="{{ page.title | escape }}">
-    <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="twitter:description" content="{{ page_desc | escape }}">
     <meta name="twitter:image" content="{{ og_image | prepend: site.baseurl | prepend: site.url }}">
 
+    {% if page.date and page.title %}
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BlogPosting","headline":{{ page.title | json }},"description":{{ page_desc | json }},"datePublished":"{{ page.date | date: '%Y-%m-%d' }}","url":"{{ page.url | prepend: site.url }}","image":"{{ og_image | prepend: site.url }}","author":{"@type":"Person","name":{{ site.author | json }},"url":"{{ site.url }}/about/"}}
+    </script>
+    {% endif %}
     <link id="favicon" rel="icon" type="image/png" href="/favicon.png">
     <script>
       if ('ethereum' in window) {

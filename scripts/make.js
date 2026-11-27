@@ -102,15 +102,17 @@ function load(fileName) {
     : (content) => content;
   if (content.startsWith("---\n")) {
     const [_, rawHeader, rawBody] = content.split(/^---$/gm);
-    return {
-      header: {
-        ...normalizeHeader(fileName, {
-          ...inferFromFileName(fileName),
-          ...yaml.load(rawHeader),
-        }),
-      },
-      body: format(rawBody.trim()),
-    };
+    const body = format(rawBody.trim());
+    const header = normalizeHeader(fileName, {
+      ...inferFromFileName(fileName),
+      ...yaml.load(rawHeader),
+    });
+    if (!header.excerpt && /^(posts|notes)\//.test(fileName)) {
+      // First paragraph, used as a fallback for meta descriptions
+      const p = body.match(/<p>([\s\S]*?)<\/p>/);
+      if (p) header.auto_excerpt = p[1].replace(/<[^>]+>/g, "").trim();
+    }
+    return { header, body };
   } else {
     return {
       header: {},

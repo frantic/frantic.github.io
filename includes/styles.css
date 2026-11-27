@@ -350,7 +350,7 @@ figcaption {
 .subscribe-input {
   flex: 1;
   padding: 0.8rem 1rem;
-  font-size: var(--step--1);
+  font-size: max(16px, var(--step--1)); /* <16px makes iOS Safari zoom on focus */
   font-family: var(--heading-font);
   border: 1px solid var(--separator);
   border-radius: 6px;
@@ -520,7 +520,7 @@ figcaption {
 .post-subscribe-text .nowrap { white-space: nowrap; }
 .post-subscribe-text a { color: inherit; }
 .post-subscribe-row { display: flex; gap: 0.5rem; max-width: 26rem; }
-.post-subscribe input { flex: 1; min-width: 0; padding: 0.45rem 0.7rem; font: inherit; font-size: var(--step--1); color: var(--text); background: var(--background); border: 1px solid var(--separator); border-radius: 6px; }
+.post-subscribe input { flex: 1; min-width: 0; padding: 0.45rem 0.7rem; font: inherit; font-size: max(16px, var(--step--1)); color: var(--text); background: var(--background); border: 1px solid var(--separator); border-radius: 6px; }
 .post-subscribe input:focus { outline: none; border-color: var(--accent); }
-.post-subscribe button { padding: 0.45rem 0.9rem; font: inherit; font-size: var(--step--1); color: var(--text); background: none; border: 1px solid var(--separator); border-radius: 6px; cursor: pointer; }
+.post-subscribe button { padding: 0.45rem 0.9rem; font: inherit; font-size: max(16px, var(--step--1)); color: var(--text); background: none; border: 1px solid var(--separator); border-radius: 6px; cursor: pointer; }
 .post-subscribe button:hover { border-color: var(--text); }

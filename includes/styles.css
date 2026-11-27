@@ -516,7 +516,8 @@ figcaption {
 
 /* Inline subscribe at end of posts */
 .post-subscribe { margin: var(--space-7) 0 0; padding-top: var(--space-5); border-top: 1px solid var(--separator); }
-.post-subscribe-text { font-size: var(--step--1); color: var(--text-secondary); margin: 0 0 var(--space-3); }
+.post-subscribe-text { font-size: var(--step--1); color: var(--text-secondary); margin: 0 0 var(--space-3); text-wrap: pretty; }
+.post-subscribe-text .nowrap { white-space: nowrap; }
 .post-subscribe-text a { color: inherit; }
 .post-subscribe-row { display: flex; gap: 0.5rem; max-width: 26rem; }
 .post-subscribe input { flex: 1; min-width: 0; padding: 0.45rem 0.7rem; font: inherit; font-size: var(--step--1); color: var(--text); background: var(--background); border: 1px solid var(--separator); border-radius: 6px; }

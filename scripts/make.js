@@ -10,6 +10,7 @@ const yaml = require("./lib/js-yaml.min");
 const hljs = require("./lib/highlight.min");
 const MarkdownIt = require("./lib/markdown-it.min");
 const { Liquid } = require("./lib/liquid.browser.umd");
+const { typeset, figureCaptions } = require("./lib/typeset");
 
 const md = new MarkdownIt({
   html: true,
@@ -98,7 +99,7 @@ function normalizeHeader(fileName, header = {}) {
 function load(fileName) {
   const content = fs.readFileSync(fileName, "utf8");
   const format = fileName.endsWith(".md")
-    ? (content) => md.render(content)
+    ? (content) => typeset(figureCaptions(md.render(content)))
     : (content) => content;
   if (content.startsWith("---\n")) {
     const [_, rawHeader, rawBody] = content.split(/^---$/gm);
@@ -110,7 +111,7 @@ function load(fileName) {
     if (!header.excerpt && /^(posts|notes)\//.test(fileName)) {
       // First paragraph, used as a fallback for meta descriptions
       const p = body.match(/<p>([\s\S]*?)<\/p>/);
-      if (p) header.auto_excerpt = p[1].replace(/<[^>]+>/g, "").trim();
+      if (p) header.auto_excerpt = p[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
     }
     return { header, body };
   } else {

@@ -202,6 +202,12 @@ img.article-og {
 img.article-og--custom {
   aspect-ratio: auto;
 }
+@media (prefers-color-scheme: dark) {
+  /* Generated OG art is ink-on-paper; flip it to match the dark palette.
+     hue-rotate(180deg) undoes the hue shift from invert so it stays warm;
+     lighten blends its near-black paper into the page background. */
+  img.article-og:not(.article-og--custom) { filter: invert(1) hue-rotate(180deg); mix-blend-mode: lighten; }
+}
 @media (max-width: 600px) {
   img.article-og {
     max-width: calc(100% + 2 * var(--space-4));

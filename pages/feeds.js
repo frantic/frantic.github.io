@@ -20,7 +20,7 @@ function absolutePostContent(content, siteUrl) {
     .replaceAll('href="/', () => `href="${siteUrl}/`));
 }
 
-export function renderFeed({ site }) {
+function renderFeed({ site }) {
   const base = `${site.url}${site.baseurl ?? ''}`;
   // Keep the legacy limit before filtering out non-post layouts.
   const entries = site.posts.slice(0, 10)
@@ -57,7 +57,7 @@ export function renderFeed({ site }) {
 </feed>`;
 }
 
-export function renderLinksFeed({ site }) {
+function renderLinksFeed({ site }) {
   const base = escapeXml(`${site.url}${site.baseurl ?? ''}`);
   const entries = site.links.slice(0, 100).map(link => {
     const url = escapeXml(link.url);
@@ -94,3 +94,5 @@ export function renderLinksFeed({ site }) {
   ${entries.join('')}
 </feed>`;
 }
+
+module.exports = { renderFeed, renderLinksFeed };

@@ -1,3 +1,444 @@
 #!/usr/bin/env node
 
-import("./make.mjs");
+const fs = require("node:fs");
+const path = require("node:path");
+const http = require("node:http");
+const https = require("node:https");
+const EventEmitter = require("node:events");
+const { execSync } = require("node:child_process");
+const yaml = require("./lib/js-yaml.min");
+const hljs = require("./lib/highlight.min");
+const MarkdownIt = require("./lib/markdown-it.min");
+const { typeset, figureCaptions } = require("./lib/typeset");
+
+// Available in every template without an import.
+globalThis.html = require("./lib/html");
+
+const md = new MarkdownIt({
+  html: true,
+  typographer: true,
+  xhtmlOut: true,
+  highlight: (code, language) => {
+    if (language && hljs.getLanguage(language)) {
+      try {
+        return hljs.highlight(code, { language }).value;
+      } catch (__) { }
+    }
+    return "";
+  },
+});
+
+function inferFromFileName(fileName) {
+  const basename = path.basename(fileName).split(".")[0];
+  const match = basename.match(/^(\d\d\d\d-\d\d-\d\d)-(.*)$/);
+  if (!match) {
+    return { url: basename };
+  }
+  return {
+    url: "/" + match[2],
+    date: match[1] + "T12:00:00+00:00",
+  };
+}
+
+function normalizeHeader(fileName, header = {}) {
+  const normalized = { ...header };
+
+  if (fileName.startsWith("notes/")) {
+    if (!normalized.layout) {
+      normalized.layout = "post";
+    }
+    if (normalized.slug) {
+      normalized.url = `/${normalized.slug}`;
+    } else if (normalized.url && !normalized.url.startsWith("/")) {
+      normalized.url = `/${normalized.url}`;
+    }
+    if (normalized.date instanceof Date) {
+      const date = normalized.date.toISOString().split("T")[0];
+      normalized.date = `${date}T12:00:00+00:00`;
+    } else if (
+      typeof normalized.date === "string" &&
+      /^\d{4}-\d{2}-\d{2}$/.test(normalized.date)
+    ) {
+      normalized.date = `${normalized.date}T12:00:00+00:00`;
+    }
+  }
+
+  if (normalized.permalink) {
+    normalized.url = normalized.permalink;
+  }
+
+  return normalized;
+}
+
+function load(fileName) {
+  const content = fs.readFileSync(fileName, "utf8");
+  const format = fileName.endsWith(".md")
+    ? (content) => typeset(figureCaptions(md.render(content)))
+    : (content) => content;
+  if (content.startsWith("---\n")) {
+    const [_, rawHeader, rawBody] = content.split(/^---$/gm);
+    const body = format(rawBody.trim());
+    const header = normalizeHeader(fileName, {
+      ...inferFromFileName(fileName),
+      ...yaml.load(rawHeader),
+    });
+    if (!header.excerpt && /^(posts|notes)\//.test(fileName)) {
+      // First paragraph, used as a fallback for meta descriptions
+      const p = body.match(/<p>([\s\S]*?)<\/p>/);
+      if (p) header.auto_excerpt = p[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+    }
+    return { header, body };
+  } else {
+    return {
+      header: {},
+      body: format(content),
+    };
+  }
+}
+
+function applyLayout(layouts, layout, context) {
+  if (!layout) return context.content;
+  if (!Object.hasOwn(layouts, layout)) throw new Error(`Unknown layout: ${layout}`);
+  return layouts[layout](context);
+}
+
+const site = yaml.load(fs.readFileSync("_config.yml", "utf8"));
+site.time = new Date().toISOString();
+const postSourceDirs = ["posts", "notes"];
+const templateDirs = ["includes", "layouts", "pages"];
+
+function loadLinks() {
+  const linksFile = path.join(__dirname, "..", "data", "links.yml");
+  if (fs.existsSync(linksFile)) {
+    const links = yaml.load(fs.readFileSync(linksFile, "utf8")) || [];
+    site.links = links
+      .map((l) => {
+        const date = l.date instanceof Date ? l.date.toISOString().split("T")[0] : String(l.date);
+        const domain = new URL(l.url).hostname.replace(/^www\./, "");
+        return { ...l, date, domain };
+      })
+      .sort((a, b) => b.date.localeCompare(a.date));
+  } else {
+    site.links = [];
+  }
+}
+
+function rebuildPostsList() {
+  site.posts = postSourceDirs
+    .flatMap((dir) =>
+      fs
+        .readdirSync(dir)
+        .map((file) => path.join(dir, file))
+        .filter((fileName) => path.extname(fileName) === ".md")
+    )
+    .map((fileName) => {
+      const { header, body } = load(fileName);
+      return { ...header, content: body };
+    })
+    .sort((p1, p2) => p2.date.localeCompare(p1.date));
+  site.related = computeRelated(site.posts);
+}
+
+// Related posts: TF-IDF text similarity + bonus for shared tags.
+// A post can override with `related: [slug, ...]` in its front matter.
+const STOP_WORDS = new Set(
+  ("the a an and or but if of to in on at for with is it this that was are be as by from i you we " +
+    "they he she my your our not have has had do does did so what when how why which who just can " +
+    "will would there their them about more than like into out up one all also its it's i'm don't " +
+    "been were then very really get got some any no yes only even much most other").split(" ")
+);
+const TAG_BONUS = 0.1;
+const MIN_SCORE = 0.03;
+const MAX_RELATED = 4;
+
+function computeRelated(posts) {
+  const docs = posts.map((post) => {
+    const text = `${post.title} `.repeat(3) + post.content
+      .replace(/<pre[\s\S]*?<\/pre>/g, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&[a-z#0-9]+;/g, " ");
+    const tf = Object.create(null);
+    for (const w of text.toLowerCase().match(/[a-z][a-z'-]{2,}/g) || []) {
+      if (!STOP_WORDS.has(w)) tf[w] = (tf[w] || 0) + 1;
+    }
+    return { post, tf };
+  });
+  const df = Object.create(null);
+  for (const d of docs) for (const w in d.tf) df[w] = (df[w] || 0) + 1;
+  for (const d of docs) {
+    d.vec = Object.create(null);
+    let norm = 0;
+    for (const w in d.tf) {
+      const x = (1 + Math.log(d.tf[w])) * Math.log(docs.length / df[w]);
+      d.vec[w] = x;
+      norm += x * x;
+    }
+    norm = Math.sqrt(norm) || 1;
+    for (const w in d.vec) d.vec[w] /= norm;
+  }
+  const cosine = (a, b) => {
+    let sum = 0;
+    for (const w in a.vec) if (b.vec[w]) sum += a.vec[w] * b.vec[w];
+    return sum;
+  };
+  const toLink = (p) => ({ url: p.url, title: p.title });
+  const bySlug = Object.fromEntries(posts.map((p) => [p.url.replace(/^\/|\/$/g, ""), p]));
+
+  const related = {};
+  for (const d of docs) {
+    const { post } = d;
+    if (Array.isArray(post.related)) {
+      related[post.url] = post.related.map((slug) => bySlug[slug]).filter(Boolean).map(toLink);
+      continue;
+    }
+    const tags = post.tags || [];
+    related[post.url] = docs
+      .filter((o) => o !== d)
+      .map((o) => ({
+        post: o.post,
+        score: cosine(d, o) + TAG_BONUS * (o.post.tags || []).filter((t) => tags.includes(t)).length,
+      }))
+      .filter((r) => r.score >= MIN_SCORE)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, MAX_RELATED)
+      .map((r) => toLink(r.post));
+  }
+  return related;
+}
+
+function writePage(file, url, content) {
+  let destination;
+  if ([".md", ".html"].includes(path.extname(file))) {
+    destination = path.join("_build", url, "index.html");
+  } else if (url && url.includes("/")) {
+    destination = path.join("_build", url);
+  } else {
+    destination = path.join("_build", file);
+  }
+
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+  fs.writeFileSync(destination, String(content));
+}
+
+function renderDir(dir, styles, layouts, markdownRenderers) {
+  for (const file of fs.readdirSync(dir)) {
+    if (![".html", ".md", ".txt", ".xml"].includes(path.extname(file))) continue;
+
+    const source = path.join(dir, file);
+    process.stdout.write(`Building ${source}\n`);
+    const { header: { layout, renderer, ...page }, body } = load(source);
+    const context = { site, page, styles, content: html.raw(body) };
+    if (renderer) {
+      if (!Object.hasOwn(markdownRenderers, renderer)) {
+        throw new Error(`Unknown renderer in ${source}: ${renderer}`);
+      }
+      context.content = markdownRenderers[renderer](context);
+    }
+    writePage(file, page.url, applyLayout(layouts, layout, context));
+  }
+}
+
+function buildPages() {
+  const layouts = require("../layouts/renderers");
+  const { dynamicPages, markdownRenderers } = require("../pages/renderers");
+  const styles = fs.readFileSync(path.join(__dirname, "../includes/styles.css"), "utf8");
+  rebuildPostsList();
+  loadLinks();
+  for (const dir of [...postSourceDirs, "pages"]) renderDir(dir, styles, layouts, markdownRenderers);
+  for (const { filename, page, layout, render } of dynamicPages) {
+    process.stdout.write(`Building pages/${filename}\n`);
+    const context = { site, page, styles };
+    const content = render(context);
+    writePage(filename, page.url, applyLayout(layouts, layout, { ...context, content }));
+  }
+  generateRedirects();
+}
+
+function generateRedirects() {
+  let count = 0;
+  for (const post of site.posts) {
+    if (!post.permalinks) continue;
+    const targets = Array.isArray(post.permalinks) ? post.permalinks : [post.permalinks];
+    for (let oldUrl of targets) {
+      if (!oldUrl.startsWith('/')) oldUrl = '/' + oldUrl;
+      const canonical = post.url;
+      const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Redirecting...</title><link rel="canonical" href="${canonical}"><meta http-equiv="refresh" content="0;url=${canonical}"></head><body><p>Redirected to <a href="${canonical}">${canonical}</a></p></body></html>`;
+      const dest = path.join('_build', oldUrl, 'index.html');
+      fs.mkdirSync(path.dirname(dest), { recursive: true });
+      fs.writeFileSync(dest, html);
+      count++;
+    }
+  }
+  if (count > 0) process.stdout.write(`Generated ${count} redirect(s)\n`);
+}
+
+site.dev = process.argv[2] === "--dev";
+
+buildPages();
+
+const changes = new EventEmitter();
+
+if (process.argv[2] == "--dev") {
+  const templateRoots = templateDirs.map(dir => path.join(__dirname, "..", dir) + path.sep);
+  for (const folder of ["drafts", ...postSourceDirs, ...templateDirs]) {
+    fs.watch(folder, (ev, file) => {
+      const templateChanged = templateDirs.includes(folder) && (!file || file.endsWith(".js"));
+      if (ev !== "change" && !templateChanged) return;
+      if (templateChanged) {
+        for (const id of Object.keys(require.cache)) {
+          if (templateRoots.some(root => id.startsWith(root))) delete require.cache[id];
+        }
+      }
+      try {
+        buildPages();
+        changes.emit("change");
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  }
+
+  http
+    .createServer((req, res) => {
+      if (req.url === '/changes') {
+        res.setHeader('Content-Type', 'text/event-stream');
+        res.writeHead(200);
+        const sendEvent = () => res.write('event: change\ndata:\n\n');
+        changes.on('change', sendEvent);
+        req.on('close', () => changes.off('change', sendEvent));
+        return;
+      }
+
+      let fileName = __dirname + "/../_build" + req.url;
+      if (fs.existsSync(fileName) && fs.statSync(fileName).isDirectory()) {
+        fileName += "/index.html";
+      }
+      fs.readFile(fileName, (err, data) => {
+        if (err) {
+          res.writeHead(404);
+          res.end(JSON.stringify(err));
+          return;
+        }
+        res.writeHead(200);
+        res.end(data);
+      });
+    })
+    .listen(9099);
+
+  console.log("Listening on http://localhost:9099/");
+  console.log("");
+  console.log("Things you can do:");
+  console.log("  n [title] - Create a new file in posts");
+  console.log("  p         - Commit & push to GitHub");
+  console.log("  e         - Edit in VSCode");
+  console.log("  w / o     - Open in browser");
+  console.log("  d         - Show git diff");
+  console.log("  f         - Download images from Figma");
+  console.log("");
+
+  process.stdin.on("data", (data) => {
+    const command = data.toString("utf-8").trim();
+
+    if (command.startsWith("n ")) {
+      const name = command.substring(2);
+      const slug = name
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^a-zA-Z0-9 -]/g, "");
+      console.log(`New post "${name}": http://localhost:9099/${slug}`);
+      const date = new Date();
+      const prefix = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+        .toISOString()
+        .split("T")[0];
+      const content = fs.readFileSync(
+        path.join(__dirname, ".post-template"),
+        "utf-8"
+      );
+      const fileName = `posts/${prefix}-${slug}.md`;
+      fs.writeFileSync(fileName, content.replace("$TILE", name));
+      console.log("Created", fileName);
+      execSync(`code ${fileName}`);
+    } else if (command === "e") {
+      execSync(`code .`);
+    } else if (command === "d") {
+      execSync(`git diff -w --color >&2`);
+    } else if (command === "w" || command === "o") {
+      execSync(`open http://localhost:9099/blog`);
+    } else if (command === "f") {
+      download();
+    } else if (command === "p") {
+      console.log("Publishing");
+      execSync(`git add -A .`);
+      execSync(`git commit -m "Publishing changes"`);
+      execSync(`git push origin master`);
+      console.log("https://github.com/frantic/frantic.github.io/actions");
+      console.log("Done! https://frantic.im/");
+    }
+  });
+}
+
+function figma(url) {
+  const figmaToken = process.env.FIGMA_TOKEN;
+
+  return new Promise((resolve, reject) => {
+    https.get(
+      {
+        path: url,
+        host: "api.figma.com",
+        headers: { "X-Figma-Token": figmaToken },
+      },
+      (res) => {
+        if (res.statusCode !== 200) {
+          reject(new Error(`Figma replied with status code ${res.statusCode}`));
+        }
+
+        const chunks = [];
+        res.on("data", (data) => chunks.push(data));
+        res.on("end", () => resolve(Buffer.concat(chunks)));
+        res.on("error", reject);
+      }
+    );
+  }).then((data) => JSON.parse(data.toString()));
+}
+
+async function store(url, fileName) {
+  return new Promise((resolve, reject) => {
+    console.log("Downloading", url, "to", fileName);
+    https.get(url, (res) => {
+      if (res.statusCode !== 200) {
+        reject(new Error(`Non-ok status code ${res.statusCode}`));
+      }
+
+      const file = fs.createWriteStream(fileName);
+      res.pipe(file);
+      res.on("end", () => resolve());
+      res.on("error", reject);
+    });
+  });
+}
+
+async function download() {
+  console.log("Downloading images from Figma");
+  const file = await figma("/v1/files/Nf5B58hyoTotF6XCs1AjHD?depth=2");
+  const frames = {};
+  const page1 = file.document.children[0];
+  for (const frame of page1.children) {
+    frames[frame.id] = frame.name;
+  }
+
+  const ids = Object.keys(frames).join(",");
+  const exports = await figma(
+    `/v1/images/Nf5B58hyoTotF6XCs1AjHD?scale=2&ids=${ids}`
+  );
+
+  console.log(frames, exports);
+
+  await Promise.all(
+    Object.entries(frames).map(([id, name]) =>
+      store(exports.images[id], path.join("figma", name + ".png"))
+    )
+  );
+
+  const buildScript = path.join(__dirname, "build");
+  execSync(buildScript);
+}

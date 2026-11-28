@@ -1,5 +1,4 @@
-import { html, raw } from '../scripts/lib/html.mjs';
-import { footer, header, related, subscribeInline } from '../includes/partials.mjs';
+const { footer, header, related, subscribeInline } = require('../includes/partials');
 
 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const twoDigits = (number) => String(number).padStart(2, '0');
@@ -38,7 +37,7 @@ function jsonLd({ page, site, description, image }) {
     author: { '@type': 'Person', name: site.author, url: `${site.url}/about/` },
   };
   // Keep strings containing HTML from being interpreted as markup inside the script element.
-  return raw(JSON.stringify(data).replace(/</g, '\\u003c'));
+  return html.raw(JSON.stringify(data).replace(/</g, '\\u003c'));
 }
 
 function defaultLayout({ site, page, content, styles }) {
@@ -86,8 +85,8 @@ function defaultLayout({ site, page, content, styles }) {
     </script>
 
     <style type="text/css" media="screen">
-      ${raw(styles ?? '')}
-      ${raw(page.css ?? '')}
+      ${html.raw(styles ?? '')}
+      ${html.raw(page.css ?? '')}
     </style>
   </head>
 
@@ -175,7 +174,7 @@ function draftLayout({ site, page, styles }) {
 </article>` });
 }
 
-export const layouts = {
+module.exports = {
   default: defaultLayout,
   page: pageLayout,
   post: postLayout,

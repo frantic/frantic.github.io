@@ -1,6 +1,6 @@
-import assert from "node:assert/strict";
-import test from "node:test";
-import { html, raw } from "./html.mjs";
+const assert = require("node:assert/strict");
+const test = require("node:test");
+const html = require("./html");
 
 test("escapes interpolations but not the literal markup", () => {
   const label = `Alex's "A&B" <post>`;
@@ -14,7 +14,7 @@ test("escapes interpolations but not the literal markup", () => {
 test("composes fragments, arrays, and optional values without double escaping", () => {
   const items = ["A & B", "<C>"].map(label => html`<li>${label}</li>`);
   assert.equal(
-    String(html`<ul>${items}${null}${undefined}${raw("<li>D</li>")}</ul>`),
+    String(html`<ul>${items}${null}${undefined}${html.raw("<li>D</li>")}</ul>`),
     "<ul><li>A &amp; B</li><li>&lt;C&gt;</li><li>D</li></ul>"
   );
   assert.equal(String(html`${String(items[0])}`), "&lt;li&gt;A &amp;amp; B&lt;/li&gt;");

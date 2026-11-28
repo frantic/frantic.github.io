@@ -1,6 +1,5 @@
-import { html } from '../scripts/lib/html.mjs';
-import { footer, subscribe } from '../includes/partials.mjs';
-import { renderFeed, renderLinksFeed } from './feeds.mjs';
+const { footer, subscribe } = require('../includes/partials');
+const { renderFeed, renderLinksFeed } = require('./feeds');
 
 const talks = [
   {
@@ -109,7 +108,7 @@ const renderRobots = ({ site }) => `# Don't crawl unpublished posts
 User-agent: *
 ${site.posts.filter(post => post.layout === 'draft').map(post => `Disallow: ${post.url}\n`).join('')}`;
 
-export const dynamicPages = [
+const dynamicPages = [
   {
     filename: 'blog.html',
     page: { url: '/blog/', title: 'Blog' },
@@ -154,7 +153,7 @@ export const dynamicPages = [
   },
 ];
 
-export const markdownRenderers = {
+const markdownRenderers = {
   index: ({ site, content }) => html`${content}<div class="related-posts">
   <ul>
     ${site.posts.filter(post => post.featured).map(post => html`
@@ -168,3 +167,5 @@ export const markdownRenderers = {
 ${footer({ site })}`,
   subscribe: ({ site, content }) => html`${subscribe()}${content}${footer({ site })}`,
 };
+
+module.exports = { dynamicPages, markdownRenderers };

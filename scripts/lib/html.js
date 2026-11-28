@@ -19,7 +19,7 @@ class Fragment {
 }
 
 // Only for trusted markup, such as the output of our Markdown renderer.
-export function raw(markup) {
+function raw(markup) {
   return new Fragment(String(markup));
 }
 
@@ -32,9 +32,12 @@ function interpolate(value) {
 
 // Interpolations are escaped as text or for quoted attributes. For other
 // contexts (scripts, styles, URLs), handle the value at the call site.
-export function html(strings, ...values) {
+function html(strings, ...values) {
   return raw(strings.reduce(
     (markup, chunk, i) => markup + interpolate(values[i - 1]) + chunk,
     ""
   ));
 }
+
+html.raw = raw;
+module.exports = html;

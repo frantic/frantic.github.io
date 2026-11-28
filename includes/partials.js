@@ -1,6 +1,4 @@
-import { html } from '../scripts/lib/html.mjs';
-
-export function header({ site }) {
+function header({ site }) {
   return html`<header class="site-header" data-nosnippet>
   <a href="/">
     <h1 class="site-title">frantic.im</h1>
@@ -16,7 +14,7 @@ export function header({ site }) {
 `;
 }
 
-export function footer({ site }) {
+function footer({ site }) {
   const year = new Date(site.time).getUTCFullYear();
   return html`<footer class="site-footer">
   <div class="footer-bottom">
@@ -34,7 +32,7 @@ export function footer({ site }) {
 `;
 }
 
-export function related({ site, page }) {
+function related({ site, page }) {
   const relatedPosts = site.related?.[page.url];
   const hasRelated = relatedPosts?.length > 0;
   const posts = hasRelated
@@ -62,7 +60,7 @@ export function related({ site, page }) {
 ${hasRelated ? '' : '  '}`;
 }
 
-export function subscribeInline({ page }) {
+function subscribeInline({ page }) {
   return html`<form class="post-subscribe" action="https://buttondown.email/api/emails/embed-subscribe/frantic" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/frantic', 'popupwindow')" data-umami-event="subscribe" data-umami-event-post="${page.url}">
   <p class="post-subscribe-text">Thanks for reading. If you want more, I'll email you when I write the next one. <span class="nowrap">Or use <a href="/feed.xml">RSS</a>.</span></p>
   <div class="post-subscribe-row">
@@ -73,7 +71,7 @@ export function subscribeInline({ page }) {
 `;
 }
 
-export function subscribe() {
+function subscribe() {
   return html`<section class="subscribe-section">
   <div class="subscribe-content">
     <h2 class="subscribe-title">Get New Posts via Email</h2>
@@ -108,3 +106,5 @@ export function subscribe() {
 </section>
 `;
 }
+
+module.exports = { header, footer, related, subscribeInline, subscribe };

@@ -16,8 +16,7 @@ function figureCaptions(html) {
 }
 
 const NBSP = "\u00a0";
-// Tags, plus Liquid markup which must not be touched.
-const TAG = /<[^>]*>|\{%[\s\S]*?%\}|\{\{[\s\S]*?\}\}/g;
+const TAG = /<[^>]*>/g;
 const SKIP = /^<(\/?)(pre|code|script|style|textarea|kbd)\b/i;
 // Short words that shouldn't be left dangling at the end of a line.
 const SHORT_WORD =
